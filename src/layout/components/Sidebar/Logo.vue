@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      title: 'Trojan Panel',
+      title: 'Trojan Panel  mini',
       logo: 'https://img-blog.csdnimg.cn/1302ff26dd94451b832096dc2b8af5d2.png'
     }
   }

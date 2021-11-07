@@ -9,7 +9,7 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">Trojan Panel</h3>
+        <h3 class="title">Trojan Panel  mini</h3>
       </div>
 
       <el-form-item prop="username">
