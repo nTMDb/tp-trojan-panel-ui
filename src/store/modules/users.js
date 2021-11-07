@@ -14,7 +14,7 @@ const getDefaultState = () => {
         id: 1,
         icon: 'users',
         name: '用户管理',
-        path: '/users'
+        path: '/usersList'
       }
     ]
   }

@@ -197,8 +197,6 @@ export default {
     this.getList()
   },
   methods: {
-    isSysAdmin,
-    timeStampToDate,
     roleFilter,
     getList() {
       this.listLoading = true
@@ -220,15 +218,8 @@ export default {
         upload: 0,
         username: '',
         pass: '',
-        expireDate: new Date().getTime(),
-        email: '',
-        state: 1,
-        createTime: new Date(),
-        role: {
-          id: 3,
-          name: '',
-          desc: ''
-        }
+        roleId: 3,
+        createTime: new Date()
       }
     },
     handleFilter() {
