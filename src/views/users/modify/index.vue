@@ -1,0 +1,99 @@
+<template>
+  <div class="app-container">
+    <el-form
+      ref="dataForm"
+      :rules="updateRules"
+      :model="temp"
+      label-position="left"
+      label-width="100px"
+      style="width: 400px; margin-left:50px;"
+    >
+      <el-form-item label="原密码" prop="oldPass" clearable>
+        <el-input v-model="temp.oldPass" placeholder="请输入原密码" />
+      </el-form-item>
+      <el-form-item label="新密码" prop="newPass" clearable>
+        <el-input v-model="temp.newPassOne" placeholder="请输入新密码" />
+      </el-form-item>
+      <el-form-item label="新密码" prop="newPass" clearable>
+        <el-input v-model="temp.newPass" placeholder="请再次输入新密码" />
+      </el-form-item>
+      <el-form-item>
+        <el-button
+          type="primary"
+          @click="updateData()"
+        >
+          确认修改
+        </el-button>
+      </el-form-item>
+    </el-form>
+  </div>
+</template>
+
+<script>
+import { updateUserPassById } from '@/api/users'
+
+export default {
+  name: 'Modify',
+  data() {
+    const validatePass = (rule, value, callback) => {
+      if (this.temp.newPassOne !== this.temp.newPass) {
+        callback(new Error('两次新密码输入不一致'))
+      } else {
+        callback()
+      }
+    }
+    return {
+      temp: {
+        id: this.$store.getters.id,
+        oldPass: '',
+        newPassOne: '',
+        newPass: ''
+      },
+      updateRules: {
+        oldPass: [
+          { required: true, message: '请输入原密码', trigger: 'change' },
+          { min: 6, message: '密码不能少于6位', trigger: 'change' }
+        ],
+        newPass: [
+          { required: true, message: '请输入新密码', trigger: 'change' },
+          { min: 6, message: '密码不能少于6位', trigger: 'change' },
+          { validator: validatePass, trigger: 'change' }
+        ]
+      }
+    }
+  },
+  methods: {
+    resetTemp() {
+      this.temp = {
+        id: this.$store.getters.id,
+        oldPass: '',
+        newPassOne: '',
+        newPass: ''
+      }
+    },
+    updateData() {
+      this.$refs['dataForm'].validate(valid => {
+        if (valid) {
+          const tempData = Object.assign({}, this.temp)
+          updateUserPassById(tempData).then(() => {
+            this.resetTemp()
+            this.$nextTick(() => {
+              this.$refs['dataForm'].clearValidate()
+            })
+            this.$notify({
+              title: 'Success',
+              message: '修改成功,下次登陆时生效',
+              type: 'success',
+              duration: 2000
+            })
+          })
+        }
+      })
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
