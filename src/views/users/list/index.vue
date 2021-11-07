@@ -43,22 +43,22 @@
         width='80'
         type='index'
       />
-      <el-table-column label='用户名' width='110' align='center'>
+      <el-table-column label='用户名' width='210' align='center'>
         <template slot-scope='{ row }'>
           <span>{{ row.username }}</span>
         </template>
       </el-table-column>
-      <el-table-column label='角色' width='110' align='center'>
+      <el-table-column label='角色' width='210' align='center'>
         <template slot-scope='{ row }'>
           <span>{{ roleFilter(row.roleId) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label='总流量/MB' width='110' align='center'>
+      <el-table-column label='总流量/MB' width='210' align='center'>
         <template slot-scope='{ row }'>
           <span>{{ row.quota === -1 ? '无限' : row.quota }}</span>
         </template>
       </el-table-column>
-      <el-table-column label='剩余流量/MB' width='110' align='center'>
+      <el-table-column label='剩余流量/MB' width='210' align='center'>
         <template slot-scope='{ row }'>
           <span>{{
               row.quota === -1
@@ -110,7 +110,7 @@
         <el-form-item label='密码' prop='pass' clearable>
           <el-input v-model='temp.pass' />
         </el-form-item>
-        <el-form-item label='总流量' prop='quota'>
+        <el-form-item label='总流量/MB' prop='quota'>
           <el-input-number v-model.number='temp.quota' controls-position='right' type='number' />
         </el-form-item>
       </el-form>
