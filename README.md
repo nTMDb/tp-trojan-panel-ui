@@ -1,7 +1,7 @@
 # 介绍
 
 TrojanPanel Mini前端
-``
+
 # 交流
 
 Telegram: [trojanpanel](https://t.me/trojanpanel)
