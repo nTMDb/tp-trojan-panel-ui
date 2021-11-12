@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Trojan Panel  mini',
+  title: 'Trojan Panel',
 
   /**
    * @type {boolean} true | false
