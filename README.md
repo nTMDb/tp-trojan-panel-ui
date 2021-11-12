@@ -1,6 +1,6 @@
 # 介绍
 
-TrojanPanel Mini前端
+Trojan Panel前端
 
 # 交流
 
