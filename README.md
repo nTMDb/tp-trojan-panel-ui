@@ -4,7 +4,7 @@ Trojan Panel前端
 
 # 交流
 
-Telegram: [trojanpanel](https://t.me/trojanpanel)
+Telegram: [jonssonyangroup](https://t.me/jonssonyangroup)
 
 # 致谢
 
