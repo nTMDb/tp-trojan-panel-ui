@@ -2,7 +2,7 @@
   "name": "trojan-panel",
   "version": "1.0.0",
   "description": "Trojan management panel",
-  "author": "JonssonYan <yz808@outlook.com>",
+  "author": "jonssonyan <https://jonssonyan.com>",
   "scripts": {
     "dev": "vue-cli-service serve",
     "build:prod": "vue-cli-service build",
