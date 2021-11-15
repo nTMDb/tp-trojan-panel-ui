@@ -40,7 +40,7 @@ module.exports = {
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       '/api': {
-        target: process.env.ENV === 'development' ? `http://127.0.0.1:8081/api` : 'trojan-panel:8081/api',
+        target: `http://127.0.0.1:8081/api`,
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
