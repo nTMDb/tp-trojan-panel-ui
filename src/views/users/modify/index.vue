@@ -9,13 +9,13 @@
       style="width: 400px; margin-left:50px;"
     >
       <el-form-item label="原密码" prop="oldPass" clearable>
-        <el-input v-model="temp.oldPass" placeholder="请输入原密码" />
+        <el-input v-model="temp.oldPass" type="password" placeholder="请输入原密码" />
       </el-form-item>
       <el-form-item label="新密码" prop="newPass" clearable>
-        <el-input v-model="temp.newPassOne" placeholder="请输入新密码" />
+        <el-input v-model="temp.newPassOne" type="password" placeholder="请输入新密码" />
       </el-form-item>
       <el-form-item label="新密码" prop="newPass" clearable>
-        <el-input v-model="temp.newPass" placeholder="请再次输入新密码" />
+        <el-input v-model="temp.newPass" type="password" placeholder="请再次输入新密码" />
       </el-form-item>
       <el-form-item>
         <el-button
