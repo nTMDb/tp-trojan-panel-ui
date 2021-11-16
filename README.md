@@ -2,9 +2,9 @@
 
 Trojan Panel前端
 
-# 交流
+# Telegram讨论组
 
-Telegram: https://t.me/jonssonyangroup
+Telegram讨论组: https://t.me/jonssonyangroup
 
 # 致谢
 
