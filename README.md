@@ -1,6 +1,12 @@
-# 介绍
+# trojan-panel-ui
 
 Trojan Panel前端
+
+# 技术/框架
+
+1. Vue.js
+2. axios
+3. Element
 
 # Telegram讨论组
 
