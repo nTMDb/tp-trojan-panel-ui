@@ -4,7 +4,7 @@ Trojan Panel前端
 
 # Telegram讨论组
 
-Telegram讨论组: https://t.me/jonssonyangroup
+Telegram讨论组: https://t.me/TrojanPanelGroup
 
 # 致谢
 
