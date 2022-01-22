@@ -45,43 +45,47 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, pass } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), pass: pass }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
+      login({ username: username.trim(), pass: pass })
+        .then((response) => {
+          const { data } = response
+          commit('SET_TOKEN', data.token)
+          setToken(data.token)
+          resolve()
+        })
+        .catch((error) => {
+          reject(error)
+        })
     })
   },
 
   // get user info
   getInfo({ commit }) {
     return new Promise((resolve, reject) => {
-      getInfo().then(response => {
-        const { data } = response
+      getInfo()
+        .then((response) => {
+          const { data } = response
 
-        if (!data) {
-          return reject('认证失败，请重新登录！')
-        }
+          if (!data) {
+            return reject('认证失败，请重新登录！')
+          }
 
-        const { id, username, roleId } = data
+          const { id, username, roleId } = data
 
-        commit('SET_ID', id)
-        commit('SET_USERNAME', username)
-        commit('SET_ROLE_ID', roleId)
-        resolve(data)
-      }).catch(error => {
-        reject(error)
-      })
+          commit('SET_ID', id)
+          commit('SET_USERNAME', username)
+          commit('SET_ROLE_ID', roleId)
+          resolve(data)
+        })
+        .catch((error) => {
+          reject(error)
+        })
     })
   },
 
   // user logout
   logout({ commit }) {
     return new Promise((resolve, reject) => {
-      removeToken() // must remove  token  first
+      removeToken()
       resetRouter()
       commit('RESET_STATE')
       resolve()
@@ -90,8 +94,8 @@ const actions = {
 
   // remove token
   resetToken({ commit }) {
-    return new Promise(resolve => {
-      removeToken() // must remove  token  first
+    return new Promise((resolve) => {
+      removeToken()
       commit('RESET_STATE')
       resolve()
     })
@@ -104,4 +108,3 @@ export default {
   mutations,
   actions
 }
-
