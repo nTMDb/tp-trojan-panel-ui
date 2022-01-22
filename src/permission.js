@@ -1,12 +1,12 @@
 import router from './router'
 import store from './store'
-import {Message} from 'element-ui'
+import { Message } from 'element-ui'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import {getToken} from '@/utils/auth'
+import { getToken } from '@/utils/auth'
 import getPageTitle from '@/utils/get-page-title'
 
-NProgress.configure({showSpinner: false})
+NProgress.configure({ showSpinner: false })
 
 // 白名单
 const whiteList = ['/login']
@@ -18,7 +18,7 @@ router.beforeEach(async (to, from, next) => {
 
   if (hasToken) {
     if (to.path === '/login') {
-      next({path: '/'})
+      next({ path: '/' })
       NProgress.done()
     } else {
       const hasGetUserInfo = store.getters.name
