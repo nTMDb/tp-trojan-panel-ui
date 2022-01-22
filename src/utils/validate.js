@@ -7,8 +7,9 @@ export function isExternal(path) {
 }
 
 /**
- * @param {string} str
- * @returns {Boolean}
+ * 验证用户名>=6个字符
+ * @param str
+ * @returns {boolean}
  */
 export function validUsername(str) {
   // const valid_map = ['admin', 'editor']
