@@ -1,4 +1,4 @@
-# trojan-panel-ui
+# Trojan Panel UI
 
 Trojan Panel前端
 
