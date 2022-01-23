@@ -52,9 +52,9 @@
       <el-button
         :loading="loading"
         type="primary"
-        style="width:100%;margin-bottom:30px;"
+        style="width: 100%; margin-bottom: 30px"
         @click.native.prevent="handleLogin"
-      >登录
+        >登录
       </el-button>
     </el-form>
   </div>
@@ -89,7 +89,9 @@ export default {
         username: [
           { required: true, validator: validateUsername, trigger: 'change' }
         ],
-        pass: [{ required: true, validator: validatePassword, trigger: 'change' }]
+        pass: [
+          { required: true, validator: validatePassword, trigger: 'change' }
+        ]
       },
       loading: false,
       passwordType: 'password',
@@ -98,7 +100,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -116,7 +118,7 @@ export default {
       })
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true
           this.$store
