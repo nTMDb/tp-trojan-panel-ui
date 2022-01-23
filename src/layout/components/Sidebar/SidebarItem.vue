@@ -1,18 +1,33 @@
 <template>
   <div v-if="!item.hidden">
     <template
-      v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
+      v-if="
+        hasOneShowingChild(item.children, item) &&
+        (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+        !item.alwaysShow
+      "
     >
       <app-link v-if="onlyOneChild" :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <item :icon="onlyOneChild.icon||item.icon" :title="onlyOneChild.name"/>
+        <el-menu-item
+          :index="resolvePath(onlyOneChild.path)"
+          :class="{ 'submenu-title-noDropdown': !isNest }"
+        >
+          <item
+            :icon="onlyOneChild.icon || item.icon"
+            :title="onlyOneChild.name"
+          />
         </el-menu-item>
       </app-link>
     </template>
 
-    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+    <el-submenu
+      v-else
+      ref="subMenu"
+      :index="resolvePath(item.path)"
+      popper-append-to-body
+    >
       <template slot="title">
-        <item v-if="item" :icon="item.icon" :title="item.name"/>
+        <item v-if="item" :icon="item.icon" :title="item.name" />
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -60,15 +75,17 @@ export default {
   },
   methods: {
     hasOneShowingChild(children = [], parent) {
-      const showingChildren = children ? children.filter(item => {
-        if (item.hidden) {
-          return false
-        } else {
-          // Temp set(will be used if only has one showing child)
-          this.onlyOneChild = item
-          return true
-        }
-      }) : ''
+      const showingChildren = children
+        ? children.filter((item) => {
+            if (item.hidden) {
+              return false
+            } else {
+              // Temp set(will be used if only has one showing child)
+              this.onlyOneChild = item
+              return true
+            }
+          })
+        : ''
 
       // When there is only one child router, the child router is displayed by default
       if (showingChildren.length === 1) {

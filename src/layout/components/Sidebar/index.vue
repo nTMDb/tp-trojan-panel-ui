@@ -1,18 +1,23 @@
 <template>
-  <div :class="{'has-logo':showLogo}">
-    <logo v-if='showLogo' :collapse='isCollapse' />
-    <el-scrollbar wrap-class='scrollbar-wrapper'>
+  <div :class="{ 'has-logo': showLogo }">
+    <logo v-if="showLogo" :collapse="isCollapse" />
+    <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
-        :default-active='activeMenu'
-        :collapse='isCollapse'
-        :background-color='variables.menuBg'
-        :text-color='variables.menuText'
-        :unique-opened='false'
-        :active-text-color='variables.menuActiveText'
-        :collapse-transition='false'
-        mode='vertical'
+        :default-active="activeMenu"
+        :collapse="isCollapse"
+        :background-color="variables.menuBg"
+        :text-color="variables.menuText"
+        :unique-opened="false"
+        :active-text-color="variables.menuActiveText"
+        :collapse-transition="false"
+        mode="vertical"
       >
-        <sidebar-item v-for='menu in menus' :key='menu.path' :item='menu' :base-path='menu.path' />
+        <sidebar-item
+          v-for="menu in menus"
+          :key="menu.path"
+          :item="menu"
+          :base-path="menu.path"
+        />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -27,9 +32,7 @@ import variables from '@/styles/variables.scss'
 export default {
   components: { SidebarItem, Logo },
   computed: {
-    ...mapGetters([
-      'sidebar'
-    ]),
+    ...mapGetters(['sidebar']),
     routes() {
       return this.$router.options.routes
     },

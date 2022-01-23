@@ -1,85 +1,83 @@
 <template>
-  <div class='app-container'>
-    <div class='filter-container'>
+  <div class="app-container">
+    <div class="filter-container">
       <el-input
-        v-model='listQuery.username'
-        placeholder='请输入用户名'
-        style='width: 200px;'
-        class='filter-item'
+        v-model="listQuery.username"
+        placeholder="请输入用户名"
+        style="width: 200px"
+        class="filter-item"
         clearable
-        @keyup.enter.native='handleFilter'
+        @keyup.enter.native="handleFilter"
       />
       <el-button
-        class='filter-item'
-        type='primary'
-        icon='el-icon-search'
-        @click='handleFilter'
+        class="filter-item"
+        type="primary"
+        icon="el-icon-search"
+        @click="handleFilter"
       >
         查询
       </el-button>
       <el-button
-        class='filter-item'
-        style='margin-left: 10px;'
-        type='primary'
-        icon='el-icon-edit'
-        @click='handleCreate'
+        class="filter-item"
+        style="margin-left: 10px"
+        type="primary"
+        icon="el-icon-edit"
+        @click="handleCreate"
       >
         添加
       </el-button>
     </div>
     <el-table
-      :key='tableKey'
-      v-loading='listLoading'
-      :data='list'
+      :key="tableKey"
+      v-loading="listLoading"
+      :data="list"
       border
       fit
       highlight-current-row
-      style='width: 100%;'
+      style="width: 100%"
     >
       <el-table-column
-        label='ID'
-        sortable='custom'
-        align='center'
-        width='80'
-        type='index'
+        label="ID"
+        sortable="custom"
+        align="center"
+        width="80"
+        type="index"
       />
-      <el-table-column label='用户名' width='210' align='center'>
-        <template slot-scope='{ row }'>
+      <el-table-column label="用户名" width="210" align="center">
+        <template slot-scope="{ row }">
           <span>{{ row.username }}</span>
         </template>
       </el-table-column>
-      <el-table-column label='角色' width='210' align='center'>
-        <template slot-scope='{ row }'>
+      <el-table-column label="角色" width="210" align="center">
+        <template slot-scope="{ row }">
           <span>{{ roleFilter(row.roleId) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label='总流量/MB' width='210' align='center'>
-        <template slot-scope='{ row }'>
+      <el-table-column label="总流量/MB" width="210" align="center">
+        <template slot-scope="{ row }">
           <span>{{ row.quota === -1 ? '无限' : row.quota }}</span>
         </template>
       </el-table-column>
-      <el-table-column label='剩余流量/MB' width='210' align='center'>
-        <template slot-scope='{ row }'>
+      <el-table-column label="剩余流量/MB" width="210" align="center">
+        <template slot-scope="{ row }">
           <span>{{
-              row.quota === -1
-                ? '无限'
-                : (row.quota - row.upload - row.download)
-            }}</span>
+            row.quota === -1 ? '无限' : row.quota - row.upload - row.download
+          }}</span>
         </template>
       </el-table-column>
       <el-table-column
-        label='操作'
-        align='center'
-        class-name='small-padding fixed-width'
+        label="操作"
+        align="center"
+        class-name="small-padding fixed-width"
       >
-        <template slot-scope='{ row, $index }'>
-          <el-button type='primary' size='mini' @click='handleUpdate(row)'>
+        <template slot-scope="{ row, $index }">
+          <el-button type="primary" size="mini" @click="handleUpdate(row)">
             编辑
           </el-button>
           <el-button
-            size='mini'
-            type='danger'
-            @click='handleDelete(row, $index)'
+            size="mini"
+            type="danger"
+            @click="handleDelete(row, $index)"
           >
             删除
           </el-button>
@@ -88,38 +86,45 @@
     </el-table>
 
     <pagination
-      v-show='total > 0'
-      :total='total'
-      :page.sync='listQuery.pageNum'
-      :limit.sync='listQuery.pageSize'
-      @pagination='getList'
+      v-show="total > 0"
+      :total="total"
+      :page.sync="listQuery.pageNum"
+      :limit.sync="listQuery.pageSize"
+      @pagination="getList"
     />
 
-    <el-dialog :title='textMap[dialogStatus]' :visible.sync='dialogFormVisible'>
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form
-        ref='dataForm'
-        :rules="dialogStatus === 'create'?createRules:updateRules"
-        :model='temp'
-        label-position='left'
-        label-width='100px'
-        style='width: 400px; margin-left:50px;'
+        ref="dataForm"
+        :rules="dialogStatus === 'create' ? createRules : updateRules"
+        :model="temp"
+        label-position="left"
+        label-width="100px"
+        style="width: 400px; margin-left: 50px"
       >
-        <el-form-item v-if="dialogStatus === 'create'" label='用户名' prop='username' clearable>
-          <el-input v-model='temp.username' />
+        <el-form-item
+          v-if="dialogStatus === 'create'"
+          label="用户名"
+          prop="username"
+          clearable
+        >
+          <el-input v-model="temp.username" />
         </el-form-item>
-        <el-form-item label='密码' prop='pass' clearable>
-          <el-input v-model='temp.pass' />
+        <el-form-item label="密码" prop="pass" clearable>
+          <el-input v-model="temp.pass" />
         </el-form-item>
-        <el-form-item label='总流量/MB' prop='quota'>
-          <el-input-number v-model.number='temp.quota' controls-position='right' type='number' />
+        <el-form-item label="总流量/MB" prop="quota">
+          <el-input-number
+            v-model.number="temp.quota"
+            controls-position="right"
+            type="number"
+          />
         </el-form-item>
       </el-form>
-      <div slot='footer' class='dialog-footer'>
-        <el-button @click='dialogFormVisible = false'>
-          取消
-        </el-button>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false"> 取消</el-button>
         <el-button
-          type='primary'
+          type="primary"
           @click="dialogStatus === 'create' ? createData() : updateData()"
         >
           确认
@@ -130,10 +135,14 @@
 </template>
 
 <script>
-import { createUser, deleteUserById, selectUserPage, updateUserById } from '@/api/users'
-import { isSysAdmin } from '@/utils/permission'
+import {
+  createUser,
+  deleteUserById,
+  selectUserPage,
+  updateUserById
+} from '@/api/users'
 import Pagination from '@/components/Pagination'
-import { roleFilter, timeStampToDate } from '@/utils'
+import { roleFilter } from '@/utils'
 import { MessageBox } from 'element-ui'
 
 export default {
@@ -185,9 +194,7 @@ export default {
         ]
       },
       updateRules: {
-        pass: [
-          { min: 6, message: '密码不能少于6位', trigger: 'change' }
-        ]
+        pass: [{ min: 6, message: '密码不能少于6位', trigger: 'change' }]
       },
       dialogStatus: '',
       roles: [] // 角色
@@ -200,7 +207,7 @@ export default {
     roleFilter,
     getList() {
       this.listLoading = true
-      selectUserPage(this.listQuery).then(response => {
+      selectUserPage(this.listQuery).then((response) => {
         this.list = response.data.users
         this.total = response.data.total
 
@@ -261,7 +268,7 @@ export default {
       })
     },
     createData() {
-      this.$refs['dataForm'].validate(valid => {
+      this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           createUser(this.temp).then(() => {
             this.list.unshift(this.temp)
@@ -277,11 +284,11 @@ export default {
       })
     },
     updateData() {
-      this.$refs['dataForm'].validate(valid => {
+      this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
           updateUserById(tempData).then(() => {
-            const index = this.list.findIndex(v => v.id === this.temp.id)
+            const index = this.list.findIndex((v) => v.id === this.temp.id)
             this.list.splice(index, 1, this.temp)
             this.dialogFormVisible = false
             this.$notify({

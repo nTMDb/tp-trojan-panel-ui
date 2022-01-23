@@ -4,7 +4,7 @@ import { resetRouter } from '@/router'
 
 const getDefaultState = () => {
   return {
-    token: getToken(), // token
+    token: getToken(),
     id: undefined,
     username: '', // 用户名
     avatar: 'https://img-blog.csdnimg.cn/1ffe9e908e894c7e83c0a5d95323e591.png', // 头像
