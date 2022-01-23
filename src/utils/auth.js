@@ -16,7 +16,7 @@ export function getToken() {
  * @returns {*}
  */
 export function setToken(token) {
-  return Cookies.set(TokenKey, 'Bearer ' + token)
+  return Cookies.set(TokenKey, token)
 }
 
 /**

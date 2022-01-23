@@ -13,7 +13,7 @@
         mode="vertical"
       >
         <sidebar-item
-          v-for="menu in menus"
+          v-for="menu in menuList"
           :key="menu.path"
           :item="menu"
           :base-path="menu.path"
@@ -36,8 +36,8 @@ export default {
     routes() {
       return this.$router.options.routes
     },
-    menus() {
-      return this.$store.getters.menu
+    menuList() {
+      return this.$store.getters.menuList
     },
     activeMenu() {
       const route = this.$route

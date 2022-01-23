@@ -9,14 +9,7 @@ const getDefaultState = () => {
     username: '', // 用户名
     avatar: 'https://img-blog.csdnimg.cn/1ffe9e908e894c7e83c0a5d95323e591.png', // 头像
     roleId: undefined, // 角色,
-    menu: [
-      {
-        id: 1,
-        icon: 'users',
-        name: '用户管理',
-        path: '/usersList'
-      }
-    ]
+    menuList: []
   }
 }
 
@@ -37,6 +30,9 @@ const mutations = {
   },
   SET_ROLE_ID: (state, roleId) => {
     state.roleId = roleId
+  },
+  SET_MENU_LIST: (state, menuList) => {
+    state.menuList = menuList
   }
 }
 
@@ -49,7 +45,7 @@ const actions = {
         .then((response) => {
           const { data } = response
           commit('SET_TOKEN', data.token)
-          setToken(data.token)
+          setToken('Bearer ' + data.token)
           resolve()
         })
         .catch((error) => {
@@ -69,11 +65,12 @@ const actions = {
             return reject('认证失败，请重新登录！')
           }
 
-          const { id, username, roleId } = data
+          const { id, username, roleId, menuList } = data
 
           commit('SET_ID', id)
           commit('SET_USERNAME', username)
           commit('SET_ROLE_ID', roleId)
+          commit('SET_MENU_LIST', menuList)
           resolve(data)
         })
         .catch((error) => {
