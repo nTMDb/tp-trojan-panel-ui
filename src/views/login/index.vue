@@ -124,7 +124,7 @@ export default {
           this.$store
             .dispatch('users/login', this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || '/' })
+              this.$router.push({ path: this.redirect || '/users-manage' })
               this.loading = false
             })
             .catch(() => {
