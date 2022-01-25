@@ -18,6 +18,11 @@ export const constantRoutes = [
   },
 
   {
+    path: '/',
+    redirect: '/users-manage'
+  },
+
+  {
     path: '/users-manage',
     component: Layout,
     redirect: '/users-manage/user-list',
