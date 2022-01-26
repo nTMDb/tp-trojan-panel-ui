@@ -14,9 +14,9 @@
       >
         <sidebar-item
           v-for="menu in menuList"
-          :key="menu.path"
+          :key="menu.route"
           :item="menu"
-          :base-path="menu.path"
+          :base-path="menu.route"
         />
       </el-menu>
     </el-scrollbar>

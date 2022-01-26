@@ -7,9 +7,9 @@
         !item.alwaysShow
       "
     >
-      <app-link v-if="onlyOneChild" :to="resolvePath(onlyOneChild.path)">
+      <app-link v-if="onlyOneChild" :to="resolvePath(onlyOneChild.route)">
         <el-menu-item
-          :index="resolvePath(onlyOneChild.path)"
+          :index="resolvePath(onlyOneChild.route)"
           :class="{ 'submenu-title-noDropdown': !isNest }"
         >
           <item
@@ -23,7 +23,7 @@
     <el-submenu
       v-else
       ref="subMenu"
-      :index="resolvePath(item.path)"
+      :index="resolvePath(item.route)"
       popper-append-to-body
     >
       <template slot="title">
@@ -31,10 +31,10 @@
       </template>
       <sidebar-item
         v-for="child in item.children"
-        :key="child.path"
+        :key="child.route"
         :is-nest="true"
         :item="child"
-        :base-path="resolvePath(child.path)"
+        :base-path="resolvePath(child.route)"
         class="nest-menu"
       />
     </el-submenu>
