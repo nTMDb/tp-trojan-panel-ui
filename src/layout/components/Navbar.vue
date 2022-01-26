@@ -15,7 +15,7 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link to="/modify-pass">
+          <router-link to="/users-manage/modify-pass">
             <el-dropdown-item> 修改密码</el-dropdown-item>
           </router-link>
           <el-dropdown-item divided @click.native="logout">

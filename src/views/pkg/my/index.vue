@@ -1,5 +1,5 @@
 <template>
-  <div>套餐管理</div>
+  <div class="app-container">我的套餐</div>
 </template>
 
 <script>

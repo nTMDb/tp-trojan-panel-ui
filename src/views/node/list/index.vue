@@ -1,5 +1,5 @@
 <template>
-  <div>节点管理</div>
+  <div class="app-container">节点管理</div>
 </template>
 
 <script>
