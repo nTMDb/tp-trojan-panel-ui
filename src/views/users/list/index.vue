@@ -142,20 +142,14 @@ import {
   updateUserById
 } from '@/api/users'
 import Pagination from '@/components/Pagination'
-import { roleFilter } from '@/utils'
 import { MessageBox } from 'element-ui'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'List',
   components: { Pagination },
-  filters: {
-    stateFilter(state) {
-      const stateMap = {
-        1: 'success',
-        0: 'danger'
-      }
-      return stateMap[state]
-    }
+  computed: {
+    ...mapGetters(['roles'])
   },
   data() {
     return {
@@ -186,32 +180,30 @@ export default {
       createRules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'change' },
-          { min: 6, message: '用户名不能少于6位', trigger: 'change' }
+          { min: 6, message: '用户名不能少于6个字符', trigger: 'change' }
         ],
         pass: [
           { required: true, message: '请输入密码', trigger: 'change' },
-          { min: 6, message: '密码不能少于6位', trigger: 'change' }
+          { min: 6, message: '密码不能少于6个字符', trigger: 'change' }
         ]
       },
       updateRules: {
-        pass: [{ min: 6, message: '密码不能少于6位', trigger: 'change' }]
+        pass: [{ min: 6, message: '密码不能少于6个字符', trigger: 'change' }]
       },
-      dialogStatus: '',
-      roles: [] // 角色
+      dialogStatus: ''
     }
   },
   created() {
     this.getList()
+    this.$store.dispatch('role/setRoles')
   },
   methods: {
-    roleFilter,
     getList() {
       this.listLoading = true
       selectUserPage(this.listQuery).then((response) => {
         this.list = response.data.users
         this.total = response.data.total
 
-        // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
         }, 1.5 * 1000)
@@ -242,7 +234,7 @@ export default {
       })
     },
     handleUpdate(row) {
-      this.temp = Object.assign({}, row) // copy obj
+      this.temp = Object.assign({}, row)
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
       this.$nextTick(() => {
@@ -301,12 +293,8 @@ export default {
         }
       })
     },
-    stateSelect(state) {
-      const stateMap = {
-        1: '正常',
-        0: '禁用'
-      }
-      return stateMap[state]
+    roleFilter(roleId) {
+      return this.roles.find((item) => item.id === roleId).desc
     }
   }
 }

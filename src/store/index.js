@@ -4,6 +4,8 @@ import getters from './getters'
 import app from './modules/app'
 import settings from './modules/settings'
 import users from './modules/users'
+import nodeType from './modules/node-type'
+import role from '@/store/modules/role'
 
 Vue.use(Vuex)
 
@@ -11,7 +13,9 @@ const store = new Vuex.Store({
   modules: {
     app,
     settings,
-    users
+    users,
+    nodeType,
+    role
   },
   getters
 })

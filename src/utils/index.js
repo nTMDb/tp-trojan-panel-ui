@@ -176,12 +176,3 @@ export function debounce(func, wait, immediate) {
     return result
   }
 }
-
-export function roleFilter(id) {
-  const stateMap = {
-    1: '超级管理员',
-    2: '管理员',
-    3: '用户'
-  }
-  return stateMap[id]
-}

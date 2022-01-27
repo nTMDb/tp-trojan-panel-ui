@@ -62,6 +62,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
+import store from '@/store'
 
 export default {
   name: 'Login',
