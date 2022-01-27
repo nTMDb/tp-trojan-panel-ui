@@ -43,26 +43,31 @@
         width="80"
         type="index"
       />
-      <el-table-column label="用户名" width="210" align="center">
+      <el-table-column label="用户名" width="200" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.username }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="角色" width="210" align="center">
+      <el-table-column label="角色" width="200" align="center">
         <template slot-scope="{ row }">
           <span>{{ roleFilter(row.roleId) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="总流量/MB" width="210" align="center">
+      <el-table-column label="总流量/MB" width="200" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.quota === -1 ? '无限' : row.quota }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="剩余流量/MB" width="210" align="center">
+      <el-table-column label="剩余流量/MB" width="200" align="center">
         <template slot-scope="{ row }">
           <span>{{
             row.quota === -1 ? '无限' : row.quota - row.upload - row.download
           }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="创建时间" width="200" align="center">
+        <template slot-scope="{ row }">
+          <span>{{ formatTime(row.createTime, false) }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -144,6 +149,7 @@ import {
 import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import { mapGetters } from 'vuex'
+import { timeStampToDate } from '@/utils'
 
 export default {
   name: 'List',
@@ -198,6 +204,7 @@ export default {
     this.$store.dispatch('role/setRoles')
   },
   methods: {
+    formatTime,
     getList() {
       this.listLoading = true
       selectUserPage(this.listQuery).then((response) => {
@@ -294,7 +301,7 @@ export default {
       })
     },
     roleFilter(roleId) {
-      return this.roles.find((item) => item.id === roleId).desc
+      return this.roles.find((item) => item.id === roleId).name
     }
   }
 }
