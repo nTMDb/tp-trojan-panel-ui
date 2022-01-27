@@ -67,7 +67,7 @@
       </el-table-column>
       <el-table-column label="创建时间" width="200" align="center">
         <template slot-scope="{ row }">
-          <span>{{ formatTime(row.createTime, false) }}</span>
+          <span>{{ timeStampToDate(row.createTime, false) }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -204,7 +204,7 @@ export default {
     this.$store.dispatch('role/setRoles')
   },
   methods: {
-    formatTime,
+    timeStampToDate,
     getList() {
       this.listLoading = true
       selectUserPage(this.listQuery).then((response) => {
@@ -301,7 +301,7 @@ export default {
       })
     },
     roleFilter(roleId) {
-      return this.roles.find((item) => item.id === roleId).name
+      return this.roles.find((item) => item.id === roleId).desc
     }
   }
 }

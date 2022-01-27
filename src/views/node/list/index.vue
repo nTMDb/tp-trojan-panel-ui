@@ -287,7 +287,7 @@ export default {
       })
     },
     filterNodeTypes(type) {
-      return this.nodeTypes.find((item) => item.id === type).desc
+      return this.nodeTypes.find((item) => item.id === type).name
     }
   }
 }
