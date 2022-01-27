@@ -43,22 +43,22 @@
         width="80"
         type="index"
       />
-      <el-table-column label="名称" width="210" align="center">
+      <el-table-column label="名称" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="IP" width="210" align="center">
+      <el-table-column label="IP" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.ip }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="端口" width="210" align="center">
+      <el-table-column label="端口" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.port }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="类型" width="210" align="center">
+      <el-table-column label="类型" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{ filterNodeTypes(row.type) }}</span>
         </template>
@@ -177,12 +177,42 @@ export default {
         name: [
           { required: true, message: '请输入名称', trigger: 'change' },
           { min: 3, message: '名称不能少于3个字符', trigger: 'change' }
+        ],
+        ip: [
+          { required: true, message: '请输入IP', trigger: 'change' },
+          {
+            pattern:
+              /((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}/g,
+            message: '请输入合法的IP地址'
+          }
+        ],
+        port: [
+          { required: true, message: '请输入端口', trigger: 'change' },
+          {
+            pattern: /^([1-9]|[1-9]\\d{1,3}|[1-6][0-5][0-5][0-3][0-5])$/,
+            message: '请输入合法的端口'
+          }
         ]
       },
       updateRules: {
         name: [
           { required: true, message: '请输入名称', trigger: 'change' },
           { min: 3, message: '名称不能少于3个字符', trigger: 'change' }
+        ],
+        ip: [
+          { required: true, message: '请输入IP', trigger: 'change' },
+          {
+            pattern:
+              /((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}/g,
+            message: '请输入合法的IP地址'
+          }
+        ],
+        port: [
+          { required: true, message: '请输入端口', trigger: 'change' },
+          {
+            pattern: /^([1-9]|[1-9]\\d{1,3}|[1-6][0-5][0-5][0-3][0-5])$/,
+            message: '请输入合法的端口'
+          }
         ]
       },
       dialogStatus: ''

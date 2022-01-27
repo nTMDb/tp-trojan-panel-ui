@@ -43,29 +43,29 @@
         width="80"
         type="index"
       />
-      <el-table-column label="用户名" width="200" align="center">
+      <el-table-column label="用户名" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.username }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="角色" width="200" align="center">
+      <el-table-column label="角色" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{ roleFilter(row.roleId) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="总流量/MB" width="200" align="center">
+      <el-table-column label="总流量/MB" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.quota === -1 ? '无限' : row.quota }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="剩余流量/MB" width="200" align="center">
+      <el-table-column label="剩余流量/MB" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{
             row.quota === -1 ? '无限' : row.quota - row.upload - row.download
           }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" width="200" align="center">
+      <el-table-column label="创建时间" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{ timeStampToDate(row.createTime, false) }}</span>
         </template>
@@ -186,15 +186,39 @@ export default {
       createRules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'change' },
-          { min: 6, message: '用户名不能少于6个字符', trigger: 'change' }
+          { min: 6, message: '用户名不能少于6个字符', trigger: 'change' },
+          {
+            pattern: /^[A-Za-z0-9]+$/,
+            message: '请输入合法的用户名'
+          }
         ],
         pass: [
           { required: true, message: '请输入密码', trigger: 'change' },
-          { min: 6, message: '密码不能少于6个字符', trigger: 'change' }
+          { min: 6, message: '密码不能少于6个字符', trigger: 'change' },
+          {
+            pattern: /^[A-Za-z0-9]+$/,
+            message: '请输入合法的密码'
+          }
+        ],
+        quota: [
+          { required: true, message: '请输入总流量', trigger: 'change' },
+          { type: 'number', message: '总流量必须为数字值', trigger: 'change' },
+          { pattern: /^(0|[-1-9]\d?|9999999)$/, message: '范围在-1-9999999' }
         ]
       },
       updateRules: {
-        pass: [{ min: 6, message: '密码不能少于6个字符', trigger: 'change' }]
+        pass: [
+          { min: 6, message: '密码不能少于6个字符', trigger: 'change' },
+          {
+            pattern: /^[A-Za-z0-9]+$/,
+            message: '请输入合法的密码'
+          }
+        ],
+        quota: [
+          { required: true, message: '请输入总流量', trigger: 'change' },
+          { type: 'number', message: '总流量必须为数字值', trigger: 'change' },
+          { pattern: /^(0|[-1-9]\d?|9999999)$/, message: '范围在-1-9999999' }
+        ]
       },
       dialogStatus: ''
     }
