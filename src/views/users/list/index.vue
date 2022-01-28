@@ -150,6 +150,7 @@ import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import { mapGetters } from 'vuex'
 import { timeStampToDate } from '@/utils'
+import { selectRoleList } from '@/api/role'
 
 export default {
   name: 'List',
@@ -246,15 +247,22 @@ export default {
           }
         ]
       },
-      dialogStatus: ''
+      dialogStatus: '',
+      roles: []
     }
   },
   created() {
     this.getList()
-    this.$store.dispatch('role/setRoles')
+    this.setRoles()
   },
   methods: {
     timeStampToDate,
+    setRoles() {
+      selectRoleList().then((response) => {
+        const { data } = response
+        this.roles = data
+      })
+    },
     getList() {
       this.listLoading = true
       selectUserPage(this.listQuery).then((response) => {

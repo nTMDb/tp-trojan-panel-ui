@@ -141,14 +141,11 @@ import {
   selectNodePage,
   updateNodeById
 } from '@/api/node'
-import { mapGetters } from 'vuex'
+import { selectNodeTypeList } from '@/api/node-type'
 
 export default {
   name: 'List',
   components: { Pagination },
-  computed: {
-    ...mapGetters(['nodeTypes'])
-  },
   data() {
     return {
       tableKey: 0,
@@ -229,14 +226,22 @@ export default {
           }
         ]
       },
-      dialogStatus: ''
+      dialogStatus: '',
+      nodeTypes: []
     }
   },
   created() {
     this.getList()
-    this.$store.dispatch('nodeType/setNodeTypes')
+    this.setNodeTypes()
   },
   methods: {
+    setNodeTypes() {
+      selectNodeTypeList()
+        .then((response) => {
+          const { data } = response
+          this.nodeTypes = data
+        })
+    },
     getList() {
       this.listLoading = true
       selectNodePage(this.listQuery).then((response) => {
