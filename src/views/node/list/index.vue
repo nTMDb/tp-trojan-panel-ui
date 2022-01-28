@@ -176,42 +176,56 @@ export default {
       createRules: {
         name: [
           { required: true, message: '请输入名称', trigger: 'change' },
-          { min: 3, message: '名称不能少于3个字符', trigger: 'change' }
+          {
+            min: 3,
+            max: 20,
+            message: '名称的范围在3-20字符之间',
+            trigger: 'change'
+          }
         ],
         ip: [
           { required: true, message: '请输入IP', trigger: 'change' },
           {
             pattern:
               /((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}/g,
-            message: '请输入合法的IP地址'
+            message: '请输入合法的IP地址',
+            trigger: 'change'
           }
         ],
         port: [
           { required: true, message: '请输入端口', trigger: 'change' },
           {
             pattern: /^([1-9]|[1-9]\\d{1,3}|[1-6][0-5][0-5][0-3][0-5])$/,
-            message: '请输入合法的端口'
+            message: '请输入合法的端口',
+            trigger: 'change'
           }
         ]
       },
       updateRules: {
         name: [
           { required: true, message: '请输入名称', trigger: 'change' },
-          { min: 3, message: '名称不能少于3个字符', trigger: 'change' }
+          {
+            min: 3,
+            max: 20,
+            message: '名称的范围在3-20字符之间',
+            trigger: 'change'
+          }
         ],
         ip: [
           { required: true, message: '请输入IP', trigger: 'change' },
           {
             pattern:
               /((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}/g,
-            message: '请输入合法的IP地址'
+            message: '请输入合法的IP地址',
+            trigger: 'change'
           }
         ],
         port: [
           { required: true, message: '请输入端口', trigger: 'change' },
           {
             pattern: /^([1-9]|[1-9]\\d{1,3}|[1-6][0-5][0-5][0-3][0-5])$/,
-            message: '请输入合法的端口'
+            message: '请输入合法的端口',
+            trigger: 'change'
           }
         ]
       },

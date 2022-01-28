@@ -186,38 +186,64 @@ export default {
       createRules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'change' },
-          { min: 6, message: '用户名不能少于6个字符', trigger: 'change' },
+          {
+            min: 6,
+            max: 20,
+            message: '名称的范围在6-20字符之间',
+            trigger: 'change'
+          },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: '请输入合法的用户名'
+            message: '用户名必须是字母和数字的组合',
+            trigger: 'change'
           }
         ],
         pass: [
           { required: true, message: '请输入密码', trigger: 'change' },
-          { min: 6, message: '密码不能少于6个字符', trigger: 'change' },
+          {
+            min: 6,
+            max: 20,
+            message: '密码的范围在6-20字符之间',
+            trigger: 'change'
+          },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: '请输入合法的密码'
+            message: '密码必须是字母和数字的组合',
+            trigger: 'change'
           }
         ],
         quota: [
           { required: true, message: '请输入总流量', trigger: 'change' },
           { type: 'number', message: '总流量必须为数字值', trigger: 'change' },
-          { pattern: /^(0|[-1-9]\d?|9999999)$/, message: '范围在-1-9999999' }
+          {
+            pattern: /^(0|[-1-9]\d?|9999999)$/,
+            message: '总流量的范围在-1-9999999之间的整数',
+            trigger: 'change'
+          }
         ]
       },
       updateRules: {
         pass: [
-          { min: 6, message: '密码不能少于6个字符', trigger: 'change' },
+          {
+            min: 6,
+            max: 20,
+            message: '密码的范围在6-20字符之间',
+            trigger: 'change'
+          },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: '请输入合法的密码'
+            message: '密码必须是字母和数字的组合',
+            trigger: 'change'
           }
         ],
         quota: [
           { required: true, message: '请输入总流量', trigger: 'change' },
           { type: 'number', message: '总流量必须为数字值', trigger: 'change' },
-          { pattern: /^(0|[-1-9]\d?|9999999)$/, message: '范围在-1-9999999' }
+          {
+            pattern: /^(0|[-1-9]\d?|9999999)$/,
+            message: '总流量的范围在-1-9999999之间的整数',
+            trigger: 'change'
+          }
         ]
       },
       dialogStatus: ''
