@@ -64,3 +64,16 @@ export function updateNodeById(data) {
     data
   })
 }
+
+/**
+ * 获取节点二维码
+ * @param data
+ * @returns {AxiosPromise}
+ */
+export function nodeQRCode(data) {
+  return request({
+    url: '/node/nodeQRCode',
+    method: 'get',
+    params: data
+  })
+}

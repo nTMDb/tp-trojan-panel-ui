@@ -79,6 +79,9 @@
           >
             删除
           </el-button>
+          <el-button type="primary" size="mini" @click="handleQRCode(row)">
+            生成二维码
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -137,6 +140,12 @@
         </el-button>
       </div>
     </el-dialog>
+
+    <el-dialog title="节点二维码" :visible.sync="dialogQRCodeVisible">
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogQRCodeVisible = false"> 确定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -146,6 +155,7 @@ import { MessageBox } from 'element-ui'
 import {
   createNode,
   deleteNodeById,
+  nodeQRCode,
   selectNodePage,
   updateNodeById
 } from '@/api/node'
@@ -174,6 +184,7 @@ export default {
         createTime: new Date()
       },
       dialogFormVisible: false,
+      dialogQRCodeVisible: false,
       textMap: {
         update: '编辑',
         create: '创建'
@@ -253,7 +264,8 @@ export default {
         ]
       },
       dialogStatus: '',
-      nodeTypes: []
+      nodeTypes: [],
+      qrCode: ''
     }
   },
   created() {
@@ -261,6 +273,14 @@ export default {
     this.setNodeTypes()
   },
   methods: {
+    handleQRCode(row) {
+      const tempData = Object.assign({}, row)
+      nodeQRCode(tempData).then((response) => {
+        const { data } = response
+        this.qrCode = data
+      })
+      this.dialogQRCodeVisible = true
+    },
     setNodeTypes() {
       selectNodeTypeList().then((response) => {
         const { data } = response
