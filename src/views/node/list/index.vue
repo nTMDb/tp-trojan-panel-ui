@@ -100,12 +100,7 @@
         label-width="100px"
         style="width: 400px; margin-left: 50px"
       >
-        <el-form-item
-          v-if="dialogStatus === 'create'"
-          label="名称"
-          prop="name"
-          clearable
-        >
+        <el-form-item label="名称" prop="name" clearable>
           <el-input v-model="temp.name" />
         </el-form-item>
         <el-form-item label="IP" prop="ip" clearable>
@@ -117,6 +112,19 @@
             controls-position="right"
             type="number"
           />
+        </el-form-item>
+        <el-form-item label="类型" prop="type">
+          <el-select
+            v-model="temp.type"
+            placeholder="请选择类型"
+            controls-position="right"
+          >
+            <el-option
+              :label="item.name"
+              :value="item.id"
+              v-for="item in nodeTypes"
+            ></el-option>
+          </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -162,7 +170,7 @@ export default {
         name: '',
         ip: '',
         port: 0,
-        type: 0,
+        type: 1,
         createTime: new Date()
       },
       dialogFormVisible: false,
@@ -192,8 +200,17 @@ export default {
         port: [
           { required: true, message: '请输入端口', trigger: 'change' },
           {
-            pattern: /^([1-9]|[1-9]\\d{1,3}|[1-6][0-5][0-5][0-3][0-5])$/,
+            pattern:
+              /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
             message: '请输入合法的端口',
+            trigger: 'change'
+          }
+        ],
+        type: [
+          { required: true, message: '请输入端口', trigger: 'change' },
+          {
+            pattern: /^([1-9][0-9]?|100)$/,
+            message: '请输入合法的类型',
             trigger: 'change'
           }
         ]
@@ -220,8 +237,17 @@ export default {
         port: [
           { required: true, message: '请输入端口', trigger: 'change' },
           {
-            pattern: /^([1-9]|[1-9]\\d{1,3}|[1-6][0-5][0-5][0-3][0-5])$/,
+            pattern:
+              /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
             message: '请输入合法的端口',
+            trigger: 'change'
+          }
+        ],
+        type: [
+          { required: true, message: '请输入端口', trigger: 'change' },
+          {
+            pattern: /^([1-9][0-9]?|100)$/,
+            message: '请输入合法的类型',
             trigger: 'change'
           }
         ]
@@ -236,11 +262,10 @@ export default {
   },
   methods: {
     setNodeTypes() {
-      selectNodeTypeList()
-        .then((response) => {
-          const { data } = response
-          this.nodeTypes = data
-        })
+      selectNodeTypeList().then((response) => {
+        const { data } = response
+        this.nodeTypes = data
+      })
     },
     getList() {
       this.listLoading = true
@@ -259,7 +284,7 @@ export default {
         name: '',
         ip: '',
         port: 0,
-        type: 0,
+        type: 1,
         createTime: new Date()
       }
     },
