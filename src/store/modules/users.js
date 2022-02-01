@@ -7,7 +7,7 @@ const getDefaultState = () => {
     token: getToken(),
     id: undefined,
     username: '', // 用户名
-    avatar: 'https://img-blog.csdnimg.cn/1ffe9e908e894c7e83c0a5d95323e591.png', // 头像
+    avatar: '', // 头像
     roleId: undefined, // 角色,
     menuList: []
   }
