@@ -77,3 +77,16 @@ export function nodeQRCode(data) {
     params: data
   })
 }
+
+/**
+ * 获取节点URL
+ * @param data
+ * @returns {AxiosPromise}
+ */
+export function nodeURL(data) {
+  return request({
+    url: '/node/nodeURL',
+    method: 'get',
+    params: data
+  })
+}

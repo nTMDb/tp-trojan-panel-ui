@@ -72,15 +72,18 @@
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
             编辑
           </el-button>
+          <el-button type="primary" size="mini" @click="handleQRCode(row)">
+            生成二维码
+          </el-button>
+          <el-button type="success" size="mini" @click="handleCopyURL(row)">
+            复制URL
+          </el-button>
           <el-button
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
           >
             删除
-          </el-button>
-          <el-button type="primary" size="mini" @click="handleQRCode(row)">
-            生成二维码
           </el-button>
         </template>
       </el-table-column>
@@ -142,8 +145,11 @@
     </el-dialog>
 
     <el-dialog title="节点二维码" :visible.sync="dialogQRCodeVisible">
+      <el-image style="width: 256px; height: 256px" :src="qrCodeSrc"></el-image>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogQRCodeVisible = false"> 确定</el-button>
+        <el-button type="primary" @click="dialogQRCodeVisible = false">
+          确定
+        </el-button>
       </div>
     </el-dialog>
   </div>
@@ -151,11 +157,12 @@
 
 <script>
 import Pagination from '@/components/Pagination'
-import { MessageBox } from 'element-ui'
+import { Message, MessageBox } from 'element-ui'
 import {
   createNode,
   deleteNodeById,
   nodeQRCode,
+  nodeURL,
   selectNodePage,
   updateNodeById
 } from '@/api/node'
@@ -265,7 +272,7 @@ export default {
       },
       dialogStatus: '',
       nodeTypes: [],
-      qrCode: ''
+      qrCodeSrc: ''
     }
   },
   created() {
@@ -276,8 +283,7 @@ export default {
     handleQRCode(row) {
       const tempData = Object.assign({}, row)
       nodeQRCode(tempData).then((response) => {
-        const { data } = response
-        this.qrCode = data
+        this.qrCodeSrc = 'data:image/png;base64,' + response.data
       })
       this.dialogQRCodeVisible = true
     },
@@ -382,6 +388,26 @@ export default {
     },
     filterNodeTypes(type) {
       return this.nodeTypes.find((item) => item.id === type).name
+    },
+    handleCopyURL(row) {
+      nodeURL(row).then((response) => {
+        this.$copyText(response.data).then(
+          (e) => {
+            Message({
+              showClose: true,
+              message: 'URL复制成功',
+              type: 'success'
+            })
+          },
+          (e) => {
+            Message({
+              showClose: true,
+              message: 'URL复制失败!',
+              type: 'error'
+            })
+          }
+        )
+      })
     }
   }
 }

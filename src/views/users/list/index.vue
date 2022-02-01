@@ -55,13 +55,13 @@
       </el-table-column>
       <el-table-column label="总流量/MB" width="180" align="center">
         <template slot-scope="{ row }">
-          <span>{{ row.quota === -1 ? '无限' : row.quota }}</span>
+          <span>{{ row.quota < 0 ? '无限' : row.quota }}</span>
         </template>
       </el-table-column>
       <el-table-column label="剩余流量/MB" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{
-            row.quota === -1 ? '无限' : row.quota - row.upload - row.download
+            row.quota < 0 ? '无限' : row.quota - row.upload - row.download
           }}</span>
         </template>
       </el-table-column>
@@ -155,9 +155,6 @@ import { selectRoleList } from '@/api/role'
 export default {
   name: 'List',
   components: { Pagination },
-  computed: {
-    ...mapGetters(['roles'])
-  },
   data() {
     return {
       tableKey: 0,
@@ -215,9 +212,10 @@ export default {
         ],
         quota: [
           { required: true, message: '请输入总流量', trigger: 'change' },
-          { type: 'number', message: '总流量必须为数字值', trigger: 'change' },
           {
-            pattern: /^(0|[-1-9]\d?|9999999)$/,
+            type: 'number',
+            min: -1,
+            max: 9999999,
             message: '总流量的范围在-1-9999999之间的整数',
             trigger: 'change'
           }
@@ -239,9 +237,10 @@ export default {
         ],
         quota: [
           { required: true, message: '请输入总流量', trigger: 'change' },
-          { type: 'number', message: '总流量必须为数字值', trigger: 'change' },
           {
-            pattern: /^(0|[-1-9]\d?|9999999)$/,
+            type: 'number',
+            min: -1,
+            max: 9999999,
             message: '总流量的范围在-1-9999999之间的整数',
             trigger: 'change'
           }
