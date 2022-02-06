@@ -5,9 +5,9 @@ import request from '@/utils/request'
  * @param data
  * @returns {AxiosPromise}
  */
-export function status(data) {
+export function trojanGFWStatus(data) {
   return request({
-    url: '/trojan/status',
+    url: '/trojan-gfw/status',
     method: 'get',
     params: data
   })
@@ -18,9 +18,9 @@ export function status(data) {
  * @param data
  * @returns {AxiosPromise}
  */
-export function restart(data) {
+export function trojanGFWRestart(data) {
   return request({
-    url: '/trojan/restart',
+    url: '/trojan-gfw/restart',
     method: 'post',
     data
   })
@@ -31,9 +31,48 @@ export function restart(data) {
  * @param data
  * @returns {AxiosPromise}
  */
-export function stop(data) {
+export function trojanGFWStop(data) {
   return request({
-    url: '/trojan/stop',
+    url: '/trojan-gfw/stop',
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 查看状态
+ * @param data
+ * @returns {AxiosPromise}
+ */
+export function trojanGOStatus(data) {
+  return request({
+    url: '/trojan-go/status',
+    method: 'get',
+    params: data
+  })
+}
+
+/**
+ * 重启
+ * @param data
+ * @returns {AxiosPromise}
+ */
+export function trojanGORestart(data) {
+  return request({
+    url: '/trojan-go/restart',
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 查看状态
+ * @param data
+ * @returns {AxiosPromise}
+ */
+export function trojanGOStop(data) {
+  return request({
+    url: '/trojan-go/stop',
     method: 'post',
     data
   })

@@ -8,7 +8,7 @@ const getDefaultState = () => {
     id: undefined,
     username: '', // 用户名
     avatar: '', // 头像
-    roleId: undefined, // 角色,
+    roleNames: [], // 角色,
     menuList: []
   }
 }
@@ -28,8 +28,8 @@ const mutations = {
   SET_USERNAME: (state, username) => {
     state.username = username
   },
-  SET_ROLE_ID: (state, roleId) => {
-    state.roleId = roleId
+  SET_ROLE_NAMES: (state, roleNames) => {
+    state.roleNames = roleNames
   },
   SET_MENU_LIST: (state, menuList) => {
     state.menuList = menuList
@@ -54,6 +54,20 @@ const actions = {
     })
   },
 
+  // user register
+  register(userInfo) {
+    const { username, pass } = userInfo
+    return new Promise((resolve, reject) => {
+      register({ username: username.trim(), pass: pass })
+        .then((response) => {
+          resolve()
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+
   // get user info
   getInfo({ commit }) {
     return new Promise((resolve, reject) => {
@@ -65,11 +79,11 @@ const actions = {
             return reject('认证失败，请重新登录！')
           }
 
-          const { id, username, roleId, menuList } = data
+          const { id, username, roleNames, menuList } = data
 
           commit('SET_ID', id)
           commit('SET_USERNAME', username)
-          commit('SET_ROLE_ID', roleId)
+          commit('SET_ROLE_NAMES', roleNames)
           commit('SET_MENU_LIST', menuList)
           resolve(data)
         })

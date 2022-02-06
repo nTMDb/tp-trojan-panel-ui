@@ -90,6 +90,19 @@ export function createUser(data) {
 }
 
 /**
+ * 注册账户
+ * @param data
+ * @returns {AxiosPromise}
+ */
+export function register(data) {
+  return request({
+    url: '/users/register',
+    method: 'post',
+    data
+  })
+}
+
+/**
  * 修改账户
  * @param data
  * @returns {AxiosPromise}

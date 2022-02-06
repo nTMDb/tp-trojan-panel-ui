@@ -19,7 +19,22 @@ export const constantRoutes = [
 
   {
     path: '/',
-    redirect: '/users-manage'
+    redirect: '/dashboard'
+  },
+
+  {
+    path: '/dashboard',
+    component: Layout,
+    redirect: '/dashboard/index',
+    name: 'Dashboard',
+    children: [
+      {
+        path: 'index',
+        name: 'index',
+        component: () => import('@/views/dashboard'),
+        meta: { title: '仪表板', icon: '' }
+      }
+    ]
   },
 
   {
@@ -40,22 +55,6 @@ export const constantRoutes = [
         name: 'modifyPass',
         component: () => import('@/views/users/modify/index'),
         meta: { title: '修改密码', icon: '' }
-      }
-    ]
-  },
-
-  {
-    path: '/pkg-manage',
-    component: Layout,
-    redirect: '/pkg-manage/my-pkg',
-    name: 'PkgManage',
-    meta: { title: '套餐管理', icon: '' },
-    children: [
-      {
-        path: 'my-pkg',
-        name: 'myPkg',
-        component: () => import('@/views/pkg/my'),
-        meta: { title: '我的套餐', icon: '' }
       }
     ]
   },
