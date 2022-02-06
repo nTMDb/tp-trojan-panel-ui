@@ -276,8 +276,8 @@ export default {
     }
   },
   created() {
-    this.getList()
     this.setNodeTypes()
+    this.getList()
   },
   methods: {
     handleQRCode(row) {
