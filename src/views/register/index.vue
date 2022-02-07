@@ -82,6 +82,8 @@
 </template>
 
 <script>
+import { validateUsername } from '@/utils/validate'
+
 export default {
   name: 'index',
   data() {
@@ -101,12 +103,40 @@ export default {
       registerRules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'change' },
-          { min: 6, message: '用户名不能少于6位', trigger: 'change' }
+          {
+            min: 6,
+            max: 20,
+            message: '名称的范围在6-20字符之间',
+            trigger: 'change'
+          },
+          {
+            pattern: /^[A-Za-z0-9]+$/,
+            message: '用户名必须是字母和数字的组合',
+            trigger: 'change'
+          },
+          {
+            validator: validateUsername,
+            message: '用户名不能包含admin',
+            trigger: 'change'
+          }
         ],
         pass: [
           { required: true, message: '请输入密码', trigger: 'change' },
-          { min: 6, message: '密码不能少于6位', trigger: 'change' },
-          { validator: validatePass, trigger: 'change' }
+          {
+            min: 6,
+            max: 20,
+            message: '密码的范围在6-20字符之间',
+            trigger: 'change'
+          },
+          {
+            pattern: /^[A-Za-z0-9]+$/,
+            message: '密码必须是字母和数字的组合',
+            trigger: 'change'
+          },
+          {
+            validator: validatePass,
+            trigger: 'change'
+          }
         ]
       },
       loading: false,

@@ -58,13 +58,36 @@ export default {
       },
       updateRules: {
         oldPass: [
-          { required: true, message: '请输入原密码', trigger: 'change' },
-          { min: 6, message: '密码不能少于6位', trigger: 'change' }
+          { required: true, message: '请输入新密码', trigger: 'change' },
+          {
+            min: 6,
+            max: 20,
+            message: '密码的范围在6-20字符之间',
+            trigger: 'change'
+          },
+          {
+            pattern: /^[A-Za-z0-9]+$/,
+            message: '密码必须是字母和数字的组合',
+            trigger: 'change'
+          }
         ],
         newPass: [
           { required: true, message: '请输入新密码', trigger: 'change' },
-          { min: 6, message: '密码不能少于6位', trigger: 'change' },
-          { validator: validatePass, trigger: 'change' }
+          {
+            min: 6,
+            max: 20,
+            message: '密码的范围在6-20字符之间',
+            trigger: 'change'
+          },
+          {
+            pattern: /^[A-Za-z0-9]+$/,
+            message: '密码必须是字母和数字的组合',
+            trigger: 'change'
+          },
+          {
+            validator: validatePass,
+            trigger: 'change'
+          }
         ]
       }
     }

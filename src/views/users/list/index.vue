@@ -162,6 +162,7 @@ import { MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
 import { selectRoleList } from '@/api/role'
 import { checkSysadmin } from '@/utils/permission'
+import { validateUsername } from '@/utils/validate'
 
 export default {
   name: 'List',
@@ -204,6 +205,11 @@ export default {
           {
             pattern: /^[A-Za-z0-9]+$/,
             message: '用户名必须是字母和数字的组合',
+            trigger: 'change'
+          },
+          {
+            validator: validateUsername,
+            message: '用户名不能包含admin',
             trigger: 'change'
           }
         ],
