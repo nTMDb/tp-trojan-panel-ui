@@ -23,6 +23,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
+        v-show="checkAdmin"
       >
         添加
       </el-button>
@@ -42,6 +43,7 @@
         align="center"
         width="80"
         type="index"
+        v-show="checkAdmin"
       />
       <el-table-column label="名称" width="180" align="center">
         <template slot-scope="{ row }">
@@ -69,7 +71,12 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="{ row, $index }">
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
+          <el-button
+            type="primary"
+            size="mini"
+            @click="handleUpdate(row)"
+            v-show="checkAdmin"
+          >
             编辑
           </el-button>
           <el-button type="primary" size="mini" @click="handleQRCode(row)">
@@ -82,6 +89,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
+            v-show="checkAdmin"
           >
             删除
           </el-button>
@@ -167,6 +175,7 @@ import {
   updateNodeById
 } from '@/api/node'
 import { selectNodeTypeList } from '@/api/node-type'
+import { checkAdmin } from '@/utils/permission'
 
 export default {
   name: 'List',
@@ -272,7 +281,8 @@ export default {
       },
       dialogStatus: '',
       nodeTypes: [],
-      qrCodeSrc: ''
+      qrCodeSrc: '',
+      checkAdmin: checkAdmin()
     }
   },
   created() {

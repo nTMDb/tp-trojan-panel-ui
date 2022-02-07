@@ -23,6 +23,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
+        v-show="checkSysadmin"
       >
         添加
       </el-button>
@@ -76,13 +77,19 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="{ row, $index }">
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
+          <el-button
+            type="primary"
+            size="mini"
+            @click="handleUpdate(row)"
+            v-show="checkSysadmin"
+          >
             编辑
           </el-button>
           <el-button
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
+            v-show="checkSysadmin"
           >
             删除
           </el-button>
@@ -152,9 +159,9 @@ import {
 } from '@/api/users'
 import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
-import { mapGetters } from 'vuex'
 import { timeStampToDate } from '@/utils'
 import { selectRoleList } from '@/api/role'
+import { checkSysadmin } from '@/utils/permission'
 
 export default {
   name: 'List',
@@ -251,7 +258,8 @@ export default {
         ]
       },
       dialogStatus: '',
-      roles: []
+      roles: [],
+      checkSysadmin: checkSysadmin()
     }
   },
   created() {

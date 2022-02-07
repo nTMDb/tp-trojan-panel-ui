@@ -21,7 +21,6 @@ export default {
     ...mapGetters(['roleNames'])
   },
   created() {
-    console.log(this.roleNames)
     if (!this.roleNames.includes('admin')) {
       this.currentRole = 'userDashboard'
     }
