@@ -12,14 +12,14 @@
         <h3 class="title">Trojan Panel</h3>
       </div>
 
-      <el-form-item prop="username">
+      <el-form-item prop="username" clearable>
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
         <el-input
           ref="username"
           v-model="loginForm.username"
-          placeholder="Username"
+          placeholder="请输入用户名"
           name="username"
           type="text"
           tabindex="1"
@@ -27,16 +27,16 @@
         />
       </el-form-item>
 
-      <el-form-item prop="password">
+      <el-form-item prop="pass" clearable>
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
         <el-input
           :key="passwordType"
-          ref="password"
+          ref="pass"
           v-model="loginForm.pass"
           :type="passwordType"
-          placeholder="Password"
+          placeholder="请输入密码"
           name="password"
           tabindex="2"
           auto-complete="on"
@@ -56,30 +56,18 @@
         @click.native.prevent="handleLogin"
         >登录
       </el-button>
+
+      <el-button type="primary" style="width: 100%; margin: 0">
+        <router-link to="/register">没有账号?</router-link>
+      </el-button>
     </el-form>
   </div>
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
-
 export default {
-  name: 'Login',
+  name: 'index',
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('用户名不能少于6位'))
-      } else {
-        callback()
-      }
-    }
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('密码不能少于6位'))
-      } else {
-        callback()
-      }
-    }
     return {
       loginForm: {
         username: '',
@@ -87,10 +75,12 @@ export default {
       },
       loginRules: {
         username: [
-          { required: true, validator: validateUsername, trigger: 'change' }
+          { required: true, message: '请输入用户名', trigger: 'change' },
+          { min: 6, message: '用户名不能少于6位', trigger: 'change' }
         ],
         pass: [
-          { required: true, validator: validatePassword, trigger: 'change' }
+          { required: true, message: '请输入密码', trigger: 'change' },
+          { min: 6, message: '密码不能少于6位', trigger: 'change' }
         ]
       },
       loading: false,
@@ -124,7 +114,7 @@ export default {
           this.$store
             .dispatch('users/login', this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || '/users-manage' })
+              this.$router.push({ path: this.redirect || '/dashboard' })
               this.loading = false
             })
             .catch(() => {

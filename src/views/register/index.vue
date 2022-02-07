@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form
-      ref="loginForm"
+      ref="registerForm"
       :model="registerForm"
       :rules="registerRules"
       class="login-form"
@@ -9,17 +9,17 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">Trojan Panel</h3>
+        <h3 class="title">用户注册</h3>
       </div>
 
-      <el-form-item prop="username">
+      <el-form-item prop="username" clearable>
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
         <el-input
           ref="username"
           v-model="registerForm.username"
-          placeholder="Username"
+          placeholder="请输入用户名"
           name="username"
           type="text"
           tabindex="1"
@@ -27,18 +27,37 @@
         />
       </el-form-item>
 
-      <el-form-item prop="password">
+      <el-form-item prop="pass" clearable>
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
         <el-input
-          :key="passwordType"
-          ref="password"
-          v-model="registerForm.pass"
+          ref="pass"
+          v-model="registerForm.passOne"
           :type="passwordType"
-          placeholder="Password"
+          placeholder="请输入密码"
           name="password"
           tabindex="2"
+          auto-complete="on"
+        />
+        <span class="show-pwd" @click="showPwd">
+          <svg-icon
+            :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
+          />
+        </span>
+      </el-form-item>
+
+      <el-form-item prop="pass" clearable>
+        <span class="svg-container">
+          <svg-icon icon-class="password" />
+        </span>
+        <el-input
+          ref="pass"
+          v-model="registerForm.pass"
+          :type="passwordType"
+          placeholder="请再次输入密码"
+          name="password"
+          tabindex="3"
           auto-complete="on"
           @keyup.enter.native="handleRegister"
         />
@@ -48,7 +67,6 @@
           />
         </span>
       </el-form-item>
-
       <el-button
         :loading="loading"
         type="primary"
@@ -56,33 +74,20 @@
         @click.native.prevent="handleRegister"
         >注册
       </el-button>
-      <el-button
-        :loading="loading"
-        type="primary"
-        style="width: 100%; margin-bottom: 30px"
-        @click="this.$router.push({ path: '/login' })"
-        >已有账号
+      <el-button type="primary" style="width: 100%; margin: 0">
+        <router-link to="/login">我已有账号</router-link>
       </el-button>
     </el-form>
   </div>
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
-
 export default {
-  name: 'Login',
+  name: 'index',
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('用户名不能少于6位'))
-      } else {
-        callback()
-      }
-    }
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('密码不能少于6位'))
+    const validatePass = (rule, value, callback) => {
+      if (this.registerForm.passOne !== this.registerForm.pass) {
+        callback(new Error('两次新密码输入不一致'))
       } else {
         callback()
       }
@@ -90,27 +95,22 @@ export default {
     return {
       registerForm: {
         username: '',
+        passOne: '',
         pass: ''
       },
       registerRules: {
         username: [
-          { required: true, validator: validateUsername, trigger: 'change' }
+          { required: true, message: '请输入用户名', trigger: 'change' },
+          { min: 6, message: '用户名不能少于6位', trigger: 'change' }
         ],
         pass: [
-          { required: true, validator: validatePassword, trigger: 'change' }
+          { required: true, message: '请输入密码', trigger: 'change' },
+          { min: 6, message: '密码不能少于6位', trigger: 'change' },
+          { validator: validatePass, trigger: 'change' }
         ]
       },
       loading: false,
-      passwordType: 'password',
-      redirect: undefined
-    }
-  },
-  watch: {
-    $route: {
-      handler: function (route) {
-        this.redirect = route.query && route.query.redirect
-      },
-      immediate: true
+      passwordType: 'password'
     }
   },
   methods: {
@@ -121,11 +121,11 @@ export default {
         this.passwordType = 'password'
       }
       this.$nextTick(() => {
-        this.$refs.password.focus()
+        this.$refs.pass.focus()
       })
     },
     handleRegister() {
-      this.$refs.loginForm.validate((valid) => {
+      this.$refs.registerForm.validate((valid) => {
         if (valid) {
           this.loading = true
           this.$store

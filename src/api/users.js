@@ -14,6 +14,19 @@ export function login(data) {
 }
 
 /**
+ * 注册账户
+ * @param data
+ * @returns {AxiosPromise}
+ */
+export function register(data) {
+  return request({
+    url: '/auth/register',
+    method: 'post',
+    data
+  })
+}
+
+/**
  * 获取用户信息
  * @returns {AxiosPromise}
  */
@@ -84,19 +97,6 @@ export function selectUserById(data) {
 export function createUser(data) {
   return request({
     url: '/users/createUser',
-    method: 'post',
-    data
-  })
-}
-
-/**
- * 注册账户
- * @param data
- * @returns {AxiosPromise}
- */
-export function register(data) {
-  return request({
-    url: '/users/register',
     method: 'post',
     data
   })

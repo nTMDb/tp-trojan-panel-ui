@@ -113,10 +113,14 @@
           prop="username"
           clearable
         >
-          <el-input v-model="temp.username" />
+          <el-input v-model="temp.username" placeholder="请输入用户名" />
         </el-form-item>
         <el-form-item label="密码" prop="pass" clearable>
-          <el-input v-model="temp.pass" />
+          <el-input
+            v-model="temp.pass"
+            type="password"
+            placeholder="请输入密码"
+          />
         </el-form-item>
         <el-form-item label="总流量/MB" prop="quota">
           <el-input-number
