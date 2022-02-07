@@ -65,8 +65,6 @@
 </template>
 
 <script>
-import { validateUsername } from '@/utils/validate'
-
 export default {
   name: 'index',
   data() {
@@ -87,11 +85,6 @@ export default {
           {
             pattern: /^[A-Za-z0-9]+$/,
             message: '用户名必须是字母和数字的组合',
-            trigger: 'change'
-          },
-          {
-            validator: validateUsername,
-            message: '用户名不能包含admin',
             trigger: 'change'
           }
         ],

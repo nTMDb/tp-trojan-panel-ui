@@ -82,14 +82,19 @@
 </template>
 
 <script>
-import { validateUsername } from '@/utils/validate'
-
 export default {
   name: 'index',
   data() {
     const validatePass = (rule, value, callback) => {
       if (this.registerForm.passOne !== this.registerForm.pass) {
         callback(new Error('两次新密码输入不一致'))
+      } else {
+        callback()
+      }
+    }
+    const validateUsername = (rule, value, callback) => {
+      if (this.registerForm.username.trim().indexOf('admin') >= 0) {
+        callback(new Error('用户名不能包含admin'))
       } else {
         callback()
       }
@@ -116,7 +121,6 @@ export default {
           },
           {
             validator: validateUsername,
-            message: '用户名不能包含admin',
             trigger: 'change'
           }
         ],

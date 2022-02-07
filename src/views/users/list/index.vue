@@ -8,6 +8,7 @@
         class="filter-item"
         clearable
         @keyup.enter.native="handleFilter"
+        @clear="handleFilter"
       />
       <el-button
         class="filter-item"
@@ -162,12 +163,18 @@ import { MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
 import { selectRoleList } from '@/api/role'
 import { checkSysadmin } from '@/utils/permission'
-import { validateUsername } from '@/utils/validate'
 
 export default {
   name: 'List',
   components: { Pagination },
   data() {
+    const validateUsername = (rule, value, callback) => {
+      if (this.temp.username.trim().indexOf('admin') >= 0) {
+        callback(new Error('用户名不能包含admin'))
+      } else {
+        callback()
+      }
+    }
     return {
       tableKey: 0,
       listLoading: true,
@@ -209,7 +216,6 @@ export default {
           },
           {
             validator: validateUsername,
-            message: '用户名不能包含admin',
             trigger: 'change'
           }
         ],

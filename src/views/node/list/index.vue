@@ -8,6 +8,7 @@
         class="filter-item"
         clearable
         @keyup.enter.native="handleFilter"
+        @clear="handleFilter"
       />
       <el-button
         class="filter-item"
