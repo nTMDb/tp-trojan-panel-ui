@@ -216,15 +216,7 @@ export default {
             trigger: 'change'
           }
         ],
-        ip: [
-          { required: true, message: '请输入IP', trigger: 'change' },
-          {
-            pattern:
-              /((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}/g,
-            message: '请输入合法的IP地址',
-            trigger: 'change'
-          }
-        ],
+        ip: [{ required: true, message: '请输入IP', trigger: 'change' }],
         port: [
           { required: true, message: '请输入端口', trigger: 'change' },
           {
@@ -253,15 +245,7 @@ export default {
             trigger: 'change'
           }
         ],
-        ip: [
-          { required: true, message: '请输入IP', trigger: 'change' },
-          {
-            pattern:
-              /((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}/g,
-            message: '请输入合法的IP地址',
-            trigger: 'change'
-          }
-        ],
+        ip: [{ required: true, message: '请输入IP', trigger: 'change' }],
         port: [
           { required: true, message: '请输入端口', trigger: 'change' },
           {
