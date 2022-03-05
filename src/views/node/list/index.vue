@@ -118,7 +118,7 @@
         <el-form-item label="名称" prop="name" clearable>
           <el-input v-model="temp.name" />
         </el-form-item>
-        <el-form-item label="IP" prop="ip" clearable>
+        <el-form-item label="IP/域名" prop="ip" clearable>
           <el-input v-model="temp.ip" />
         </el-form-item>
         <el-form-item label="端口" prop="port">
