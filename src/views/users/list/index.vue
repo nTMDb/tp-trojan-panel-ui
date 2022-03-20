@@ -50,21 +50,33 @@
           <span>{{ row.username }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="角色" width="180" align="center">
+      <el-table-column label="角色" width="100" align="center">
         <template slot-scope="{ row }">
           <span>{{ roleFilter(row.roleId) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="总流量/MB" width="180" align="center">
+      <el-table-column label="总流量/MB" width="120" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.quota < 0 ? '无限' : row.quota }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="剩余流量/MB" width="180" align="center">
+      <el-table-column label="剩余流量/MB" width="120" align="center">
         <template slot-scope="{ row }">
           <span>{{
             row.quota < 0 ? '无限' : row.quota - row.upload - row.download
           }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="状态" width="100" align="center">
+        <template slot-scope="{ row }">
+          <el-tag :type="row.deleted | deletedFilter">
+            {{ row.deleted === 1 ? '禁用' : '正常' }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="到期时间" width="180" align="center">
+        <template slot-scope="{ row }">
+          <span>{{ timeStampToDate(row.expireTime, false) }}</span>
         </template>
       </el-table-column>
       <el-table-column label="创建时间" width="180" align="center">
@@ -166,6 +178,15 @@ import { checkSysadmin } from '@/utils/permission'
 
 export default {
   name: 'List',
+  filters: {
+    deletedFilter(deleted) {
+      const deletedMap = {
+        0: 'success',
+        1: 'danger'
+      }
+      return deletedMap[deleted]
+    }
+  },
   components: { Pagination },
   data() {
     const validateUsername = (rule, value, callback) => {
@@ -192,8 +213,10 @@ export default {
         upload: 0,
         username: '',
         pass: '',
-        createTime: new Date(),
-        roleId: 3
+        roleId: 3,
+        deleted: 0,
+        expireTime: new Date(),
+        createTime: new Date()
       },
       dialogFormVisible: false,
       textMap: {
@@ -306,6 +329,8 @@ export default {
         username: '',
         pass: '',
         roleId: 3,
+        deleted: 0,
+        expireTime: new Date(),
         createTime: new Date()
       }
     },
