@@ -76,6 +76,21 @@ export const constantRoutes = [
   },
 
   {
+    path: '/system',
+    component: Layout,
+    redirect: '/system/index',
+    name: 'System',
+    children: [
+      {
+        path: 'index',
+        name: 'index',
+        component: () => import('@/views/system'),
+        meta: { title: '系统设置', icon: '' }
+      }
+    ]
+  },
+
+  {
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
