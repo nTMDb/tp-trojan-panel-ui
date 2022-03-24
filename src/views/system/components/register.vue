@@ -11,6 +11,8 @@
       <el-form-item label="是否开放注册" prop="openRegister" clearable>
         <el-switch
           v-model="temp.openRegister"
+          :active-value="1"
+          :inactive-value="0"
           class="ml-2"
           active-color="#13ce66"
           inactive-color="#ff4949"
@@ -21,7 +23,7 @@
           v-model.number="temp.registerQuota"
           controls-position="right"
           type="number"
-          :disabled="temp.openRegister === 1"
+          :disabled="temp.openRegister === 0"
         />
       </el-form-item>
       <el-form-item label="新用户默认过期天数/天" prop="registerExpireDays">
@@ -29,7 +31,7 @@
           v-model.number="temp.registerExpireDays"
           controls-position="right"
           type="number"
-          :disabled="temp.openRegister === 1"
+          :disabled="temp.openRegister === 0"
         />
       </el-form-item>
       <el-form-item>
@@ -40,7 +42,7 @@
 </template>
 
 <script>
-import { selectSystemByName } from '@/api/system'
+import { selectSystemByName, updateSystemById } from '@/api/system'
 
 export default {
   name: 'register',
@@ -106,18 +108,17 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
-          console.log(tempData)
-          // updateSystemById(tempData).then(() => {
-          //   this.$nextTick(() => {
-          //     this.$refs['dataForm'].clearValidate()
-          //   })
-          //   this.$notify({
-          //     title: 'Success',
-          //     message: '修改成功',
-          //     type: 'success',
-          //     duration: 2000
-          //   })
-          // })
+          updateSystemById(tempData).then(() => {
+            this.$nextTick(() => {
+              this.$refs['dataForm'].clearValidate()
+            })
+            this.$notify({
+              title: 'Success',
+              message: '修改成功',
+              type: 'success',
+              duration: 2000
+            })
+          })
         }
       })
     }
