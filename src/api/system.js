@@ -25,3 +25,16 @@ export function updateSystemById(data) {
     data
   })
 }
+
+/**
+ * 上传静态网站文件
+ * @param data
+ * @returns {AxiosPromise}
+ */
+export function uploadWebFile(data) {
+  return request({
+    url: '/system/uploadWebFile',
+    method: 'post',
+    data
+  })
+}
