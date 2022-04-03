@@ -57,7 +57,11 @@
         >登录
       </el-button>
 
-      <el-button type="primary" style="width: 100%; margin: 0">
+      <el-button
+        type="primary"
+        style="width: 100%; margin: 0"
+        v-if="openRegister === 1"
+      >
         <router-link to="/register">没有账号?</router-link>
       </el-button>
     </el-form>
@@ -65,6 +69,8 @@
 </template>
 
 <script>
+import { openRegistered } from '@/api/system'
+
 export default {
   name: 'index',
   data() {
@@ -105,7 +111,8 @@ export default {
       },
       loading: false,
       passwordType: 'password',
-      redirect: undefined
+      redirect: undefined,
+      openRegister: 0
     }
   },
   watch: {
@@ -115,6 +122,9 @@ export default {
       },
       immediate: true
     }
+  },
+  created() {
+    this.openRegistered()
   },
   methods: {
     showPwd() {
@@ -144,6 +154,12 @@ export default {
           // console.log('error submit!!')
           return false
         }
+      })
+    },
+    openRegistered() {
+      openRegistered().then((response) => {
+        const { data } = response
+        this.openRegister = data.openRegister
       })
     }
   }

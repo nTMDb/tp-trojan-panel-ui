@@ -1,6 +1,19 @@
 import request from '@/utils/request'
 
 /**
+ * 系统是否开放注册
+ * @param data
+ * @returns {AxiosPromise}
+ */
+export function openRegistered(data) {
+  return request({
+    url: '/auth/openRegistered',
+    method: 'get',
+    params: data
+  })
+}
+
+/**
  * 查询系统设置
  * @param data
  * @returns {AxiosPromise}
