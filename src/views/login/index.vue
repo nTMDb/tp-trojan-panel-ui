@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { openRegistered } from '@/api/system'
+import { setting } from '@/api/system'
 
 export default {
   name: 'index',
@@ -124,7 +124,7 @@ export default {
     }
   },
   created() {
-    this.openRegistered()
+    this.setting()
   },
   methods: {
     showPwd() {
@@ -156,8 +156,8 @@ export default {
         }
       })
     },
-    openRegistered() {
-      openRegistered().then((response) => {
+    setting() {
+      setting().then((response) => {
         const { data } = response
         this.openRegister = data.openRegister
       })

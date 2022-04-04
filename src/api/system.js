@@ -5,9 +5,9 @@ import request from '@/utils/request'
  * @param data
  * @returns {AxiosPromise}
  */
-export function openRegistered(data) {
+export function setting(data) {
   return request({
-    url: '/auth/openRegistered',
+    url: '/auth/setting',
     method: 'get',
     params: data
   })

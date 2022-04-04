@@ -24,7 +24,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
-        v-show="checkSysadmin"
+        v-if="checkSysadmin"
       >
         添加
       </el-button>
@@ -94,7 +94,7 @@
             type="primary"
             size="mini"
             @click="handleUpdate(row)"
-            v-show="checkSysadmin"
+            v-if="checkSysadmin"
           >
             编辑
           </el-button>
@@ -102,7 +102,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
-            v-show="checkSysadmin"
+            v-if="checkSysadmin"
           >
             删除
           </el-button>
@@ -147,6 +147,26 @@
             v-model.number="temp.quota"
             controls-position="right"
             type="number"
+          />
+        </el-form-item>
+        <el-form-item label="状态" prop="deleted">
+          <el-switch
+            v-model="temp.deleted"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            active-text="正常"
+            inactive-text="禁用"
+            :active-value="0"
+            :inactive-value="1"
+            >>
+          </el-switch>
+        </el-form-item>
+        <el-form-item label="到期时间" prop="expireTime">
+          <el-date-picker
+            v-model="temp.expireTime"
+            type="datetime"
+            value-format="timestamp"
+            placeholder="请输入到期时间"
           />
         </el-form-item>
       </el-form>
@@ -215,7 +235,7 @@ export default {
         pass: '',
         roleId: 3,
         deleted: 0,
-        expireTime: new Date(),
+        expireTime: new Date().getTime(),
         createTime: new Date()
       },
       dialogFormVisible: false,
@@ -265,6 +285,10 @@ export default {
             message: '总流量的范围在-1-9999999之间的整数',
             trigger: 'change'
           }
+        ],
+        deleted: [{ required: true, message: '请输入状态', trigger: 'change' }],
+        expireTime: [
+          { required: true, message: '请输入到期时间', trigger: 'change' }
         ]
       },
       updateRules: {
@@ -290,6 +314,10 @@ export default {
             message: '总流量的范围在-1-9999999之间的整数',
             trigger: 'change'
           }
+        ],
+        deleted: [{ required: true, message: '请输入状态', trigger: 'change' }],
+        expireTime: [
+          { required: true, message: '请输入到期时间', trigger: 'change' }
         ]
       },
       dialogStatus: '',
@@ -330,7 +358,7 @@ export default {
         pass: '',
         roleId: 3,
         deleted: 0,
-        expireTime: new Date(),
+        expireTime: new Date().getTime(),
         createTime: new Date()
       }
     },
