@@ -216,7 +216,7 @@ export default {
             trigger: 'change'
           }
         ],
-        ip: [{ required: true, message: '请输入IP', trigger: 'change' }],
+        ip: [{ required: true, message: '请输入IP/域名', trigger: 'change' }],
         port: [
           { required: true, message: '请输入端口', trigger: 'change' },
           {
@@ -245,7 +245,7 @@ export default {
             trigger: 'change'
           }
         ],
-        ip: [{ required: true, message: '请输入IP', trigger: 'change' }],
+        ip: [{ required: true, message: '请输入IP/域名', trigger: 'change' }],
         port: [
           { required: true, message: '请输入端口', trigger: 'change' },
           {
