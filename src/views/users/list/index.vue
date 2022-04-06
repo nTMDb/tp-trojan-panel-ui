@@ -62,9 +62,16 @@
       </el-table-column>
       <el-table-column label="剩余流量/MB" width="120" align="center">
         <template slot-scope="{ row }">
-          <span>{{
-            row.quota < 0 ? '无限' : row.quota - row.upload - row.download
-          }}</span>
+          <span
+            :style="
+              row.quota >= 0 && row.quota - row.upload - row.download <= 0
+                ? 'color: #FF0000;'
+                : ''
+            "
+            >{{
+              row.quota < 0 ? '无限' : row.quota - row.upload - row.download
+            }}
+          </span>
         </template>
       </el-table-column>
       <el-table-column label="状态" width="100" align="center">
@@ -76,7 +83,12 @@
       </el-table-column>
       <el-table-column label="到期时间" width="180" align="center">
         <template slot-scope="{ row }">
-          <span>{{ timeStampToDate(row.expireTime, false) }}</span>
+          <span
+            :style="
+              row.expireTime <= new Date().getTime() ? 'color: #FF0000;' : ''
+            "
+            >{{ timeStampToDate(row.expireTime, false) }}
+          </span>
         </template>
       </el-table-column>
       <el-table-column label="创建时间" width="180" align="center">
