@@ -19,7 +19,10 @@
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/users-manage/modify-pass">
-            <el-dropdown-item> 修改密码</el-dropdown-item>
+            <el-dropdown-item>修改密码</el-dropdown-item>
+          </router-link>
+          <router-link to="/about">
+            <el-dropdown-item>关于项目</el-dropdown-item>
           </router-link>
           <el-dropdown-item divided @click.native="logout">
             <span style="display: block">注销</span>
@@ -49,7 +52,7 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('users/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      await this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }
 }

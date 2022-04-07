@@ -91,6 +91,21 @@ export const constantRoutes = [
   },
 
   {
+    path: '/about',
+    component: Layout,
+    redirect: '/about/index',
+    name: 'About',
+    children: [
+      {
+        path: 'index',
+        name: 'index',
+        component: () => import('@/views/about'),
+        meta: { title: '关于项目', icon: '' }
+      }
+    ]
+  },
+
+  {
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
