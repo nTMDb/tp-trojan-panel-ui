@@ -18,7 +18,9 @@ export default {
       panelGroupData: {
         totalFlow: 0,
         residualFlow: 0,
-        nodeNum: 0
+        nodeNum: 0,
+        expireTime: new Date(),
+        userCount: 0
       }
     }
   },

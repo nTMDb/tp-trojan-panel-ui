@@ -2,8 +2,19 @@
   <el-row :gutter="40" class="panel-group">
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-people">
-          <svg-icon icon-class="example" class-name="card-panel-icon" />
+        <div class="card-panel-icon-wrapper icon-user">
+          <svg-icon icon-class="user" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">用户总数</div>
+          <h3>{{ groupData.userCount }}</h3>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
+        <div class="card-panel-icon-wrapper icon-flow">
+          <svg-icon icon-class="flow" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">总流量/MB</div>
@@ -13,20 +24,26 @@
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-message">
-          <svg-icon icon-class="example" class-name="card-panel-icon" />
+        <div class="card-panel-icon-wrapper icon-flow">
+          <svg-icon icon-class="flow" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">剩余流量/MB</div>
-          <h3>
-            {{ groupData.residualFlow < 0 ? '无限' : groupData.residualFlow }}
+          <h3
+            :style="
+              groupData.totalFlow >= 0 && groupData.residualFlow <= 0
+                ? 'color: #FF0000;'
+                : ''
+            "
+          >
+            {{ groupData.totalFlow < 0 ? '无限' : groupData.residualFlow }}
           </h3>
         </div>
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-money">
+        <div class="card-panel-icon-wrapper icon-node">
           <svg-icon icon-class="node" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
@@ -35,16 +52,40 @@
         </div>
       </div>
     </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
+        <div class="card-panel-icon-wrapper icon-time">
+          <svg-icon icon-class="time" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">到期时间</div>
+          <h3
+            :style="
+              groupData.expireTime <= new Date().getTime()
+                ? 'color: #FF0000;'
+                : ''
+            "
+          >
+            {{ timeStampToDate(groupData.expireTime, false) }}
+          </h3>
+        </div>
+      </div>
+    </el-col>
   </el-row>
 </template>
 
 <script>
+import { timeStampToDate } from '@/utils'
+
 export default {
   props: {
     groupData: {
       type: Object,
       required: true
     }
+  },
+  methods: {
+    timeStampToDate
   }
 }
 </script>
@@ -73,37 +114,37 @@ export default {
         color: #fff;
       }
 
-      .icon-people {
+      .icon-user {
         background: #40c9c6;
       }
 
-      .icon-message {
+      .icon-flow {
         background: #36a3f7;
       }
 
-      .icon-money {
+      .icon-node {
         background: #f4516c;
       }
 
-      .icon-shopping {
-        background: #34bfa3;
+      .icon-time {
+        background: #ffb6c1;
       }
     }
 
-    .icon-people {
+    .icon-user {
       color: #40c9c6;
     }
 
-    .icon-message {
+    .icon-flow {
       color: #36a3f7;
     }
 
-    .icon-money {
+    .icon-node {
       color: #f4516c;
     }
 
-    .icon-shopping {
-      color: #34bfa3;
+    .icon-time {
+      color: #ffb6c1;
     }
 
     .card-panel-icon-wrapper {
