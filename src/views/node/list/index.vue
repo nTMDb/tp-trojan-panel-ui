@@ -24,7 +24,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
-        v-show="checkAdmin"
+        v-if="checkAdmin()"
       >
         添加
       </el-button>
@@ -44,7 +44,7 @@
         align="center"
         width="80"
         type="index"
-        v-show="checkAdmin"
+        v-if="checkAdmin()"
       />
       <el-table-column label="名称" width="180" align="center">
         <template slot-scope="{ row }">
@@ -76,7 +76,7 @@
             type="primary"
             size="mini"
             @click="handleUpdate(row)"
-            v-show="checkAdmin"
+            v-if="checkAdmin()"
           >
             编辑
           </el-button>
@@ -90,7 +90,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
-            v-show="checkAdmin"
+            v-if="checkAdmin()"
           >
             删除
           </el-button>
@@ -266,8 +266,7 @@ export default {
       },
       dialogStatus: '',
       nodeTypes: [],
-      qrCodeSrc: '',
-      checkAdmin: checkAdmin()
+      qrCodeSrc: ''
     }
   },
   created() {
@@ -275,6 +274,7 @@ export default {
     this.getList()
   },
   methods: {
+    checkAdmin,
     handleQRCode(row) {
       const tempData = Object.assign({}, row)
       nodeQRCode(tempData).then((response) => {

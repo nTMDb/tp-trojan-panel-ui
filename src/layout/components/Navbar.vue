@@ -21,7 +21,7 @@
           <router-link to="/users-manage/modify-pass">
             <el-dropdown-item>修改密码</el-dropdown-item>
           </router-link>
-          <router-link to="/about" v-if="checkAdmin">
+          <router-link to="/about" v-if="checkAdmin()">
             <el-dropdown-item>关于项目</el-dropdown-item>
           </router-link>
           <el-dropdown-item divided @click.native="logout">
@@ -47,12 +47,8 @@ export default {
   computed: {
     ...mapGetters(['sidebar', 'avatar'])
   },
-  data() {
-    return {
-      checkAdmin: checkAdmin()
-    }
-  },
   methods: {
+    checkAdmin,
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
