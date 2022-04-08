@@ -9,15 +9,8 @@
         >https://t.me/TrojanPanelGroup</a
       >
     </h4>
-
     <h4>
       项目地址:
-      <a target="_blank" href="https://github.com/trojanpanel"
-        >https://github.com/trojanpanel</a
-      >
-    </h4>
-    <h4>
-      一键安装脚本:
       <a target="_blank" href="https://github.com/trojanpanel/install-script"
         >https://github.com/trojanpanel/install-script</a
       >
