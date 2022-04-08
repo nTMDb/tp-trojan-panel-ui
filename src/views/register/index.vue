@@ -14,7 +14,7 @@
 
       <el-form-item prop="username" clearable>
         <span class="svg-container">
-          <svg-icon icon-class="user" />
+          <svg-icon icon-class="username" />
         </span>
         <el-input
           ref="username"
@@ -29,7 +29,7 @@
 
       <el-form-item prop="pass" clearable>
         <span class="svg-container">
-          <svg-icon icon-class="password" />
+          <svg-icon icon-class="pass" />
         </span>
         <el-input
           ref="pass"
@@ -49,7 +49,7 @@
 
       <el-form-item prop="pass" clearable>
         <span class="svg-container">
-          <svg-icon icon-class="password" />
+          <svg-icon icon-class="pass" />
         </span>
         <el-input
           ref="pass"
