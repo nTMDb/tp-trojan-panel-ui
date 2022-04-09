@@ -11,9 +11,6 @@ const state = {
 }
 
 const mutations = {
-  RESET_STATE: (state) => {
-    Object.assign(state, {})
-  },
   SET_TOKEN: (state, token) => {
     state.token = 'Bearer ' + token
   },
@@ -71,7 +68,7 @@ const actions = {
             return reject('认证失败，请重新登录！')
           }
 
-          const { id, username, roleNames, menuList } = data
+          const { username, roleNames, menuList } = data
 
           commit('SET_USERNAME', username)
           commit('SET_ROLE_NAMES', roleNames)
@@ -87,9 +84,10 @@ const actions = {
   // user logout
   logout({ commit }) {
     return new Promise((resolve, reject) => {
+      commit('SET_ROLE_NAMES', [])
+      commit('SET_TOKEN', '')
       removeToken()
       resetRouter()
-      commit('RESET_STATE')
       resolve()
     })
   },
@@ -97,8 +95,9 @@ const actions = {
   // remove token
   resetToken({ commit }) {
     return new Promise((resolve) => {
+      commit('SET_ROLE_NAMES', [])
+      commit('SET_TOKEN', '')
       removeToken()
-      commit('RESET_STATE')
       resolve()
     })
   }
