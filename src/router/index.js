@@ -7,24 +7,27 @@ Vue.use(Router)
 export const constantRoutes = [
   {
     path: '/login',
-    component: () => import('@/views/login/index')
+    component: () => import('@/views/login/index'),
+    hidden: true
   },
 
   {
     path: '/register',
-    component: () => import('@/views/register/index')
+    component: () => import('@/views/register/index'),
+    hidden: true
   },
 
   {
     path: '/',
-    redirect: '/dashboard'
+    redirect: '/dashboard',
+    hidden: true
   },
 
   {
     path: '/dashboard',
+    name: 'Dashboard',
     component: Layout,
     redirect: '/dashboard/index',
-    name: 'Dashboard',
     children: [
       {
         path: 'index',
@@ -32,8 +35,7 @@ export const constantRoutes = [
         component: () => import('@/views/dashboard'),
         meta: {
           title: '仪表板',
-          icon: '',
-          role: 'user'
+          icon: ''
         }
       }
     ]
@@ -41,9 +43,9 @@ export const constantRoutes = [
 
   {
     path: '/users-manage',
+    name: 'UsersManage',
     component: Layout,
     redirect: '/users-manage/user-list',
-    name: 'UsersManage',
     meta: { title: '用户管理', icon: '' },
     children: [
       {
@@ -52,8 +54,7 @@ export const constantRoutes = [
         component: () => import('@/views/users/list'),
         meta: {
           title: '用户列表',
-          icon: '',
-          role: 'admin'
+          icon: ''
         }
       },
       {
@@ -62,8 +63,7 @@ export const constantRoutes = [
         component: () => import('@/views/users/modify/index'),
         meta: {
           title: '修改密码',
-          icon: '',
-          role: 'user'
+          icon: ''
         }
       }
     ]
@@ -71,9 +71,9 @@ export const constantRoutes = [
 
   {
     path: '/node-manage',
+    name: 'NodeManage',
     component: Layout,
     redirect: '/node-manage/node-list',
-    name: 'NodeManage',
     meta: { title: '节点管理', icon: '' },
     children: [
       {
@@ -82,8 +82,7 @@ export const constantRoutes = [
         component: () => import('@/views/node/list'),
         meta: {
           title: '节点列表',
-          icon: '',
-          role: 'user'
+          icon: ''
         }
       }
     ]
@@ -91,9 +90,9 @@ export const constantRoutes = [
 
   {
     path: '/system',
+    name: 'System',
     component: Layout,
     redirect: '/system/index',
-    name: 'System',
     children: [
       {
         path: 'index',
@@ -101,8 +100,7 @@ export const constantRoutes = [
         component: () => import('@/views/system'),
         meta: {
           title: '系统设置',
-          icon: '',
-          role: 'admin'
+          icon: ''
         }
       }
     ]
@@ -110,9 +108,10 @@ export const constantRoutes = [
 
   {
     path: '/about',
+    name: 'About',
     component: Layout,
     redirect: '/about/index',
-    name: 'About',
+    hidden: true,
     children: [
       {
         path: 'index',
@@ -120,8 +119,7 @@ export const constantRoutes = [
         component: () => import('@/views/about'),
         meta: {
           title: '关于项目',
-          icon: '',
-          role: 'admin'
+          icon: ''
         }
       }
     ]
@@ -129,10 +127,11 @@ export const constantRoutes = [
 
   {
     path: '/404',
-    component: () => import('@/views/404')
+    component: () => import('@/views/404'),
+    hidden: true
   },
 
-  { path: '*', redirect: '/404' }
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () =>
