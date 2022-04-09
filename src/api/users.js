@@ -68,9 +68,9 @@ export function deleteUserById(data) {
  * @param data
  * @returns {AxiosPromise}
  */
-export function updateUserPassById(data) {
+export function updateUserPassByUsername(data) {
   return request({
-    url: '/users/updateUserPassById',
+    url: '/users/updateUserPassByUsername',
     method: 'post',
     data
   })

@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { updateUserPassById } from '@/api/users'
+import { updateUserPassByUsername } from '@/api/users'
 
 export default {
   name: 'Modify',
@@ -105,7 +105,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
-          updateUserPassById(tempData).then(() => {
+          updateUserPassByUsername(tempData).then(() => {
             this.resetTemp()
             this.$nextTick(() => {
               this.$refs['dataForm'].clearValidate()
