@@ -51,7 +51,7 @@ export default {
     }
     return {
       temp: {
-        id: this.$store.getters.id,
+        username: this.$store.getters.username,
         oldPass: '',
         newPassOne: '',
         newPass: ''
@@ -95,7 +95,7 @@ export default {
   methods: {
     resetTemp() {
       this.temp = {
-        id: this.$store.getters.id,
+        username: this.$store.getters.username,
         oldPass: '',
         newPassOne: '',
         newPass: ''

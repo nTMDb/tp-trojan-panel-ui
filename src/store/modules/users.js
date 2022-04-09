@@ -2,28 +2,20 @@ import { getInfo, login, register } from '@/api/users'
 import { getToken, removeToken, setToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
-const getDefaultState = () => {
-  return {
-    token: getToken(),
-    id: undefined,
-    username: '', // 用户名
-    avatar: '', // 头像
-    roleNames: [], // 角色,
-    menuList: []
-  }
+const state = {
+  token: getToken(),
+  username: '', // 用户名
+  avatar: '', // 头像
+  roleNames: [], // 角色,
+  menuList: []
 }
-
-const state = getDefaultState()
 
 const mutations = {
   RESET_STATE: (state) => {
-    Object.assign(state, getDefaultState())
+    Object.assign(state, {})
   },
   SET_TOKEN: (state, token) => {
     state.token = 'Bearer ' + token
-  },
-  SET_ID: (state, id) => {
-    state.id = id
   },
   SET_USERNAME: (state, username) => {
     state.username = username
@@ -81,7 +73,6 @@ const actions = {
 
           const { id, username, roleNames, menuList } = data
 
-          commit('SET_ID', id)
           commit('SET_USERNAME', username)
           commit('SET_ROLE_NAMES', roleNames)
           commit('SET_MENU_LIST', menuList)
