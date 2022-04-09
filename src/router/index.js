@@ -7,14 +7,12 @@ Vue.use(Router)
 export const constantRoutes = [
   {
     path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
+    component: () => import('@/views/login/index')
   },
 
   {
     path: '/register',
-    component: () => import('@/views/register/index'),
-    hidden: true
+    component: () => import('@/views/register/index')
   },
 
   {
@@ -32,7 +30,11 @@ export const constantRoutes = [
         path: 'index',
         name: 'index',
         component: () => import('@/views/dashboard'),
-        meta: { title: '仪表板', icon: '' }
+        meta: {
+          title: '仪表板',
+          icon: '',
+          role: 'user'
+        }
       }
     ]
   },
@@ -48,13 +50,21 @@ export const constantRoutes = [
         path: 'user-list',
         name: 'userList',
         component: () => import('@/views/users/list'),
-        meta: { title: '用户列表', icon: '' }
+        meta: {
+          title: '用户列表',
+          icon: '',
+          role: 'admin'
+        }
       },
       {
         path: 'modify-pass',
         name: 'modifyPass',
         component: () => import('@/views/users/modify/index'),
-        meta: { title: '修改密码', icon: '' }
+        meta: {
+          title: '修改密码',
+          icon: '',
+          role: 'user'
+        }
       }
     ]
   },
@@ -70,7 +80,11 @@ export const constantRoutes = [
         path: 'node-list',
         name: 'nodeList',
         component: () => import('@/views/node/list'),
-        meta: { title: '节点列表', icon: '' }
+        meta: {
+          title: '节点列表',
+          icon: '',
+          role: 'user'
+        }
       }
     ]
   },
@@ -85,7 +99,11 @@ export const constantRoutes = [
         path: 'index',
         name: 'index',
         component: () => import('@/views/system'),
-        meta: { title: '系统设置', icon: '' }
+        meta: {
+          title: '系统设置',
+          icon: '',
+          role: 'admin'
+        }
       }
     ]
   },
@@ -100,18 +118,21 @@ export const constantRoutes = [
         path: 'index',
         name: 'index',
         component: () => import('@/views/about'),
-        meta: { title: '关于项目', icon: '' }
+        meta: {
+          title: '关于项目',
+          icon: '',
+          role: 'admin'
+        }
       }
     ]
   },
 
   {
     path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
+    component: () => import('@/views/404')
   },
 
-  { path: '*', redirect: '/404', hidden: true }
+  { path: '*', redirect: '/404' }
 ]
 
 const createRouter = () =>

@@ -5,6 +5,5 @@ export function checkSysadmin() {
 }
 
 export function checkAdmin() {
-  console.log(store.getters.roleNames)
   return store.getters.roleNames.includes('admin')
 }
