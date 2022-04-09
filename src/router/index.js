@@ -55,7 +55,8 @@ export const constantRoutes = [
         meta: {
           title: '用户列表',
           icon: ''
-        }
+        },
+        role: 'admin'
       },
       {
         path: 'modify-pass',
@@ -93,6 +94,7 @@ export const constantRoutes = [
     name: 'System',
     component: Layout,
     redirect: '/system/index',
+    role: 'admin',
     children: [
       {
         path: 'index',
@@ -112,6 +114,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/about/index',
     hidden: true,
+    role: 'admin',
     children: [
       {
         path: 'index',
