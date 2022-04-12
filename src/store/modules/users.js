@@ -89,11 +89,13 @@ const actions = {
   },
 
   // user logout
-  logout({ commit }) {
+  logout({ commit ,dispatch}) {
     return new Promise((resolve, reject) => {
       removeToken()
       resetRouter()
       commit('RESET_STATE')
+
+      dispatch('tagsView/delAllViews', null, { root: true })
       resolve()
     })
   },

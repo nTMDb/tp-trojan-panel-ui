@@ -1,20 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import permission from "@/store/modules/permission";
-import app from "@/store/modules/app";
-import settings from "@/store/modules/settings";
-import users from "@/store/modules/users";
 import getters from "@/store/getters";
 
 Vue.use(Vuex)
 
+const modulesFiles = require.context('./modules', true, /\.js$/)
+
+const modules = modulesFiles.keys().reduce((modules, modulePath) => {
+  // set './app.js' => 'app'
+  const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
+  const value = modulesFiles(modulePath)
+  modules[moduleName] = value.default
+  return modules
+}, {})
+
 const store = new Vuex.Store({
-  modules: {
-    app,
-    permission,
-    settings,
-    users
-  },
+  modules,
   getters
 })
 
