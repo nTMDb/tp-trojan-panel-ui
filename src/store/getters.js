@@ -5,6 +5,8 @@ const getters = {
   username: (state) => state.users.username,
   avatar: (state) => state.users.avatar,
   roleNames: (state) => state.users.roleNames,
-  menuList: (state) => state.users.menuList
+  menuList: (state) => state.users.menuList,
+  isSysadmin: (state) => state.users.roleNames.includes('sysadmin'),
+  isAdmin: (state) => state.users.roleNames.includes('admin'),
 }
 export default getters

@@ -24,7 +24,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
-        v-if="checkAdmin()"
+        v-if="isAdmin"
       >
         添加
       </el-button>
@@ -44,7 +44,7 @@
         align="center"
         width="80"
         type="index"
-        v-if="checkAdmin()"
+        v-if="isAdmin"
       />
       <el-table-column label="名称" width="180" align="center">
         <template slot-scope="{ row }">
@@ -76,7 +76,7 @@
             type="primary"
             size="mini"
             @click="handleUpdate(row)"
-            v-if="checkAdmin()"
+            v-if="isAdmin"
           >
             编辑
           </el-button>
@@ -90,7 +90,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
-            v-if="checkAdmin()"
+            v-if="isAdmin"
           >
             删除
           </el-button>
@@ -176,11 +176,14 @@ import {
   updateNodeById
 } from '@/api/node'
 import { selectNodeTypeList } from '@/api/node-type'
-import { checkAdmin } from '@/utils/permission'
+import {mapGetters} from "vuex";
 
 export default {
   name: 'List',
   components: { Pagination },
+  computed: {
+    ...mapGetters(['isAdmin'])
+  },
   data() {
     return {
       tableKey: 0,
@@ -274,7 +277,6 @@ export default {
     this.getList()
   },
   methods: {
-    checkAdmin,
     handleQRCode(row) {
       const tempData = Object.assign({}, row)
       nodeQRCode(tempData).then((response) => {

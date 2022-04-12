@@ -21,7 +21,7 @@
           <router-link to="/users-manage/modify-pass">
             <el-dropdown-item>修改密码</el-dropdown-item>
           </router-link>
-          <router-link to="/about" v-if="checkAdmin()">
+          <router-link to="/about" v-if="isAdmin">
             <el-dropdown-item>关于项目</el-dropdown-item>
           </router-link>
           <el-dropdown-item divided @click.native="logout">
@@ -37,7 +37,6 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import { checkAdmin } from '@/utils/permission'
 
 export default {
   components: {
@@ -45,10 +44,9 @@ export default {
     Hamburger
   },
   computed: {
-    ...mapGetters(['sidebar', 'avatar'])
+    ...mapGetters(['sidebar', 'avatar','isAdmin'])
   },
   methods: {
-    checkAdmin,
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },

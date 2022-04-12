@@ -24,7 +24,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
-        v-if="checkSysadmin"
+        v-if="isSysadmin"
       >
         添加
       </el-button>
@@ -106,7 +106,7 @@
             type="primary"
             size="mini"
             @click="handleUpdate(row)"
-            v-if="checkSysadmin"
+            v-if="isSysadmin"
           >
             编辑
           </el-button>
@@ -114,7 +114,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
-            v-if="checkSysadmin"
+            v-if="isSysadmin"
           >
             删除
           </el-button>
@@ -206,7 +206,7 @@ import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
 import { selectRoleList } from '@/api/role'
-import { checkSysadmin } from '@/utils/permission'
+import {mapGetters} from "vuex";
 
 export default {
   name: 'List',
@@ -220,6 +220,9 @@ export default {
     }
   },
   components: { Pagination },
+  computed: {
+    ...mapGetters(['isSysadmin'])
+  },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (this.temp.username.trim().indexOf('admin') >= 0) {
@@ -333,8 +336,7 @@ export default {
         ]
       },
       dialogStatus: '',
-      roles: [],
-      checkSysadmin: checkSysadmin()
+      roles: []
     }
   },
   created() {
