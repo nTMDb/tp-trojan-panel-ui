@@ -14,15 +14,15 @@ export default {
   components: { adminDashboard, userDashboard },
   data() {
     return {
-      currentRole: 'adminDashboard'
+      currentRole: 'userDashboard'
     }
   },
   computed: {
     ...mapGetters(['roleNames'])
   },
   created() {
-    if (!this.roleNames.includes('admin')) {
-      this.currentRole = 'userDashboard'
+    if (this.roleNames.includes('admin')) {
+      this.currentRole = 'adminDashboard'
     }
   }
 }

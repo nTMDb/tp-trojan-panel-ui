@@ -42,35 +42,6 @@ export const constantRoutes = [
   },
 
   {
-    path: '/users-manage',
-    name: 'UsersManage',
-    component: Layout,
-    redirect: '/users-manage/user-list',
-    meta: { title: '用户管理', icon: '' },
-    children: [
-      {
-        path: 'user-list',
-        name: 'userList',
-        component: () => import('@/views/users/list'),
-        meta: {
-          title: '用户列表',
-          icon: ''
-        },
-        role: 'admin'
-      },
-      {
-        path: 'modify-pass',
-        name: 'modifyPass',
-        component: () => import('@/views/users/modify/index'),
-        meta: {
-          title: '修改密码',
-          icon: ''
-        }
-      }
-    ]
-  },
-
-  {
     path: '/node-manage',
     name: 'NodeManage',
     component: Layout,
@@ -90,11 +61,49 @@ export const constantRoutes = [
   },
 
   {
+    path: '/404',
+    component: () => import('@/views/404'),
+    hidden: true
+  },
+
+  { path: '*', redirect: '/404', hidden: true }
+]
+
+export const asyncRoutes = [
+  {
+    path: '/users-manage',
+    name: 'UsersManage',
+    component: Layout,
+    redirect: '/users-manage/user-list',
+    meta: { title: '用户管理', icon: '',roles:['sysadmin','admin','user'] },
+    children: [
+      {
+        path: 'user-list',
+        name: 'userList',
+        component: () => import('@/views/users/list'),
+        meta: {
+          title: '用户列表',
+          icon: '',
+          roles: ['sysadmin','admin']
+        }
+      },
+      {
+        path: 'modify-pass',
+        name: 'modifyPass',
+        component: () => import('@/views/users/modify/index'),
+        meta: {
+          title: '修改密码',
+          icon: ''
+        }
+      }
+    ]
+  },
+  {
     path: '/system',
     name: 'System',
     component: Layout,
     redirect: '/system/index',
-    role: 'admin',
+    meta: { title: '系统设置', icon: '',roles:['sysadmin','admin'] },
     children: [
       {
         path: 'index',
@@ -107,14 +116,13 @@ export const constantRoutes = [
       }
     ]
   },
-
   {
     path: '/about',
     name: 'About',
     component: Layout,
     redirect: '/about/index',
+    meta: { title: '关于项目', icon: '',roles:['sysadmin','admin'] },
     hidden: true,
-    role: 'admin',
     children: [
       {
         path: 'index',
@@ -126,15 +134,7 @@ export const constantRoutes = [
         }
       }
     ]
-  },
-
-  {
-    path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
-  },
-
-  { path: '*', redirect: '/404', hidden: true }
+  }
 ]
 
 const createRouter = () =>
