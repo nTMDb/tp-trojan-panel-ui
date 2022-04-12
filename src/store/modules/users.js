@@ -89,7 +89,7 @@ const actions = {
   },
 
   // user logout
-  logout({ commit ,dispatch}) {
+  logout({ commit, dispatch }) {
     return new Promise((resolve, reject) => {
       removeToken()
       resetRouter()
