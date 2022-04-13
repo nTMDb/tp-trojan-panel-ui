@@ -44,7 +44,7 @@ export default {
     Hamburger
   },
   computed: {
-    ...mapGetters(['sidebar', 'avatar','isAdmin'])
+    ...mapGetters(['sidebar', 'avatar', 'isAdmin'])
   },
   methods: {
     toggleSideBar() {
