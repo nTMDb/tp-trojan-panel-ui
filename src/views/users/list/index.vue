@@ -340,8 +340,8 @@ export default {
     }
   },
   created() {
-    this.getList()
     this.setRoles()
+    this.getList()
   },
   methods: {
     timeStampToDate,
