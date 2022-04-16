@@ -32,7 +32,9 @@ router.beforeEach(async (to, from, next) => {
             'permission/generateRoutes',
             roleNames
           )
-          router.addRoutes(accessRoutes)
+          for (let i = 0; i < accessRoutes.length; i++) {
+            router.addRoute(accessRoutes[i])
+          }
           next({ ...to, replace: true })
         } catch (error) {
           await store.dispatch('users/resetToken')
