@@ -6,6 +6,7 @@ const getters = {
   avatar: (state) => state.users.avatar,
   roleNames: (state) => state.users.roleNames,
   menuList: (state) => state.users.menuList,
+  routes: state => state.permission.routes,
   isSysadmin: (state) => state.users.roleNames.includes('sysadmin'),
   isAdmin: (state) => state.users.roleNames.includes('admin')
 }
