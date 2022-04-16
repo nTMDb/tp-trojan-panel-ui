@@ -75,7 +75,7 @@ export const asyncRoutes = [
     name: 'UsersManage',
     component: Layout,
     redirect: '/users-manage/user-list',
-    meta: { title: '用户管理', icon: '',roles:['sysadmin','admin','user'] },
+    meta: { title: '用户管理', icon: '', roles: ['sysadmin', 'admin', 'user'] },
     children: [
       {
         path: 'user-list',
@@ -84,7 +84,7 @@ export const asyncRoutes = [
         meta: {
           title: '用户列表',
           icon: '',
-          roles: ['sysadmin','admin']
+          roles: ['sysadmin', 'admin']
         }
       },
       {
@@ -103,7 +103,7 @@ export const asyncRoutes = [
     name: 'System',
     component: Layout,
     redirect: '/system/index',
-    meta: { title: '系统设置', icon: '',roles:['sysadmin','admin'] },
+    meta: { title: '系统设置', icon: '', roles: ['sysadmin', 'admin'] },
     children: [
       {
         path: 'index',
@@ -121,7 +121,7 @@ export const asyncRoutes = [
     name: 'About',
     component: Layout,
     redirect: '/about/index',
-    meta: { title: '关于项目', icon: '',roles:['sysadmin','admin'] },
+    meta: { title: '关于项目', icon: '', roles: ['sysadmin', 'admin'] },
     hidden: true,
     children: [
       {
