@@ -176,7 +176,7 @@ import {
   updateNodeById
 } from '@/api/node'
 import { selectNodeTypeList } from '@/api/node-type'
-import {mapGetters} from "vuex";
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'List',
@@ -219,7 +219,15 @@ export default {
             trigger: 'change'
           }
         ],
-        ip: [{ required: true, message: '请输入IP/域名', trigger: 'change' }],
+        ip: [
+          { required: true, message: '请输入IP/域名', trigger: 'change' },
+          {
+            min: 3,
+            max: 128,
+            message: 'IP/域名的范围在3-128字符之间',
+            trigger: 'change'
+          }
+        ],
         port: [
           { required: true, message: '请输入端口', trigger: 'change' },
           {
@@ -248,7 +256,15 @@ export default {
             trigger: 'change'
           }
         ],
-        ip: [{ required: true, message: '请输入IP/域名', trigger: 'change' }],
+        ip: [
+          { required: true, message: '请输入IP/域名', trigger: 'change' },
+          {
+            min: 3,
+            max: 128,
+            message: 'IP/域名的范围在3-128字符之间',
+            trigger: 'change'
+          }
+        ],
         port: [
           { required: true, message: '请输入端口', trigger: 'change' },
           {
