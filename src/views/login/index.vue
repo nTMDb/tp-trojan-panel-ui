@@ -144,7 +144,9 @@ export default {
           this.$store
             .dispatch('users/login', this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || '/dashboard' })
+              this.$router
+                .push({ path: this.redirect || '/' })
+                .catch(() => true)
               this.loading = false
             })
             .catch(() => {
