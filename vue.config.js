@@ -39,7 +39,7 @@ module.exports = {
       }
     },
     plugins: [
-      // 最佳性能：性能比没有模糊处理慢 30-35% 配置项参考：https://github.com/javascript-obfuscator/javascript-obfuscator
+      // 配置项参考：https://github.com/javascript-obfuscator/javascript-obfuscator
       new JavaScriptObfuscator(
         {
           rotateStringArray: true
