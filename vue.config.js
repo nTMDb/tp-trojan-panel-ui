@@ -1,5 +1,6 @@
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
+const JavaScriptObfuscator = require('webpack-obfuscator');
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -36,7 +37,12 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
-    }
+    },
+    plugins: [
+      new JavaScriptObfuscator({
+        rotateStringArray: true,
+      }, [])
+    ]
   },
   chainWebpack(config) {
     // set svg-sprite-loader
