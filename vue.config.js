@@ -31,7 +31,7 @@ module.exports = {
       }
     }
   },
-  configureWebpack: {
+  configureWebpack: (process.env.NODE_ENV === 'production') ? {
     name: name,
     resolve: {
       alias: {
@@ -47,6 +47,13 @@ module.exports = {
         []
       )
     ]
+  } : {
+    name: name,
+    resolve: {
+      alias: {
+        '@': resolve('src')
+      }
+    }
   },
   chainWebpack(config) {
     // set svg-sprite-loader
