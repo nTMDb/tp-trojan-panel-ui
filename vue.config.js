@@ -31,30 +31,33 @@ module.exports = {
       }
     }
   },
-  configureWebpack: (process.env.NODE_ENV === 'production') ? {
-    name: name,
-    resolve: {
-      alias: {
-        '@': resolve('src')
-      }
-    },
-    plugins: [
-      // 配置项参考：https://github.com/javascript-obfuscator/javascript-obfuscator
-      new JavaScriptObfuscator(
-        {
-          rotateStringArray: true
+  configureWebpack:
+    process.env.NODE_ENV === 'production'
+      ? {
+          name: name,
+          resolve: {
+            alias: {
+              '@': resolve('src')
+            }
+          },
+          plugins: [
+            // 配置项参考：https://github.com/javascript-obfuscator/javascript-obfuscator
+            new JavaScriptObfuscator(
+              {
+                rotateStringArray: true
+              },
+              []
+            )
+          ]
+        }
+      : {
+          name: name,
+          resolve: {
+            alias: {
+              '@': resolve('src')
+            }
+          }
         },
-        []
-      )
-    ]
-  } : {
-    name: name,
-    resolve: {
-      alias: {
-        '@': resolve('src')
-      }
-    }
-  },
   chainWebpack(config) {
     // set svg-sprite-loader
     config.module.rule('svg').exclude.add(resolve('src/icons')).end()
