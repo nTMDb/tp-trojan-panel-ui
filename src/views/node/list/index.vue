@@ -56,14 +56,28 @@
           <span>{{ row.ip }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="端口" width="180" align="center">
+      <el-table-column label="端口" width="80" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.port }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="类型" width="180" align="center">
+      <el-table-column label="类型" width="80" align="center">
         <template slot-scope="{ row }">
           <span>{{ filterNodeTypes(row.type) }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="websocket" width="120" align="center">
+        <template slot-scope="{ row }">
+          <el-tag :type="row.websocketEnable | websocketEnableFilter">
+            {{ row.websocketEnable === 0 ? '关闭' : '开启' }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="ss AEAD加密" width="120" align="center">
+        <template slot-scope="{ row }">
+          <el-tag :type="row.ssEnable | ssEnableFilter">
+            {{ row.ssEnable === 0 ? '关闭' : '开启' }}
+          </el-tag>
         </template>
       </el-table-column>
       <el-table-column
@@ -141,6 +155,52 @@
             ></el-option>
           </el-select>
         </el-form-item>
+        <el-form-item label="是否开启websocket" prop="websocketEnable">
+          <el-switch
+            v-model="temp.websocketEnable"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            active-text="开启"
+            inactive-text="关闭"
+            :active-value="1"
+            :inactive-value="0"
+          >
+          </el-switch>
+        </el-form-item>
+        <el-form-item label="websocket路径" prop="websocketPath" clearable>
+          <el-input v-model="temp.websocketPath" />
+        </el-form-item>
+        <el-form-item label="是否开启ss AEAD加密" prop="ssEnable">
+          <el-switch
+            v-model="temp.ssEnable"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            active-text="开启"
+            inactive-text="关闭"
+            :active-value="1"
+            :inactive-value="0"
+          >
+          </el-switch>
+        </el-form-item>
+        <el-form-item label="websocket路径" prop="websocketPath" clearable>
+          <el-input v-model="temp.websocketPath" />
+        </el-form-item>
+        <el-form-item label="类型" prop="type">
+          <el-select
+            v-model="temp.ssMethod"
+            placeholder="请选择ss加密方式"
+            controls-position="right"
+          >
+            <el-option
+              :label="item"
+              :value="item"
+              v-for="item in ssMethods"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="ss密码" prop="ssPassword" clearable>
+          <el-input v-model="temp.ssPassword" />
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false"> 取消</el-button>
@@ -184,6 +244,22 @@ export default {
   computed: {
     ...mapGetters(['isAdmin'])
   },
+  filters: {
+    websocketEnableFilter(websocketEnable) {
+      const deletedMap = {
+        0: 'success',
+        1: 'danger'
+      }
+      return deletedMap[websocketEnable]
+    },
+    ssEnableFilter(ssEnable) {
+      const deletedMap = {
+        0: 'success',
+        1: 'danger'
+      }
+      return deletedMap[ssEnable]
+    }
+  },
   data() {
     return {
       tableKey: 0,
@@ -201,6 +277,11 @@ export default {
         ip: '',
         port: 0,
         type: 1,
+        websocketEnable: 0,
+        websocketPath: 'trojan-panel-websocket-path',
+        ssEnable: 0,
+        ssMethod: 'AES-128-GCM',
+        ssPassword: 'AES-128-GCM',
         createTime: new Date()
       },
       dialogFormVisible: false,
@@ -285,6 +366,7 @@ export default {
       },
       dialogStatus: '',
       nodeTypes: [],
+      ssMethods: ['AES-128-GCM', 'AES-256-GCM', 'CHACHA20-IETF-POLY1305'],
       qrCodeSrc: ''
     }
   },
