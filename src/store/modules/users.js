@@ -7,7 +7,7 @@ const getDefaultState = () => {
     token: getToken(),
     avatar: '', // 头像
     username: '', // 用户名
-    roleNames: [], // 角色
+    roles: [], // 角色
     menuList: []
   }
 }
@@ -24,8 +24,8 @@ const mutations = {
   SET_USERNAME: (state, username) => {
     state.username = username
   },
-  SET_ROLE_NAMES: (state, roleNames) => {
-    state.roleNames = roleNames
+  SET_ROLE_NAMES: (state, roles) => {
+    state.roles = roles
   },
   SET_MENU_LIST: (state, menuList) => {
     state.menuList = menuList
@@ -75,10 +75,10 @@ const actions = {
             return reject('认证失败，请重新登录！')
           }
 
-          const { username, roleNames, menuList } = data
+          const { username, roles, menuList } = data
 
           commit('SET_USERNAME', username)
-          commit('SET_ROLE_NAMES', roleNames)
+          commit('SET_ROLES', roles)
           commit('SET_MENU_LIST', menuList)
           resolve(data)
         })

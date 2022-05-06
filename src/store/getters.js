@@ -5,10 +5,10 @@ const getters = {
   token: (state) => state.users.token,
   username: (state) => state.users.username,
   avatar: (state) => state.users.avatar,
-  roleNames: (state) => state.users.roleNames,
+  roles: (state) => state.users.roles,
   menuList: (state) => state.users.menuList,
   routes: (state) => state.permission.routes,
-  isSysadmin: (state) => state.users.roleNames.includes('sysadmin'),
-  isAdmin: (state) => state.users.roleNames.includes('admin')
+  isSysadmin: (state) => state.users.roles.includes('sysadmin'),
+  isAdmin: (state) => state.users.roles.includes('admin')
 }
 export default getters

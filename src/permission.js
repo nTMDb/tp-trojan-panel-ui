@@ -22,15 +22,15 @@ router.beforeEach(async (to, from, next) => {
       NProgress.done()
     } else {
       const hasGetUserInfo =
-        store.getters.roleNames && store.getters.roleNames.length > 0
+        store.getters.roles && store.getters.roles.length > 0
       if (hasGetUserInfo) {
         next()
       } else {
         try {
-          const { roleNames } = await store.dispatch('users/getInfo')
+          const { roles } = await store.dispatch('users/getInfo')
           const accessRoutes = await store.dispatch(
             'permission/generateRoutes',
-            roleNames
+            roles
           )
           for (let i = 0; i < accessRoutes.length; i++) {
             router.addRoute(accessRoutes[i])

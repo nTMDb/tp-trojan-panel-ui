@@ -18,10 +18,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['roleNames'])
+    ...mapGetters(['roles'])
   },
   created() {
-    if (this.roleNames.includes('admin')) {
+    if (this.roles.includes('admin')) {
       this.currentRole = 'adminDashboard'
     }
   }
