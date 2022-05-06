@@ -24,7 +24,7 @@ const mutations = {
   SET_USERNAME: (state, username) => {
     state.username = username
   },
-  SET_ROLE_NAMES: (state, roles) => {
+  SET_ROLES: (state, roles) => {
     state.roles = roles
   },
   SET_MENU_LIST: (state, menuList) => {
