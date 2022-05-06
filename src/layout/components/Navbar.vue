@@ -55,7 +55,7 @@ export default {
     SizeSelect
   },
   computed: {
-    ...mapGetters(['sidebar', 'avatar', 'isAdmin'])
+    ...mapGetters(['sidebar', 'avatar', 'isAdmin','device'])
   },
   methods: {
     toggleSideBar() {
