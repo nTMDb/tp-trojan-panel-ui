@@ -3,7 +3,7 @@ import request from '@/utils/request'
 /**
  * 系统是否开放注册
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function setting(data) {
   return request({
@@ -16,7 +16,7 @@ export function setting(data) {
 /**
  * 查询系统设置
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function selectSystemByName(data) {
   return request({
@@ -29,7 +29,7 @@ export function selectSystemByName(data) {
 /**
  * 更新系统配置
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function updateSystemById(data) {
   return request({
@@ -42,7 +42,7 @@ export function updateSystemById(data) {
 /**
  * 上传静态网站文件
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function uploadWebFile(data) {
   return request({

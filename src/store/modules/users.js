@@ -1,4 +1,4 @@
-import { getInfo, login, register } from '@/api/users'
+import { getUserInfo, login, register } from '@/api/users'
 import { getToken, removeToken, setToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -67,7 +67,7 @@ const actions = {
   // get user info
   getInfo({ commit }) {
     return new Promise((resolve, reject) => {
-      getInfo()
+      getUserInfo()
         .then((response) => {
           const { data } = response
 

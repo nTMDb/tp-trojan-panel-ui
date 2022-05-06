@@ -3,7 +3,7 @@ import request from '@/utils/request'
 /**
  * 登录
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function login(data) {
   return request({
@@ -16,7 +16,7 @@ export function login(data) {
 /**
  * 注册账户
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function register(data) {
   return request({
@@ -27,10 +27,23 @@ export function register(data) {
 }
 
 /**
- * 获取用户信息
- * @returns {AxiosPromise}
+ * 注册账户
+ * @param data
+ * @returns
  */
-export function getInfo() {
+export function logout(data) {
+  return request({
+    url: '/users/logout',
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 获取用户信息
+ * @returns
+ */
+export function getUserInfo() {
   return request({
     url: '/users/getUserInfo',
     method: 'get'
@@ -40,7 +53,7 @@ export function getInfo() {
 /**
  * 分页查询账户
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function selectUserPage(data) {
   return request({
@@ -53,7 +66,7 @@ export function selectUserPage(data) {
 /**
  * 通过id删除账户
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function deleteUserById(data) {
   return request({
@@ -66,7 +79,7 @@ export function deleteUserById(data) {
 /**
  * 修改密码
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function updateUserPassByUsername(data) {
   return request({
@@ -79,7 +92,7 @@ export function updateUserPassByUsername(data) {
 /**
  * 查询单个账户
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function selectUserById(data) {
   return request({
@@ -92,7 +105,7 @@ export function selectUserById(data) {
 /**
  * 创建账户
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function createUser(data) {
   return request({
@@ -105,7 +118,7 @@ export function createUser(data) {
 /**
  * 修改账户
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function updateUserById(data) {
   return request({

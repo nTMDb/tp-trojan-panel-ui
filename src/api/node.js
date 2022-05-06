@@ -3,7 +3,7 @@ import request from '@/utils/request'
 /**
  * 根据id查询节点
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function selectNodeById(data) {
   return request({
@@ -16,7 +16,7 @@ export function selectNodeById(data) {
 /**
  * 创建节点
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function createNode(data) {
   return request({
@@ -29,7 +29,7 @@ export function createNode(data) {
 /**
  * 分页查询节点
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function selectNodePage(data) {
   return request({
@@ -42,7 +42,7 @@ export function selectNodePage(data) {
 /**
  * 删除节点
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function deleteNodeById(data) {
   return request({
@@ -55,7 +55,7 @@ export function deleteNodeById(data) {
 /**
  * 更新节点
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function updateNodeById(data) {
   return request({
@@ -68,7 +68,7 @@ export function updateNodeById(data) {
 /**
  * 获取节点二维码
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function nodeQRCode(data) {
   return request({
@@ -81,7 +81,7 @@ export function nodeQRCode(data) {
 /**
  * 获取节点URL
  * @param data
- * @returns {AxiosPromise}
+ * @returns
  */
 export function nodeURL(data) {
   return request({
