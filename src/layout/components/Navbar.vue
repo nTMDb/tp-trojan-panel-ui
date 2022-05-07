@@ -28,9 +28,12 @@
           <router-link to="/users-manage/modify-pass">
             <el-dropdown-item>修改密码</el-dropdown-item>
           </router-link>
-          <router-link to="/about" v-if="isAdmin">
-            <el-dropdown-item>关于项目</el-dropdown-item>
-          </router-link>
+          <a
+            target="_blank"
+            href="https://github.com/trojanpanel/install-script/"
+          >
+            <el-dropdown-item>Github</el-dropdown-item>
+          </a>
           <el-dropdown-item divided @click.native="logout">
             <span style="display: block">注销</span>
           </el-dropdown-item>
@@ -55,7 +58,7 @@ export default {
     SizeSelect
   },
   computed: {
-    ...mapGetters(['sidebar', 'avatar', 'isAdmin','device'])
+    ...mapGetters(['sidebar', 'avatar', 'isAdmin', 'device'])
   },
   methods: {
     toggleSideBar() {
@@ -92,6 +95,11 @@ export default {
 
   .breadcrumb-container {
     float: left;
+  }
+
+  .errLog-container {
+    display: inline-block;
+    vertical-align: top;
   }
 
   .right-menu {

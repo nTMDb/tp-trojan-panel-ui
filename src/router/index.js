@@ -125,25 +125,6 @@ export const asyncRoutes = [
       }
     ]
   },
-  {
-    path: '/about',
-    name: 'About',
-    component: Layout,
-    redirect: '/about/index',
-    meta: { title: '关于项目', icon: '', roles: ['sysadmin', 'admin'] },
-    hidden: true,
-    children: [
-      {
-        path: 'index',
-        name: 'index',
-        component: () => import('@/views/about'),
-        meta: {
-          title: '关于项目',
-          icon: ''
-        }
-      }
-    ]
-  },
   { path: '*', redirect: '/404', hidden: true }
 ]
 
