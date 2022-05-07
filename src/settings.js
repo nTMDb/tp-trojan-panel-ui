@@ -1,6 +1,6 @@
 module.exports = {
   title: 'Trojan Panel',
-  showSettings: true,
+  showSettings: false,
   tagsView: true,
   fixedHeader: true,
   sidebarLogo: true
