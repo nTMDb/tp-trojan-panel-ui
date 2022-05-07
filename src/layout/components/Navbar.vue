@@ -30,9 +30,15 @@
           </router-link>
           <a
             target="_blank"
-            href="https://github.com/trojanpanel/install-script/"
+            href="https://github.com/trojanpanel/install-script"
           >
-            <el-dropdown-item>Github</el-dropdown-item>
+            <el-dropdown-item>项目地址</el-dropdown-item>
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/trojanpanel/install-script/wiki"
+          >
+            <el-dropdown-item>Docs</el-dropdown-item>
           </a>
           <el-dropdown-item divided @click.native="logout">
             <span style="display: block">注销</span>
