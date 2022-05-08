@@ -10,7 +10,8 @@ export default {
     baseConfig: 'Basic Config',
     blackList: 'Black List',
     emailManage: 'Email Manage',
-    emailRecord: 'Send Record'
+    emailRecord: 'Send Record',
+    profile: 'Profile'
   },
   navbar: {
     size: 'Global Size',

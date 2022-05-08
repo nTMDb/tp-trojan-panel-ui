@@ -10,7 +10,8 @@ export default {
     baseConfig: '基础设置',
     blackList: '黑名单',
     emailManage:'邮件管理',
-    emailRecord: '发送记录'
+    emailRecord: '发送记录',
+    profile:'个人中心'
   },
   navbar: {
     size: '布局大小',

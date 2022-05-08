@@ -57,6 +57,27 @@ export const constantRoutes = [
   },
 
   {
+    path: '/profile',
+    name: 'profile',
+    component: Layout,
+    hidden: true,
+    redirect: '/profile/modify-pass',
+    meta: {
+      title: 'profile'
+    },
+    children: [
+      {
+        path: 'modify-pass',
+        name: 'modifyPass',
+        component: () => import('@/views/users/modify/index'),
+        meta: {
+          title: 'modifyPass'
+        }
+      }
+    ]
+  },
+
+  {
     path: '/node-manage',
     name: 'nodeManage',
     component: Layout,
@@ -90,7 +111,7 @@ export const asyncRoutes = [
     meta: {
       title: 'usersManage',
       icon: 'user',
-      roles: ['sysadmin', 'admin', 'user']
+      roles: ['sysadmin', 'admin']
     },
     children: [
       {
@@ -100,15 +121,6 @@ export const asyncRoutes = [
         meta: {
           title: 'userList',
           roles: ['sysadmin', 'admin']
-        }
-      },
-      {
-        path: 'modify-pass',
-        name: 'modifyPass',
-        component: () => import('@/views/users/modify/index'),
-        hidden: true,
-        meta: {
-          title: 'modifyPass'
         }
       }
     ]
@@ -130,7 +142,8 @@ export const asyncRoutes = [
         name: 'emailRecord',
         component: () => import('@/views/email/record'),
         meta: {
-          title: 'emailRecord'
+          title: 'emailRecord',
+          roles: ['sysadmin', 'admin']
         }
       }
     ]
@@ -144,7 +157,7 @@ export const asyncRoutes = [
     meta: {
       title: 'system',
       icon: 'system',
-      roles: ['sysadmin', 'admin']
+      roles: ['sysadmin']
     },
     children: [
       {
@@ -152,7 +165,8 @@ export const asyncRoutes = [
         name: 'baseConfig',
         component: () => import('@/views/system/base'),
         meta: {
-          title: 'baseConfig'
+          title: 'baseConfig',
+          roles: ['sysadmin']
         }
       },
       {
@@ -160,7 +174,8 @@ export const asyncRoutes = [
         name: 'blackList',
         component: () => import('@/views/system/black'),
         meta: {
-          title: 'blackList'
+          title: 'blackList',
+          roles: ['sysadmin']
         }
       }
     ]

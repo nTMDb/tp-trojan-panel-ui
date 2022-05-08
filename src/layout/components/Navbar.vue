@@ -31,18 +31,20 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link to="/users-manage/modify-pass">
+          <router-link to="/profile">
             <el-dropdown-item>{{ $t('navbar.modifyPass') }}</el-dropdown-item>
           </router-link>
           <a
             target="_blank"
             href="https://github.com/trojanpanel/install-script"
+            v-permission="['sysadmin', 'admin']"
           >
             <el-dropdown-item>{{ $t('navbar.github') }}</el-dropdown-item>
           </a>
           <a
             target="_blank"
             href="https://github.com/trojanpanel/install-script/wiki"
+            v-permission="['sysadmin', 'admin']"
           >
             <el-dropdown-item>{{ $t('navbar.doc') }}</el-dropdown-item>
           </a>
@@ -62,6 +64,7 @@ import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 import LangSelect from '@/components/LangSelect'
+import permission from '@/directive/permission/index.js' // 权限判断指令
 
 export default {
   components: {
@@ -71,6 +74,7 @@ export default {
     SizeSelect,
     LangSelect
   },
+  directives: { permission },
   computed: {
     ...mapGetters(['sidebar', 'avatar', 'device'])
   },
