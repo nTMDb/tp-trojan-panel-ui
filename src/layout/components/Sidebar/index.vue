@@ -13,10 +13,10 @@
         mode="vertical"
       >
         <sidebar-item
-          v-for="menu in menuList"
-          :key="menu.route"
-          :item="menu"
-          :base-path="menu.route"
+          v-for="route in permission_routes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
         />
       </el-menu>
     </el-scrollbar>
@@ -32,7 +32,7 @@ import variables from '@/styles/variables.scss'
 export default {
   components: { SidebarItem, Logo },
   computed: {
-    ...mapGetters(['sidebar', 'menuList']),
+    ...mapGetters(['permission_routes', 'sidebar']),
     activeMenu() {
       const route = this.$route
       const { meta, path } = route

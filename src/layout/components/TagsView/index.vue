@@ -45,6 +45,7 @@
 import ScrollPane from './ScrollPane'
 import { generateTitle } from '@/utils/i18n'
 import path from 'path'
+import { mapGetters } from 'vuex'
 
 export default {
   components: { ScrollPane },
@@ -58,12 +59,7 @@ export default {
     }
   },
   computed: {
-    visitedViews() {
-      return this.$store.state.tagsView.visitedViews
-    },
-    routes() {
-      return this.$store.state.permission.routes
-    }
+    ...mapGetters(['permission_routes', 'visitedViews'])
   },
   watch: {
     $route() {
@@ -112,7 +108,9 @@ export default {
       return tags
     },
     initTags() {
-      const affixTags = (this.affixTags = this.filterAffixTags(this.routes))
+      const affixTags = (this.affixTags = this.filterAffixTags(
+        this.permission_routes
+      ))
       for (const tag of affixTags) {
         // Must have tag name
         if (tag.name) {

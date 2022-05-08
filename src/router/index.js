@@ -40,14 +40,17 @@ export const constantRoutes = [
     name: 'Dashboard',
     component: Layout,
     redirect: '/dashboard/index',
+    meta: {
+      title: 'dashboard',
+      icon: 'dashboard'
+    },
     children: [
       {
         path: 'index',
         name: 'index',
         component: () => import('@/views/dashboard'),
         meta: {
-          title: 'dashboard',
-          icon: ''
+          title: 'dashboard'
         }
       }
     ]
@@ -58,15 +61,14 @@ export const constantRoutes = [
     name: 'NodeManage',
     component: Layout,
     redirect: '/node-manage/node-list',
-    meta: { title: 'nodeManage', icon: '' },
+    meta: { title: 'nodeManage', icon: 'user' },
     children: [
       {
         path: 'node-list',
         name: 'nodeList',
         component: () => import('@/views/node/list'),
         meta: {
-          title: 'nodeList',
-          icon: ''
+          title: 'nodeList'
         }
       }
     ]
@@ -87,7 +89,7 @@ export const asyncRoutes = [
     redirect: '/users-manage/user-list',
     meta: {
       title: 'usersManage',
-      icon: '',
+      icon: 'user',
       roles: ['sysadmin', 'admin', 'user']
     },
     children: [
@@ -97,7 +99,6 @@ export const asyncRoutes = [
         component: () => import('@/views/users/list'),
         meta: {
           title: 'userList',
-          icon: '',
           roles: ['sysadmin', 'admin']
         }
       },
@@ -105,31 +106,36 @@ export const asyncRoutes = [
         path: 'modify-pass',
         name: 'modifyPass',
         component: () => import('@/views/users/modify/index'),
+        hidden: true,
         meta: {
-          title: 'modifyPass',
-          icon: ''
+          title: 'modifyPass'
         }
       }
     ]
   },
+
   {
     path: '/system',
     name: 'System',
     component: Layout,
     redirect: '/system/index',
-    meta: { roles: ['sysadmin', 'admin'] },
+    meta: {
+      title: 'system',
+      icon: 'system',
+      roles: ['sysadmin', 'admin']
+    },
     children: [
       {
         path: 'index',
         name: 'index',
-        component: () => import('@/views/system'),
+        component: () => import('@/views/system/index'),
         meta: {
-          title: 'system',
-          icon: ''
+          title: 'system'
         }
       }
     ]
   },
+
   { path: '*', redirect: '/404', hidden: true }
 ]
 

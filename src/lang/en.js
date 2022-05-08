@@ -1,16 +1,16 @@
 export default {
   route: {
     dashboard: 'Dashboard',
-    nodeManage: 'NodeManage',
-    nodeList: 'NodeList',
-    usersManage: 'UsersManage',
-    userList: 'UserList',
-    modifyPass: 'ChangePassword',
-    system: 'SystemConfig'
+    nodeManage: 'Node Manage',
+    nodeList: 'Node List',
+    usersManage: 'Users Manage',
+    userList: 'User List',
+    modifyPass: 'Change Password',
+    system: 'System Config'
   },
   navbar: {
     size: 'Global Size',
-    modifyPass: 'Change password',
+    modifyPass: 'Change Password',
     github: 'Github',
     doc: 'Docs',
     logout: 'Log Out'
@@ -23,7 +23,7 @@ export default {
     register: 'No account?'
   },
   register: {
-    title: 'User registration',
+    title: 'User Registration',
     username: 'Username',
     passOne: 'Password',
     pass: 'Password',
