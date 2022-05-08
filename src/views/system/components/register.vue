@@ -5,8 +5,6 @@
       :rules="updateRules"
       :model="temp"
       label-position="left"
-      label-width="200px"
-      style="width: auto"
     >
       <el-form-item label="是否开放注册" prop="openRegister" clearable>
         <el-switch

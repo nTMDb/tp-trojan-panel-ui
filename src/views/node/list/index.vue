@@ -138,8 +138,6 @@
         :rules="dialogStatus === 'create' ? createRules : updateRules"
         :model="temp"
         label-position="left"
-        label-width="100px"
-        style="width: 400px; margin-left: 50px"
       >
         <el-form-item :label="$t('table.nodeName')" prop="name" clearable>
           <el-input v-model="temp.name" />

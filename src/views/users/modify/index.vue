@@ -5,8 +5,6 @@
       :rules="updateRules"
       :model="temp"
       label-position="left"
-      label-width="100px"
-      style="width: 400px; margin-left: 50px"
     >
       <el-form-item :label="$t('table.oldPass')" prop="oldPass" clearable>
         <el-input
@@ -30,7 +28,9 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="updateData()">{{$t('table.confirm')}}</el-button>
+        <el-button type="primary" @click="updateData()"
+          >{{ $t('table.confirm') }}
+        </el-button>
       </el-form-item>
     </el-form>
   </div>

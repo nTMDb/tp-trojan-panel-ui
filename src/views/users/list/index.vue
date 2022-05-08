@@ -144,8 +144,6 @@
         :rules="dialogStatus === 'create' ? createRules : updateRules"
         :model="temp"
         label-position="left"
-        label-width="140px"
-        style="width: 400px; margin-left: 50px"
       >
         <el-form-item
           v-if="dialogStatus === 'create'"
