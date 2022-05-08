@@ -111,7 +111,69 @@ export default {
   },
   data() {
     return {
-      updateRules: {}
+      updateRules: {
+        emailEnable: [
+          {
+            required: true,
+            message: '请输入是否开启邮箱功能',
+            trigger: 'change'
+          }
+        ],
+        emailHost: [
+          {
+            min: 3,
+            max: 64,
+            message: '邮箱Host的范围在3-64字符之间',
+            trigger: 'change'
+          }
+        ],
+        emailPort: [
+          { required: true, message: '请输入邮箱端口', trigger: 'change' },
+          {
+            pattern:
+              /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
+            message: '请输入合法的端口',
+            trigger: 'change'
+          }
+        ],
+        emailUsername: [
+          {
+            min: 3,
+            max: 32,
+            message: '邮箱用户名的范围在3-32字符之间',
+            trigger: 'change'
+          }
+        ],
+        emailPassword: [
+          {
+            min: 3,
+            max: 32,
+            message: '邮箱密码的范围在3-32字符之间',
+            trigger: 'change'
+          }
+        ],
+        expireWarnEnable: [
+          {
+            required: true,
+            message: '请输入是否开启到期提醒',
+            trigger: 'change'
+          }
+        ],
+        expireWarnDay: [
+          {
+            required: true,
+            message: '请输入提醒提前的天数',
+            trigger: 'change'
+          },
+          {
+            type: 'number',
+            min: 0,
+            max: 365,
+            message: '天数在0-365之间',
+            trigger: 'change'
+          }
+        ]
+      }
     }
   },
   methods: {
