@@ -6,7 +6,11 @@ export default {
     usersManage: 'Users Manage',
     userList: 'User List',
     modifyPass: 'Change Password',
-    system: 'System Config'
+    system: 'System Config',
+    baseConfig: 'Basic Config',
+    blackList: 'Black List',
+    emailManage: 'Email Manage',
+    emailRecord: 'Send Record'
   },
   navbar: {
     size: 'Global Size',

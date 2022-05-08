@@ -37,7 +37,7 @@ export const constantRoutes = [
 
   {
     path: '/dashboard',
-    name: 'Dashboard',
+    name: 'dashboard',
     component: Layout,
     redirect: '/dashboard/index',
     meta: {
@@ -58,7 +58,7 @@ export const constantRoutes = [
 
   {
     path: '/node-manage',
-    name: 'NodeManage',
+    name: 'nodeManage',
     component: Layout,
     redirect: '/node-manage/node-list',
     meta: { title: 'nodeManage', icon: 'node' },
@@ -84,7 +84,7 @@ export const constantRoutes = [
 export const asyncRoutes = [
   {
     path: '/users-manage',
-    name: 'UsersManage',
+    name: 'usersManage',
     component: Layout,
     redirect: '/users-manage/user-list',
     meta: {
@@ -115,10 +115,32 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/system',
-    name: 'System',
+    path: '/emailManage',
+    name: 'emailManage',
     component: Layout,
-    redirect: '/system/index',
+    redirect: '/emailManage/email-record',
+    meta: {
+      title: 'emailManage',
+      icon: 'email',
+      roles: ['sysadmin', 'admin']
+    },
+    children: [
+      {
+        path: 'email-record',
+        name: 'emailRecord',
+        component: () => import('@/views/email/record'),
+        meta: {
+          title: 'emailRecord'
+        }
+      }
+    ]
+  },
+
+  {
+    path: '/system',
+    name: 'system',
+    component: Layout,
+    redirect: '/system/base-config',
     meta: {
       title: 'system',
       icon: 'system',
@@ -126,11 +148,19 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'index',
-        name: 'index',
-        component: () => import('@/views/system/index'),
+        path: 'base-config',
+        name: 'baseConfig',
+        component: () => import('@/views/system/base'),
         meta: {
-          title: 'system'
+          title: 'baseConfig'
+        }
+      },
+      {
+        path: 'black-list',
+        name: 'blackList',
+        component: () => import('@/views/system/black'),
+        meta: {
+          title: 'blackList'
         }
       }
     ]

@@ -226,7 +226,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false"
-          >{{ $t('table.cancel') }}
+        >{{ $t('table.cancel') }}
         </el-button>
         <el-button
           type="primary"

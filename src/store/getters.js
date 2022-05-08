@@ -9,8 +9,6 @@ const getters = {
   avatar: (state) => state.users.avatar,
   username: (state) => state.users.username,
   roles: (state) => state.users.roles,
-  permission_routes: (state) => state.permission.routes,
-  isSysadmin: (state) => state.users.roles.includes('sysadmin'),
-  isAdmin: (state) => state.users.roles.includes('admin')
+  permission_routes: (state) => state.permission.routes
 }
 export default getters

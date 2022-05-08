@@ -10,7 +10,7 @@ import router from '@/router'
 import Cookies from 'js-cookie'
 import '@/icons'
 import '@/permission'
-import i18n from '@/lang' // internationalization
+import i18n from '@/lang'
 
 Vue.use(ElementUI, {
   size: Cookies.get('size') || 'small', // set element-ui default size

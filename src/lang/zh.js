@@ -6,7 +6,11 @@ export default {
     usersManage: '用户管理',
     userList: '用户列表',
     modifyPass: '修改密码',
-    system: '系统设置'
+    system: '系统设置',
+    baseConfig: '基础设置',
+    blackList: '黑名单',
+    emailManage:'邮件管理',
+    emailRecord: '发送记录'
   },
   navbar: {
     size: '布局大小',

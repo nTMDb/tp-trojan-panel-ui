@@ -24,7 +24,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
-        v-if="isSysadmin"
+        v-permission="['sysadmin']"
       >
         {{ $t('table.add') }}
       </el-button>
@@ -114,7 +114,7 @@
             type="primary"
             size="mini"
             @click="handleUpdate(row)"
-            v-if="isSysadmin"
+            v-permission="['sysadmin']"
           >
             {{ $t('table.edit') }}
           </el-button>
@@ -122,7 +122,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
-            v-if="isSysadmin"
+            v-permission="['sysadmin']"
           >
             {{ $t('table.delete') }}
           </el-button>
@@ -231,9 +231,6 @@ export default {
     }
   },
   components: { Pagination },
-  computed: {
-    ...mapGetters(['isSysadmin'])
-  },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (this.temp.username.trim().indexOf('admin') >= 0) {

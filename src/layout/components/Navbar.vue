@@ -12,7 +12,11 @@
       <template v-if="device !== 'mobile'">
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
 
-        <el-tooltip :content="$t('navbar.size')" effect="dark" placement="bottom">
+        <el-tooltip
+          :content="$t('navbar.size')"
+          effect="dark"
+          placement="bottom"
+        >
           <SizeSelect id="size-select" class="right-menu-item hover-effect" />
         </el-tooltip>
 
@@ -68,7 +72,7 @@ export default {
     LangSelect
   },
   computed: {
-    ...mapGetters(['sidebar', 'avatar', 'isAdmin', 'device'])
+    ...mapGetters(['sidebar', 'avatar', 'device'])
   },
   methods: {
     toggleSideBar() {
