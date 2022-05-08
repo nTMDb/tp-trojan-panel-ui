@@ -65,7 +65,7 @@ const actions = {
   },
 
   // get user info
-  getInfo({ commit }) {
+  getUserInfo({ commit }) {
     return new Promise((resolve, reject) => {
       getUserInfo()
         .then((response) => {

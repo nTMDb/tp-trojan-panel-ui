@@ -32,7 +32,7 @@ import variables from '@/styles/variables.scss'
 export default {
   components: { SidebarItem, Logo },
   computed: {
-    ...mapGetters(['sidebar','menuList','routes']),
+    ...mapGetters(['sidebar', 'menuList']),
     activeMenu() {
       const route = this.$route
       const { meta, path } = route
