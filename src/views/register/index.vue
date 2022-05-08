@@ -86,10 +86,10 @@
         type="primary"
         style="width: 100%; margin-bottom: 30px"
         @click.native.prevent="handleRegister"
-        >{{ $('register.register') }}
+        >{{ $t('register.register') }}
       </el-button>
       <el-button type="primary" style="width: 100%; margin: 0">
-        <router-link to="/login">{{ $('register.login') }}</router-link>
+        <router-link to="/login">{{ $t('register.login') }}</router-link>
       </el-button>
     </el-form>
   </div>

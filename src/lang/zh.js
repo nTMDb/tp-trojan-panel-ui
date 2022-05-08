@@ -1,6 +1,6 @@
 export default {
   route: {
-    dashboard: '看板',
+    dashboard: '首页',
     nodeManage: '节点管理',
     nodeList: '节点列表',
     usersManage: '用户管理',
