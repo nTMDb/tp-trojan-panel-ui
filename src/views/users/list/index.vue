@@ -16,7 +16,7 @@
         icon="el-icon-search"
         @click="handleFilter"
       >
-        {{ $t('search.search') }}
+        {{ $t('table.search') }}
       </el-button>
       <el-button
         class="filter-item"
@@ -26,7 +26,7 @@
         @click="handleCreate"
         v-if="isSysadmin"
       >
-        {{ $t('search.add') }}
+        {{ $t('table.add') }}
       </el-button>
     </div>
     <el-table
