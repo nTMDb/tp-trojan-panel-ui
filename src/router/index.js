@@ -16,6 +16,7 @@ export const constantRoutes = [
       }
     ]
   },
+
   {
     path: '/login',
     component: () => import('@/views/login/index'),
@@ -45,7 +46,7 @@ export const constantRoutes = [
         name: 'index',
         component: () => import('@/views/dashboard'),
         meta: {
-          title: '仪表板',
+          title: 'dashboard',
           icon: ''
         }
       }
@@ -57,14 +58,14 @@ export const constantRoutes = [
     name: 'NodeManage',
     component: Layout,
     redirect: '/node-manage/node-list',
-    meta: { title: '节点管理', icon: '' },
+    meta: { title: 'nodeManage', icon: '' },
     children: [
       {
         path: 'node-list',
         name: 'nodeList',
         component: () => import('@/views/node/list'),
         meta: {
-          title: '节点列表',
+          title: 'nodeList',
           icon: ''
         }
       }
@@ -84,14 +85,18 @@ export const asyncRoutes = [
     name: 'UsersManage',
     component: Layout,
     redirect: '/users-manage/user-list',
-    meta: { title: '用户管理', icon: '', roles: ['sysadmin', 'admin', 'user'] },
+    meta: {
+      title: 'usersManage',
+      icon: '',
+      roles: ['sysadmin', 'admin', 'user']
+    },
     children: [
       {
         path: 'user-list',
         name: 'userList',
         component: () => import('@/views/users/list'),
         meta: {
-          title: '用户列表',
+          title: 'userList',
           icon: '',
           roles: ['sysadmin', 'admin']
         }
@@ -101,7 +106,7 @@ export const asyncRoutes = [
         name: 'modifyPass',
         component: () => import('@/views/users/modify/index'),
         meta: {
-          title: '修改密码',
+          title: 'modifyPass',
           icon: ''
         }
       }
@@ -112,14 +117,14 @@ export const asyncRoutes = [
     name: 'System',
     component: Layout,
     redirect: '/system/index',
-    meta: { title: '系统设置', icon: '', roles: ['sysadmin', 'admin'] },
+    meta: { roles: ['sysadmin', 'admin'] },
     children: [
       {
         path: 'index',
         name: 'index',
         component: () => import('@/views/system'),
         meta: {
-          title: '系统设置',
+          title: 'system',
           icon: ''
         }
       }
