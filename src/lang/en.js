@@ -93,8 +93,16 @@ export default {
     RegisterEnable: 'Register Enable',
     RegisterQuota: 'Default quota for new users/MB',
     RegisterExpireDays: 'Default expiry days for new users',
-    WebFileBtn:"upload to server",
-    WebFileSelect:'select file',
-    WebFileTip: 'The file format only supports .zip, and the size cannot exceed 10MB'
+    WebFileBtn: 'upload to server',
+    WebFileSelect: 'select file',
+    WebFileTip:
+      'The file format only supports .zip, and the size cannot exceed 10MB',
+    emailEnable: 'Enable Email',
+    emailHost: 'Email Host',
+    emailPort: 'Email Port',
+    emailUsername: 'Email Username',
+    emailPassword: 'Email Password',
+    expireWarnEnable: 'Enable expiration reminder',
+    expireWarnDay: 'Reminder days ahead'
   }
 }

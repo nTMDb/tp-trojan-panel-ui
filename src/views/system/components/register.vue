@@ -3,7 +3,7 @@
     <el-form
       ref="dataForm"
       :rules="updateRules"
-      :model="temp"
+      :model="systemConfig"
       label-position="left"
     >
       <el-form-item
@@ -12,7 +12,7 @@
         clearable
       >
         <el-switch
-          v-model="temp.openRegister"
+          v-model="systemConfig.openRegister"
           :active-value="1"
           :inactive-value="0"
           class="ml-2"
@@ -22,10 +22,10 @@
       </el-form-item>
       <el-form-item :label="$t('config.RegisterQuota')" prop="registerQuota">
         <el-input-number
-          v-model.number="temp.registerQuota"
+          v-model.number="systemConfig.registerQuota"
           controls-position="right"
           type="number"
-          :disabled="temp.openRegister === 0"
+          :disabled="registerDisable"
         />
       </el-form-item>
       <el-form-item
@@ -33,31 +33,39 @@
         prop="registerExpireDays"
       >
         <el-input-number
-          v-model.number="temp.registerExpireDays"
+          v-model.number="systemConfig.registerExpireDays"
           controls-position="right"
           type="number"
-          :disabled="temp.openRegister === 0"
+          :disabled="registerDisable"
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="updateData()">保存</el-button>
+        <el-button type="primary" @click="updateData()"
+          >{{ $t('table.confirm') }}
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-import { selectSystemByName, updateSystemById } from '@/api/system'
+import { updateSystemById } from '@/api/system'
 
 export default {
   name: 'register',
+  props: {
+    systemConfig: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    registerDisable() {
+      return this.systemConfig.openRegister === 0
+    }
+  },
   data() {
     return {
-      temp: {
-        openRegister: 1,
-        registerQuota: 0,
-        registerExpireDays: 0
-      },
       updateRules: {
         openRegister: [
           { required: true, message: '请输入是否开放注册', trigger: 'change' }
@@ -93,26 +101,11 @@ export default {
       }
     }
   },
-  created() {
-    this.selectDate()
-  },
   methods: {
-    selectDate() {
-      selectSystemByName().then((response) => {
-        this.temp = response.data
-      })
-    },
-    resetTemp() {
-      this.temp = {
-        openRegister: 1,
-        registerQuota: 0,
-        registerExpireDays: 0
-      }
-    },
     updateData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          const tempData = Object.assign({}, this.temp)
+          const tempData = Object.assign({}, this.systemConfig)
           updateSystemById(tempData).then(() => {
             this.$nextTick(() => {
               this.$refs['dataForm'].clearValidate()

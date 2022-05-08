@@ -95,6 +95,13 @@ export default {
     RegisterExpireDays: '新用户默认到期天数',
     WebFileBtn: '上传到服务器',
     WebFileSelect: '选取文件',
-    WebFileTip: '文件格式只支持.zip，且大小不能超过10MB'
+    WebFileTip: '文件格式只支持.zip，且大小不能超过10MB',
+    emailEnable: '是否开启邮箱功能',
+    emailHost: '邮箱Host',
+    emailPort: '邮箱端口',
+    emailUsername: '邮箱用户名',
+    emailPassword: '邮箱密码',
+    expireWarnEnable: '是否开启到期提醒',
+    expireWarnDay: '提醒提前的天数'
   }
 }
