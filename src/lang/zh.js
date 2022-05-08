@@ -76,5 +76,25 @@ export default {
     tagsView: '开启 Tags-View',
     fixedHeader: '固定 Header',
     sidebarLogo: '侧边栏 Logo'
+  },
+  dashboard: {
+    expireTime: '到期时间',
+    nodeCount: '节点总数',
+    onLine: '在线用户数',
+    residualFlow: '剩余流量/MB',
+    quota: '总流量/MB',
+    userCount: '用户总数',
+    unlimited: '无限'
+  },
+  config: {
+    configRegister: '新用户设置',
+    configWebFile: '自定义伪装网站',
+    configEmail: '系统邮箱设置',
+    RegisterEnable: '是否开放注册',
+    RegisterQuota: '新用户默认流量/MB',
+    RegisterExpireDays: '新用户默认到期天数',
+    WebFileBtn: '上传到服务器',
+    WebFileSelect: '选取文件',
+    WebFileTip: '文件格式只支持.zip，且大小不能超过10MB'
   }
 }

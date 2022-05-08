@@ -6,7 +6,7 @@
           <svg-icon icon-class="user" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">用户总数</div>
+          <div class="card-panel-text">{{ $t('dashboard.userCount') }}</div>
           <h3>{{ groupData.userCount }}</h3>
         </div>
       </div>
@@ -17,8 +17,12 @@
           <svg-icon icon-class="flow" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">总流量/MB</div>
-          <h3>{{ groupData.totalFlow < 0 ? '无限' : groupData.totalFlow }}</h3>
+          <div class="card-panel-text">{{ $t('dashboard.quota') }}</div>
+          <h3>
+            {{
+              groupData.quota < 0 ? $t('dashboard.unlimited') : groupData.quota
+            }}
+          </h3>
         </div>
       </div>
     </el-col>
@@ -28,15 +32,15 @@
           <svg-icon icon-class="flow" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">剩余流量/MB</div>
+          <div class="card-panel-text">{{ $t('dashboard.residualFlow') }}</div>
           <h3
             :style="
-              groupData.totalFlow >= 0 && groupData.residualFlow <= 0
+              groupData.quota >= 0 && groupData.residualFlow <= 0
                 ? 'color: #FF0000;'
                 : ''
             "
           >
-            {{ groupData.totalFlow < 0 ? '无限' : groupData.residualFlow }}
+            {{ groupData.quota < 0 ? '无限' : groupData.residualFlow }}
           </h3>
         </div>
       </div>
@@ -47,7 +51,7 @@
           <svg-icon icon-class="node" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">节点数</div>
+          <div class="card-panel-text">{{ $t('dashboard.nodeCount') }}</div>
           <h3>{{ groupData.nodeCount }}</h3>
         </div>
       </div>
@@ -58,7 +62,7 @@
           <svg-icon icon-class="time" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">到期时间</div>
+          <div class="card-panel-text">{{ $t('dashboard.expireTime') }}</div>
           <h3
             :style="
               groupData.expireTime <= new Date().getTime()

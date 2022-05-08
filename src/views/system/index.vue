@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
     <el-tabs v-model="activeName">
-      <el-tab-pane label="新用户设置" name="config-register">
+      <el-tab-pane :label="$t('config.configRegister')" name="config-register">
         <register />
       </el-tab-pane>
-      <el-tab-pane label="自定义伪装网站" name="config-web-file">
+      <el-tab-pane :label="$t('config.configWebFile')" name="config-web-file">
         <web-file />
       </el-tab-pane>
-      <el-tab-pane label="系统邮箱设置" name="config-email">
+      <el-tab-pane :label="$t('config.configEmail')" name="config-email">
         <email />
       </el-tab-pane>
     </el-tabs>

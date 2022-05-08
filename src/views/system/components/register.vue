@@ -6,7 +6,11 @@
       :model="temp"
       label-position="left"
     >
-      <el-form-item label="是否开放注册" prop="openRegister" clearable>
+      <el-form-item
+        :label="$t('config.RegisterEnable')"
+        prop="openRegister"
+        clearable
+      >
         <el-switch
           v-model="temp.openRegister"
           :active-value="1"
@@ -16,7 +20,7 @@
           inactive-color="#ff4949"
         />
       </el-form-item>
-      <el-form-item label="新用户默认流量/MB" prop="registerQuota">
+      <el-form-item :label="$t('config.RegisterQuota')" prop="registerQuota">
         <el-input-number
           v-model.number="temp.registerQuota"
           controls-position="right"
@@ -24,7 +28,10 @@
           :disabled="temp.openRegister === 0"
         />
       </el-form-item>
-      <el-form-item label="新用户默认过期天数/天" prop="registerExpireDays">
+      <el-form-item
+        :label="$t('config.RegisterExpireDays')"
+        prop="registerExpireDays"
+      >
         <el-input-number
           v-model.number="temp.registerExpireDays"
           controls-position="right"
@@ -72,7 +79,7 @@ export default {
         registerExpireDays: [
           {
             required: true,
-            message: '请输入新用户默认过期天数',
+            message: '请输入新用户默认到期天数',
             trigger: 'change'
           },
           {

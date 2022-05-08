@@ -11,17 +11,20 @@
       :on-change="handleChange"
       :before-upload="beforeUpload"
     >
-      <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+      <el-button slot="trigger" size="small" type="primary"
+        >{{ $t('config.WebFileSelect') }}
+      </el-button>
       <el-button
         style="margin-left: 10px"
         size="small"
         type="success"
         @click="submitUpload"
         :disabled="fileList.length === 0"
-        >上传到服务器
+      >
+        {{ $t('config.WebFileBtn') }}
       </el-button>
       <div slot="tip" class="el-upload__tip">
-        文件格式只支持.zip，且大小不能超过10MB
+        {{ $t('config.WebFileTip') }}
       </div>
     </el-upload>
   </div>

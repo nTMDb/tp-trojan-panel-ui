@@ -76,5 +76,25 @@ export default {
     tagsView: 'Open Tags-View',
     fixedHeader: 'Fixed Header',
     sidebarLogo: 'Sidebar Logo'
+  },
+  dashboard: {
+    expireTime: 'Expire Time',
+    nodeCount: 'Node Count',
+    onLine: 'OnLine',
+    residualFlow: 'Residual Flow/MB',
+    quota: 'Quota/MB',
+    userCount: 'User Count',
+    unlimited: 'UnLimited'
+  },
+  config: {
+    configRegister: 'Register Config',
+    configWebFile: 'WebFile Config',
+    configEmail: 'Email Config',
+    RegisterEnable: 'Register Enable',
+    RegisterQuota: 'Default quota for new users/MB',
+    RegisterExpireDays: 'Default expiry days for new users',
+    WebFileBtn:"upload to server",
+    WebFileSelect:'select file',
+    WebFileTip: 'The file format only supports .zip, and the size cannot exceed 10MB'
   }
 }
