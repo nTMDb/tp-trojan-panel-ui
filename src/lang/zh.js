@@ -65,12 +65,11 @@ export default {
     profile: '个人中心'
   },
   navbar: {
-    dashboard: '首页',
+    size: '布局大小',
+    modifyPass: '修改密码',
     github: '项目地址',
-    logOut: '退出登录',
-    profile: '个人中心',
-    theme: '换肤',
-    size: '布局大小'
+    doc: '项目文档',
+    logout: '退出登录'
   },
   login: {
     title: 'Trojan Panel',
@@ -78,6 +77,15 @@ export default {
     username: '账号',
     password: '密码',
     register: '没有账号?'
+  },
+  register: {
+    title: '用户注册',
+    username: '账号',
+    passOne: '密码',
+    pass: '密码',
+    email: '邮箱',
+    register: '注册',
+    login: '我已有账号'
   },
   documentation: {
     documentation: '文档',

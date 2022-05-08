@@ -27,7 +27,11 @@
       popper-append-to-body
     >
       <template slot="title">
-        <item v-if="item" :icon="item.icon" :title="item.name" />
+        <item
+          v-if="item"
+          :icon="item.icon"
+          :title="generateTitle(item.title)"
+        />
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -47,6 +51,7 @@ import { isExternal } from '@/utils/validate'
 import Item from './Item'
 import AppLink from './Link'
 import FixiOSBug from './FixiOSBug'
+import { generateTitle } from '@/utils/i18n'
 
 export default {
   name: 'SidebarItem',
@@ -108,7 +113,8 @@ export default {
         return this.basePath
       }
       return path.resolve(this.basePath, routePath)
-    }
+    },
+    generateTitle
   }
 }
 </script>

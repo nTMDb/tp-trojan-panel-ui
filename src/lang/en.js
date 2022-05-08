@@ -65,12 +65,11 @@ export default {
     profile: 'Profile'
   },
   navbar: {
-    dashboard: 'Dashboard',
+    size: 'Global Size',
+    modifyPass: 'Change password',
     github: 'Github',
-    logOut: 'Log Out',
-    profile: 'Profile',
-    theme: 'Theme',
-    size: 'Global Size'
+    doc: 'Docs',
+    logout: 'Log Out'
   },
   login: {
     title: 'Trojan Panel',
@@ -78,6 +77,15 @@ export default {
     username: 'Username',
     password: 'Password',
     register: 'No account?'
+  },
+  register: {
+    title: 'User registration',
+    username: 'Username',
+    passOne: 'Password',
+    pass: 'Password',
+    email: 'Email',
+    register: 'Register',
+    login: 'I already have an account'
   },
   documentation: {
     documentation: 'Documentation',

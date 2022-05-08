@@ -12,7 +12,7 @@
       <template v-if="device !== 'mobile'">
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
 
-        <el-tooltip content="Global Size" effect="dark" placement="bottom">
+        <el-tooltip :content="$t('navbar.size')" effect="dark" placement="bottom">
           <SizeSelect id="size-select" class="right-menu-item hover-effect" />
         </el-tooltip>
 
@@ -28,22 +28,22 @@
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/users-manage/modify-pass">
-            <el-dropdown-item>修改密码</el-dropdown-item>
+            <el-dropdown-item>{{ $t('navbar.modifyPass') }}</el-dropdown-item>
           </router-link>
           <a
             target="_blank"
             href="https://github.com/trojanpanel/install-script"
           >
-            <el-dropdown-item>项目地址</el-dropdown-item>
+            <el-dropdown-item>{{ $t('navbar.github') }}</el-dropdown-item>
           </a>
           <a
             target="_blank"
             href="https://github.com/trojanpanel/install-script/wiki"
           >
-            <el-dropdown-item>Docs</el-dropdown-item>
+            <el-dropdown-item>{{ $t('navbar.doc') }}</el-dropdown-item>
           </a>
           <el-dropdown-item divided @click.native="logout">
-            <span style="display: block">注销</span>
+            <span style="display: block">{{ $t('navbar.logout') }}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>

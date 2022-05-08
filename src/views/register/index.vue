@@ -9,7 +9,7 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">用户注册</h3>
+        <h3 class="title">{{ $t('register.title') }}</h3>
       </div>
 
       <el-form-item prop="username" clearable>
@@ -19,7 +19,7 @@
         <el-input
           ref="username"
           v-model="registerForm.username"
-          placeholder="请输入用户名"
+          :placeholder="$t('register.username')"
           name="username"
           type="text"
           tabindex="1"
@@ -35,7 +35,7 @@
           ref="pass"
           v-model="registerForm.passOne"
           :type="passwordType"
-          placeholder="请输入密码"
+          :placeholder="$t('register.passOne')"
           name="password"
           tabindex="2"
           auto-complete="on"
@@ -55,7 +55,7 @@
           ref="pass"
           v-model="registerForm.pass"
           :type="passwordType"
-          placeholder="请再次输入密码"
+          :placeholder="$t('register.pass')"
           name="password"
           tabindex="3"
           auto-complete="on"
@@ -74,7 +74,7 @@
         <el-input
           ref="username"
           v-model="registerForm.email"
-          placeholder="请输入邮箱"
+          :placeholder="$t('register.email')"
           name="email"
           type="text"
           tabindex="4"
@@ -86,10 +86,10 @@
         type="primary"
         style="width: 100%; margin-bottom: 30px"
         @click.native.prevent="handleRegister"
-        >注册
+        >{{ $('register.register') }}
       </el-button>
       <el-button type="primary" style="width: 100%; margin: 0">
-        <router-link to="/login">我已有账号</router-link>
+        <router-link to="/login">{{ $('register.login') }}</router-link>
       </el-button>
     </el-form>
   </div>

@@ -1,10 +1,10 @@
 <template>
   <div class="drawer-container">
     <div>
-      <h3 class="drawer-title">Page style setting</h3>
+      <h3 class="drawer-title">{{ $('settings.title') }}</h3>
 
       <div class="drawer-item">
-        <span>Theme Color</span>
+        <span>{{ $('settings.theme') }}</span>
         <theme-picker
           style="float: right; height: 26px; margin: -3px 8px 0 0"
           @change="themeChange"
@@ -12,17 +12,17 @@
       </div>
 
       <div class="drawer-item">
-        <span>Open Tags-View</span>
+        <span>{{ $('settings.tagsView') }}</span>
         <el-switch v-model="tagsView" class="drawer-switch" />
       </div>
 
       <div class="drawer-item">
-        <span>Fixed Header</span>
+        <span>{{ $('settings.fixedHeader') }}</span>
         <el-switch v-model="fixedHeader" class="drawer-switch" />
       </div>
 
       <div class="drawer-item">
-        <span>Sidebar Logo</span>
+        <span>{{ $('settings.sidebarLogo') }}</span>
         <el-switch v-model="sidebarLogo" class="drawer-switch" />
       </div>
     </div>
