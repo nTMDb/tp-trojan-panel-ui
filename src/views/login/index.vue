@@ -9,7 +9,10 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">Trojan Panel</h3>
+        <h3 class="title">
+          {{ $t('login.title') }}
+        </h3>
+        <lang-select class="set-language" />
       </div>
 
       <el-form-item prop="username" clearable>
@@ -19,7 +22,7 @@
         <el-input
           ref="username"
           v-model="loginForm.username"
-          placeholder="请输入用户名"
+          :placeholder="$t('login.username')"
           name="username"
           type="text"
           tabindex="1"
@@ -36,7 +39,7 @@
           ref="pass"
           v-model="loginForm.pass"
           :type="passwordType"
-          placeholder="请输入密码"
+          :placeholder="$t('login.password')"
           name="password"
           tabindex="2"
           auto-complete="on"
@@ -54,7 +57,7 @@
         type="primary"
         style="width: 100%; margin-bottom: 30px"
         @click.native.prevent="handleLogin"
-        >登录
+        >{{ $t('login.logIn') }}
       </el-button>
 
       <el-button
@@ -62,17 +65,19 @@
         style="width: 100%; margin: 0"
         v-if="openRegister === 1"
       >
-        <router-link to="/register">没有账号?</router-link>
+        <router-link to="/register">{{ $t('login.register') }}</router-link>
       </el-button>
     </el-form>
   </div>
 </template>
 
 <script>
+import LangSelect from '@/components/LangSelect'
 import { setting } from '@/api/system'
 
 export default {
   name: 'index',
+  components: { LangSelect },
   data() {
     return {
       loginForm: {
@@ -265,6 +270,15 @@ $light_gray: #eee;
       text-align: center;
       font-weight: bold;
     }
+
+    .set-language {
+      color: #fff;
+      position: absolute;
+      top: 3px;
+      font-size: 18px;
+      right: 0px;
+      cursor: pointer;
+    }
   }
 
   .show-pwd {
@@ -275,6 +289,18 @@ $light_gray: #eee;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
+  }
+
+  .thirdparty-button {
+    position: absolute;
+    right: 0;
+    bottom: 6px;
+  }
+
+  @media only screen and (max-width: 470px) {
+    .thirdparty-button {
+      display: none;
+    }
   }
 }
 </style>
