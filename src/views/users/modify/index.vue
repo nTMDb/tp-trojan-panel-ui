@@ -8,29 +8,29 @@
       label-width="100px"
       style="width: 400px; margin-left: 50px"
     >
-      <el-form-item label="原密码" prop="oldPass" clearable>
+      <el-form-item :label="$t('table.oldPass')" prop="oldPass" clearable>
         <el-input
           v-model="temp.oldPass"
           type="password"
-          placeholder="请输入原密码"
+          :placeholder="$t('table.oldPass')"
         />
       </el-form-item>
-      <el-form-item label="新密码" prop="newPass" clearable>
+      <el-form-item :label="$t('table.newPass')" prop="newPass" clearable>
         <el-input
           v-model="temp.newPassOne"
           type="password"
-          placeholder="请输入新密码"
+          :placeholder="$t('table.newPass')"
         />
       </el-form-item>
-      <el-form-item label="新密码" prop="newPass" clearable>
+      <el-form-item :label="$t('table.newPass')" prop="newPass" clearable>
         <el-input
           v-model="temp.newPass"
           type="password"
-          placeholder="请再次输入新密码"
+          :placeholder="$t('table.newPass')"
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="updateData()"> 确认修改</el-button>
+        <el-button type="primary" @click="updateData()">{{$t('table.confirm')}}</el-button>
       </el-form-item>
     </el-form>
   </div>

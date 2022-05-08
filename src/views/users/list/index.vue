@@ -3,7 +3,7 @@
     <div class="filter-container">
       <el-input
         v-model="listQuery.username"
-        placeholder="请输入用户名"
+        :placeholder="$t('table.username')"
         style="width: 200px"
         class="filter-item"
         clearable
@@ -16,7 +16,7 @@
         icon="el-icon-search"
         @click="handleFilter"
       >
-        查询
+        {{ $t('search.search') }}
       </el-button>
       <el-button
         class="filter-item"
@@ -26,7 +26,7 @@
         @click="handleCreate"
         v-if="isSysadmin"
       >
-        添加
+        {{ $t('search.add') }}
       </el-button>
     </div>
     <el-table
@@ -39,28 +39,28 @@
       style="width: 100%"
     >
       <el-table-column
-        label="ID"
+        :label="$t('table.id')"
         sortable="custom"
         align="center"
         width="80"
         type="index"
       />
-      <el-table-column label="用户名" width="180" align="center">
+      <el-table-column :label="$t('table.username')" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.username }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="角色" width="100" align="center">
+      <el-table-column :label="$t('table.role')" width="100" align="center">
         <template slot-scope="{ row }">
           <span>{{ roleFilter(row.roleId) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="总流量/MB" width="120" align="center">
+      <el-table-column :label="$t('table.quota')" width="120" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.quota < 0 ? '无限' : row.quota }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="剩余流量/MB" width="120" align="center">
+      <el-table-column :label="$t('table.flow')" width="120" align="center">
         <template slot-scope="{ row }">
           <span
             :style="
@@ -74,14 +74,18 @@
           </span>
         </template>
       </el-table-column>
-      <el-table-column label="状态" width="100" align="center">
+      <el-table-column :label="$t('table.status')" width="100" align="center">
         <template slot-scope="{ row }">
           <el-tag :type="row.deleted | deletedFilter">
             {{ row.deleted === 1 ? '禁用' : '正常' }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="到期时间" width="180" align="center">
+      <el-table-column
+        :label="$t('table.expireDate')"
+        width="180"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span
             :style="
@@ -91,13 +95,17 @@
           </span>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" width="180" align="center">
+      <el-table-column
+        :label="$t('table.createTime')"
+        width="180"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span>{{ timeStampToDate(row.createTime, false) }}</span>
         </template>
       </el-table-column>
       <el-table-column
-        label="操作"
+        :label="$t('table.actions')"
         align="center"
         class-name="small-padding fixed-width"
       >
@@ -108,7 +116,7 @@
             @click="handleUpdate(row)"
             v-if="isSysadmin"
           >
-            编辑
+            {{ $t('table.edit') }}
           </el-button>
           <el-button
             size="mini"
@@ -116,7 +124,7 @@
             @click="handleDelete(row, $index)"
             v-if="isSysadmin"
           >
-            删除
+            {{ $t('table.delete') }}
           </el-button>
         </template>
       </el-table-column>
@@ -141,27 +149,30 @@
       >
         <el-form-item
           v-if="dialogStatus === 'create'"
-          label="用户名"
+          :label="$t('table.username')"
           prop="username"
           clearable
         >
-          <el-input v-model="temp.username" placeholder="请输入用户名" />
+          <el-input
+            v-model="temp.username"
+            :placeholder="$t('table.username')"
+          />
         </el-form-item>
-        <el-form-item label="密码" prop="pass" clearable>
+        <el-form-item :label="$t('table.pass')" prop="pass" clearable>
           <el-input
             v-model="temp.pass"
             type="password"
-            placeholder="请输入密码"
+            :placeholder="$t('table.pass')"
           />
         </el-form-item>
-        <el-form-item label="总流量/MB" prop="quota">
+        <el-form-item :label="$t('table.quota')" prop="quota">
           <el-input-number
             v-model.number="temp.quota"
             controls-position="right"
             type="number"
           />
         </el-form-item>
-        <el-form-item label="状态" prop="deleted">
+        <el-form-item :label="$t('table.status')" prop="deleted">
           <el-switch
             v-model="temp.deleted"
             active-color="#13ce66"
@@ -173,22 +184,24 @@
             >>
           </el-switch>
         </el-form-item>
-        <el-form-item label="到期时间" prop="expireTime">
+        <el-form-item :label="$t('table.expireDate')" prop="expireTime">
           <el-date-picker
             v-model="temp.expireTime"
             type="datetime"
             value-format="timestamp"
-            placeholder="请输入到期时间"
+            :placeholder="$t('table.expireDate')"
           />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false"> 取消</el-button>
+        <el-button @click="dialogFormVisible = false"
+          >{{ $t('table.cancel') }}
+        </el-button>
         <el-button
           type="primary"
           @click="dialogStatus === 'create' ? createData() : updateData()"
         >
-          确认
+          {{ $t('table.confirm') }}
         </el-button>
       </div>
     </el-dialog>
@@ -206,7 +219,7 @@ import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
 import { selectRoleList } from '@/api/role'
-import {mapGetters} from "vuex";
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'List',
