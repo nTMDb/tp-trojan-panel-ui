@@ -45,7 +45,7 @@
         width="80"
         type="index"
       />
-      <el-table-column :label="$t('table.username')" width="180" align="center">
+      <el-table-column :label="$t('table.username')" width="140" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.username }}</span>
         </template>
@@ -60,7 +60,7 @@
           <span>{{ row.quota < 0 ? '无限' : row.quota }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.flow')" width="120" align="center">
+      <el-table-column :label="$t('table.flow')" width="140" align="center">
         <template slot-scope="{ row }">
           <span
             :style="
@@ -77,7 +77,7 @@
       <el-table-column :label="$t('table.status')" width="100" align="center">
         <template slot-scope="{ row }">
           <el-tag :type="row.deleted | deletedFilter">
-            {{ row.deleted === 1 ? '禁用' : '正常' }}
+            {{ row.deleted === 1 ? $t('table.disable') : $t('table.enable') }}
           </el-tag>
         </template>
       </el-table-column>
@@ -144,7 +144,7 @@
         :rules="dialogStatus === 'create' ? createRules : updateRules"
         :model="temp"
         label-position="left"
-        label-width="100px"
+        label-width="140px"
         style="width: 400px; margin-left: 50px"
       >
         <el-form-item
@@ -177,11 +177,11 @@
             v-model="temp.deleted"
             active-color="#13ce66"
             inactive-color="#ff4949"
-            active-text="正常"
-            inactive-text="禁用"
+            :active-text="$t('table.enable')"
+            :inactive-text="$t('table.disable')"
             :active-value="0"
             :inactive-value="1"
-            >>
+          >
           </el-switch>
         </el-form-item>
         <el-form-item :label="$t('table.expireDate')" prop="expireTime">

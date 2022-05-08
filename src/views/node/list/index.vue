@@ -3,7 +3,7 @@
     <div class="filter-container">
       <el-input
         v-model="listQuery.name"
-        placeholder="请输入名称"
+        :placeholder="$t('table.nodeName')"
         style="width: 200px"
         class="filter-item"
         clearable
@@ -16,7 +16,7 @@
         icon="el-icon-search"
         @click="handleFilter"
       >
-        查询
+        {{ $t('table.search') }}
       </el-button>
       <el-button
         class="filter-item"
@@ -26,7 +26,7 @@
         @click="handleCreate"
         v-if="isAdmin"
       >
-        添加
+        {{ $t('table.add') }}
       </el-button>
     </div>
     <el-table
@@ -39,49 +39,61 @@
       style="width: 100%"
     >
       <el-table-column
-        label="ID"
+        :label="$t('table.id')"
         sortable="custom"
         align="center"
         width="80"
         type="index"
         v-if="isAdmin"
       />
-      <el-table-column label="名称" width="180" align="center">
+      <el-table-column :label="$t('table.nodeName')" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="IP" width="180" align="center">
+      <el-table-column :label="$t('table.nodeIp')" width="180" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.ip }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="端口" width="80" align="center">
+      <el-table-column :label="$t('table.nodePort')" width="80" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.port }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="类型" width="80" align="center">
+      <el-table-column :label="$t('table.nodeType')" width="100" align="center">
         <template slot-scope="{ row }">
           <span>{{ filterNodeTypes(row.type) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="websocket" width="120" align="center">
+      <el-table-column
+        :label="$t('table.nodeWSEnable')"
+        width="140"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <el-tag :type="row.websocketEnable | websocketEnableFilter">
-            {{ row.websocketEnable === 0 ? '关闭' : '开启' }}
-          </el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="ss AEAD加密" width="120" align="center">
-        <template slot-scope="{ row }">
-          <el-tag :type="row.ssEnable | ssEnableFilter">
-            {{ row.ssEnable === 0 ? '关闭' : '开启' }}
+            {{
+              row.websocketEnable === 0
+                ? $t('table.disable')
+                : $t('table.enable')
+            }}
           </el-tag>
         </template>
       </el-table-column>
       <el-table-column
-        label="操作"
+        :label="$t('table.nodeSSEnable')"
+        width="140"
+        align="center"
+      >
+        <template slot-scope="{ row }">
+          <el-tag :type="row.ssEnable | ssEnableFilter">
+            {{ row.ssEnable === 0 ? $t('table.disable') : $t('table.enable') }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column
+        :label="$t('table.actions')"
         align="center"
         class-name="small-padding fixed-width"
       >
@@ -92,13 +104,13 @@
             @click="handleUpdate(row)"
             v-if="isAdmin"
           >
-            编辑
+            {{ $t('table.edit') }}
           </el-button>
           <el-button type="primary" size="mini" @click="handleQRCode(row)">
-            生成二维码
+            {{ $t('table.nodeQRCode') }}
           </el-button>
           <el-button type="success" size="mini" @click="handleCopyURL(row)">
-            复制URL
+            {{ $t('table.nodeURL') }}
           </el-button>
           <el-button
             size="mini"
@@ -106,7 +118,7 @@
             @click="handleDelete(row, $index)"
             v-if="isAdmin"
           >
-            删除
+            {{ $t('table.delete') }}
           </el-button>
         </template>
       </el-table-column>
@@ -129,23 +141,23 @@
         label-width="100px"
         style="width: 400px; margin-left: 50px"
       >
-        <el-form-item label="名称" prop="name" clearable>
+        <el-form-item :label="$t('table.nodeName')" prop="name" clearable>
           <el-input v-model="temp.name" />
         </el-form-item>
-        <el-form-item label="IP/域名" prop="ip" clearable>
+        <el-form-item :label="$t('table.nodeIp')" prop="ip" clearable>
           <el-input v-model="temp.ip" />
         </el-form-item>
-        <el-form-item label="端口" prop="port">
+        <el-form-item :label="$t('table.nodePort')" prop="port">
           <el-input-number
             v-model.number="temp.port"
             controls-position="right"
             type="number"
           />
         </el-form-item>
-        <el-form-item label="类型" prop="type">
+        <el-form-item :label="$t('table.nodeType')" prop="type">
           <el-select
             v-model="temp.type"
-            placeholder="请选择类型"
+            :placeholder="$t('table.nodeType')"
             controls-position="right"
           >
             <el-option
@@ -155,40 +167,48 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="是否开启websocket" prop="websocketEnable">
+        <el-form-item :label="$t('table.nodeWSEnable')" prop="websocketEnable">
           <el-switch
             v-model="temp.websocketEnable"
             active-color="#13ce66"
             inactive-color="#ff4949"
-            active-text="开启"
-            inactive-text="关闭"
+            :active-text="$t('table.enable')"
+            :inactive-text="$t('table.disable')"
             :active-value="1"
             :inactive-value="0"
           >
           </el-switch>
         </el-form-item>
-        <el-form-item label="websocket路径" prop="websocketPath" clearable>
+        <el-form-item
+          :label="$t('table.nodeWSPath')"
+          prop="websocketPath"
+          clearable
+        >
           <el-input v-model="temp.websocketPath" />
         </el-form-item>
-        <el-form-item label="是否开启ss AEAD加密" prop="ssEnable">
+        <el-form-item
+          :label="$t('table.nodeWSPath')"
+          prop="websocketPath"
+          clearable
+        >
+          <el-input v-model="temp.websocketPath" />
+        </el-form-item>
+        <el-form-item :label="$t('table.nodeSSEnable')" prop="ssEnable">
           <el-switch
             v-model="temp.ssEnable"
             active-color="#13ce66"
             inactive-color="#ff4949"
-            active-text="开启"
-            inactive-text="关闭"
+            :active-text="$t('table.enable')"
+            :inactive-text="$t('table.disable')"
             :active-value="1"
             :inactive-value="0"
           >
           </el-switch>
         </el-form-item>
-        <el-form-item label="websocket路径" prop="websocketPath" clearable>
-          <el-input v-model="temp.websocketPath" />
-        </el-form-item>
-        <el-form-item label="类型" prop="type">
+        <el-form-item :label="$t('table.nodeSSMethod')" prop="type">
           <el-select
             v-model="temp.ssMethod"
-            placeholder="请选择ss加密方式"
+            :placeholder="$t('table.nodeSSMethod')"
             controls-position="right"
           >
             <el-option
@@ -198,17 +218,23 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="ss密码" prop="ssPassword" clearable>
+        <el-form-item
+          :label="$t('table.ssPassword')"
+          prop="ssPassword"
+          clearable
+        >
           <el-input v-model="temp.ssPassword" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false"> 取消</el-button>
+        <el-button @click="dialogFormVisible = false"
+          >{{ $t('table.cancel') }}
+        </el-button>
         <el-button
           type="primary"
           @click="dialogStatus === 'create' ? createData() : updateData()"
         >
-          确认
+          {{ $t('table.confirm') }}
         </el-button>
       </div>
     </el-dialog>
@@ -217,7 +243,7 @@
       <el-image style="width: 256px; height: 256px" :src="qrCodeSrc"></el-image>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="dialogQRCodeVisible = false">
-          确定
+          {{ $t('table.confirm') }}
         </el-button>
       </div>
     </el-dialog>

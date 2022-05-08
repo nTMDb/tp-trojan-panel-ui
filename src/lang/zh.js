@@ -32,6 +32,8 @@ export default {
     login: '我已有账号'
   },
   table: {
+    enable: '开启',
+    disable: '关闭',
     search: '搜索',
     add: '添加',
     actions: '操作',
@@ -49,7 +51,18 @@ export default {
     createTime: '创建时间',
     pass: '密码',
     oldPass: '原密码',
-    newPass: '新密码'
+    newPass: '新密码',
+    nodeName: '节点名称',
+    nodeIp: 'IP地址/域名',
+    nodePort: '端口',
+    nodeType: '类型',
+    nodeWSEnable: '是否开启Websocket',
+    nodeWSPath: 'Websocket路径',
+    nodeSSEnable: '是否开启SS AEAD',
+    nodeSSMethod: 'SS AEAD加密方式',
+    ssPassword: 'SS AEAD密码',
+    nodeQRCode: '生成二维码',
+    nodeURL: '复制URL'
   },
   tagsView: {
     refresh: '刷新',

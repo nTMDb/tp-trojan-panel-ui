@@ -61,7 +61,7 @@ export const constantRoutes = [
     name: 'NodeManage',
     component: Layout,
     redirect: '/node-manage/node-list',
-    meta: { title: 'nodeManage', icon: 'user' },
+    meta: { title: 'nodeManage', icon: 'node' },
     children: [
       {
         path: 'node-list',

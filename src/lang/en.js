@@ -32,6 +32,8 @@ export default {
     login: 'I already have an account'
   },
   table: {
+    enable: 'Enable',
+    disable: 'Disable',
     search: 'Search',
     add: 'Add',
     id: 'ID',
@@ -49,7 +51,18 @@ export default {
     createTime: 'Create Time',
     pass: 'Password',
     oldPass: 'Old Password',
-    newPass: 'New Password'
+    newPass: 'New Password',
+    nodeName: 'Node Name',
+    nodeIp: 'IP Address/Domain',
+    nodePort: 'Port',
+    nodeType: 'Node Type',
+    nodeWSEnable: 'Enable Websocket',
+    nodeWSPath: 'Websocket Path',
+    nodeSSEnable: 'Enable SS AEAD',
+    nodeSSMethod: 'SS AEAD Method',
+    ssPassword: 'SS AEAD Password',
+    nodeQRCode: 'Generate QR code',
+    nodeURL: 'Copy URL'
   },
   tagsView: {
     refresh: 'Refresh',
