@@ -10,6 +10,18 @@
         @keyup.enter.native="handleFilter"
         @clear="handleFilter"
       />
+      <el-select
+        v-model="listQuery.state"
+        :placeholder="$t('table.status')"
+        style="width: 200px"
+        class="filter-item"
+      >
+        <el-option
+          :label="item.label"
+          :value="item.value"
+          v-for="item in states"
+        ></el-option>
+      </el-select>
       <el-button
         class="filter-item"
         type="primary"
@@ -154,7 +166,12 @@ export default {
             trigger: 'change'
           }
         ]
-      }
+      },
+      states: [
+        { value: -1, label: '发送失败' },
+        { value: 0, label: '等待发送' },
+        { value: 1, label: '发送成功' }
+      ]
     }
   },
   created() {

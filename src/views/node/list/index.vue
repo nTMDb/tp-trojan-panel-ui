@@ -183,13 +183,6 @@
         >
           <el-input v-model="temp.websocketPath" />
         </el-form-item>
-        <el-form-item
-          :label="$t('table.nodeWSPath')"
-          prop="websocketPath"
-          clearable
-        >
-          <el-input v-model="temp.websocketPath" />
-        </el-form-item>
         <el-form-item :label="$t('table.nodeSSEnable')" prop="ssEnable">
           <el-switch
             v-model="temp.ssEnable"
@@ -202,7 +195,7 @@
           >
           </el-switch>
         </el-form-item>
-        <el-form-item :label="$t('table.nodeSSMethod')" prop="type">
+        <el-form-item :label="$t('table.nodeSSMethod')" prop="ssMethod">
           <el-select
             v-model="temp.ssMethod"
             :placeholder="$t('table.nodeSSMethod')"
@@ -346,6 +339,45 @@ export default {
             message: '请输入合法的类型',
             trigger: 'change'
           }
+        ],
+        websocketEnable: [
+          {
+            required: true,
+            message: '请输入是否开启Websocket',
+            trigger: 'change'
+          }
+        ],
+        websocketPath: [
+          { required: true, message: '请输入Websocket路径', trigger: 'change' },
+          {
+            min: 3,
+            max: 64,
+            message: 'Websocket路径的范围在3-64字符之间',
+            trigger: 'change'
+          }
+        ],
+        ssEnable: [
+          {
+            required: true,
+            message: '请输入是否开启SS AEAD',
+            trigger: 'change'
+          }
+        ],
+        ssMethod: [
+          {
+            required: true,
+            message: '请输入SS AEAD加密方式',
+            trigger: 'change'
+          }
+        ],
+        ssPassword: [
+          { required: true, message: '请输入SS AEAD密码', trigger: 'change' },
+          {
+            min: 3,
+            max: 32,
+            message: 'SS AEAD密码的范围在3-32字符之间',
+            trigger: 'change'
+          }
         ]
       },
       updateRules: {
@@ -381,6 +413,45 @@ export default {
           {
             pattern: /^([1-9][0-9]?|100)$/,
             message: '请输入合法的类型',
+            trigger: 'change'
+          }
+        ],
+        websocketEnable: [
+          {
+            required: true,
+            message: '请输入是否开启Websocket',
+            trigger: 'change'
+          }
+        ],
+        websocketPath: [
+          { required: true, message: '请输入Websocket路径', trigger: 'change' },
+          {
+            min: 3,
+            max: 64,
+            message: 'Websocket路径的范围在3-64字符之间',
+            trigger: 'change'
+          }
+        ],
+        ssEnable: [
+          {
+            required: true,
+            message: '请输入是否开启SS AEAD',
+            trigger: 'change'
+          }
+        ],
+        ssMethod: [
+          {
+            required: true,
+            message: '请输入SS AEAD加密方式',
+            trigger: 'change'
+          }
+        ],
+        ssPassword: [
+          { required: true, message: '请输入SS AEAD密码', trigger: 'change' },
+          {
+            min: 3,
+            max: 32,
+            message: 'SS AEAD密码的范围在3-32字符之间',
             trigger: 'change'
           }
         ]
