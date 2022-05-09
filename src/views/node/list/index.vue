@@ -24,7 +24,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
-        v-permission="['sysadmin','admin']"
+        v-permission="['sysadmin', 'admin']"
       >
         {{ $t('table.add') }}
       </el-button>
@@ -101,7 +101,7 @@
             type="primary"
             size="mini"
             @click="handleUpdate(row)"
-            v-permission="['sysadmin','admin']"
+            v-permission="['sysadmin', 'admin']"
           >
             {{ $t('table.edit') }}
           </el-button>
@@ -115,7 +115,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
-            v-permission="['sysadmin','admin']"
+            v-permission="['sysadmin', 'admin']"
           >
             {{ $t('table.delete') }}
           </el-button>

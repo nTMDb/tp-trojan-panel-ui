@@ -1,74 +1,78 @@
 <template>
-  <div class='app-container'>
-    <div class='filter-container'>
+  <div class="app-container">
+    <div class="filter-container">
       <el-input
-        v-model='listQuery.ip'
+        v-model="listQuery.ip"
         :placeholder="$t('table.blackListIp')"
-        style='width: 200px'
-        class='filter-item'
+        style="width: 200px"
+        class="filter-item"
         clearable
-        @keyup.enter.native='handleFilter'
-        @clear='handleFilter'
+        @keyup.enter.native="handleFilter"
+        @clear="handleFilter"
       />
       <el-button
-        class='filter-item'
-        type='primary'
-        icon='el-icon-search'
-        @click='handleFilter'
+        class="filter-item"
+        type="primary"
+        icon="el-icon-search"
+        @click="handleFilter"
       >
         {{ $t('table.search') }}
       </el-button>
       <el-button
-        class='filter-item'
-        style='margin-left: 10px'
-        type='primary'
-        icon='el-icon-edit'
-        @click='handleCreate'
+        class="filter-item"
+        style="margin-left: 10px"
+        type="primary"
+        icon="el-icon-edit"
+        @click="handleCreate"
         v-permission="['sysadmin']"
       >
         {{ $t('table.add') }}
       </el-button>
     </div>
     <el-table
-      :key='tableKey'
-      v-loading='listLoading'
-      :data='list'
+      :key="tableKey"
+      v-loading="listLoading"
+      :data="list"
       border
       fit
       highlight-current-row
-      style='width: 100%'
+      style="width: 100%"
     >
       <el-table-column
         :label="$t('table.id')"
-        sortable='custom'
-        align='center'
-        width='80'
-        type='index'
+        sortable="custom"
+        align="center"
+        width="80"
+        type="index"
       />
-      <el-table-column :label="$t('table.blackListIp')" width='180' align='center'>
-        <template slot-scope='{ row }'>
+      <el-table-column
+        :label="$t('table.blackListIp')"
+        width="180"
+        align="center"
+      >
+        <template slot-scope="{ row }">
           <span>{{ row.ip }}</span>
         </template>
       </el-table-column>
       <el-table-column
         :label="$t('table.createTime')"
-        width='180'
-        align='center'
+        width="180"
+        align="center"
       >
-        <template slot-scope='{ row }'>
+        <template slot-scope="{ row }">
           <span>{{ timeStampToDate(row.createTime, false) }}</span>
         </template>
       </el-table-column>
       <el-table-column
         :label="$t('table.actions')"
-        align='center'
-        class-name='small-padding fixed-width'
+        align="center"
+        class-name="small-padding fixed-width"
       >
-        <template slot-scope='{ row, $index }'>
+        <template slot-scope="{ row, $index }">
           <el-button
-            size='mini'
-            type='danger'
-            @click='handleDelete(row, $index)'
+            size="mini"
+            type="danger"
+            @click="handleDelete(row, $index)"
             v-permission="['sysadmin']"
           >
             {{ $t('table.delete') }}
@@ -78,32 +82,29 @@
     </el-table>
 
     <pagination
-      v-show='total > 0'
-      :total='total'
-      :page.sync='listQuery.pageNum'
-      :limit.sync='listQuery.pageSize'
-      @pagination='getList'
+      v-show="total > 0"
+      :total="total"
+      :page.sync="listQuery.pageNum"
+      :limit.sync="listQuery.pageSize"
+      @pagination="getList"
     />
 
-    <el-dialog :title="$t('table.add')" :visible.sync='dialogFormVisible'>
+    <el-dialog :title="$t('table.add')" :visible.sync="dialogFormVisible">
       <el-form
-        ref='dataForm'
-        :rules='createRules'
-        :model='temp'
-        label-position='left'
+        ref="dataForm"
+        :rules="createRules"
+        :model="temp"
+        label-position="left"
       >
-        <el-form-item :label="$t('table.blackListIp')" prop='ip' clearable>
-          <el-input v-model='temp.ip' />
+        <el-form-item :label="$t('table.blackListIp')" prop="ip" clearable>
+          <el-input v-model="temp.ip" />
         </el-form-item>
       </el-form>
-      <div slot='footer' class='dialog-footer'>
-        <el-button @click='dialogFormVisible = false'
-        >{{ $t('table.cancel') }}
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false"
+          >{{ $t('table.cancel') }}
         </el-button>
-        <el-button
-          type='primary'
-          @click='createData()'
-        >
+        <el-button type="primary" @click="createData()">
           {{ $t('table.confirm') }}
         </el-button>
       </div>
@@ -116,7 +117,11 @@ import { timeStampToDate } from '@/utils'
 import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import permission from '@/directive/permission/index.js'
-import { createBlackList, deleteBlackListByIp, selectBlackListPage } from '@/api/black-list' // 权限判断指令
+import {
+  createBlackList,
+  deleteBlackListByIp,
+  selectBlackListPage
+} from '@/api/black-list' // 权限判断指令
 
 export default {
   name: 'Black',
