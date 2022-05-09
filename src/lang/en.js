@@ -68,7 +68,10 @@ export default {
     ssPassword: 'SS AEAD Password',
     nodeQRCode: 'Generate QR code',
     nodeURL: 'Copy URL',
-    blackListIp: 'IP'
+    blackListIp: 'IP',
+    toEmail: 'To Email',
+    subject: 'Subject',
+    content: 'Content'
   },
   tagsView: {
     refresh: 'Refresh',

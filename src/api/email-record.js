@@ -1,11 +1,11 @@
 import request from '@/utils/request'
 
 /**
- * 分页查询黑名单
+ * 分页查询发送记录
  * @param data
  * @returns
  */
-export function selectBlackListPage(data) {
+export function selectEmailRecordPage(data) {
   return request({
     url: '/emailRecord/selectEmailRecordPage',
     method: 'get',

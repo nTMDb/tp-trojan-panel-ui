@@ -217,7 +217,6 @@ import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
 import { selectRoleList } from '@/api/role'
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'List',

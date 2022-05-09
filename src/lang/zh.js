@@ -68,7 +68,10 @@ export default {
     ssPassword: 'SS AEAD密码',
     nodeQRCode: '生成二维码',
     nodeURL: '复制URL',
-    blackListIp: 'IP'
+    blackListIp: 'IP',
+    toEmail: '收件人',
+    subject: '主题',
+    content: '内容'
   },
   tagsView: {
     refresh: '刷新',
