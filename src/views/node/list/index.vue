@@ -206,6 +206,7 @@
             <el-option
               :label="item"
               :value="item"
+              :key="item"
               v-for="item in ssMethods"
             ></el-option>
           </el-select>
@@ -361,7 +362,6 @@ export default {
           }
         ],
         websocketPath: [
-          { required: true, message: '请输入Websocket路径', trigger: 'change' },
           {
             min: 3,
             max: 64,
@@ -384,7 +384,6 @@ export default {
           }
         ],
         ssPassword: [
-          { required: true, message: '请输入SS AEAD密码', trigger: 'change' },
           {
             min: 3,
             max: 32,
@@ -437,7 +436,6 @@ export default {
           }
         ],
         websocketPath: [
-          { required: true, message: '请输入Websocket路径', trigger: 'change' },
           {
             min: 3,
             max: 64,
@@ -460,7 +458,6 @@ export default {
           }
         ],
         ssPassword: [
-          { required: true, message: '请输入SS AEAD密码', trigger: 'change' },
           {
             min: 3,
             max: 32,
