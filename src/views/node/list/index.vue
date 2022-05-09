@@ -181,7 +181,7 @@
           prop="websocketPath"
           clearable
         >
-          <el-input v-model="temp.websocketPath" />
+          <el-input :disabled="wsDisable" v-model="temp.websocketPath" />
         </el-form-item>
         <el-form-item :label="$t('table.nodeSSEnable')" prop="ssEnable">
           <el-switch
@@ -192,6 +192,7 @@
             :inactive-text="$t('table.disable')"
             :active-value="1"
             :inactive-value="0"
+            :disabled="wsDisable"
           >
           </el-switch>
         </el-form-item>
@@ -200,6 +201,7 @@
             v-model="temp.ssMethod"
             :placeholder="$t('table.nodeSSMethod')"
             controls-position="right"
+            :disabled="wsDisable || ssDisable"
           >
             <el-option
               :label="item"
@@ -213,7 +215,10 @@
           prop="ssPassword"
           clearable
         >
-          <el-input v-model="temp.ssPassword" />
+          <el-input
+            :disabled="wsDisable || ssDisable"
+            v-model="temp.ssPassword"
+          />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -272,6 +277,14 @@ export default {
         1: 'danger'
       }
       return deletedMap[ssEnable]
+    }
+  },
+  computed: {
+    wsDisable: function () {
+      return this.temp.websocketEnable === 0
+    },
+    ssDisable: function () {
+      return this.temp.ssEnable === 0
     }
   },
   data() {
