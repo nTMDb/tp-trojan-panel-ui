@@ -40,27 +40,27 @@
           <span>{{ row.toEmail }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.subject')" width="180" align="center">
+      <el-table-column :label="$t('table.subject')" width="250" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.subject }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.content')" width="180" align="center">
+      <el-table-column :label="$t('table.content')" width="400" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.content }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.state')" width="140" align="center">
+      <el-table-column :label="$t('table.status')" width="180" align="center">
         <template slot-scope="{ row }">
           <el-tag :type="row.state | stateFilter">
-            {{ stateDesc(row.state) }}
+            {{ row.state | stateDescFilter }}
           </el-tag>
         </template>
       </el-table-column>
       <el-table-column
         :label="$t('table.createTime')"
-        width="180"
         align="center"
+        class-name="small-padding fixed-width"
       >
         <template slot-scope="{ row }">
           <span>{{ timeStampToDate(row.createTime, false) }}</span>
@@ -91,19 +91,17 @@ export default {
   filters: {
     stateFilter(state) {
       let stateMap = new Map()
-      map.set(-1, 'danger')
-      map.set(0, 'warn')
-      map.set(1, 'success')
-      return stateMap[state]
-    }
-  },
-  computed: {
-    stateDesc: function (state) {
-      let map = new Map()
-      map.set(-1, '发送失败')
-      map.set(0, '等待发送')
-      map.set(1, '发送成功')
-      return map[state]
+      stateMap.set(-1, 'danger')
+      stateMap.set(0, 'warn')
+      stateMap.set(1, 'success')
+      return stateMap.get(state)
+    },
+    stateDescFilter(state) {
+      let stateDescMap = new Map()
+      stateDescMap.set(-1, '发送失败')
+      stateDescMap.set(0, '等待发送')
+      stateDescMap.set(1, '发送成功')
+      return stateDescMap.get(state)
     }
   },
   data() {
