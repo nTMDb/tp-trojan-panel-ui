@@ -24,7 +24,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
-        v-permission="['admin']"
+        v-permission="['sysadmin','admin']"
       >
         {{ $t('table.add') }}
       </el-button>
@@ -44,7 +44,6 @@
         align="center"
         width="80"
         type="index"
-        v-permission="['admin']"
       />
       <el-table-column :label="$t('table.nodeName')" width="180" align="center">
         <template slot-scope="{ row }">
@@ -102,7 +101,7 @@
             type="primary"
             size="mini"
             @click="handleUpdate(row)"
-            v-permission="['admin']"
+            v-permission="['sysadmin','admin']"
           >
             {{ $t('table.edit') }}
           </el-button>
@@ -116,7 +115,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
-            v-permission="['admin']"
+            v-permission="['sysadmin','admin']"
           >
             {{ $t('table.delete') }}
           </el-button>

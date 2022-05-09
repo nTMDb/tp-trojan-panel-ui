@@ -9,9 +9,9 @@ export default {
     system: '系统设置',
     baseConfig: '基础设置',
     blackList: '黑名单',
-    emailManage:'邮件管理',
+    emailManage: '邮件管理',
     emailRecord: '发送记录',
-    profile:'个人中心'
+    profile: '个人中心'
   },
   navbar: {
     size: '布局大小',
@@ -67,7 +67,8 @@ export default {
     nodeSSMethod: 'SS AEAD加密方式',
     ssPassword: 'SS AEAD密码',
     nodeQRCode: '生成二维码',
-    nodeURL: '复制URL'
+    nodeURL: '复制URL',
+    blackListIp: 'IP'
   },
   tagsView: {
     refresh: '刷新',

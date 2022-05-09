@@ -67,7 +67,8 @@ export default {
     nodeSSMethod: 'SS AEAD Method',
     ssPassword: 'SS AEAD Password',
     nodeQRCode: 'Generate QR code',
-    nodeURL: 'Copy URL'
+    nodeURL: 'Copy URL',
+    blackListIp: 'IP'
   },
   tagsView: {
     refresh: 'Refresh',
