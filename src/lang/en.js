@@ -8,7 +8,7 @@ export default {
     modifyPass: 'Change Password',
     system: 'System Config',
     baseConfig: 'Basic Config',
-    blackList: 'Black List',
+    blackList: 'Black List Config',
     emailManage: 'Email Manage',
     emailRecord: 'Send Record',
     profile: 'Profile'
