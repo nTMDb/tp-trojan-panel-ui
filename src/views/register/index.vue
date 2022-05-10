@@ -117,8 +117,7 @@ export default {
       registerForm: {
         username: '',
         passOne: '',
-        pass: '',
-        email: ''
+        pass: ''
       },
       registerRules: {
         username: [

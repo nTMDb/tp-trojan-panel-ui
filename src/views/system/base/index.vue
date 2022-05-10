@@ -34,7 +34,7 @@ export default {
         emailUsername: '',
         expireWarnDay: 0,
         expireWarnEnable: 0,
-        id: 2,
+        id: 1,
         openRegister: 1,
         registerExpireDays: 0,
         registerQuota: 0

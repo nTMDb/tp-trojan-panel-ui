@@ -1,11 +1,21 @@
 <template>
   <div class="app-container">
+    <aside v-show="systemConfig.emailEnable === 1">
+      设置你的邮箱，可以接收到期提醒邮件。
+    </aside>
     <el-form
       ref="dataForm"
       :rules="updateRules"
       :model="temp"
       label-position="left"
     >
+      <el-form-item :label="$t('table.email')" prop="email" clearable>
+        <el-input
+          v-model="temp.email"
+          type="password"
+          :placeholder="$t('table.email')"
+        />
+      </el-form-item>
       <el-form-item :label="$t('table.oldPass')" prop="oldPass" clearable>
         <el-input
           v-model="temp.oldPass"
@@ -37,7 +47,8 @@
 </template>
 
 <script>
-import { updateUserPassByUsername } from '@/api/users'
+import { updateUserProfile } from '@/api/users'
+import { selectSystemByName } from '@/api/system'
 
 export default {
   name: 'Modify',
@@ -52,11 +63,38 @@ export default {
     return {
       temp: {
         username: this.$store.getters.username,
+        email: '',
         oldPass: '',
         newPassOne: '',
         newPass: ''
       },
+      systemConfig: {
+        emailEnable: 0,
+        emailHost: '',
+        emailPassword: '',
+        emailPort: 0,
+        emailUsername: '',
+        expireWarnDay: 0,
+        expireWarnEnable: 0,
+        id: 1,
+        openRegister: 1,
+        registerExpireDays: 0,
+        registerQuota: 0
+      },
       updateRules: {
+        email: [
+          {
+            min: 0,
+            max: 64,
+            message: '邮箱的范围在0-64字符之间',
+            trigger: 'change'
+          },
+          {
+            pattern: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
+            message: '请输入正确的邮箱格式',
+            trigger: 'change'
+          }
+        ],
         oldPass: [
           { required: true, message: '请输入新密码', trigger: 'change' },
           {
@@ -92,20 +130,29 @@ export default {
       }
     }
   },
+  created() {
+    this.selectSystemByName()
+  },
   methods: {
     resetTemp() {
       this.temp = {
         username: this.$store.getters.username,
+        email: '',
         oldPass: '',
         newPassOne: '',
         newPass: ''
       }
     },
+    selectSystemByName() {
+      selectSystemByName().then((response) => {
+        this.systemConfig = response.data
+      })
+    },
     updateData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
-          updateUserPassByUsername(tempData).then(() => {
+          updateUserProfile(tempData).then(() => {
             this.resetTemp()
             this.$nextTick(() => {
               this.$refs['dataForm'].clearValidate()

@@ -55,6 +55,7 @@ export default {
     expireDate: 'Expire Date',
     createTime: 'Create Time',
     pass: 'Password',
+    email: 'Email',
     oldPass: 'Old Password',
     newPass: 'New Password',
     nodeName: 'Node Name',
