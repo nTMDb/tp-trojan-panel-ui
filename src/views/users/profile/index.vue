@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <aside v-show="systemConfig.emailEnable === 1">
+    <aside v-show="emailEnable === 1">
       设置你的邮箱，可以接收到期提醒邮件。
     </aside>
     <el-form
@@ -48,7 +48,7 @@
 
 <script>
 import { updateUserProfile } from '@/api/users'
-import { selectSystemByName } from '@/api/system'
+import { setting } from '@/api/system'
 
 export default {
   name: 'Modify',
@@ -68,19 +68,7 @@ export default {
         newPassOne: '',
         newPass: ''
       },
-      systemConfig: {
-        emailEnable: 0,
-        emailHost: '',
-        emailPassword: '',
-        emailPort: 0,
-        emailUsername: '',
-        expireWarnDay: 0,
-        expireWarnEnable: 0,
-        id: 1,
-        openRegister: 1,
-        registerExpireDays: 0,
-        registerQuota: 0
-      },
+      emailEnable: 0,
       updateRules: {
         email: [
           {
@@ -131,7 +119,7 @@ export default {
     }
   },
   created() {
-    this.selectSystemByName()
+    this.setting()
   },
   methods: {
     resetTemp() {
@@ -143,9 +131,10 @@ export default {
         newPass: ''
       }
     },
-    selectSystemByName() {
-      selectSystemByName().then((response) => {
-        this.systemConfig = response.data
+    setting() {
+      setting().then((response) => {
+        const { data } = response
+        this.emailEnable = data.emailEnable
       })
     },
     updateData() {
