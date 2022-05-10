@@ -37,20 +37,17 @@ export const constantRoutes = [
 
   {
     path: '/dashboard',
-    name: 'dashboard',
     component: Layout,
     redirect: '/dashboard/index',
-    meta: {
-      title: 'dashboard',
-      icon: 'dashboard'
-    },
     children: [
       {
         path: 'index',
         name: 'index',
         component: () => import('@/views/dashboard'),
         meta: {
-          title: 'dashboard'
+          title: 'dashboard',
+          name: 'dashboard',
+          icon: 'dashboard'
         }
       }
     ]
@@ -58,20 +55,17 @@ export const constantRoutes = [
 
   {
     path: '/profile',
-    name: 'profile',
     component: Layout,
     hidden: true,
-    redirect: '/profile/modify-pass',
-    meta: {
-      title: 'profile'
-    },
+    redirect: '/profile/index',
     children: [
       {
-        path: 'modify-pass',
-        name: 'modifyPass',
-        component: () => import('@/views/users/modify/index'),
+        path: 'index',
+        name: 'index',
+        component: () => import('@/views/users/profile'),
         meta: {
-          title: 'modifyPass'
+          title: 'profile',
+          name: 'profile'
         }
       }
     ]

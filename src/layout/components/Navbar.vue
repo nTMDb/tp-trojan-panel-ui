@@ -32,7 +32,7 @@
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/profile">
-            <el-dropdown-item>{{ $t('navbar.modifyPass') }}</el-dropdown-item>
+            <el-dropdown-item>{{ $t('navbar.profile') }}</el-dropdown-item>
           </router-link>
           <a
             target="_blank"

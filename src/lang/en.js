@@ -15,7 +15,7 @@ export default {
   },
   navbar: {
     size: 'Global Size',
-    modifyPass: 'Change Password',
+    profile: 'Profile',
     github: 'Github',
     doc: 'Docs',
     logout: 'Log Out'

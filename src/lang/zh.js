@@ -15,7 +15,7 @@ export default {
   },
   navbar: {
     size: '布局大小',
-    modifyPass: '修改密码',
+    profile: '个人中心',
     github: '项目地址',
     doc: '项目文档',
     logout: '退出登录'
