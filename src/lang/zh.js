@@ -55,7 +55,7 @@ export default {
     expireDate: '到期时间',
     createTime: '创建时间',
     pass: '密码',
-    email: '邮箱',
+    email: '邮箱(只支持163 126 qq gmail)',
     oldPass: '原密码',
     newPass: '新密码',
     nodeName: '节点名称',

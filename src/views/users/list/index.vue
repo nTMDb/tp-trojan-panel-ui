@@ -170,6 +170,9 @@
             type="number"
           />
         </el-form-item>
+        <el-form-item :label="$t('table.email')" prop="email" clearable>
+          <el-input v-model="temp.email" :placeholder="$t('table.email')" />
+        </el-form-item>
         <el-form-item :label="$t('table.status')" prop="deleted">
           <el-switch
             v-model="temp.deleted"
@@ -255,6 +258,7 @@ export default {
         upload: 0,
         username: '',
         pass: '',
+        email: '',
         roleId: 3,
         deleted: 0,
         expireTime: new Date().getTime(),
@@ -308,6 +312,20 @@ export default {
             trigger: 'change'
           }
         ],
+        email: [
+          {
+            min: 0,
+            max: 64,
+            message: '邮箱的范围在0-64字符之间',
+            trigger: 'change'
+          },
+          {
+            pattern:
+              /^([A-Za-z0-9_\-\.])+\@(163.com|126.com|qq.com|gmail.com)$/,
+            message: '请输入正确的邮箱格式(只支持163 126 qq gmail)',
+            trigger: 'change'
+          }
+        ],
         deleted: [{ required: true, message: '请输入状态', trigger: 'change' }],
         expireTime: [
           { required: true, message: '请输入到期时间', trigger: 'change' }
@@ -334,6 +352,20 @@ export default {
             min: -1,
             max: 9999999,
             message: '总流量的范围在-1-9999999之间的整数',
+            trigger: 'change'
+          }
+        ],
+        email: [
+          {
+            min: 0,
+            max: 64,
+            message: '邮箱的范围在0-64字符之间',
+            trigger: 'change'
+          },
+          {
+            pattern:
+              /^([A-Za-z0-9_\-\.])+\@(163.com|126.com|qq.com|gmail.com)$/,
+            message: '请输入正确的邮箱格式(只支持163 126 qq gmail)',
             trigger: 'change'
           }
         ],
@@ -377,6 +409,7 @@ export default {
         upload: 0,
         username: '',
         pass: '',
+        email: '',
         roleId: 3,
         deleted: 0,
         expireTime: new Date().getTime(),

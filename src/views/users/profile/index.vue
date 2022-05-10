@@ -78,8 +78,9 @@ export default {
             trigger: 'change'
           },
           {
-            pattern: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
-            message: '请输入正确的邮箱格式',
+            pattern:
+              /^([A-Za-z0-9_\-\.])+\@(163.com|126.com|qq.com|gmail.com)$/,
+            message: '请输入正确的邮箱格式(只支持163 126 qq gmail)',
             trigger: 'change'
           }
         ],

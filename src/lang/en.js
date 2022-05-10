@@ -32,7 +32,7 @@ export default {
     username: 'Username',
     passOne: 'Password',
     pass: 'Password',
-    email: 'Email',
+    email: 'Email(Only support 163 126 qq gmail)',
     register: 'Register',
     login: 'Back to Login'
   },
