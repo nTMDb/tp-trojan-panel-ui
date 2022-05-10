@@ -164,7 +164,11 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item :label="$t('table.nodeWSEnable')" prop="websocketEnable">
+        <el-form-item
+          :label="$t('table.nodeWSEnable')"
+          v-show="isTrojanGo"
+          prop="websocketEnable"
+        >
           <el-switch
             v-model="temp.websocketEnable"
             active-color="#13ce66"
@@ -180,10 +184,15 @@
           :label="$t('table.nodeWSPath')"
           prop="websocketPath"
           clearable
+          v-show="isTrojanGo"
         >
           <el-input :disabled="wsDisable" v-model="temp.websocketPath" />
         </el-form-item>
-        <el-form-item :label="$t('table.nodeSSEnable')" prop="ssEnable">
+        <el-form-item
+          :label="$t('table.nodeSSEnable')"
+          prop="ssEnable"
+          v-show="isTrojanGo"
+        >
           <el-switch
             v-model="temp.ssEnable"
             active-color="#13ce66"
@@ -196,7 +205,11 @@
           >
           </el-switch>
         </el-form-item>
-        <el-form-item :label="$t('table.nodeSSMethod')" prop="ssMethod">
+        <el-form-item
+          :label="$t('table.nodeSSMethod')"
+          prop="ssMethod"
+          v-show="isTrojanGo"
+        >
           <el-select
             v-model="temp.ssMethod"
             :placeholder="$t('table.nodeSSMethod')"
@@ -215,6 +228,7 @@
           :label="$t('table.ssPassword')"
           prop="ssPassword"
           clearable
+          v-show="isTrojanGo"
         >
           <el-input
             :disabled="wsDisable || ssDisable"
@@ -258,7 +272,8 @@ import {
   updateNodeById
 } from '@/api/node'
 import { selectNodeTypeList } from '@/api/node-type'
-import permission from '@/directive/permission/index.js' // 权限判断指令
+import permission from '@/directive/permission/index.js'
+import { getNodeTypeName } from '@/utils/node'
 
 export default {
   name: 'List',
@@ -286,6 +301,12 @@ export default {
     },
     ssDisable: function () {
       return this.temp.ssEnable === 0
+    },
+    isTrojanGo: function () {
+      return getNodeTypeName(this.temp.type) === 'trojan-go'
+    },
+    isHysteria: function () {
+      return getNodeTypeName(this.temp.type) === 'hysteria'
     }
   },
   data() {
@@ -309,7 +330,7 @@ export default {
         websocketPath: 'trojan-panel-websocket-path',
         ssEnable: 0,
         ssMethod: 'AES-128-GCM',
-        ssPassword: 'AES-128-GCM',
+        ssPassword: '',
         createTime: new Date()
       },
       dialogFormVisible: false,
@@ -508,6 +529,11 @@ export default {
         ip: '',
         port: 0,
         type: 1,
+        websocketEnable: 0,
+        websocketPath: 'trojan-panel-websocket-path',
+        ssEnable: 0,
+        ssMethod: 'AES-128-GCM',
+        ssPassword: '',
         createTime: new Date()
       }
     },

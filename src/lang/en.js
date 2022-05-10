@@ -62,7 +62,7 @@ export default {
     nodePort: 'Port',
     nodeType: 'Node Type',
     nodeWSEnable: 'Enable Websocket',
-    nodeWSPath: 'Websocket Path',
+    nodeWSPath: 'Websocket Path(No need to add / at the beginning)',
     nodeSSEnable: 'Enable SS AEAD',
     nodeSSMethod: 'SS AEAD Method',
     ssPassword: 'SS AEAD Password',

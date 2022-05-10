@@ -73,8 +73,8 @@ export function updateNodeById(data) {
 export function nodeQRCode(data) {
   return request({
     url: '/node/nodeQRCode',
-    method: 'get',
-    params: data
+    method: 'post',
+    data
   })
 }
 
@@ -86,7 +86,7 @@ export function nodeQRCode(data) {
 export function nodeURL(data) {
   return request({
     url: '/node/nodeURL',
-    method: 'get',
-    params: data
+    method: 'post',
+    data
   })
 }
