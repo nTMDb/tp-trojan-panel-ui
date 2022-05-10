@@ -67,20 +67,6 @@
           />
         </span>
       </el-form-item>
-      <el-form-item prop="username" clearable>
-        <span class="svg-container">
-          <svg-icon icon-class="username" />
-        </span>
-        <el-input
-          ref="username"
-          v-model="registerForm.email"
-          :placeholder="$t('register.email')"
-          name="email"
-          type="text"
-          tabindex="4"
-          auto-complete="on"
-        />
-      </el-form-item>
       <el-button
         :loading="loading"
         type="primary"

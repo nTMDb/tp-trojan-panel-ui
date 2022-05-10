@@ -34,7 +34,7 @@ export default {
     pass: 'Password',
     email: 'Email',
     register: 'Register',
-    login: 'I already have an account'
+    login: 'Back to Login'
   },
   table: {
     enable: 'Enable',
