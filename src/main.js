@@ -11,7 +11,9 @@ import Cookies from 'js-cookie'
 import '@/icons'
 import '@/permission'
 import i18n from '@/lang'
+import VueClipboard from 'vue-clipboard2'
 
+Vue.use(VueClipboard)
 Vue.use(ElementUI, {
   size: Cookies.get('size') || 'small', // set element-ui default size
   i18n: (key, value) => i18n.t(key, value)
