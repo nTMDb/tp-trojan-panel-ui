@@ -4,11 +4,11 @@
       <el-tab-pane :label="$t('config.configRegister')" name="config-register">
         <register :system-config="systemConfig" />
       </el-tab-pane>
-      <el-tab-pane :label="$t('config.configWebFile')" name="config-web-file">
-        <web-file />
-      </el-tab-pane>
       <el-tab-pane :label="$t('config.configEmail')" name="config-email">
         <email :system-config="systemConfig" />
+      </el-tab-pane>
+      <el-tab-pane :label="$t('config.configWebFile')" name="config-web-file">
+        <web-file />
       </el-tab-pane>
     </el-tabs>
   </div>
