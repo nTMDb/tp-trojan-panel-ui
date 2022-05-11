@@ -37,14 +37,14 @@
           <a
             target="_blank"
             href="https://github.com/trojanpanel/install-script"
-            v-permission="['sysadmin', 'admin']"
+            v-if="checkPermission(['sysadmin', 'admin'])"
           >
             <el-dropdown-item>{{ $t('navbar.github') }}</el-dropdown-item>
           </a>
           <a
             target="_blank"
             href="https://github.com/trojanpanel/install-script/wiki"
-            v-permission="['sysadmin', 'admin']"
+            v-if="checkPermission(['sysadmin', 'admin'])"
           >
             <el-dropdown-item>{{ $t('navbar.doc') }}</el-dropdown-item>
           </a>
@@ -64,7 +64,7 @@ import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 import LangSelect from '@/components/LangSelect'
-import permission from '@/directive/permission/index.js' // 权限判断指令
+import checkPermission from '@/utils/permission' // 权限判断指令
 
 export default {
   components: {
@@ -74,11 +74,11 @@ export default {
     SizeSelect,
     LangSelect
   },
-  directives: { permission },
   computed: {
     ...mapGetters(['sidebar', 'avatar', 'device'])
   },
   methods: {
+    checkPermission,
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },

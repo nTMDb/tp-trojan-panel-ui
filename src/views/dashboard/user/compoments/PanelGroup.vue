@@ -6,8 +6,8 @@
           <svg-icon icon-class="flow" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">总流量/MB</div>
-          <h3>{{ groupData.totalFlow < 0 ? '无限' : groupData.totalFlow }}</h3>
+          <div class="card-panel-text">{{ $t('dashboard.quota') }}</div>
+          <h3>{{ quota }}</h3>
         </div>
       </div>
     </el-col>
@@ -17,16 +17,8 @@
           <svg-icon icon-class="flow" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">剩余流量/MB</div>
-          <h3
-            :style="
-              groupData.totalFlow >= 0 && groupData.residualFlow <= 0
-                ? 'color: #FF0000;'
-                : ''
-            "
-          >
-            {{ groupData.totalFlow < 0 ? '无限' : groupData.residualFlow }}
-          </h3>
+          <div class="card-panel-text">{{ $t('dashboard.residualFlow') }}</div>
+          <h3 :style="residualFlowStyle">{{ residualFlow }}</h3>
         </div>
       </div>
     </el-col>
@@ -36,7 +28,7 @@
           <svg-icon icon-class="node" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">节点数</div>
+          <div class="card-panel-text">{{ $t('dashboard.nodeCount') }}</div>
           <h3>{{ groupData.nodeCount }}</h3>
         </div>
       </div>
@@ -47,14 +39,8 @@
           <svg-icon icon-class="time" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">到期时间</div>
-          <h3
-            :style="
-              groupData.expireTime <= new Date().getTime()
-                ? 'color: #FF0000;'
-                : ''
-            "
-          >
+          <div class="card-panel-text">{{ $t('dashboard.expireTime') }}</div>
+          <h3 :style="expireTimeStyle">
             {{ timeStampToDate(groupData.expireTime, false) }}
           </h3>
         </div>
@@ -65,8 +51,10 @@
 
 <script>
 import { timeStampToDate } from '@/utils'
+import { getFlow } from '@/utils/user'
 
 export default {
+  name: 'PanelGroup',
   props: {
     groupData: {
       type: Object,
@@ -74,7 +62,30 @@ export default {
     }
   },
   methods: {
+    getFlow,
     timeStampToDate
+  },
+  computed: {
+    quota: function () {
+      return this.groupData.quota < 0
+        ? this.$t('dashboard.unlimited')
+        : getFlow(this.groupData.quota)
+    },
+    residualFlowStyle: function () {
+      return this.groupData.quota < 0
+        ? '无限'
+        : getFlow(this.groupData.residualFlow)
+    },
+    residualFlow: function () {
+      return this.groupData.quota < 0
+        ? '无限'
+        : getFlow(this.groupData.residualFlow)
+    },
+    expireTimeStyle: function () {
+      return this.groupData.expireTime <= new Date().getTime()
+        ? 'color: #FF0000;'
+        : ''
+    }
   }
 }
 </script>
@@ -103,6 +114,10 @@ export default {
         color: #fff;
       }
 
+      .icon-user {
+        background: #40c9c6;
+      }
+
       .icon-flow {
         background: #36a3f7;
       }
@@ -114,6 +129,10 @@ export default {
       .icon-time {
         background: #ffb6c1;
       }
+    }
+
+    .icon-user {
+      color: #40c9c6;
     }
 
     .icon-flow {

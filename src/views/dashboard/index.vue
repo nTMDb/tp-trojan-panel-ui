@@ -10,7 +10,7 @@ import userDashboard from './user'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'index',
+  name: 'Dashboard',
   components: { adminDashboard, userDashboard },
   data() {
     return {

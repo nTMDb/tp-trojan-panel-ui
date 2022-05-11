@@ -60,7 +60,7 @@ export default {
     }
   },
   computed: {
-    registerDisable() {
+    registerDisable: function () {
       return this.systemConfig.openRegister === 0
     }
   },

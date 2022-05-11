@@ -24,7 +24,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
-        v-permission="['sysadmin', 'admin']"
+        v-if="checkPermission(['sysadmin', 'admin'])"
       >
         {{ $t('table.add') }}
       </el-button>
@@ -101,7 +101,7 @@
             type="primary"
             size="mini"
             @click="handleUpdate(row)"
-            v-permission="['sysadmin', 'admin']"
+            v-if="checkPermission(['sysadmin', 'admin'])"
           >
             {{ $t('table.edit') }}
           </el-button>
@@ -115,7 +115,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
-            v-permission="['sysadmin', 'admin']"
+            v-if="checkPermission(['sysadmin', 'admin'])"
           >
             {{ $t('table.delete') }}
           </el-button>
@@ -274,11 +274,11 @@ import {
 import { selectNodeTypeList } from '@/api/node-type'
 import permission from '@/directive/permission/index.js'
 import { getNodeTypeName } from '@/utils/node'
+import checkPermission from '@/utils/permission'
 
 export default {
   name: 'List',
   components: { Pagination },
-  directives: { permission },
   filters: {
     websocketEnableFilter(websocketEnable) {
       const deletedMap = {
@@ -498,6 +498,7 @@ export default {
     this.getList()
   },
   methods: {
+    checkPermission,
     handleQRCode(row) {
       const tempData = Object.assign({}, row)
       nodeQRCode(tempData).then((response) => {

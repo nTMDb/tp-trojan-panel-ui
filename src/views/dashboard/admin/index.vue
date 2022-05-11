@@ -1,17 +1,53 @@
 <template>
   <div class="dashboard-editor-container">
     <panel-group :group-data="panelGroupData" />
+    <el-row :gutter="8">
+      <el-col
+        :xs="{ span: 24 }"
+        :sm="{ span: 24 }"
+        :md="{ span: 24 }"
+        :lg="{ span: 12 }"
+        :xl="{ span: 12 }"
+      >
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>{{ $t('dashboard.trafficRank') }}</span>
+          </div>
+          <div class="component-item">
+            <traffic-table />
+          </div>
+        </el-card>
+      </el-col>
+      <el-col
+        :xs="{ span: 24 }"
+        :sm="{ span: 12 }"
+        :md="{ span: 12 }"
+        :lg="{ span: 6 }"
+        :xl="{ span: 6 }"
+      >
+      </el-col>
+      <el-col
+        :xs="{ span: 24 }"
+        :sm="{ span: 12 }"
+        :md="{ span: 12 }"
+        :lg="{ span: 6 }"
+        :xl="{ span: 6 }"
+      >
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
-import PanelGroup from '@/views/dashboard/admin/compoments/PanelGroup'
+import PanelGroup from '@/views/dashboard/admin/compoments/PanelGroup.vue'
+import TrafficTable from '@/views/dashboard/admin/compoments/TrafficTable'
 import { panelGroup } from '@/api/dashboard'
 
 export default {
-  name: 'index',
+  name: 'Admin',
   components: {
-    PanelGroup
+    PanelGroup,
+    TrafficTable
   },
   data() {
     return {

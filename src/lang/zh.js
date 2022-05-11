@@ -50,8 +50,8 @@ export default {
     status: '状态',
     username: '用户名',
     role: '角色',
-    quota: '总流量/MB',
-    flow: '剩余流量/MB',
+    quota: '总流量',
+    flow: '剩余流量',
     expireDate: '到期时间',
     createTime: '创建时间',
     pass: '密码',
@@ -91,10 +91,14 @@ export default {
     expireTime: '到期时间',
     nodeCount: '节点总数',
     onLine: '在线用户数',
-    residualFlow: '剩余流量/MB',
-    quota: '总流量/MB',
+    residualFlow: '剩余流量',
+    quota: '总流量',
     userCount: '用户总数',
-    unlimited: '无限'
+    unlimited: '无限',
+    ranking: '排名',
+    username: '用户名',
+    trafficUsed: '已用流量',
+    trafficRank: '流量排行(前15名, 一小时更新一次)'
   },
   config: {
     configRegister: '新用户设置',

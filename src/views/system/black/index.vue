@@ -24,7 +24,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
-        v-permission="['sysadmin']"
+        v-if="checkPermission(['sysadmin'])"
       >
         {{ $t('table.add') }}
       </el-button>
@@ -73,7 +73,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
-            v-permission="['sysadmin']"
+            v-if="checkPermission(['sysadmin'])"
           >
             {{ $t('table.delete') }}
           </el-button>
@@ -121,12 +121,12 @@ import {
   createBlackList,
   deleteBlackListByIp,
   selectBlackListPage
-} from '@/api/black-list' // 权限判断指令
+} from '@/api/black-list'
+import checkPermission from '@/utils/permission' // 权限判断指令
 
 export default {
   name: 'Black',
   components: { Pagination },
-  directives: { permission },
   data() {
     return {
       tableKey: 0,
@@ -161,6 +161,7 @@ export default {
     this.getList()
   },
   methods: {
+    checkPermission,
     timeStampToDate,
     getList() {
       this.listLoading = true

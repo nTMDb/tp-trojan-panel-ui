@@ -101,7 +101,7 @@ import { selectEmailRecordPage } from '@/api/email-record'
 export default {
   name: 'Record',
   components: { Pagination },
-  directives: { permission },
+
   filters: {
     stateFilter(state) {
       let stateMap = new Map()

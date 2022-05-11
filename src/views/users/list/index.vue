@@ -24,7 +24,7 @@
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
-        v-permission="['sysadmin']"
+        v-if="checkPermission(['sysadmin'])"
       >
         {{ $t('table.add') }}
       </el-button>
@@ -57,7 +57,7 @@
       </el-table-column>
       <el-table-column :label="$t('table.quota')" width="120" align="center">
         <template slot-scope="{ row }">
-          <span>{{ row.quota < 0 ? '无限' : row.quota }}</span>
+          <span>{{ row.quota < 0 ? '无限' : getFlow(row.quota) }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.flow')" width="140" align="center">
@@ -69,7 +69,9 @@
                 : ''
             "
             >{{
-              row.quota < 0 ? '无限' : row.quota - row.upload - row.download
+              row.quota < 0
+                ? '无限'
+                : getFlow(row.quota - row.upload - row.download)
             }}
           </span>
         </template>
@@ -114,7 +116,7 @@
             type="primary"
             size="mini"
             @click="handleUpdate(row)"
-            v-permission="['sysadmin']"
+            v-if="checkPermission(['sysadmin'])"
           >
             {{ $t('table.edit') }}
           </el-button>
@@ -122,7 +124,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
-            v-permission="['sysadmin']"
+            v-if="checkPermission(['sysadmin'])"
           >
             {{ $t('table.delete') }}
           </el-button>
@@ -219,7 +221,9 @@ import {
 import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
+import { getFlow } from '@/utils/user'
 import { selectRoleList } from '@/api/role'
+import checkPermission from '@/utils/permission'
 
 export default {
   name: 'List',
@@ -375,19 +379,21 @@ export default {
         ]
       },
       dialogStatus: '',
-      roles: []
+      roleList: []
     }
   },
   created() {
-    this.setRoles()
+    this.setRoleList()
     this.getList()
   },
   methods: {
+    checkPermission,
+    getFlow,
     timeStampToDate,
-    setRoles() {
+    setRoleList() {
       selectRoleList().then((response) => {
         const { data } = response
-        this.roles = data
+        this.roleList = data
       })
     },
     getList() {
@@ -489,7 +495,7 @@ export default {
       })
     },
     roleFilter(roleId) {
-      return this.roles.find((item) => item.id === roleId).desc
+      return this.roleList.find((item) => item.id === roleId).desc
     }
   }
 }

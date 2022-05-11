@@ -18,11 +18,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">{{ $t('dashboard.quota') }}</div>
-          <h3>
-            {{
-              groupData.quota < 0 ? $t('dashboard.unlimited') : groupData.quota
-            }}
-          </h3>
+          <h3>{{ quota }}</h3>
         </div>
       </div>
     </el-col>
@@ -33,15 +29,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">{{ $t('dashboard.residualFlow') }}</div>
-          <h3
-            :style="
-              groupData.quota >= 0 && groupData.residualFlow <= 0
-                ? 'color: #FF0000;'
-                : ''
-            "
-          >
-            {{ groupData.quota < 0 ? '无限' : groupData.residualFlow }}
-          </h3>
+          <h3 :style="residualFlowStyle">{{ residualFlow }}</h3>
         </div>
       </div>
     </el-col>
@@ -63,13 +51,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">{{ $t('dashboard.expireTime') }}</div>
-          <h3
-            :style="
-              groupData.expireTime <= new Date().getTime()
-                ? 'color: #FF0000;'
-                : ''
-            "
-          >
+          <h3 :style="expireTimeStyle">
             {{ timeStampToDate(groupData.expireTime, false) }}
           </h3>
         </div>
@@ -80,8 +62,10 @@
 
 <script>
 import { timeStampToDate } from '@/utils'
+import { getFlow } from '@/utils/user'
 
 export default {
+  name: 'PanelGroup',
   props: {
     groupData: {
       type: Object,
@@ -89,7 +73,30 @@ export default {
     }
   },
   methods: {
+    getFlow,
     timeStampToDate
+  },
+  computed: {
+    quota: function () {
+      return this.groupData.quota < 0
+        ? this.$t('dashboard.unlimited')
+        : getFlow(this.groupData.quota)
+    },
+    residualFlowStyle: function () {
+      return this.groupData.quota < 0
+        ? '无限'
+        : getFlow(this.groupData.residualFlow)
+    },
+    residualFlow: function () {
+      return this.groupData.quota < 0
+        ? '无限'
+        : getFlow(this.groupData.residualFlow)
+    },
+    expireTimeStyle: function () {
+      return this.groupData.expireTime <= new Date().getTime()
+        ? 'color: #FF0000;'
+        : ''
+    }
   }
 }
 </script>

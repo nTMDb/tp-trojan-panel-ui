@@ -50,8 +50,8 @@ export default {
     confirm: 'Confirm',
     username: 'Username',
     role: 'Role',
-    quota: 'Quota/MB',
-    flow: 'Residual Flow/MB',
+    quota: 'Quota',
+    flow: 'Residual Flow',
     expireDate: 'Expire Date',
     createTime: 'Create Time',
     pass: 'Password',
@@ -91,10 +91,14 @@ export default {
     expireTime: 'Expire Time',
     nodeCount: 'Node Count',
     onLine: 'OnLine',
-    residualFlow: 'Residual Flow/MB',
-    quota: 'Quota/MB',
+    residualFlow: 'Residual Flow',
+    quota: 'Quota',
     userCount: 'User Count',
-    unlimited: 'UnLimited'
+    unlimited: 'UnLimited',
+    ranking: 'Ranking',
+    username: 'Username',
+    trafficUsed: 'Traffic Used',
+    trafficRank: 'Traffic Rank(Top 15, Update every hour)'
   },
   config: {
     configRegister: 'Register Config',
