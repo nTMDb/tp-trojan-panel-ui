@@ -67,7 +67,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.nodeWSEnable')"
-        width="140"
+        width="160"
         align="center"
       >
         <template slot-scope="{ row }">
