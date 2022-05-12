@@ -94,7 +94,6 @@
 
 <script>
 import Pagination from '@/components/Pagination'
-import permission from '@/directive/permission/index.js'
 import { timeStampToDate } from '@/utils'
 import { selectEmailRecordPage } from '@/api/email-record'
 

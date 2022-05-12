@@ -311,16 +311,16 @@ export default {
           {
             type: 'number',
             min: -1,
-            max: 9999999,
-            message: '总流量的范围在-1-9999999之间的整数',
+            max: 1024000,
+            message: '总流量的范围在-1-1024000之间的整数',
             trigger: 'change'
           }
         ],
         email: [
           {
-            min: 0,
+            min: 4,
             max: 64,
-            message: '邮箱的范围在0-64字符之间',
+            message: '邮箱的范围在4-64字符之间',
             trigger: 'change'
           },
           {
@@ -336,7 +336,26 @@ export default {
         ]
       },
       updateRules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'change' },
+          {
+            min: 6,
+            max: 20,
+            message: '名称的范围在6-20字符之间',
+            trigger: 'change'
+          },
+          {
+            pattern: /^[A-Za-z0-9]+$/,
+            message: '用户名必须是字母和数字的组合',
+            trigger: 'change'
+          },
+          {
+            validator: validateUsername,
+            trigger: 'change'
+          }
+        ],
         pass: [
+          { required: true, message: '请输入密码', trigger: 'change' },
           {
             min: 6,
             max: 20,
@@ -354,16 +373,16 @@ export default {
           {
             type: 'number',
             min: -1,
-            max: 9999999,
-            message: '总流量的范围在-1-9999999之间的整数',
+            max: 1024000,
+            message: '总流量的范围在-1-1024000之间的整数',
             trigger: 'change'
           }
         ],
         email: [
           {
-            min: 0,
+            min: 4,
             max: 64,
-            message: '邮箱的范围在0-64字符之间',
+            message: '邮箱的范围在4-64字符之间',
             trigger: 'change'
           },
           {

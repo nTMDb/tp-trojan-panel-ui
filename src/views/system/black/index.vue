@@ -148,9 +148,9 @@ export default {
         ip: [
           { required: true, message: '请输入IP', trigger: 'change' },
           {
-            min: 3,
+            min: 4,
             max: 64,
-            message: 'IP的范围在3-64字符之间',
+            message: 'IP的范围在4-64字符之间',
             trigger: 'change'
           }
         ]

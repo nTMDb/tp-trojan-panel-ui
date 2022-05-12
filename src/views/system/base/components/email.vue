@@ -121,7 +121,7 @@ export default {
         ],
         emailHost: [
           {
-            min: 3,
+            min: 4,
             max: 64,
             message: '邮箱Host的范围在3-64字符之间',
             trigger: 'change'

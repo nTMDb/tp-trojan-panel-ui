@@ -343,18 +343,18 @@ export default {
         name: [
           { required: true, message: '请输入名称', trigger: 'change' },
           {
-            min: 3,
+            min: 2,
             max: 20,
-            message: '名称的范围在3-20字符之间',
+            message: '名称的范围在2-20字符之间',
             trigger: 'change'
           }
         ],
         ip: [
           { required: true, message: '请输入IP/域名', trigger: 'change' },
           {
-            min: 3,
+            min: 4,
             max: 64,
-            message: 'IP/域名的范围在3-64字符之间',
+            message: 'IP/域名的范围在4-64字符之间',
             trigger: 'change'
           }
         ],
@@ -368,9 +368,9 @@ export default {
           }
         ],
         type: [
-          { required: true, message: '请输入端口', trigger: 'change' },
+          { required: true, message: '请输入类型', trigger: 'change' },
           {
-            pattern: /^([1-9][0-9]?|100)$/,
+            pattern: /^[1-9]\d*$/,
             message: '请输入合法的类型',
             trigger: 'change'
           }
@@ -384,9 +384,9 @@ export default {
         ],
         websocketPath: [
           {
-            min: 3,
+            min: 2,
             max: 64,
-            message: 'Websocket路径的范围在3-64字符之间',
+            message: 'Websocket路径的范围在2-64字符之间',
             trigger: 'change'
           }
         ],
@@ -406,9 +406,9 @@ export default {
         ],
         ssPassword: [
           {
-            min: 3,
+            min: 2,
             max: 32,
-            message: 'SS AEAD密码的范围在3-32字符之间',
+            message: 'SS AEAD密码的范围在2-32字符之间',
             trigger: 'change'
           }
         ]
@@ -417,18 +417,18 @@ export default {
         name: [
           { required: true, message: '请输入名称', trigger: 'change' },
           {
-            min: 3,
+            min: 2,
             max: 20,
-            message: '名称的范围在3-20字符之间',
+            message: '名称的范围在2-20字符之间',
             trigger: 'change'
           }
         ],
         ip: [
           { required: true, message: '请输入IP/域名', trigger: 'change' },
           {
-            min: 3,
+            min: 4,
             max: 64,
-            message: 'IP/域名的范围在3-64字符之间',
+            message: 'IP/域名的范围在4-64字符之间',
             trigger: 'change'
           }
         ],
@@ -442,9 +442,9 @@ export default {
           }
         ],
         type: [
-          { required: true, message: '请输入端口', trigger: 'change' },
+          { required: true, message: '请输入类型', trigger: 'change' },
           {
-            pattern: /^([1-9][0-9]?|100)$/,
+            pattern: /^[1-9]\d*$/,
             message: '请输入合法的类型',
             trigger: 'change'
           }
@@ -458,9 +458,9 @@ export default {
         ],
         websocketPath: [
           {
-            min: 3,
+            min: 2,
             max: 64,
-            message: 'Websocket路径的范围在3-64字符之间',
+            message: 'Websocket路径的范围在2-64字符之间',
             trigger: 'change'
           }
         ],
@@ -480,9 +480,9 @@ export default {
         ],
         ssPassword: [
           {
-            min: 3,
+            min: 2,
             max: 32,
-            message: 'SS AEAD密码的范围在3-32字符之间',
+            message: 'SS AEAD密码的范围在2-32字符之间',
             trigger: 'change'
           }
         ]
