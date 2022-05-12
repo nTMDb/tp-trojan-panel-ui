@@ -355,7 +355,6 @@ export default {
           }
         ],
         pass: [
-          { required: true, message: '请输入密码', trigger: 'change' },
           {
             min: 6,
             max: 20,

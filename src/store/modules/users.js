@@ -87,10 +87,15 @@ const actions = {
   logout({ commit }) {
     return new Promise((resolve, reject) => {
       logout()
-      removeToken()
-      resetRouter()
-      commit('RESET_STATE')
-      resolve()
+        .then((response) => {
+          removeToken()
+          resetRouter()
+          commit('RESET_STATE')
+          resolve()
+        })
+        .catch((error) => {
+          reject(error)
+        })
     })
   },
 
