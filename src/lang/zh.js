@@ -72,7 +72,10 @@ export default {
     blackListIp: 'IP',
     toEmail: '收件人',
     subject: '主题',
-    content: '内容'
+    content: '内容',
+    sendFail: '发送失败',
+    sendWait: '等待发送',
+    sendSuccess: '发送成功'
   },
   tagsView: {
     refresh: '刷新',

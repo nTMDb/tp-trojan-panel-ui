@@ -111,9 +111,9 @@ export default {
     },
     stateDescFilter(state) {
       let stateDescMap = new Map()
-      stateDescMap.set(-1, '发送失败')
-      stateDescMap.set(0, '等待发送')
-      stateDescMap.set(1, '发送成功')
+      stateDescMap.set(-1, this.$t('table.sendFail'))
+      stateDescMap.set(0, this.$t('table.sendWait'))
+      stateDescMap.set(1, this.$t('table.sendSuccess'))
       return stateDescMap.get(state)
     }
   },
@@ -137,9 +137,9 @@ export default {
         createTime: new Date()
       },
       states: [
-        { value: -1, label: '发送失败' },
-        { value: 0, label: '等待发送' },
-        { value: 1, label: '发送成功' }
+        { value: -1, label: this.$t('table.sendFail') },
+        { value: 0, label: this.$t('table.sendWait') },
+        { value: 1, label: this.$t('table.sendSuccess') }
       ]
     }
   },
