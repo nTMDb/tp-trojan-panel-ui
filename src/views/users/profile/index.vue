@@ -72,9 +72,9 @@ export default {
       updateRules: {
         email: [
           {
-            min: 0,
+            min: 4,
             max: 64,
-            message: '邮箱的范围在0-64字符之间',
+            message: '邮箱的范围在4-64字符之间',
             trigger: 'change'
           },
           {
