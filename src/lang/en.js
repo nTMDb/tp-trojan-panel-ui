@@ -55,7 +55,7 @@ export default {
     expireDate: 'Expire Date',
     createTime: 'Create Time',
     pass: 'Password',
-    email: 'Email',
+    email: 'Email(Only support 163 126 qq gmail)',
     oldPass: 'Old Password',
     newPass: 'New Password',
     nodeName: 'Node Name',

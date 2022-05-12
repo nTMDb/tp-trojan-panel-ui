@@ -32,7 +32,7 @@ export default {
     username: '账号',
     passOne: '密码',
     pass: '密码',
-    email: '邮箱',
+    email: '邮箱(只支持163 126 qq gmail)',
     register: '注册',
     login: '我已有账号'
   },
