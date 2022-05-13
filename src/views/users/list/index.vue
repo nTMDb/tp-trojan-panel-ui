@@ -45,7 +45,7 @@
         width="80"
         type="index"
       />
-      <el-table-column :label="$t('table.username')" width="140" align="center">
+      <el-table-column :label="$t('table.username')" width="120" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.username }}</span>
         </template>
@@ -55,12 +55,12 @@
           <span>{{ roleFilter(row.roleId) }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.quota')" width="120" align="center">
+      <el-table-column :label="$t('table.quota')" width="110" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.quota < 0 ? '无限' : getFlow(row.quota) }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.flow')" width="140" align="center">
+      <el-table-column :label="$t('table.flow')" width="110" align="center">
         <template slot-scope="{ row }">
           <span
             :style="
@@ -76,7 +76,7 @@
           </span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.status')" width="100" align="center">
+      <el-table-column :label="$t('table.status')" width="80" align="center">
         <template slot-scope="{ row }">
           <el-tag :type="row.deleted | deletedFilter">
             {{ row.deleted === 1 ? $t('table.disable') : $t('table.enable') }}

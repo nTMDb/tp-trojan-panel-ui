@@ -62,6 +62,7 @@ export default {
     nodeIp: 'IP地址/域名',
     nodePort: '端口',
     nodeType: '类型',
+    nodePing: '延迟',
     nodeWSEnable: '是否开启Websocket',
     nodeWSPath: 'Websocket路径(开头不需要加/)',
     nodeSSEnable: '是否开启SS AEAD',

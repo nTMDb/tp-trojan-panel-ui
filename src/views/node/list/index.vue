@@ -45,12 +45,12 @@
         width="80"
         type="index"
       />
-      <el-table-column :label="$t('table.nodeName')" width="180" align="center">
+      <el-table-column :label="$t('table.nodeName')" width="120" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodeIp')" width="180" align="center">
+      <el-table-column :label="$t('table.nodeIp')" width="150" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.ip }}</span>
         </template>
@@ -65,9 +65,16 @@
           <span>{{ filterNodeTypes(row.type) }}</span>
         </template>
       </el-table-column>
+      <el-table-column :label="$t('table.nodePing')" width="80" align="center">
+        <template slot-scope="{ row }">
+          <el-tag :type="row.ping | pingFilter">
+            <span>{{ row.ping }}ms</span>
+          </el-tag>
+        </template>
+      </el-table-column>
       <el-table-column
         :label="$t('table.nodeWSEnable')"
-        width="160"
+        width="150"
         align="center"
       >
         <template slot-scope="{ row }">
@@ -82,7 +89,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.nodeSSEnable')"
-        width="140"
+        width="130"
         align="center"
       >
         <template slot-scope="{ row }">
@@ -292,6 +299,9 @@ export default {
         1: 'success'
       }
       return deletedMap[ssEnable]
+    },
+    pingFilter(ping) {
+      return ping <= 0 ? 'danger' : 'success'
     }
   },
   computed: {

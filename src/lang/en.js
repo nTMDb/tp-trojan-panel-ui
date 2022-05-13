@@ -62,6 +62,7 @@ export default {
     nodeIp: 'IP Address/Domain',
     nodePort: 'Port',
     nodeType: 'Node Type',
+    nodePing:'Delay',
     nodeWSEnable: 'Enable Websocket',
     nodeWSPath: 'Websocket Path(No need to add / at the beginning)',
     nodeSSEnable: 'Enable SS AEAD',
