@@ -63,7 +63,7 @@ export default {
     return {
       temp: {
         username: this.$store.getters.username,
-        email: '',
+        email: undefined,
         oldPass: '',
         newPassOne: '',
         newPass: ''
@@ -126,7 +126,7 @@ export default {
     resetTemp() {
       this.temp = {
         username: this.$store.getters.username,
-        email: '',
+        email: undefined,
         oldPass: '',
         newPassOne: '',
         newPass: ''

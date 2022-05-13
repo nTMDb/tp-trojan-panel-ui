@@ -253,16 +253,16 @@ export default {
       listQuery: {
         pageNum: 1,
         pageSize: 20,
-        username: ''
+        username: undefined
       },
       temp: {
         id: undefined,
         quota: 0,
         download: 0,
         upload: 0,
-        username: '',
-        pass: '',
-        email: '',
+        username: undefined,
+        pass: undefined,
+        email: undefined,
         roleId: 3,
         deleted: 0,
         expireTime: new Date().getTime(),
@@ -431,9 +431,9 @@ export default {
         quota: 0,
         download: 0,
         upload: 0,
-        username: '',
-        pass: '',
-        email: '',
+        username: undefined,
+        pass: undefined,
+        email: undefined,
         roleId: 3,
         deleted: 0,
         expireTime: new Date().getTime(),

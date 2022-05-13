@@ -28,10 +28,10 @@ export default {
       activeName: 'config-register',
       systemConfig: {
         emailEnable: 0,
-        emailHost: '',
-        emailPassword: '',
+        emailHost: undefined,
+        emailPassword: undefined,
         emailPort: 0,
-        emailUsername: '',
+        emailUsername: undefined,
         expireWarnDay: 0,
         expireWarnEnable: 0,
         id: 1,

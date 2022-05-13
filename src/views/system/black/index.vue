@@ -136,7 +136,7 @@ export default {
       listQuery: {
         pageNum: 1,
         pageSize: 20,
-        ip: ''
+        ip: undefined
       },
       temp: {
         id: undefined,

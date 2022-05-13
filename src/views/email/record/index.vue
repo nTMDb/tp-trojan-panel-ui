@@ -126,7 +126,8 @@ export default {
       listQuery: {
         pageNum: 1,
         pageSize: 20,
-        toEmail: ''
+        toEmail: undefined,
+        state: undefined
       },
       temp: {
         id: undefined,

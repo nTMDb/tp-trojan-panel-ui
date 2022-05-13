@@ -272,7 +272,6 @@ import {
   updateNodeById
 } from '@/api/node'
 import { selectNodeTypeList } from '@/api/node-type'
-import permission from '@/directive/permission/index.js'
 import { getNodeTypeName } from '@/utils/node'
 import checkPermission from '@/utils/permission'
 
@@ -282,15 +281,15 @@ export default {
   filters: {
     websocketEnableFilter(websocketEnable) {
       const deletedMap = {
-        0: 'success',
-        1: 'danger'
+        0: 'danger',
+        1: 'success'
       }
       return deletedMap[websocketEnable]
     },
     ssEnableFilter(ssEnable) {
       const deletedMap = {
-        0: 'success',
-        1: 'danger'
+        0: 'danger',
+        1: 'success'
       }
       return deletedMap[ssEnable]
     }
@@ -318,7 +317,7 @@ export default {
       listQuery: {
         pageNum: 1,
         pageSize: 20,
-        name: ''
+        name: undefined
       },
       temp: {
         id: undefined,
@@ -330,7 +329,7 @@ export default {
         websocketPath: 'trojan-panel-websocket-path',
         ssEnable: 0,
         ssMethod: 'AES-128-GCM',
-        ssPassword: '',
+        ssPassword: undefined,
         createTime: new Date()
       },
       dialogFormVisible: false,
