@@ -37,8 +37,8 @@ export default {
     login: '我已有账号'
   },
   table: {
-    enable: '开启',
-    disable: '关闭',
+    enable: '正常',
+    disable: '禁用',
     search: '搜索',
     add: '添加',
     actions: '操作',
