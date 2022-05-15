@@ -52,6 +52,7 @@
       >
         <el-input
           :disabled="emailDisable"
+          type="password"
           v-model="systemConfig.emailPassword"
         />
       </el-form-item>
