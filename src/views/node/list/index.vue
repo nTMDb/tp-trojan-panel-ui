@@ -301,7 +301,7 @@ export default {
       return deletedMap[ssEnable]
     },
     pingFilter(ping) {
-      return ping <= 0 ? 'danger' : 'success'
+      return ping < 0 ? 'danger' : 'success'
     }
   },
   computed: {
