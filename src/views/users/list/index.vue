@@ -168,7 +168,7 @@
             :placeholder="$t('table.pass')"
           />
         </el-form-item>
-        <el-form-item :label="$t('table.quota')" prop="quota">
+        <el-form-item :label="$t('table.editQuota')" prop="quota">
           <el-input-number
             v-model.number="temp.quota"
             controls-position="right"

@@ -51,6 +51,7 @@ export default {
     username: '用户名',
     role: '角色',
     quota: '总流量',
+    editQuota: '总流量/MB',
     flow: '剩余流量',
     expireDate: '到期时间',
     createTime: '创建时间',

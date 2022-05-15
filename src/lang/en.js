@@ -51,6 +51,7 @@ export default {
     username: 'Username',
     role: 'Role',
     quota: 'Quota',
+    editQuota: 'Quota/MB',
     flow: 'Residual Flow',
     expireDate: 'Expire Date',
     createTime: 'Create Time',
