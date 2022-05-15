@@ -67,7 +67,7 @@
       <el-table-column :label="$t('table.status')" width="180" align="center">
         <template slot-scope="{ row }">
           <el-tag :type="row.state | stateFilter">
-            {{ row.state | stateDescFilter }}
+            {{ stateDescFilter(row.state) }}
           </el-tag>
         </template>
       </el-table-column>
@@ -108,13 +108,6 @@ export default {
       stateMap.set(0, 'warn')
       stateMap.set(1, 'success')
       return stateMap.get(state)
-    },
-    stateDescFilter(state) {
-      let stateDescMap = new Map()
-      stateDescMap.set(-1, this.$t('table.sendFail'))
-      stateDescMap.set(0, this.$t('table.sendWait'))
-      stateDescMap.set(1, this.$t('table.sendSuccess'))
-      return stateDescMap.get(state)
     }
   },
   data() {
@@ -141,6 +134,11 @@ export default {
         { value: -1, label: this.$t('table.sendFail') },
         { value: 0, label: this.$t('table.sendWait') },
         { value: 1, label: this.$t('table.sendSuccess') }
+      ],
+      stateDesc: [
+        { value: -1, desc: this.$t('table.sendFail') },
+        { value: 0, desc: this.$t('table.sendWait') },
+        { value: 1, desc: this.$t('table.sendSuccess') }
       ]
     }
   },
@@ -163,6 +161,9 @@ export default {
     handleFilter() {
       this.listQuery.pageNum = 1
       this.getList()
+    },
+    stateDescFilter(state) {
+      return this.stateDesc.find((item) => item.value === state).desc
     }
   }
 }
