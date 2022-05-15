@@ -116,7 +116,6 @@
 import { timeStampToDate } from '@/utils'
 import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
-import permission from '@/directive/permission/index.js'
 import {
   createBlackList,
   deleteBlackListByIp,
@@ -128,6 +127,13 @@ export default {
   name: 'Black',
   components: { Pagination },
   data() {
+    const validateIp = (rule, value, callback) => {
+      if (this.temp.ip === '127.0.0.1') {
+        callback(new Error('IP不能127.0.0.1'))
+      } else {
+        callback()
+      }
+    }
     return {
       tableKey: 0,
       listLoading: true,
@@ -151,6 +157,10 @@ export default {
             min: 4,
             max: 64,
             message: 'IP的范围在4-64字符之间',
+            trigger: 'change'
+          },
+          {
+            validator: validateIp,
             trigger: 'change'
           }
         ]
