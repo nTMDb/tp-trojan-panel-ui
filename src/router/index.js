@@ -45,7 +45,7 @@ export const constantRoutes = [
         name: 'index',
         component: () => import('@/views/dashboard'),
         meta: {
-          title: 'Dashboard',
+          title: 'dashboard',
           name: 'dashboard',
           icon: 'dashboard'
         }
@@ -64,7 +64,7 @@ export const constantRoutes = [
         name: 'index',
         component: () => import('@/views/users/profile'),
         meta: {
-          title: 'Profile',
+          title: 'profile',
           name: 'profile'
         }
       }
@@ -76,14 +76,14 @@ export const constantRoutes = [
     name: 'nodeManage',
     component: Layout,
     redirect: '/node-manage/node-list',
-    meta: { title: 'NodeManage', icon: 'node' },
+    meta: { title: 'nodeManage', icon: 'node' },
     children: [
       {
         path: 'node-list',
         name: 'nodeList',
         component: () => import('@/views/node/list'),
         meta: {
-          title: 'NodeList'
+          title: 'nodeList'
         }
       }
     ]
@@ -103,7 +103,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/users-manage/user-list',
     meta: {
-      title: 'UsersManage',
+      title: 'usersManage',
       icon: 'user',
       roles: ['sysadmin', 'admin']
     },
@@ -113,7 +113,7 @@ export const asyncRoutes = [
         name: 'userList',
         component: () => import('@/views/users/list'),
         meta: {
-          title: 'UserList',
+          title: 'userList',
           roles: ['sysadmin', 'admin']
         }
       }
@@ -126,7 +126,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/emailManage/email-record',
     meta: {
-      title: 'EmailManage',
+      title: 'emailManage',
       icon: 'email',
       roles: ['sysadmin', 'admin']
     },
@@ -136,7 +136,7 @@ export const asyncRoutes = [
         name: 'emailRecord',
         component: () => import('@/views/email/record'),
         meta: {
-          title: 'EmailRecord',
+          title: 'emailRecord',
           roles: ['sysadmin', 'admin']
         }
       }
@@ -149,7 +149,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/system/base-config',
     meta: {
-      title: 'System',
+      title: 'system',
       icon: 'system',
       roles: ['sysadmin']
     },
@@ -159,7 +159,7 @@ export const asyncRoutes = [
         name: 'baseConfig',
         component: () => import('@/views/system/base'),
         meta: {
-          title: 'BaseConfig',
+          title: 'baseConfig',
           roles: ['sysadmin']
         }
       },
@@ -168,7 +168,7 @@ export const asyncRoutes = [
         name: 'blackList',
         component: () => import('@/views/system/black'),
         meta: {
-          title: 'BlackList',
+          title: 'blackList',
           roles: ['sysadmin']
         }
       }
@@ -184,11 +184,11 @@ const createRouter = () =>
     routes: constantRoutes
   })
 
-const router = createRouter()
+const router = createRouter();
 
 export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher;
 }
 
-export default router
+export default router;
