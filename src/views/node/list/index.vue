@@ -242,6 +242,24 @@
             v-model="temp.ssPassword"
           />
         </el-form-item>
+        <el-form-item
+          :label="$t('table.hysteriaProtocol')"
+          prop="hysteriaProtocol"
+          v-show="isHysteria"
+        >
+          <el-select
+            v-model="temp.hysteriaProtocol"
+            :placeholder="$t('table.hysteriaProtocol')"
+            controls-position="right"
+          >
+            <el-option
+              :label="item"
+              :value="item"
+              :key="item"
+              v-for="item in hysteriaProtocols"
+            ></el-option>
+          </el-select>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false"
@@ -340,6 +358,7 @@ export default {
         ssEnable: 0,
         ssMethod: 'AES-128-GCM',
         ssPassword: undefined,
+        hysteriaProtocol: undefined,
         createTime: new Date()
       },
       dialogFormVisible: false,
@@ -420,6 +439,14 @@ export default {
             message: 'SS AEAD密码的范围在2-32字符之间',
             trigger: 'change'
           }
+        ],
+        hysteriaProtocol: [
+          {
+            min: 2,
+            max: 16,
+            message: '模式的范围在2-16字符之间',
+            trigger: 'change'
+          }
         ]
       },
       updateRules: {
@@ -494,12 +521,21 @@ export default {
             message: 'SS AEAD密码的范围在2-32字符之间',
             trigger: 'change'
           }
+        ],
+        hysteriaProtocol: [
+          {
+            min: 2,
+            max: 16,
+            message: '模式的范围在2-16字符之间',
+            trigger: 'change'
+          }
         ]
       },
       dialogStatus: '',
       nodeTypes: [],
       ssMethods: ['AES-128-GCM', 'AES-256-GCM', 'CHACHA20-IETF-POLY1305'],
-      qrCodeSrc: ''
+      qrCodeSrc: '',
+      hysteriaProtocols: ['udp', 'faketcp']
     }
   },
   created() {
@@ -543,7 +579,8 @@ export default {
         websocketPath: 'trojan-panel-websocket-path',
         ssEnable: 0,
         ssMethod: 'AES-128-GCM',
-        ssPassword: '',
+        ssPassword: undefined,
+        hysteriaProtocol: undefined,
         createTime: new Date()
       }
     },

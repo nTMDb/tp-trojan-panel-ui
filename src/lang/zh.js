@@ -69,6 +69,7 @@ export default {
     nodeSSEnable: '是否开启SS AEAD',
     nodeSSMethod: 'SS AEAD加密方式',
     ssPassword: 'SS AEAD密码',
+    hysteriaProtocol: '模式',
     nodeQRCode: '生成二维码',
     nodeURL: '复制URL',
     blackListIp: 'IP',
