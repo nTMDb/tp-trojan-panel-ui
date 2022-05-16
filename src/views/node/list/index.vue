@@ -358,7 +358,7 @@ export default {
         ssEnable: 0,
         ssMethod: 'AES-128-GCM',
         ssPassword: undefined,
-        hysteriaProtocol: undefined,
+        hysteriaProtocol: 'udp',
         createTime: new Date()
       },
       dialogFormVisible: false,
@@ -442,6 +442,11 @@ export default {
         ],
         hysteriaProtocol: [
           {
+            required: true,
+            message: '请输入模式',
+            trigger: 'change'
+          },
+          {
             min: 2,
             max: 16,
             message: '模式的范围在2-16字符之间',
@@ -524,6 +529,11 @@ export default {
         ],
         hysteriaProtocol: [
           {
+            required: true,
+            message: '请输入模式',
+            trigger: 'change'
+          },
+          {
             min: 2,
             max: 16,
             message: '模式的范围在2-16字符之间',
@@ -580,7 +590,7 @@ export default {
         ssEnable: 0,
         ssMethod: 'AES-128-GCM',
         ssPassword: undefined,
-        hysteriaProtocol: undefined,
+        hysteriaProtocol: 'udp',
         createTime: new Date()
       }
     },
