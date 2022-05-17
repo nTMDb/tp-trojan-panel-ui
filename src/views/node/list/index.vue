@@ -260,6 +260,25 @@
             ></el-option>
           </el-select>
         </el-form-item>
+        <el-form-item :label="$t('table.hysteriaUpMbps')" v-show="isHysteria" prop="hysteriaUpMbps">
+          <el-input-number
+              v-model.number="temp.hysteriaUpMbps"
+              controls-position="right"
+              type="number"
+          />
+        </el-form-item>
+        <el-form-item :label="$t('table.hysteriaDownMbps')" v-show="isHysteria" prop="hysteriaDownMbps">
+          <el-input-number
+              v-model.number="temp.hysteriaDownMbps"
+              controls-position="right"
+              type="number"
+          />
+        </el-form-item>
+        <el-form-item v-show="isHysteria">
+          <aside>
+            {{ $t('table.hysteriaTip') }}
+          </aside>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false"
@@ -359,6 +378,8 @@ export default {
         ssMethod: 'AES-128-GCM',
         ssPassword: undefined,
         hysteriaProtocol: 'udp',
+        hysteriaUpMbps: 100,
+        hysteriaDownMbps: 100,
         createTime: new Date()
       },
       dialogFormVisible: false,
@@ -452,6 +473,26 @@ export default {
             message: '模式的范围在2-16字符之间',
             trigger: 'change'
           }
+        ],
+        hysteriaUpMbps: [
+          { required: true, message: '请输入单客户端最大上传速度/Mbps', trigger: 'change' },
+          {
+            type: 'number',
+            min: 1,
+            max: 999,
+            message: '单客户端最大上传速度的范围在1-999之间的整数',
+            trigger: 'change'
+          }
+        ],
+        hysteriaDownMbps: [
+          { required: true, message: '请输入单客户端最大下载速度/Mbps', trigger: 'change' },
+          {
+            type: 'number',
+            min: 1,
+            max: 999,
+            message: '单客户端最大下载速度的范围在1-999之间的整数',
+            trigger: 'change'
+          }
         ]
       },
       updateRules: {
@@ -539,6 +580,26 @@ export default {
             message: '模式的范围在2-16字符之间',
             trigger: 'change'
           }
+        ],
+        hysteriaUpMbps: [
+          { required: true, message: '请输入单客户端最大上传速度/Mbps', trigger: 'change' },
+          {
+            type: 'number',
+            min: 1,
+            max: 999,
+            message: '单客户端最大上传速度的范围在1-999之间的整数',
+            trigger: 'change'
+          }
+        ],
+        hysteriaDownMbps: [
+          { required: true, message: '请输入单客户端最大下载速度/Mbps', trigger: 'change' },
+          {
+            type: 'number',
+            min: 1,
+            max: 999,
+            message: '单客户端最大下载速度的范围在1-999之间的整数',
+            trigger: 'change'
+          }
         ]
       },
       dialogStatus: '',
@@ -591,6 +652,8 @@ export default {
         ssMethod: 'AES-128-GCM',
         ssPassword: undefined,
         hysteriaProtocol: 'udp',
+        hysteriaUpMbps: 100,
+        hysteriaDownMbps: 100,
         createTime: new Date()
       }
     },
