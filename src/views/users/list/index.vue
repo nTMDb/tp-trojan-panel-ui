@@ -251,7 +251,7 @@ export default {
     return {
       tableKey: 0,
       listLoading: true,
-      list: [],
+      list: null,
       total: 0,
       listQuery: {
         pageNum: 1,
