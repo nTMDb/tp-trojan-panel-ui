@@ -72,7 +72,7 @@ export default {
     hysteriaProtocol: '模式',
     hysteriaUpMbps: '单客户端最大上传速度/Mbps',
     hysteriaDownMbps: '单客户端最大下载速度/Mbps',
-    hysteriaTip: '目前支持的Hysteria协议处于测试阶段，只支持认证不支持流量统计，需要流量控制的请使用Trojan Go节点。',
+    hysteriaTip: '目前支持的hysteria协议处于测试阶段，只支持认证不支持流量控制，需要流量控制的请使用trojan-go协议。',
     nodeQRCode: '生成二维码',
     nodeURL: '复制URL',
     blackListIp: 'IP',
