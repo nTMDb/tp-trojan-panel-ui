@@ -21,6 +21,7 @@
         <el-option
           :label="item.label"
           :value="item.value"
+          :key="item.value"
           v-for="item in states"
         ></el-option>
       </el-select>

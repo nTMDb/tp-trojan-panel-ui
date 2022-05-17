@@ -167,6 +167,7 @@
             <el-option
               :label="item.name"
               :value="item.id"
+              :key="item.id"
               v-for="item in nodeTypes"
             ></el-option>
           </el-select>
@@ -260,18 +261,26 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item :label="$t('table.hysteriaUpMbps')" v-show="isHysteria" prop="hysteriaUpMbps">
+        <el-form-item
+          :label="$t('table.hysteriaUpMbps')"
+          v-show="isHysteria"
+          prop="hysteriaUpMbps"
+        >
           <el-input-number
-              v-model.number="temp.hysteriaUpMbps"
-              controls-position="right"
-              type="number"
+            v-model.number="temp.hysteriaUpMbps"
+            controls-position="right"
+            type="number"
           />
         </el-form-item>
-        <el-form-item :label="$t('table.hysteriaDownMbps')" v-show="isHysteria" prop="hysteriaDownMbps">
+        <el-form-item
+          :label="$t('table.hysteriaDownMbps')"
+          v-show="isHysteria"
+          prop="hysteriaDownMbps"
+        >
           <el-input-number
-              v-model.number="temp.hysteriaDownMbps"
-              controls-position="right"
-              type="number"
+            v-model.number="temp.hysteriaDownMbps"
+            controls-position="right"
+            type="number"
           />
         </el-form-item>
         <el-form-item v-show="isHysteria">
@@ -475,7 +484,11 @@ export default {
           }
         ],
         hysteriaUpMbps: [
-          { required: true, message: '请输入单客户端最大上传速度/Mbps', trigger: 'change' },
+          {
+            required: true,
+            message: '请输入单客户端最大上传速度/Mbps',
+            trigger: 'change'
+          },
           {
             type: 'number',
             min: 1,
@@ -485,7 +498,11 @@ export default {
           }
         ],
         hysteriaDownMbps: [
-          { required: true, message: '请输入单客户端最大下载速度/Mbps', trigger: 'change' },
+          {
+            required: true,
+            message: '请输入单客户端最大下载速度/Mbps',
+            trigger: 'change'
+          },
           {
             type: 'number',
             min: 1,
@@ -582,7 +599,11 @@ export default {
           }
         ],
         hysteriaUpMbps: [
-          { required: true, message: '请输入单客户端最大上传速度/Mbps', trigger: 'change' },
+          {
+            required: true,
+            message: '请输入单客户端最大上传速度/Mbps',
+            trigger: 'change'
+          },
           {
             type: 'number',
             min: 1,
@@ -592,7 +613,11 @@ export default {
           }
         ],
         hysteriaDownMbps: [
-          { required: true, message: '请输入单客户端最大下载速度/Mbps', trigger: 'change' },
+          {
+            required: true,
+            message: '请输入单客户端最大下载速度/Mbps',
+            trigger: 'change'
+          },
           {
             type: 'number',
             min: 1,
