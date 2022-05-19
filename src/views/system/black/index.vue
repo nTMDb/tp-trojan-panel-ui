@@ -224,7 +224,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           createBlackList(this.temp).then(() => {
-            this.list.unshift(this.temp)
+            this.getList()
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',

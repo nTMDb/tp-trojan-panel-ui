@@ -379,7 +379,7 @@ export default {
         id: undefined,
         name: '',
         ip: '',
-        port: 0,
+        port: 443,
         type: 1,
         websocketEnable: 0,
         websocketPath: 'trojan-panel-websocket-path',
@@ -669,7 +669,7 @@ export default {
         id: undefined,
         name: '',
         ip: '',
-        port: 0,
+        port: 443,
         type: 1,
         websocketEnable: 0,
         websocketPath: 'trojan-panel-websocket-path',
@@ -724,7 +724,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           createNode(this.temp).then(() => {
-            this.list.unshift(this.temp)
+            this.getList()
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
