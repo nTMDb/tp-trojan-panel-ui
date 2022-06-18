@@ -62,6 +62,16 @@
           }}</span>
         </template>
       </el-table-column>
+      <el-table-column :label="$t('table.download')" width="110" align="center">
+        <template slot-scope="{ row }">
+          <span>{{ getFlow(row.download * 1024 * 1024) }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t('table.upload')" width="110" align="center">
+        <template slot-scope="{ row }">
+          <span>{{ getFlow(row.upload * 1024 * 1024) }}</span>
+        </template>
+      </el-table-column>
       <el-table-column :label="$t('table.flow')" width="110" align="center">
         <template slot-scope="{ row }">
           <span
@@ -88,7 +98,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.expireDate')"
-        width="180"
+        width="150"
         align="center"
       >
         <template slot-scope="{ row }">
@@ -102,7 +112,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.createTime')"
-        width="180"
+        width="150"
         align="center"
       >
         <template slot-scope="{ row }">

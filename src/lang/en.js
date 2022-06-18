@@ -51,6 +51,8 @@ export default {
     username: 'Username',
     role: 'Role',
     quota: 'Quota',
+    download: 'Download',
+    upload: 'Upload',
     editQuota: 'Quota/MB',
     flow: 'Residual Flow',
     expireDate: 'Expire Date',
@@ -72,7 +74,8 @@ export default {
     hysteriaProtocol: 'Protocol',
     hysteriaUpMbps: 'Maximum upload speed for a single client/Mbps',
     hysteriaDownMbps: 'Maximum download speed for a single client/Mbps',
-    hysteriaTip: 'The currently supported hysteria protocol is in the testing stage. It only supports authentication and does not support flow control. If flow control is required, please use the trojan-go protocol.',
+    hysteriaTip:
+      'The currently supported hysteria protocol is in the testing stage. It only supports authentication and does not support flow control. If flow control is required, please use the trojan-go protocol.',
     nodeQRCode: 'Generate QR code',
     nodeURL: 'Copy URL',
     blackListIp: 'IP',

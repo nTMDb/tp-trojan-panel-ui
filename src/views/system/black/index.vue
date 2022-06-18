@@ -56,7 +56,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.createTime')"
-        width="180"
+        width="150"
         align="center"
       >
         <template slot-scope="{ row }">

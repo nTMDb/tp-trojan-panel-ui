@@ -51,6 +51,8 @@ export default {
     username: '用户名',
     role: '角色',
     quota: '总流量',
+    download: '下载流量',
+    upload: '上传流量',
     editQuota: '总流量/MB',
     flow: '剩余流量',
     expireDate: '到期时间',
@@ -72,7 +74,8 @@ export default {
     hysteriaProtocol: '模式',
     hysteriaUpMbps: '单客户端最大上传速度/Mbps',
     hysteriaDownMbps: '单客户端最大下载速度/Mbps',
-    hysteriaTip: '目前支持的hysteria协议处于测试阶段，只支持认证不支持流量控制，需要流量控制的请使用trojan-go协议。',
+    hysteriaTip:
+      '目前支持的hysteria协议处于测试阶段，只支持认证不支持流量控制，需要流量控制的请使用trojan-go协议。',
     nodeQRCode: '生成二维码',
     nodeURL: '复制URL',
     blackListIp: 'IP',
