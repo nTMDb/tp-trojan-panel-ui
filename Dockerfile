@@ -1,12 +1,9 @@
-# build stage
-FROM node:lts-alpine as build-stage
-WORKDIR /tpdata/trojan-panel-ui
-COPY . .
-RUN npm i -g yarn --registry=https://registry.npm.taobao.org
-RUN yarn --registry=https://registry.npm.taobao.org && yarn build
-
-# production stage
-FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /tpdata/trojan-panel-ui/dist /usr/share/nginx/html
+FROM alpine:3.15
+LABEL maintainer="jonsosnyan <https://jonssonyan.com>"
+RUN mkdir -p /tpdata/trojan-panel-ui/app/
+WORKDIR /tpdata/trojan-panel-ui/app/
+COPY dist/ .
+RUN apk add bash ca-certificates && \
+    rm -rf /var/cache/apk/*
+ENTRYPOINT nginx -g daemon off;
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
