@@ -1,4 +1,4 @@
-FROM nginx:stable-alpine
+FROM nginx:1.21.6-alpine
 LABEL maintainer="jonsosnyan <https://jonssonyan.com>"
 RUN mkdir -p /tpdata/trojan-panel-ui/app/
 WORKDIR /tpdata/trojan-panel-ui/app/
