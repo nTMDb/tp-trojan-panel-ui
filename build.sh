@@ -36,7 +36,7 @@ init_var() {
 
 main() {
   for get_arch in ${arch_arr[*]}; do
-    echo_content blue "开始构建Trojan Panel UI"
+    echo_content blue "开始构建Trojan Panel UI ${get_arch}"
 
     cat >Dockerfile <<EOF
 FROM nginx:1.20-alpine
@@ -48,7 +48,7 @@ ENTRYPOINT nginx -g 'daemon off;'
 EXPOSE 80
 EOF
 
-    docker buildx build --platform linux/"${get_arch}" -t jonssonyan/trojan-panel-ui .
+    docker buildx build --platform linux/"${get_arch}" -t jonssonyan/trojan-panel-ui-"${get_arch}" .
     if [[ "$?" == "0" ]]; then
       echo_content green "Trojan Panel UI ${get_arch}构建成功"
     else
