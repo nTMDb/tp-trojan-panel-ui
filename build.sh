@@ -38,7 +38,7 @@ init_var() {
 
 main() {
   for get_arch in ${arch_arr[*]}; do
-    echo_content blue "开始构建trojan-panel-ui-${get_arch}"
+    echo_content skyBlue "开始构建trojan-panel-ui-${get_arch}"
 
     cat >Dockerfile <<EOF
 FROM nginx:1.20-alpine
@@ -53,7 +53,7 @@ EOF
     docker buildx build --platform linux/"${get_arch}" -t jonssonyan/trojan-panel-ui-"${get_arch}" .
     if [[ "$?" == "0" ]]; then
       echo_content green "trojan-panel-ui-${get_arch}构建成功"
-      echo_content blue "开始推送trojan-panel-ui-${get_arch}"
+      echo_content skyBlue "开始推送trojan-panel-ui-${get_arch}"
       docker image tag jonssonyan/trojan-panel-ui-"${get_arch}":latest jonssonyan/trojan-panel-ui:latest && \
       docker image push jonssonyan/trojan-panel-ui:latest && \
       docker rmi -f jonssonyan/trojan-panel-ui:latest
