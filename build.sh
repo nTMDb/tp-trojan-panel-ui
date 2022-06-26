@@ -29,6 +29,8 @@ echo_content() {
 }
 
 init_var() {
+  trojan_panel_ui_version=latest
+
   arch_arr=('amd64' 'arm64')
 
   touch Dockerfile
@@ -36,7 +38,7 @@ init_var() {
 
 main() {
   for get_arch in ${arch_arr[*]}; do
-    echo_content blue "开始构建Trojan Panel UI ${get_arch}"
+    echo_content blue "开始构建trojan-panel-ui-${get_arch}"
 
     cat >Dockerfile <<EOF
 FROM nginx:1.20-alpine
@@ -50,9 +52,29 @@ EOF
 
     docker buildx build --platform linux/"${get_arch}" -t jonssonyan/trojan-panel-ui-"${get_arch}" .
     if [[ "$?" == "0" ]]; then
-      echo_content green "Trojan Panel UI ${get_arch}构建成功"
+      echo_content green "trojan-panel-ui-${get_arch}构建成功"
+      echo_content blue "开始推送trojan-panel-ui-${get_arch}"
+      docker image tag jonssonyan/trojan-panel-ui-"${get_arch}":latest jonssonyan/trojan-panel-ui:latest && \
+      docker image push jonssonyan/trojan-panel-ui:latest && \
+      docker rmi -f jonssonyan/trojan-panel-ui:latest
+      if [[ "$?" == "0" ]]; then
+        echo_content green "镜像名称：jonssonyan/trojan-panel-ui:latest 架构：${get_arch}推送成功"
+      else
+        echo_content red "镜像名称：jonssonyan/trojan-panel-ui:latest 架构：${get_arch}推送失败"
+      fi
+
+      if [[ ${trojan_panel_ui_version} != "latest" ]]; then
+        docker image tag jonssonyan/trojan-panel-ui-"${get_arch}":latest jonssonyan/trojan-panel-ui:${trojan_panel_ui_version} && \
+        docker image push jonssonyan/trojan-panel-ui:${trojan_panel_ui_version} && \
+        docker rmi -f jonssonyan/trojan-panel-ui:${trojan_panel_ui_version}
+        if [[ "$?" == "0" ]]; then
+          echo_content green "镜像名称：jonssonyan/trojan-panel-ui:${trojan_panel_ui_version} 架构：${get_arch}推送成功"
+        else
+          echo_content green "镜像名称：jonssonyan/trojan-panel-ui:${trojan_panel_ui_version} 架构：${get_arch}推送成功"
+        fi
+      fi
     else
-      echo_content red "Trojan Panel UI ${get_arch}构建失败"
+      echo_content red "trojan-panel-ui-${get_arch}构建失败"
     fi
   done
 }
