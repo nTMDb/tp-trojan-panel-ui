@@ -41,7 +41,7 @@ echo_content() {
 main() {
   echo_content skyBlue "开始构建trojan-panel-ui-linux CPU架构：${arch_arr}"
 
-  cat >Dockerfile <<-EOF
+  cat >Dockerfile <<EOF
 FROM nginx:1.20-alpine
 LABEL maintainer="jonsosnyan <https://jonssonyan.com>"
 RUN mkdir -p /tpdata/trojan-panel-ui/
