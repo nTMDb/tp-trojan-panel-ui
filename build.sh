@@ -42,7 +42,7 @@ main() {
   for get_arch in ${arch_arr[*]}; do
     echo_content skyBlue "开始构建trojan-panel-ui-${get_arch}"
 
-    cat >Dockerfile <<EOF
+    cat >Dockerfile <<-EOF
 FROM nginx:1.20-alpine
 LABEL maintainer="jonsosnyan <https://jonssonyan.com>"
 RUN mkdir -p /tpdata/trojan-panel-ui/
