@@ -51,7 +51,7 @@ ENTRYPOINT nginx -g 'daemon off;'
 EXPOSE 80
 EOF
 
-  docker buildx build --platform "${arch_arr}" -t jonssonyan/trojan-panel-ui-linux . --load
+  docker buildx build -t jonssonyan/trojan-panel-ui-linux --platform "${arch_arr}" --load .
   if [[ "$?" == "0" ]]; then
     echo_content green "trojan-panel-ui-linux CPU架构：${arch_arr}构建成功"
     echo_content skyBlue "开始推送trojan-panel-ui-linux CPU架构：${arch_arr}"
