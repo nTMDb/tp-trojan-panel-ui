@@ -461,9 +461,11 @@ export default {
     handleCreate() {
       this.resetTemp()
       setting().then((response) => {
-        this.temp.quota = response.data.registerQuota
-        this.temp.expireTime =
-          new Date().getTime() + response.data.registerExpireDays * 86400000
+        if (response.data.openRegister === 1) {
+          this.temp.quota = response.data.registerQuota
+          this.temp.expireTime =
+            new Date().getTime() + response.data.registerExpireDays * 86400000
+        }
       })
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
