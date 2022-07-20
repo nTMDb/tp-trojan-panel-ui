@@ -64,6 +64,7 @@ export default {
     nodeName: 'Node Name',
     nodeIp: 'IP Address/Domain',
     nodePort: 'Port',
+    nodeSni: 'SNI',
     nodeType: 'Node Type',
     nodePing: 'Delay',
     nodeWSEnable: 'Enable Websocket',
