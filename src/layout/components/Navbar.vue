@@ -36,14 +36,14 @@
           </router-link>
           <a
             target="_blank"
-            href="https://github.com/trojanpanel/install-script"
+            href="https://github.com/trojanpanel"
             v-if="checkPermission(['sysadmin', 'admin'])"
           >
             <el-dropdown-item>{{ $t('navbar.github') }}</el-dropdown-item>
           </a>
           <a
             target="_blank"
-            href="https://github.com/trojanpanel/install-script/wiki"
+            href="https://trojanpanel.github.io"
             v-if="checkPermission(['sysadmin', 'admin'])"
           >
             <el-dropdown-item>{{ $t('navbar.doc') }}</el-dropdown-item>
