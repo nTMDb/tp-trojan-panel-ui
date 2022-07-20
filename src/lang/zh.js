@@ -64,6 +64,7 @@ export default {
     nodeName: '节点名称',
     nodeIp: 'IP地址/域名',
     nodePort: '端口',
+    nodeSni: 'SNI',
     nodeType: '类型',
     nodePing: '延迟',
     nodeWSEnable: '是否开启Websocket',

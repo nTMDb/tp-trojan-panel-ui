@@ -60,6 +60,11 @@
           <span>{{ row.port }}</span>
         </template>
       </el-table-column>
+      <el-table-column :label="$t('table.nodeSni')" width="150" align="center">
+        <template slot-scope="{ row }">
+          <span>{{ row.sni }}</span>
+        </template>
+      </el-table-column>
       <el-table-column :label="$t('table.nodeType')" width="100" align="center">
         <template slot-scope="{ row }">
           <span>{{ filterNodeTypes(row.type) }}</span>
@@ -157,6 +162,9 @@
             controls-position="right"
             type="number"
           />
+        </el-form-item>
+        <el-form-item :label="$t('table.nodeSni')" prop="sni" clearable>
+          <el-input v-model="temp.sni" />
         </el-form-item>
         <el-form-item :label="$t('table.nodeType')" prop="type">
           <el-select
@@ -380,6 +388,7 @@ export default {
         name: '',
         ip: '',
         port: 443,
+        sni: '',
         type: 1,
         websocketEnable: 0,
         websocketPath: 'trojan-panel-websocket-path',
@@ -422,6 +431,14 @@ export default {
             pattern:
               /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
             message: '请输入合法的端口',
+            trigger: 'change'
+          }
+        ],
+        sni: [
+          {
+            min: 4,
+            max: 64,
+            message: 'sni在4-64字符之间',
             trigger: 'change'
           }
         ],
@@ -537,6 +554,14 @@ export default {
             pattern:
               /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
             message: '请输入合法的端口',
+            trigger: 'change'
+          }
+        ],
+        sni: [
+          {
+            min: 4,
+            max: 64,
+            message: 'sni在4-64字符之间',
             trigger: 'change'
           }
         ],
@@ -670,6 +695,7 @@ export default {
         name: '',
         ip: '',
         port: 443,
+        sni: '',
         type: 1,
         websocketEnable: 0,
         websocketPath: 'trojan-panel-websocket-path',
