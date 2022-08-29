@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { updateUserProfile } from '@/api/users'
+import { updateUserProfile } from '@/api/account'
 import { setting } from '@/api/system'
 
 export default {

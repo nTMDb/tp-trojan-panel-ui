@@ -33,7 +33,7 @@ export function register(data) {
  */
 export function logout(data) {
   return request({
-    url: '/users/logout',
+    url: '/account/logout',
     method: 'post',
     data
   })
@@ -43,9 +43,9 @@ export function logout(data) {
  * 获取用户信息
  * @returns
  */
-export function getUserInfo() {
+export function getAccountInfo() {
   return request({
-    url: '/users/getUserInfo',
+    url: '/account/getAccountInfo',
     method: 'get'
   })
 }
@@ -55,9 +55,9 @@ export function getUserInfo() {
  * @param data
  * @returns
  */
-export function selectUserPage(data) {
+export function selectAccountPage(data) {
   return request({
-    url: '/users/selectUserPage',
+    url: '/account/selectAccountPage',
     method: 'get',
     params: data
   })
@@ -68,9 +68,9 @@ export function selectUserPage(data) {
  * @param data
  * @returns
  */
-export function deleteUserById(data) {
+export function deleteAccountById(data) {
   return request({
-    url: '/users/deleteUserById',
+    url: '/account/deleteAccountById',
     method: 'post',
     data
   })
@@ -83,7 +83,7 @@ export function deleteUserById(data) {
  */
 export function updateUserProfile(data) {
   return request({
-    url: '/users/updateUserProfile',
+    url: '/account/updateUserProfile',
     method: 'post',
     data
   })
@@ -94,9 +94,9 @@ export function updateUserProfile(data) {
  * @param data
  * @returns
  */
-export function selectUserById(data) {
+export function selectAccountById(data) {
   return request({
-    url: '/users/selectUserById',
+    url: '/account/selectAccountById',
     method: 'get',
     params: data
   })
@@ -107,9 +107,9 @@ export function selectUserById(data) {
  * @param data
  * @returns
  */
-export function createUser(data) {
+export function createAccount(data) {
   return request({
-    url: '/users/createUser',
+    url: '/account/createAccount',
     method: 'post',
     data
   })
@@ -120,9 +120,9 @@ export function createUser(data) {
  * @param data
  * @returns
  */
-export function updateUserById(data) {
+export function updateAccountById(data) {
   return request({
-    url: '/users/updateUserById',
+    url: '/account/updateAccountById',
     method: 'post',
     data
   })

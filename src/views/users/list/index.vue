@@ -226,11 +226,11 @@
 
 <script>
 import {
-  createUser,
-  deleteUserById,
-  selectUserPage,
-  updateUserById
-} from '@/api/users'
+  createAccount,
+  deleteAccountById,
+  selectAccountPage,
+  updateAccountById
+} from '@/api/account'
 import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
@@ -430,7 +430,7 @@ export default {
     },
     getList() {
       this.listLoading = true
-      selectUserPage(this.listQuery).then((response) => {
+      selectAccountPage(this.listQuery).then((response) => {
         this.list = response.data.users
         this.total = response.data.total
 
@@ -488,7 +488,7 @@ export default {
         type: 'warning'
       }).then(() => {
         const tempData = Object.assign({}, row)
-        deleteUserById(tempData).then(() => {
+        deleteAccountById(tempData).then(() => {
           this.list.splice(index, 1)
           this.$notify({
             title: 'Success',
@@ -502,7 +502,7 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          createUser(this.temp).then(() => {
+          createAccount(this.temp).then(() => {
             this.getList()
             this.dialogFormVisible = false
             this.$notify({
@@ -519,7 +519,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
-          updateUserById(tempData).then(() => {
+          updateAccountById(tempData).then(() => {
             const index = this.list.findIndex((v) => v.id === this.temp.id)
             this.list.splice(index, 1, this.temp)
             this.dialogFormVisible = false
