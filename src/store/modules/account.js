@@ -29,9 +29,9 @@ const mutations = {
 }
 
 const actions = {
-  // user login
-  login({ commit }, userInfo) {
-    const { username, pass } = userInfo
+  // account login
+  login({ commit }, accountInfo) {
+    const { username, pass } = accountInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), pass: pass })
         .then((response) => {
@@ -46,9 +46,9 @@ const actions = {
     })
   },
 
-  // user register
-  register({ commit }, userInfo) {
-    const { username, pass } = userInfo
+  // account register
+  register({ commit }, accountInfo) {
+    const { username, pass } = accountInfo
     return new Promise((resolve, reject) => {
       register({ username: username.trim(), pass: pass.trim() })
         .then((response) => {
@@ -60,7 +60,7 @@ const actions = {
     })
   },
 
-  // get user info
+  // get account info
   getAccountInfo({ commit }) {
     return new Promise((resolve, reject) => {
       getAccountInfo()
@@ -83,7 +83,7 @@ const actions = {
     })
   },
 
-  // user logout
+  // account logout
   logout({ commit }) {
     return new Promise((resolve, reject) => {
       logout()
@@ -110,8 +110,8 @@ const actions = {
 }
 
 export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions
+    namespaced: true,
+    state,
+    mutations,
+    actions
 }

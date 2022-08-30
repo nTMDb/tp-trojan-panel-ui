@@ -118,8 +118,8 @@ export default {
     configWebFile: 'WebFile Config',
     configEmail: 'Email Config',
     RegisterEnable: 'Register Enable',
-    RegisterQuota: 'Default quota for new users/MB',
-    RegisterExpireDays: 'Default expiry days for new users',
+    RegisterQuota: 'Default quota for new account/MB',
+    RegisterExpireDays: 'Default expiry days for new account',
     WebFileBtn: 'upload to server',
     WebFileSelect: 'select file',
     WebFileTip:

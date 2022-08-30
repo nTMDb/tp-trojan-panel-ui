@@ -81,9 +81,9 @@ export function deleteAccountById(data) {
  * @param data
  * @returns
  */
-export function updateUserProfile(data) {
+export function updateAccountProfile(data) {
   return request({
-    url: '/account/updateUserProfile',
+    url: '/account/updateAccountProfile',
     method: 'post',
     data
   })

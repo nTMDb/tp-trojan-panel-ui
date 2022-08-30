@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { updateUserProfile } from '@/api/account'
+import { updateAccountProfile } from '@/api/account'
 import { setting } from '@/api/system'
 
 export default {
@@ -142,7 +142,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
-          updateUserProfile(tempData).then(() => {
+          updateAccountProfile(tempData).then(() => {
             this.resetTemp()
             this.$nextTick(() => {
               this.$refs['dataForm'].clearValidate()

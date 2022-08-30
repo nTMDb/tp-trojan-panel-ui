@@ -163,7 +163,7 @@ export default {
         if (valid) {
           this.loading = true
           this.$store
-            .dispatch('users/register', this.registerForm)
+            .dispatch('account/register', this.registerForm)
             .then(() => {
               this.$router.push({ path: '/login' })
               this.loading = false

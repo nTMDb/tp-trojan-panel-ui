@@ -26,7 +26,7 @@ router.beforeEach(async (to, from, next) => {
         next()
       } else {
         try {
-          const { roles } = await store.dispatch('users/getAccountInfo')
+          const { roles } = await store.dispatch('account/getAccountInfo')
           const accessRoutes = await store.dispatch(
             'permission/generateRoutes',
             roles
@@ -36,7 +36,7 @@ router.beforeEach(async (to, from, next) => {
           }
           next({ ...to, replace: true })
         } catch (error) {
-          await store.dispatch('users/resetToken')
+          await store.dispatch('account/resetToken')
           Message.error(error || 'Has Error')
           next(`/login?redirect=${to.path}`)
           NProgress.done()

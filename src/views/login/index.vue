@@ -147,7 +147,7 @@ export default {
         if (valid) {
           this.loading = true
           this.$store
-            .dispatch('users/login', this.loginForm)
+            .dispatch('account/login', this.loginForm)
             .then(() => {
               this.$router
                 .push({ path: this.redirect || '/' })
