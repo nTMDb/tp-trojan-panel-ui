@@ -234,7 +234,7 @@ import {
 import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
-import { getFlow } from '@/utils/user'
+import { getFlow } from '@/utils/account'
 import { selectRoleList } from '@/api/role'
 import checkPermission from '@/utils/permission'
 import { setting } from '@/api/system'

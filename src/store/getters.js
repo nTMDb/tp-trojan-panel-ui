@@ -5,10 +5,10 @@ const getters = {
   device: (state) => state.app.device,
   visitedViews: (state) => state.tagsView.visitedViews,
   cachedViews: (state) => state.tagsView.cachedViews,
-  token: (state) => state.users.token,
-  avatar: (state) => state.users.avatar,
-  username: (state) => state.users.username,
-  roles: (state) => state.users.roles,
+  token: (state) => state.account.token,
+  avatar: (state) => state.account.avatar,
+  username: (state) => state.account.username,
+  roles: (state) => state.account.roles,
   permission_routes: (state) => state.permission.routes
 }
 export default getters
