@@ -106,7 +106,7 @@ export default {
     onLine: '在线用户数',
     residualFlow: '剩余流量',
     quota: '总流量',
-    userCount: '用户总数',
+    accountCount: '用户总数',
     unlimited: '无限',
     ranking: '排名',
     username: '用户名',

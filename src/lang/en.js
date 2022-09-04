@@ -106,7 +106,7 @@ export default {
     onLine: 'OnLine',
     residualFlow: 'Residual Flow',
     quota: 'Quota',
-    userCount: 'User Count',
+    accountCount: 'Account Count',
     unlimited: 'UnLimited',
     ranking: 'Ranking',
     username: 'Username',
