@@ -431,7 +431,7 @@ export default {
     getList() {
       this.listLoading = true
       selectAccountPage(this.listQuery).then((response) => {
-        this.list = response.data.users
+        this.list = response.data.accounts
         this.total = response.data.total
 
         setTimeout(() => {

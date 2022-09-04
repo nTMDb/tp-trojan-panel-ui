@@ -45,61 +45,30 @@
         width="80"
         type="index"
       />
-      <el-table-column :label="$t('table.nodeName')" width="120" align="center">
+      <el-table-column :label="$t('table.nodeName')" width="150" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodeIp')" width="150" align="center">
+      <el-table-column :label="$t('table.nodeIp')" width="200" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.ip }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodePort')" width="80" align="center">
+      <el-table-column :label="$t('table.nodePort')" width="150" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.port }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodeSni')" width="150" align="center">
-        <template slot-scope="{ row }">
-          <span>{{ row.sni }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column :label="$t('table.nodeType')" width="100" align="center">
+      <el-table-column :label="$t('table.nodeType')" width="150" align="center">
         <template slot-scope="{ row }">
           <span>{{ filterNodeTypes(row.type) }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodePing')" width="80" align="center">
+      <el-table-column :label="$t('table.nodePing')" width="150" align="center">
         <template slot-scope="{ row }">
           <el-tag :type="row.ping | pingFilter">
             <span>{{ row.ping }}ms</span>
-          </el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column
-        :label="$t('table.nodeWSEnable')"
-        width="150"
-        align="center"
-      >
-        <template slot-scope="{ row }">
-          <el-tag :type="row.websocketEnable | websocketEnableFilter">
-            {{
-              row.websocketEnable === 0
-                ? $t('table.disable')
-                : $t('table.enable')
-            }}
-          </el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column
-        :label="$t('table.nodeSSEnable')"
-        width="130"
-        align="center"
-      >
-        <template slot-scope="{ row }">
-          <el-tag :type="row.ssEnable | ssEnableFilter">
-            {{ row.ssEnable === 0 ? $t('table.disable') : $t('table.enable') }}
           </el-tag>
         </template>
       </el-table-column>
@@ -163,9 +132,7 @@
             type="number"
           />
         </el-form-item>
-        <el-form-item :label="$t('table.nodeSni')" prop="sni" clearable>
-          <el-input v-model="temp.sni" />
-        </el-form-item>
+
         <el-form-item :label="$t('table.nodeType')" prop="type">
           <el-select
             v-model="temp.type"
@@ -181,12 +148,20 @@
           </el-select>
         </el-form-item>
         <el-form-item
-          :label="$t('table.nodeWSEnable')"
+          :label="$t('table.trojanGoSni')"
           v-show="isTrojanGo"
-          prop="websocketEnable"
+          prop="trojanGoSni"
+          clearable
+        >
+          <el-input v-model="temp.trojanGoSni" />
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.trojanGoWebsocketEnable')"
+          v-show="isTrojanGo"
+          prop="trojanGoWebsocketEnable"
         >
           <el-switch
-            v-model="temp.websocketEnable"
+            v-model="temp.trojanGoWebsocketEnable"
             active-color="#13ce66"
             inactive-color="#ff4949"
             :active-text="$t('table.enable')"
@@ -197,20 +172,34 @@
           </el-switch>
         </el-form-item>
         <el-form-item
-          :label="$t('table.nodeWSPath')"
-          prop="websocketPath"
+          :label="$t('table.trojanGoWebsocketPath')"
+          prop="trojanGoWebsocketPath"
           clearable
           v-show="isTrojanGo"
         >
-          <el-input :disabled="wsDisable" v-model="temp.websocketPath" />
+          <el-input
+            :disabled="wsDisable"
+            v-model="temp.trojanGoWebsocketPath"
+          />
         </el-form-item>
         <el-form-item
-          :label="$t('table.nodeSSEnable')"
-          prop="ssEnable"
+          :label="$t('table.trojanGoWebsocketHost')"
+          prop="trojanGoWebsocketHost"
+          clearable
+          v-show="isTrojanGo"
+        >
+          <el-input
+            :disabled="wsDisable"
+            v-model="temp.trojanGoWebsocketHost"
+          />
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.trojanGoSsEnable')"
+          prop="trojanGoSsEnable"
           v-show="isTrojanGo"
         >
           <el-switch
-            v-model="temp.ssEnable"
+            v-model="temp.trojanGoSsEnable"
             active-color="#13ce66"
             inactive-color="#ff4949"
             :active-text="$t('table.enable')"
@@ -222,13 +211,13 @@
           </el-switch>
         </el-form-item>
         <el-form-item
-          :label="$t('table.nodeSSMethod')"
-          prop="ssMethod"
+          :label="$t('table.trojanGoSsMethod')"
+          prop="trojanGoSsMethod"
           v-show="isTrojanGo"
         >
           <el-select
-            v-model="temp.ssMethod"
-            :placeholder="$t('table.nodeSSMethod')"
+            v-model="temp.trojanGoSsMethod"
+            :placeholder="$t('table.trojanGoSsMethod')"
             controls-position="right"
             :disabled="wsDisable || ssDisable"
           >
@@ -236,19 +225,19 @@
               :label="item"
               :value="item"
               :key="item"
-              v-for="item in ssMethods"
+              v-for="item in trojanGoSsMethods"
             ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item
-          :label="$t('table.ssPassword')"
-          prop="ssPassword"
+          :label="$t('table.trojanGoSsPassword')"
+          prop="trojanGoSsPassword"
           clearable
           v-show="isTrojanGo"
         >
           <el-input
             :disabled="wsDisable || ssDisable"
-            v-model="temp.ssPassword"
+            v-model="temp.trojanGoSsPassword"
           />
         </el-form-item>
         <el-form-item
@@ -340,19 +329,19 @@ export default {
   name: 'List',
   components: { Pagination },
   filters: {
-    websocketEnableFilter(websocketEnable) {
+    trojanGoWebsocketEnableFilter(trojanGoWebsocketEnable) {
       const deletedMap = {
         0: 'danger',
         1: 'success'
       }
-      return deletedMap[websocketEnable]
+      return deletedMap[trojanGoWebsocketEnable]
     },
-    ssEnableFilter(ssEnable) {
+    trojanGoSsEnableFilter(trojanGoSsEnable) {
       const deletedMap = {
         0: 'danger',
         1: 'success'
       }
-      return deletedMap[ssEnable]
+      return deletedMap[trojanGoSsEnable]
     },
     pingFilter(ping) {
       return ping < 0 ? 'danger' : 'success'
@@ -360,16 +349,19 @@ export default {
   },
   computed: {
     wsDisable: function () {
-      return this.temp.websocketEnable === 0
+      return this.temp.trojanGoWebsocketEnable === 0
     },
     ssDisable: function () {
-      return this.temp.ssEnable === 0
+      return this.temp.trojanGoSsEnable === 0
     },
     isTrojanGo: function () {
       return getNodeTypeName(this.temp.type) === 'trojan-go'
     },
     isHysteria: function () {
       return getNodeTypeName(this.temp.type) === 'hysteria'
+    },
+    isXray: function () {
+      return getNodeTypeName(this.temp.type) === 'xray'
     }
   },
   data() {
@@ -388,13 +380,24 @@ export default {
         name: '',
         ip: '',
         port: 443,
-        sni: '',
         type: 1,
-        websocketEnable: 0,
-        websocketPath: 'trojan-panel-websocket-path',
-        ssEnable: 0,
-        ssMethod: 'AES-128-GCM',
-        ssPassword: undefined,
+
+        xrayProtocol: '',
+        xraySettings: '',
+        xrayStreamSettings: '',
+        xrayTag: '',
+        xraySniffing: '',
+        xrayAllocate: '',
+
+        trojanGoSni: '',
+        trojanGoMuxEnable: 1,
+        trojanGoWebsocketEnable: 0,
+        trojanGoWebsocketPath: 'trojan-panel-websocket-path',
+        trojanGoWebsocketHost: '',
+        trojanGoSsEnable: 0,
+        trojanGoSsMethod: 'AES-128-GCM',
+        trojanGoSsPassword: '',
+
         hysteriaProtocol: 'udp',
         hysteriaUpMbps: 100,
         hysteriaDownMbps: 100,
@@ -434,14 +437,6 @@ export default {
             trigger: 'change'
           }
         ],
-        sni: [
-          {
-            min: 4,
-            max: 64,
-            message: 'sni在4-64字符之间',
-            trigger: 'change'
-          }
-        ],
         type: [
           { required: true, message: '请输入类型', trigger: 'change' },
           {
@@ -450,14 +445,29 @@ export default {
             trigger: 'change'
           }
         ],
-        websocketEnable: [
+        sni: [
+          {
+            min: 4,
+            max: 64,
+            message: 'sni在4-64字符之间',
+            trigger: 'change'
+          }
+        ],
+        muxEnable: [
+          {
+            required: true,
+            message: '请输入是否开启多路复用',
+            trigger: 'change'
+          }
+        ],
+        trojanGoWebsocketEnable: [
           {
             required: true,
             message: '请输入是否开启Websocket',
             trigger: 'change'
           }
         ],
-        websocketPath: [
+        trojanGoWebsocketPath: [
           {
             min: 2,
             max: 64,
@@ -465,21 +475,29 @@ export default {
             trigger: 'change'
           }
         ],
-        ssEnable: [
+        TrojanGoWebsocketHost: [
+          {
+            min: 2,
+            max: 64,
+            message: 'Websocket Host的范围在2-64字符之间',
+            trigger: 'change'
+          }
+        ],
+        trojanGoSsEnable: [
           {
             required: true,
             message: '请输入是否开启SS AEAD',
             trigger: 'change'
           }
         ],
-        ssMethod: [
+        trojanGoSsMethod: [
           {
             required: true,
             message: '请输入SS AEAD加密方式',
             trigger: 'change'
           }
         ],
-        ssPassword: [
+        trojanGoSsPassword: [
           {
             min: 2,
             max: 32,
@@ -557,14 +575,6 @@ export default {
             trigger: 'change'
           }
         ],
-        sni: [
-          {
-            min: 4,
-            max: 64,
-            message: 'sni在4-64字符之间',
-            trigger: 'change'
-          }
-        ],
         type: [
           { required: true, message: '请输入类型', trigger: 'change' },
           {
@@ -573,14 +583,29 @@ export default {
             trigger: 'change'
           }
         ],
-        websocketEnable: [
+        sni: [
+          {
+            min: 4,
+            max: 64,
+            message: 'sni在4-64字符之间',
+            trigger: 'change'
+          }
+        ],
+        muxEnable: [
           {
             required: true,
             message: '请输入是否开启Websocket',
             trigger: 'change'
           }
         ],
-        websocketPath: [
+        trojanGoWebsocketEnable: [
+          {
+            required: true,
+            message: '请输入是否开启Websocket',
+            trigger: 'change'
+          }
+        ],
+        trojanGoWebsocketPath: [
           {
             min: 2,
             max: 64,
@@ -588,21 +613,29 @@ export default {
             trigger: 'change'
           }
         ],
-        ssEnable: [
+        TrojanGoWebsocketHost: [
+          {
+            min: 2,
+            max: 64,
+            message: 'Websocket Host的范围在2-64字符之间',
+            trigger: 'change'
+          }
+        ],
+        trojanGoSsEnable: [
           {
             required: true,
             message: '请输入是否开启SS AEAD',
             trigger: 'change'
           }
         ],
-        ssMethod: [
+        trojanGoSsMethod: [
           {
             required: true,
             message: '请输入SS AEAD加密方式',
             trigger: 'change'
           }
         ],
-        ssPassword: [
+        trojanGoSsPassword: [
           {
             min: 2,
             max: 32,
@@ -654,7 +687,11 @@ export default {
       },
       dialogStatus: '',
       nodeTypes: [],
-      ssMethods: ['AES-128-GCM', 'AES-256-GCM', 'CHACHA20-IETF-POLY1305'],
+      trojanGoSsMethods: [
+        'AES-128-GCM',
+        'AES-256-GCM',
+        'CHACHA20-IETF-POLY1305'
+      ],
       qrCodeSrc: '',
       hysteriaProtocols: ['udp', 'faketcp']
     }
@@ -695,13 +732,24 @@ export default {
         name: '',
         ip: '',
         port: 443,
-        sni: '',
         type: 1,
-        websocketEnable: 0,
-        websocketPath: 'trojan-panel-websocket-path',
-        ssEnable: 0,
-        ssMethod: 'AES-128-GCM',
-        ssPassword: undefined,
+
+        xrayProtocol: '',
+        xraySettings: '',
+        xrayStreamSettings: '',
+        xrayTag: '',
+        xraySniffing: '',
+        xrayAllocate: '',
+
+        trojanGoSni: '',
+        trojanGoMuxEnable: 1,
+        trojanGoWebsocketEnable: 0,
+        trojanGoWebsocketPath: 'trojan-panel-websocket-path',
+        trojanGoWebsocketHost: '',
+        trojanGoSsEnable: 0,
+        trojanGoSsMethod: 'AES-128-GCM',
+        trojanGoSsPassword: '',
+
         hysteriaProtocol: 'udp',
         hysteriaUpMbps: 100,
         hysteriaDownMbps: 100,
