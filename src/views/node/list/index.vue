@@ -62,7 +62,7 @@
       </el-table-column>
       <el-table-column :label="$t('table.nodeType')" width="150" align="center">
         <template slot-scope="{ row }">
-          <span>{{ filterNodeTypes(row.type) }}</span>
+          <span>{{ filterNodeTypes(row.nodeTypeId) }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.nodePing')" width="150" align="center">
@@ -133,12 +133,8 @@
           />
         </el-form-item>
 
-        <el-form-item :label="$t('table.nodeType')" prop="type">
-          <el-select
-            v-model="temp.type"
-            :placeholder="$t('table.nodeType')"
-            controls-position="right"
-          >
+        <el-form-item :label="$t('table.nodeType')" prop="nodeTypeId">
+          <el-select v-model="temp.nodeTypeId" controls-position="right">
             <el-option
               :label="item.name"
               :value="item.id"
@@ -355,13 +351,13 @@ export default {
       return this.temp.trojanGoSsEnable === 0
     },
     isTrojanGo: function () {
-      return getNodeTypeName(this.temp.type) === 'trojan-go'
+      return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
     },
     isHysteria: function () {
-      return getNodeTypeName(this.temp.type) === 'hysteria'
+      return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
     },
     isXray: function () {
-      return getNodeTypeName(this.temp.type) === 'xray'
+      return getNodeTypeName(this.temp.nodeTypeId) === 'xray'
     }
   },
   data() {
@@ -377,10 +373,11 @@ export default {
       },
       temp: {
         id: undefined,
+        nodeSubId: undefined,
+        nodeTypeId: 1,
         name: '',
         ip: '',
         port: 443,
-        type: 1,
 
         xrayProtocol: '',
         xraySettings: '',
@@ -729,10 +726,11 @@ export default {
     resetTemp() {
       this.temp = {
         id: undefined,
+        nodeSubId: undefined,
         name: '',
         ip: '',
         port: 443,
-        type: 1,
+        nodeTypeId: 1,
 
         xrayProtocol: '',
         xraySettings: '',
@@ -828,8 +826,8 @@ export default {
         }
       })
     },
-    filterNodeTypes(type) {
-      return this.nodeTypes.find((item) => item.id === type).name
+    filterNodeTypes(nodeTypeId) {
+      return this.nodeTypes.find((item) => item.id === nodeTypeId).name
     },
     handleCopyURL(row) {
       nodeURL(row).then((response) => {
