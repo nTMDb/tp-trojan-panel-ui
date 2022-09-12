@@ -45,27 +45,27 @@
         width="80"
         type="index"
       />
-      <el-table-column :label="$t('table.nodeName')" width="150" align="center">
+      <el-table-column :label="$t('table.nodeName')" width="120" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodeIp')" width="200" align="center">
+      <el-table-column :label="$t('table.nodeIp')" width="150" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.ip }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodePort')" width="150" align="center">
+      <el-table-column :label="$t('table.nodePort')" width="80" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.port }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodeType')" width="150" align="center">
+      <el-table-column :label="$t('table.nodeType')" width="120" align="center">
         <template slot-scope="{ row }">
           <span>{{ filterNodeTypes(row.nodeTypeId) }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodePing')" width="150" align="center">
+      <el-table-column :label="$t('table.nodePing')" width="80" align="center">
         <template slot-scope="{ row }">
           <el-tag :type="row.ping | pingFilter">
             <span>{{ row.ping }}ms</span>
@@ -74,8 +74,8 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.createTime')"
+        width="150"
         align="center"
-        class-name="small-padding fixed-width"
       >
         <template slot-scope="{ row }">
           <span>{{ timeStampToDate(row.createTime, false) }}</span>
