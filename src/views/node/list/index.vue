@@ -434,15 +434,8 @@ export default {
             trigger: 'change'
           }
         ],
-        type: [
-          { required: true, message: '请输入类型', trigger: 'change' },
-          {
-            pattern: /^[1-9]\d*$/,
-            message: '请输入合法的类型',
-            trigger: 'change'
-          }
-        ],
-        sni: [
+
+        trojanGoSni: [
           {
             min: 4,
             max: 64,
@@ -450,7 +443,7 @@ export default {
             trigger: 'change'
           }
         ],
-        muxEnable: [
+        trojanGoMuxEnable: [
           {
             required: true,
             message: '请输入是否开启多路复用',
@@ -472,7 +465,7 @@ export default {
             trigger: 'change'
           }
         ],
-        TrojanGoWebsocketHost: [
+        trojanGoWebsocketHost: [
           {
             min: 2,
             max: 64,
@@ -572,15 +565,8 @@ export default {
             trigger: 'change'
           }
         ],
-        type: [
-          { required: true, message: '请输入类型', trigger: 'change' },
-          {
-            pattern: /^[1-9]\d*$/,
-            message: '请输入合法的类型',
-            trigger: 'change'
-          }
-        ],
-        sni: [
+
+        trojanGoSni: [
           {
             min: 4,
             max: 64,
@@ -588,10 +574,10 @@ export default {
             trigger: 'change'
           }
         ],
-        muxEnable: [
+        trojanGoMuxEnable: [
           {
             required: true,
-            message: '请输入是否开启Websocket',
+            message: '请输入是否开启多路复用',
             trigger: 'change'
           }
         ],
@@ -610,7 +596,7 @@ export default {
             trigger: 'change'
           }
         ],
-        TrojanGoWebsocketHost: [
+        trojanGoWebsocketHost: [
           {
             min: 2,
             max: 64,
@@ -727,10 +713,10 @@ export default {
       this.temp = {
         id: undefined,
         nodeSubId: undefined,
+        nodeTypeId: 1,
         name: '',
         ip: '',
         port: 443,
-        nodeTypeId: 1,
 
         xrayProtocol: '',
         xraySettings: '',
