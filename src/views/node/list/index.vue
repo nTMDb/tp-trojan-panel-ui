@@ -174,7 +174,7 @@
           v-show="isTrojanGo"
         >
           <el-input
-            :disabled="wsDisable"
+            :disabled="trojanGoWebsocketDisable"
             v-model="temp.trojanGoWebsocketPath"
           />
         </el-form-item>
@@ -185,7 +185,7 @@
           v-show="isTrojanGo"
         >
           <el-input
-            :disabled="wsDisable"
+            :disabled="trojanGoWebsocketDisable"
             v-model="temp.trojanGoWebsocketHost"
           />
         </el-form-item>
@@ -202,7 +202,7 @@
             :inactive-text="$t('table.disable')"
             :active-value="1"
             :inactive-value="0"
-            :disabled="wsDisable"
+            :disabled="trojanGoWebsocketDisable"
           >
           </el-switch>
         </el-form-item>
@@ -215,7 +215,7 @@
             v-model="temp.trojanGoSsMethod"
             :placeholder="$t('table.trojanGoSsMethod')"
             controls-position="right"
-            :disabled="wsDisable || ssDisable"
+            :disabled="trojanGoWebsocketDisable || trojanGoSsDisable"
           >
             <el-option
               :label="item"
@@ -232,7 +232,7 @@
           v-show="isTrojanGo"
         >
           <el-input
-            :disabled="wsDisable || ssDisable"
+            :disabled="trojanGoWebsocketDisable || trojanGoSsDisable"
             v-model="temp.trojanGoSsPassword"
           />
         </el-form-item>
@@ -344,10 +344,10 @@ export default {
     }
   },
   computed: {
-    wsDisable: function () {
+    trojanGoWebsocketDisable: function () {
       return this.temp.trojanGoWebsocketEnable === 0
     },
-    ssDisable: function () {
+    trojanGoSsDisable: function () {
       return this.temp.trojanGoSsEnable === 0
     },
     isTrojanGo: function () {
