@@ -73,6 +73,15 @@
         </template>
       </el-table-column>
       <el-table-column
+        :label="$t('table.createTime')"
+        align="center"
+        class-name="small-padding fixed-width"
+      >
+        <template slot-scope="{ row }">
+          <span>{{ timeStampToDate(row.createTime, false) }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
         :label="$t('table.actions')"
         align="center"
         class-name="small-padding fixed-width"
@@ -320,6 +329,7 @@ import {
 import { selectNodeTypeList } from '@/api/node-type'
 import { getNodeTypeName } from '@/utils/node'
 import checkPermission from '@/utils/permission'
+import { timeStampToDate } from '@/utils'
 
 export default {
   name: 'List',
@@ -684,6 +694,7 @@ export default {
     this.getList()
   },
   methods: {
+    timeStampToDate,
     checkPermission,
     handleQRCode(row) {
       const tempData = Object.assign({}, row)
