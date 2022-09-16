@@ -67,6 +67,7 @@ export default {
     nodeType: 'Node Type',
     nodePing: 'Delay',
     trojanGoSni: 'SNI',
+    trojanGoMuxEnable: 'Enable Mux',
     trojanGoWebsocketEnable: 'Enable Websocket',
     trojanGoWebsocketPath: 'Websocket Path(No need to add / at the beginning)',
     trojanGoWebsocketHost: 'Websocket Host',

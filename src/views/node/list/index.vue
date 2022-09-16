@@ -161,6 +161,22 @@
           <el-input v-model="temp.trojanGoSni" />
         </el-form-item>
         <el-form-item
+          :label="$t('table.trojanGoMuxEnable')"
+          v-show="isTrojanGo"
+          prop="trojanGoMuxEnable"
+        >
+          <el-switch
+            v-model="temp.trojanGoMuxEnable"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            :active-text="$t('table.enable')"
+            :inactive-text="$t('table.disable')"
+            :active-value="1"
+            :inactive-value="0"
+          >
+          </el-switch>
+        </el-form-item>
+        <el-form-item
           :label="$t('table.trojanGoWebsocketEnable')"
           v-show="isTrojanGo"
           prop="trojanGoWebsocketEnable"
@@ -323,6 +339,7 @@ import {
   deleteNodeById,
   nodeQRCode,
   nodeURL,
+  selectNodeById,
   selectNodePage,
   updateNodeById
 } from '@/api/node'
@@ -764,7 +781,10 @@ export default {
       })
     },
     handleUpdate(row) {
-      this.temp = Object.assign({}, row)
+      // this.temp = Object.assign({}, row)
+      selectNodeById({ id: row.id }).then((response) => {
+        this.temp = response.data
+      })
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
       this.$nextTick(() => {

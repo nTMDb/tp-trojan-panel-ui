@@ -67,6 +67,7 @@ export default {
     nodeType: '类型',
     nodePing: '延迟',
     trojanGoSni: 'SNI',
+    trojanGoMuxEnable: '是否开启多路复用',
     trojanGoWebsocketEnable: '是否开启Websocket',
     trojanGoWebsocketPath: 'Websocket路径(开头不需要加/)',
     trojanGoWebsocketHost: 'Websocket Host',
