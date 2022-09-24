@@ -66,6 +66,7 @@ export default {
     nodePort: '端口',
     nodeType: '类型',
     nodePing: '延迟',
+    xrayProtocol: '协议',
     trojanGoSni: 'SNI',
     trojanGoMuxEnable: '是否开启多路复用',
     trojanGoWebsocketEnable: '是否开启Websocket',

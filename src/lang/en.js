@@ -66,6 +66,7 @@ export default {
     nodePort: 'Port',
     nodeType: 'Node Type',
     nodePing: 'Delay',
+    xrayProtocol: 'Protocol',
     trojanGoSni: 'SNI',
     trojanGoMuxEnable: 'Enable Mux',
     trojanGoWebsocketEnable: 'Enable Websocket',

@@ -153,6 +153,20 @@
           </el-select>
         </el-form-item>
         <el-form-item
+          :label="$t('table.xrayProtocol')"
+          prop="nodeTypeId"
+          v-show="isXray"
+        >
+          <el-select v-model="temp.xrayProtocol" controls-position="right">
+            <el-option
+              :label="item"
+              :value="item"
+              :key="item"
+              v-for="item in xrayProtocols"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item
           :label="$t('table.trojanGoSni')"
           v-show="isTrojanGo"
           prop="trojanGoSni"
@@ -398,6 +412,16 @@ export default {
         pageSize: 20,
         name: undefined
       },
+      xraySettings: {},
+      xrayStreamSettings: {
+        network: 'tcp',
+        security: 'xtls',
+        tlsSettings: {
+          serverName: ''
+        }
+      },
+      xraySniffingToString: {},
+      xrayAllocate: {},
       temp: {
         id: undefined,
         nodeSubId: undefined,
@@ -406,12 +430,12 @@ export default {
         ip: '',
         port: 443,
 
-        xrayProtocol: '',
-        xraySettings: '',
-        xrayStreamSettings: '',
+        xrayProtocol: 'vless',
+        xraySettings: this.xraySettings.toString(),
+        xrayStreamSettings: this.xrayStreamSettings.toString(),
         xrayTag: '',
-        xraySniffing: '',
-        xrayAllocate: '',
+        xraySniffing: this.xraySniffingToString.toString(),
+        xrayAllocate: this.xrayAllocate.toString(),
 
         trojanGoSni: '',
         trojanGoMuxEnable: 1,
@@ -697,6 +721,25 @@ export default {
       },
       dialogStatus: '',
       nodeTypes: [],
+      xrayStreamSettingsNetworks: [
+        'tcp',
+        'kcp',
+        'ws',
+        'http',
+        'domainsocket',
+        'quic',
+        'grpc'
+      ],
+      xrayStreamSettingsSecuritys: ['none', 'tls', 'xtls'],
+      xrayProtocols: [
+        'dokodemo-door',
+        'http',
+        'socks',
+        'vless',
+        'vmess',
+        'trojan',
+        'shadowsocks'
+      ],
       trojanGoSsMethods: [
         'AES-128-GCM',
         'AES-256-GCM',
@@ -746,7 +789,7 @@ export default {
         ip: '',
         port: 443,
 
-        xrayProtocol: '',
+        xrayProtocol: 'vless',
         xraySettings: '',
         xrayStreamSettings: '',
         xrayTag: '',
