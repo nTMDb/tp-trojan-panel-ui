@@ -67,6 +67,8 @@ export default {
     nodeType: '类型',
     nodePing: '延迟',
     xrayProtocol: '协议',
+    xrayStreamSettingsNetwork: '传输方式类型',
+    xrayStreamSettingsSecurity: '传输层加密',
     trojanGoSni: 'SNI',
     trojanGoMuxEnable: '是否开启多路复用',
     trojanGoWebsocketEnable: '是否开启Websocket',

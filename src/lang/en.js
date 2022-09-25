@@ -67,6 +67,8 @@ export default {
     nodeType: 'Node Type',
     nodePing: 'Delay',
     xrayProtocol: 'Protocol',
+    xrayStreamSettingsNetwork: 'Transmission Type',
+    xrayStreamSettingsSecurity: 'Transport Layer Encryption',
     trojanGoSni: 'SNI',
     trojanGoMuxEnable: 'Enable Mux',
     trojanGoWebsocketEnable: 'Enable Websocket',

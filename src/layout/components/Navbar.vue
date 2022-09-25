@@ -31,8 +31,12 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link to="/profile">
-            <el-dropdown-item>{{ $t('navbar.profile') }}</el-dropdown-item>
+          <router-link to="/profile" custom v-slot="{ navigate }">
+            <el-dropdown-item>
+              <span @click="navigate" role="link">
+                {{ $t('navbar.profile') }}
+              </span>
+            </el-dropdown-item>
           </router-link>
           <a
             target="_blank"

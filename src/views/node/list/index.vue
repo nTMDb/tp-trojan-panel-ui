@@ -154,15 +154,49 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayProtocol')"
-          prop="nodeTypeId"
+          prop="xrayProtocol"
           v-show="isXray"
         >
           <el-select v-model="temp.xrayProtocol" controls-position="right">
             <el-option
               :label="item"
               :value="item"
+              :key="index"
+              v-for="(item, index) in xrayProtocols"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.xrayStreamSettingsNetwork')"
+          prop="xrayStreamSettings.network"
+          v-show="isXray"
+        >
+          <el-select
+            v-model="xrayStreamSettings.network"
+            controls-position="right"
+          >
+            <el-option
+              :label="item"
+              :value="item"
               :key="item"
-              v-for="item in xrayProtocols"
+              v-for="item in xrayStreamSettingsNetworks"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.xrayStreamSettingsSecurity')"
+          prop="xrayStreamSettings.security"
+          v-show="isXray"
+        >
+          <el-select
+            v-model="xrayStreamSettings.security"
+            controls-position="right"
+          >
+            <el-option
+              :label="item"
+              :value="item"
+              :key="item"
+              v-for="item in xrayStreamSettingsSecuritys"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -431,11 +465,11 @@ export default {
         port: 443,
 
         xrayProtocol: 'vless',
-        xraySettings: this.xraySettings.toString(),
-        xrayStreamSettings: this.xrayStreamSettings.toString(),
+        xraySettings: '',
+        xrayStreamSettings: '',
         xrayTag: '',
-        xraySniffing: this.xraySniffingToString.toString(),
-        xrayAllocate: this.xrayAllocate.toString(),
+        xraySniffing: '',
+        xrayAllocate: '',
 
         trojanGoSni: '',
         trojanGoMuxEnable: 1,
@@ -485,7 +519,18 @@ export default {
             trigger: 'change'
           }
         ],
-
+        nodeTypeId: [
+          { required: true, message: '请输入节点类型', trigger: 'change' }
+        ],
+        xrayProtocol: [
+          { required: true, message: '请输入协议', trigger: 'change' }
+        ],
+        'xrayStreamSettings.network': [
+          { required: true, message: '请输入传输方式类型', trigger: 'change' }
+        ],
+        'xrayStreamSettings.security': [
+          { required: true, message: '请输入传输层加密', trigger: 'change' }
+        ],
         trojanGoSni: [
           {
             min: 4,
@@ -616,7 +661,19 @@ export default {
             trigger: 'change'
           }
         ],
-
+        nodeTypeId: [
+          { required: true, message: '请输入节点类型', trigger: 'change' }
+        ],
+        xrayProtocol: [
+          { required: true, message: '请输入协议', trigger: 'change' }
+        ],
+        // todo: 参数校验存在问题
+        'xrayStreamSettings.network': [
+          { required: true, message: '请输入传输方式类型', trigger: 'change' }
+        ],
+        'xrayStreamSettings.security': [
+          { required: true, message: '请输入传输层加密', trigger: 'change' }
+        ],
         trojanGoSni: [
           {
             min: 4,
@@ -855,6 +912,15 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
+          this.temp.xraySettings = JSON.stringify(this.xraySettings)
+          if (this.xrayStreamSettings.network !== 'none') {
+            this.xrayStreamSettings.network.tlsSettings.serverName =
+              this.temp.ip
+          }
+          this.temp.xraySettings = JSON.stringify(this.xrayStreamSettings)
+          this.temp.xrayTag = JSON.stringify(this.xrayTag)
+          this.temp.xraySniffing = JSON.stringify(this.xraySniffing)
+          this.temp.xrayAllocate = JSON.stringify(this.xrayAllocate)
           createNode(this.temp).then(() => {
             this.getList()
             this.dialogFormVisible = false
