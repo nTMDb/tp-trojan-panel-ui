@@ -168,11 +168,11 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayStreamSettingsNetwork')"
-          prop="xrayStreamSettingsNetwork"
+          prop="xrayStreamSettingsEntity.network"
           v-show="isXray"
         >
           <el-select
-            v-model="temp.xrayStreamSettingsNetwork"
+            v-model="temp.xrayStreamSettingsEntity.network"
             controls-position="right"
           >
             <el-option
@@ -185,11 +185,11 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayStreamSettingsSecurity')"
-          prop="xrayStreamSettingsSecurity"
+          prop="xrayStreamSettingsEntity.security"
           v-show="isXray"
         >
           <el-select
-            v-model="temp.xrayStreamSettingsSecurity"
+            v-model="temp.xrayStreamSettingsEntity.security"
             controls-position="right"
           >
             <el-option
@@ -457,9 +457,13 @@ export default {
         xrayProtocol: 'vless',
         xraySettings: '',
         xrayStreamSettings: '',
-        xrayStreamSettingsNetwork: 'tcp',
-        xrayStreamSettingsSecurity: 'xtls',
-        xrayStreamSettingsTlsSettingsServerName: '',
+        xrayStreamSettingsEntity: {
+          network: 'tcp',
+          security: 'xtls',
+          tlsSettings: {
+            serverName: ''
+          }
+        },
         xrayTag: '',
         xraySniffing: '',
         xrayAllocate: '',
@@ -518,10 +522,10 @@ export default {
         xrayProtocol: [
           { required: true, message: '请输入协议', trigger: 'change' }
         ],
-        xrayStreamSettingsNetwork: [
+        'xrayStreamSettingsEntity.network': [
           { required: true, message: '请输入传输方式类型', trigger: 'change' }
         ],
-        xrayStreamSettingsSecurity: [
+        'xrayStreamSettingsEntity.security': [
           { required: true, message: '请输入传输层加密', trigger: 'change' }
         ],
         trojanGoSni: [
@@ -660,10 +664,10 @@ export default {
         xrayProtocol: [
           { required: true, message: '请输入协议', trigger: 'change' }
         ],
-        xrayStreamSettingsNetwork: [
+        'xrayStreamSettingsEntity.network': [
           { required: true, message: '请输入传输方式类型', trigger: 'change' }
         ],
-        xrayStreamSettingsSecurity: [
+        'xrayStreamSettingsEntity.security': [
           { required: true, message: '请输入传输层加密', trigger: 'change' }
         ],
         trojanGoSni: [
@@ -841,9 +845,13 @@ export default {
         xrayProtocol: 'vless',
         xraySettings: '',
         xrayStreamSettings: '',
-        xrayStreamSettingsNetwork: 'tcp',
-        xrayStreamSettingsSecurity: 'xtls',
-        xrayStreamSettingsTlsSettingsServerName: '',
+        xrayStreamSettingsEntity: {
+          network: 'tcp',
+          security: 'xtls',
+          tlsSettings: {
+            serverName: ''
+          }
+        },
         xrayTag: '',
         xraySniffing: '',
         xrayAllocate: '',
@@ -907,14 +915,10 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          if (this.temp.xrayStreamSettingsNetwork !== 'none') {
-            this.temp.xrayStreamSettings = JSON.stringify({
-              network: this.temp.xrayStreamSettingsNetwork,
-              security: this.temp.xrayStreamSettingsSecurity,
-              tlsSettings: {
-                serverName: this.temp.ip
-              }
-            })
+          if (this.temp.xrayStreamSettings.network !== 'none') {
+            this.temp.xrayStreamSettings = JSON.stringify(
+              this.temp.xrayStreamSettingsEntity
+            )
           }
           createNode(this.temp).then(() => {
             this.getList()
