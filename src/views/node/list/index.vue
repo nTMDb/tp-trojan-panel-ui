@@ -114,7 +114,7 @@
     </el-table>
 
     <pagination
-      v-show="total > 0"
+      v-if="total > 0"
       :total="total"
       :page.sync="listQuery.pageNum"
       :limit.sync="listQuery.pageSize"
@@ -155,7 +155,7 @@
         <el-form-item
           :label="$t('table.xrayProtocol')"
           prop="xrayProtocol"
-          v-show="isXray"
+          v-if="isXray"
         >
           <el-select v-model="temp.xrayProtocol" controls-position="right">
             <el-option
@@ -169,7 +169,7 @@
         <el-form-item
           :label="$t('table.xrayStreamSettingsNetwork')"
           prop="xrayStreamSettingsEntity.network"
-          v-show="isXray"
+          v-if="isXray"
         >
           <el-select
             v-model="temp.xrayStreamSettingsEntity.network"
@@ -186,7 +186,7 @@
         <el-form-item
           :label="$t('table.xrayStreamSettingsSecurity')"
           prop="xrayStreamSettingsEntity.security"
-          v-show="isXray"
+          v-if="isXray"
         >
           <el-select
             v-model="temp.xrayStreamSettingsEntity.security"
@@ -202,7 +202,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSni')"
-          v-show="isTrojanGo"
+          v-if="isTrojanGo"
           prop="trojanGoSni"
           clearable
         >
@@ -210,7 +210,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoMuxEnable')"
-          v-show="isTrojanGo"
+          v-if="isTrojanGo"
           prop="trojanGoMuxEnable"
         >
           <el-switch
@@ -226,7 +226,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketEnable')"
-          v-show="isTrojanGo"
+          v-if="isTrojanGo"
           prop="trojanGoWebsocketEnable"
         >
           <el-switch
@@ -244,7 +244,7 @@
           :label="$t('table.trojanGoWebsocketPath')"
           prop="trojanGoWebsocketPath"
           clearable
-          v-show="isTrojanGo"
+          v-if="isTrojanGo"
         >
           <el-input
             :disabled="trojanGoWebsocketDisable"
@@ -255,7 +255,7 @@
           :label="$t('table.trojanGoWebsocketHost')"
           prop="trojanGoWebsocketHost"
           clearable
-          v-show="isTrojanGo"
+          v-if="isTrojanGo"
         >
           <el-input
             :disabled="trojanGoWebsocketDisable"
@@ -265,7 +265,7 @@
         <el-form-item
           :label="$t('table.trojanGoSsEnable')"
           prop="trojanGoSsEnable"
-          v-show="isTrojanGo"
+          v-if="isTrojanGo"
         >
           <el-switch
             v-model="temp.trojanGoSsEnable"
@@ -282,7 +282,7 @@
         <el-form-item
           :label="$t('table.trojanGoSsMethod')"
           prop="trojanGoSsMethod"
-          v-show="isTrojanGo"
+          v-if="isTrojanGo"
         >
           <el-select
             v-model="temp.trojanGoSsMethod"
@@ -302,7 +302,7 @@
           :label="$t('table.trojanGoSsPassword')"
           prop="trojanGoSsPassword"
           clearable
-          v-show="isTrojanGo"
+          v-if="isTrojanGo"
         >
           <el-input
             :disabled="trojanGoWebsocketDisable || trojanGoSsDisable"
@@ -312,7 +312,7 @@
         <el-form-item
           :label="$t('table.hysteriaProtocol')"
           prop="hysteriaProtocol"
-          v-show="isHysteria"
+          v-if="isHysteria"
         >
           <el-select
             v-model="temp.hysteriaProtocol"
@@ -329,7 +329,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaUpMbps')"
-          v-show="isHysteria"
+          v-if="isHysteria"
           prop="hysteriaUpMbps"
         >
           <el-input-number
@@ -340,7 +340,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaDownMbps')"
-          v-show="isHysteria"
+          v-if="isHysteria"
           prop="hysteriaDownMbps"
         >
           <el-input-number
@@ -349,7 +349,7 @@
             type="number"
           />
         </el-form-item>
-        <el-form-item v-show="isHysteria">
+        <el-form-item v-if="isHysteria">
           <aside>
             {{ $t('table.hysteriaTip') }}
           </aside>
