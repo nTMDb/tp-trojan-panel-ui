@@ -250,28 +250,22 @@
           :label="$t('table.trojanGoWebsocketPath')"
           prop="trojanGoWebsocketPath"
           clearable
-          v-show="isTrojanGo"
+          v-show="isTrojanGoEnableWebsocket"
         >
-          <el-input
-            :disabled="trojanGoWebsocketDisable"
-            v-model="temp.trojanGoWebsocketPath"
-          />
+          <el-input v-model="temp.trojanGoWebsocketPath" />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketHost')"
           prop="trojanGoWebsocketHost"
           clearable
-          v-show="isTrojanGo"
+          v-show="isTrojanGoEnableWebsocket"
         >
-          <el-input
-            :disabled="trojanGoWebsocketDisable"
-            v-model="temp.trojanGoWebsocketHost"
-          />
+          <el-input v-model="temp.trojanGoWebsocketHost" />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSsEnable')"
           prop="trojanGoSsEnable"
-          v-show="isTrojanGo"
+          v-show="isTrojanGoEnableWebsocket"
         >
           <el-switch
             v-model="temp.trojanGoSsEnable"
@@ -281,20 +275,18 @@
             :inactive-text="$t('table.disable')"
             :active-value="1"
             :inactive-value="0"
-            :disabled="trojanGoWebsocketDisable"
           >
           </el-switch>
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSsMethod')"
           prop="trojanGoSsMethod"
-          v-show="isTrojanGo"
+          v-show="isTrojanGoEnableWebsocket && isTrojanGoEnableSs"
         >
           <el-select
             v-model="temp.trojanGoSsMethod"
             :placeholder="$t('table.trojanGoSsMethod')"
             controls-position="right"
-            :disabled="trojanGoWebsocketDisable || trojanGoSsDisable"
           >
             <el-option
               :label="item"
@@ -308,12 +300,9 @@
           :label="$t('table.trojanGoSsPassword')"
           prop="trojanGoSsPassword"
           clearable
-          v-show="isTrojanGo"
+          v-show="isTrojanGoEnableWebsocket && isTrojanGoEnableSs"
         >
-          <el-input
-            :disabled="trojanGoWebsocketDisable || trojanGoSsDisable"
-            v-model="temp.trojanGoSsPassword"
-          />
+          <el-input v-model="temp.trojanGoSsPassword" />
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaProtocol')"
@@ -425,23 +414,23 @@ export default {
     }
   },
   computed: {
-    trojanGoWebsocketDisable: function () {
-      return this.temp.trojanGoWebsocketEnable === 0
-    },
-    trojanGoSsDisable: function () {
-      return this.temp.trojanGoSsEnable === 0
-    },
-    isTrojanGo: function () {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
-    },
-    isHysteria: function () {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
-    },
     isXray: function () {
       return getNodeTypeName(this.temp.nodeTypeId) === 'xray'
     },
     isXrayWs: function () {
       return this.isXray && this.temp.xrayStreamSettingsEntity.network === 'ws'
+    },
+    isTrojanGo: function () {
+      return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
+    },
+    isTrojanGoEnableWebsocket: function () {
+      return this.isTrojanGo && this.temp.trojanGoWebsocketEnable === 1
+    },
+    isTrojanGoEnableSs: function () {
+      return this.isTrojanGo && this.temp.trojanGoSsEnable === 1
+    },
+    isHysteria: function () {
+      return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
     }
   },
   data() {
