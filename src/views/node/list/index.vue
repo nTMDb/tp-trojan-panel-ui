@@ -793,22 +793,22 @@ export default {
       nodeTypes: [],
       xrayStreamSettingsNetworks: [
         'tcp',
-        'kcp',
+        // 'kcp',
         'ws',
-        'http',
-        'domainsocket',
-        'quic',
-        'grpc'
+        // 'http',
+        // 'domainsocket',
+        // 'quic',
+        // 'grpc'
       ],
       xrayStreamSettingsSecuritys: ['none', 'tls', 'xtls'],
       xrayProtocols: [
-        'dokodemo-door',
-        'http',
-        'socks',
+        // 'dokodemo-door',
+        // 'http',
+        // 'socks',
         'vless',
         'vmess',
         'trojan',
-        'shadowsocks'
+        // 'shadowsocks'
       ],
       trojanGoSsMethods: [
         'AES-128-GCM',
