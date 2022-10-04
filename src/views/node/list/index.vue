@@ -183,6 +183,13 @@
           </el-select>
         </el-form-item>
         <el-form-item
+          :label="$t('table.xrayStreamSettingsWsSettingsPath')"
+          prop="xrayStreamSettingsEntity.wsSettings.path"
+          v-show="isXrayWs"
+        >
+          <el-input v-model="temp.xrayStreamSettingsEntity.wsSettings.path" />
+        </el-form-item>
+        <el-form-item
           :label="$t('table.xrayStreamSettingsSecurity')"
           prop="xrayStreamSettingsEntity.security"
           v-show="isXray"
@@ -432,6 +439,9 @@ export default {
     },
     isXray: function () {
       return getNodeTypeName(this.temp.nodeTypeId) === 'xray'
+    },
+    isXrayWs: function () {
+      return this.isXray && this.temp.xrayStreamSettingsEntity.network === 'ws'
     }
   },
   data() {
@@ -461,6 +471,9 @@ export default {
           security: 'xtls',
           tlsSettings: {
             serverName: ''
+          },
+          wsSettings: {
+            path: '/trojan-panel-websocket-path'
           }
         },
         xrayTag: '',
@@ -470,7 +483,7 @@ export default {
         trojanGoSni: '',
         trojanGoMuxEnable: 1,
         trojanGoWebsocketEnable: 0,
-        trojanGoWebsocketPath: 'trojan-panel-websocket-path',
+        trojanGoWebsocketPath: '/trojan-panel-websocket-path',
         trojanGoWebsocketHost: '',
         trojanGoSsEnable: 0,
         trojanGoSsMethod: 'AES-128-GCM',
@@ -526,6 +539,14 @@ export default {
         ],
         'xrayStreamSettingsEntity.security': [
           { required: true, message: '请输入传输层加密', trigger: 'change' }
+        ],
+        'xrayStreamSettingsEntity.wsSettings.path': [
+          {
+            min: 2,
+            max: 64,
+            message: 'Websocket路径的范围在2-64字符之间',
+            trigger: 'change'
+          }
         ],
         trojanGoSni: [
           {
@@ -668,6 +689,14 @@ export default {
         ],
         'xrayStreamSettingsEntity.security': [
           { required: true, message: '请输入传输层加密', trigger: 'change' }
+        ],
+        'xrayStreamSettingsEntity.wsSettings.path': [
+          {
+            min: 2,
+            max: 64,
+            message: 'Websocket路径的范围在2-64字符之间',
+            trigger: 'change'
+          }
         ],
         trojanGoSni: [
           {
@@ -849,6 +878,9 @@ export default {
           security: 'xtls',
           tlsSettings: {
             serverName: ''
+          },
+          wsSettings: {
+            path: '/trojan-panel-websocket-path'
           }
         },
         xrayTag: '',
@@ -858,7 +890,7 @@ export default {
         trojanGoSni: '',
         trojanGoMuxEnable: 1,
         trojanGoWebsocketEnable: 0,
-        trojanGoWebsocketPath: 'trojan-panel-websocket-path',
+        trojanGoWebsocketPath: '/trojan-panel-websocket-path',
         trojanGoWebsocketHost: '',
         trojanGoSsEnable: 0,
         trojanGoSsMethod: 'AES-128-GCM',
