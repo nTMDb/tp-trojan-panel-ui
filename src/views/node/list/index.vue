@@ -794,7 +794,7 @@ export default {
       xrayStreamSettingsNetworks: [
         'tcp',
         // 'kcp',
-        'ws',
+        'ws'
         // 'http',
         // 'domainsocket',
         // 'quic',
@@ -807,7 +807,7 @@ export default {
         // 'socks',
         'vless',
         'vmess',
-        'trojan',
+        'trojan'
         // 'shadowsocks'
       ],
       trojanGoSsMethods: [
@@ -861,6 +861,13 @@ export default {
 
         xrayProtocol: 'vless',
         xraySettings: '',
+        xraySettingsEntity: {
+          fallbacks: [
+            {
+              dest: 'trojan-panel-caddy:80'
+            }
+          ]
+        },
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
@@ -940,6 +947,7 @@ export default {
               this.temp.xrayStreamSettingsEntity
             )
           }
+          this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
           createNode(this.temp).then(() => {
             this.getList()
             this.dialogFormVisible = false
