@@ -4,4 +4,4 @@ RUN mkdir -p /tpdata/trojan-panel-ui/
 WORKDIR /tpdata/trojan-panel-ui/
 COPY dist/ .
 ENTRYPOINT nginx -g 'daemon off;'
-EXPOSE 80
+EXPOSE 8888
