@@ -911,9 +911,33 @@ export default {
       })
     },
     handleUpdate(row) {
-      // this.temp = Object.assign({}, row)
+      this.temp = Object.assign(this.temp, row)
       selectNodeById({ id: row.id }).then((response) => {
-        this.temp = response.data
+        if (this.temp.nodeTypeId === 1) {
+          this.temp.xrayProtocol = response.data.xrayProtocol
+          this.temp.xraySettings = response.data.xraySettings
+          this.temp.xrayStreamSettingsEntity =
+            response.data.xrayStreamSettingsEntity
+          this.temp.xrayTag = response.data.xrayTag
+          this.temp.xraySniffing = response.data.xraySniffing
+          this.temp.xrayAllocate = response.data.xrayAllocate
+        }
+        if (this.temp.nodeTypeId === 2) {
+          this.temp.trojanGoSni = response.data.trojanGoSni
+          this.temp.trojanGoMuxEnable = response.data.trojanGoMuxEnable
+          this.temp.trojanGoWebsocketEnable =
+            response.data.trojanGoWebsocketEnable
+          this.temp.trojanGoWebsocketPath = response.data.trojanGoWebsocketPath
+          this.temp.trojanGoWebsocketHost = response.data.trojanGoWebsocketHost
+          this.temp.trojanGoSsEnable = response.data.trojanGoSsEnable
+          this.temp.trojanGoSsMethod = response.data.trojanGoSsMethod
+          this.temp.trojanGoSsPassword = response.data.trojanGoSsPassword
+        }
+        if (this.temp.nodeTypeId === 3) {
+          this.temp.hysteriaProtocol = response.data.hysteriaProtocol
+          this.temp.hysteriaUpMbps = response.data.hysteriaUpMbps
+          this.temp.hysteriaDownMbps = response.data.hysteriaDownMbps
+        }
       })
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
