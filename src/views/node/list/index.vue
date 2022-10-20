@@ -471,7 +471,7 @@ export default {
             path: '/trojan-panel-websocket-path'
           }
         },
-        xrayTag: '',
+        xrayTag: 'user',
         xraySniffing: '',
         xrayAllocate: '',
 
@@ -884,7 +884,7 @@ export default {
             path: '/trojan-panel-websocket-path'
           }
         },
-        xrayTag: '',
+        xrayTag: 'user',
         xraySniffing: '',
         xrayAllocate: '',
 
