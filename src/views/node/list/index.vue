@@ -975,14 +975,17 @@ export default {
             if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
               this.temp.xrayStreamSettingsEntity.tlsSettings.serverName =
                 this.temp.ip
+              this.temp.xraySettingsEntity.decryption = 'none'
             } else if (this.temp.xrayStreamSettingsEntity.security === 'xtls') {
               this.temp.xrayStreamSettingsEntity.xtlsSettings.serverName =
                 this.temp.ip
+              this.temp.xraySettingsEntity.decryption = 'none'
             }
-            this.temp.xrayStreamSettings = JSON.stringify(
-              this.temp.xrayStreamSettingsEntity
-            )
           }
+
+          this.temp.xrayStreamSettings = JSON.stringify(
+            this.temp.xrayStreamSettingsEntity
+          )
           this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
           createNode(this.temp).then(() => {
             this.getList()
