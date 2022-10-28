@@ -972,15 +972,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           if (this.temp.xrayStreamSettings.network !== 'none') {
-            if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
-              this.temp.xrayStreamSettingsEntity.tlsSettings.serverName =
-                this.temp.ip
-              this.temp.xraySettingsEntity.decryption = 'none'
-            } else if (this.temp.xrayStreamSettingsEntity.security === 'xtls') {
-              this.temp.xrayStreamSettingsEntity.xtlsSettings.serverName =
-                this.temp.ip
-              this.temp.xraySettingsEntity.decryption = 'none'
-            }
+            this.temp.xraySettingsEntity.decryption = 'none'
           }
 
           this.temp.xrayStreamSettings = JSON.stringify(
