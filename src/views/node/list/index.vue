@@ -27,6 +27,14 @@
       >
         {{ $t('table.add') }}
       </el-button>
+      <el-button
+        class="filter-item"
+        type="success"
+        icon="el-icon-link"
+        @click="handleClashSubscribe"
+      >
+        {{ $t('table.clashSubscribe') }}
+      </el-button>
     </div>
     <el-table
       :key="tableKey"
@@ -390,6 +398,7 @@ import { selectNodeTypeList } from '@/api/node-type'
 import { getNodeTypeName } from '@/utils/node'
 import checkPermission from '@/utils/permission'
 import { timeStampToDate } from '@/utils'
+import { clashSubscribe } from '@/api/account'
 
 export default {
   name: 'List',
@@ -1016,6 +1025,26 @@ export default {
     handleCopyURL(row) {
       nodeURL(row).then((response) => {
         this.$copyText(response.data).then(
+          (e) => {
+            Message({
+              showClose: true,
+              message: 'URL复制成功',
+              type: 'success'
+            })
+          },
+          (e) => {
+            Message({
+              showClose: true,
+              message: 'URL复制失败!',
+              type: 'error'
+            })
+          }
+        )
+      })
+    },
+    handleClashSubscribe() {
+      clashSubscribe().then((response) => {
+        this.$copyText(window.location.host + response.data).then(
           (e) => {
             Message({
               showClose: true,

@@ -127,3 +127,15 @@ export function updateAccountById(data) {
     data
   })
 }
+
+/**
+ * 获取Clash订阅地址
+ * @param data
+ * @returns
+ */
+export function clashSubscribe() {
+  return request({
+    url: '/account/clashSubscribe/',
+    method: 'get'
+  })
+}

@@ -41,6 +41,7 @@ export default {
     disable: '禁用',
     search: '搜索',
     add: '添加',
+    clashSubscribe: 'Clash订阅地址',
     actions: '操作',
     edit: '编辑',
     delete: '删除',

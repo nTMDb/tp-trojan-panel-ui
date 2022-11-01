@@ -41,6 +41,7 @@ export default {
     disable: 'Disable',
     search: 'Search',
     add: 'Add',
+    clashSubscribe: 'Clash Subscribe URL',
     id: 'ID',
     status: 'Status',
     actions: 'Actions',
