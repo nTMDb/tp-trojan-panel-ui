@@ -57,18 +57,18 @@
       <el-table-column :label="$t('table.quota')" width="110" align="center">
         <template slot-scope="{ row }">
           <span>{{
-            row.quota < 0 ? '无限' : getFlow(row.quota * 1024 * 1024)
+            row.quota < 0 ? '无限' : getFlow(row.quota)
           }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.download')" width="110" align="center">
         <template slot-scope="{ row }">
-          <span>{{ getFlow(row.download * 1024 * 1024) }}</span>
+          <span>{{ getFlow(row.download) }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.upload')" width="110" align="center">
         <template slot-scope="{ row }">
-          <span>{{ getFlow(row.upload * 1024 * 1024) }}</span>
+          <span>{{ getFlow(row.upload) }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.flow')" width="110" align="center">
@@ -76,14 +76,14 @@
           <span
             :style="
               row.quota >= 0 &&
-              row.quota * 1024 * 1024 - row.upload - row.download <= 0
+              row.quota - row.upload - row.download <= 0
                 ? 'color: #FF0000;'
                 : ''
             "
             >{{
               row.quota < 0
                 ? '无限'
-                : getFlow(row.quota * 1024 * 1024 - row.upload - row.download)
+                : getFlow(row.quota - row.upload - row.download)
             }}
           </span>
         </template>
