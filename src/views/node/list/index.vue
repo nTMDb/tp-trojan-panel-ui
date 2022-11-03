@@ -1016,6 +1016,14 @@ export default {
     updateData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
+          if (this.temp.xrayStreamSettings.network !== 'none') {
+            this.temp.xraySettingsEntity.decryption = 'none'
+          }
+
+          this.temp.xrayStreamSettings = JSON.stringify(
+              this.temp.xrayStreamSettingsEntity
+          )
+          this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
           const tempData = Object.assign({}, this.temp)
           updateNodeById(tempData).then(() => {
             const index = this.list.findIndex((v) => v.id === this.temp.id)
