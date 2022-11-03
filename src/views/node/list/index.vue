@@ -1044,7 +1044,9 @@ export default {
     },
     handleClashSubscribe() {
       clashSubscribe().then((response) => {
-        this.$copyText(window.location.host + response.data).then(
+        this.$copyText(
+          window.location.protocol + '//' + window.location.host + response.data
+        ).then(
           (e) => {
             Message({
               showClose: true,
