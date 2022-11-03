@@ -442,7 +442,12 @@ export default {
       return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
     },
     xrayStreamSettingsSecuritys: function () {
-      if (this.temp.xrayProtocol === 'vmess') {
+      // XTLS only supports TCP, mKCP and DomainSocket for now
+      // vmess暂不支持xtls
+      if (
+        this.temp.xrayProtocol === 'vmess' ||
+        this.temp.xrayStreamSettingsEntity.network !== 'tcp'
+      ) {
         this.temp.xrayStreamSettingsEntity.security = 'tls'
         return ['none', 'tls']
       } else {
