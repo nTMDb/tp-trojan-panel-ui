@@ -440,6 +440,14 @@ export default {
     },
     isHysteria: function () {
       return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
+    },
+    xrayStreamSettingsSecuritys: function () {
+      if (this.temp.xrayProtocol === 'vmess') {
+        this.temp.xrayStreamSettingsEntity.security = 'tls'
+        return ['none', 'tls']
+      } else {
+        return ['none', 'tls', 'xtls']
+      }
     }
   },
   data() {
@@ -815,7 +823,6 @@ export default {
         // 'quic',
         // 'grpc'
       ],
-      xrayStreamSettingsSecuritys: ['none', 'tls', 'xtls'],
       xrayProtocols: [
         // 'dokodemo-door',
         // 'http',
