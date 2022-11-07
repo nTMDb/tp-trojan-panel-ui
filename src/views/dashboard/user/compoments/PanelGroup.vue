@@ -51,7 +51,7 @@
 
 <script>
 import { timeStampToDate } from '@/utils'
-import { getFlow } from '@/utils/user'
+import { getFlow } from '@/utils/account'
 
 export default {
   name: 'PanelGroup',

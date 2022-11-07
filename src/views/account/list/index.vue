@@ -20,7 +20,6 @@
       </el-button>
       <el-button
         class="filter-item"
-        style="margin-left: 10px"
         type="primary"
         icon="el-icon-edit"
         @click="handleCreate"
@@ -58,18 +57,18 @@
       <el-table-column :label="$t('table.quota')" width="110" align="center">
         <template slot-scope="{ row }">
           <span>{{
-            row.quota < 0 ? '无限' : getFlow(row.quota * 1024 * 1024)
+            row.quota < 0 ? '无限' : getFlow(row.quota)
           }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.download')" width="110" align="center">
         <template slot-scope="{ row }">
-          <span>{{ getFlow(row.download * 1024 * 1024) }}</span>
+          <span>{{ getFlow(row.download) }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.upload')" width="110" align="center">
         <template slot-scope="{ row }">
-          <span>{{ getFlow(row.upload * 1024 * 1024) }}</span>
+          <span>{{ getFlow(row.upload) }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.flow')" width="110" align="center">
@@ -77,14 +76,14 @@
           <span
             :style="
               row.quota >= 0 &&
-              row.quota * 1024 * 1024 - row.upload - row.download <= 0
+              row.quota - row.upload - row.download <= 0
                 ? 'color: #FF0000;'
                 : ''
             "
             >{{
               row.quota < 0
                 ? '无限'
-                : getFlow(row.quota * 1024 * 1024 - row.upload - row.download)
+                : getFlow(row.quota - row.upload - row.download)
             }}
           </span>
         </template>
@@ -226,15 +225,15 @@
 
 <script>
 import {
-  createUser,
-  deleteUserById,
-  selectUserPage,
-  updateUserById
-} from '@/api/users'
+  createAccount,
+  deleteAccountById,
+  selectAccountPage,
+  updateAccountById
+} from '@/api/account'
 import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
-import { getFlow } from '@/utils/user'
+import { getFlow } from '@/utils/account'
 import { selectRoleList } from '@/api/role'
 import checkPermission from '@/utils/permission'
 import { setting } from '@/api/system'
@@ -430,8 +429,8 @@ export default {
     },
     getList() {
       this.listLoading = true
-      selectUserPage(this.listQuery).then((response) => {
-        this.list = response.data.users
+      selectAccountPage(this.listQuery).then((response) => {
+        this.list = response.data.accounts
         this.total = response.data.total
 
         setTimeout(() => {
@@ -488,7 +487,7 @@ export default {
         type: 'warning'
       }).then(() => {
         const tempData = Object.assign({}, row)
-        deleteUserById(tempData).then(() => {
+        deleteAccountById(tempData).then(() => {
           this.list.splice(index, 1)
           this.$notify({
             title: 'Success',
@@ -502,7 +501,7 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          createUser(this.temp).then(() => {
+          createAccount(this.temp).then(() => {
             this.getList()
             this.dialogFormVisible = false
             this.$notify({
@@ -519,7 +518,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
-          updateUserById(tempData).then(() => {
+          updateAccountById(tempData).then(() => {
             const index = this.list.findIndex((v) => v.id === this.temp.id)
             this.list.splice(index, 1, this.temp)
             this.dialogFormVisible = false
@@ -540,4 +539,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-button {
+  margin-left: 10px;
+}
+</style>

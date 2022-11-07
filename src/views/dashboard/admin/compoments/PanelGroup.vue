@@ -3,11 +3,11 @@
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-user">
-          <svg-icon icon-class="user" class-name="card-panel-icon" />
+          <svg-icon icon-class="account" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">{{ $t('dashboard.userCount') }}</div>
-          <h3>{{ groupData.userCount }}</h3>
+          <div class="card-panel-text">{{ $t('dashboard.accountCount') }}</div>
+          <h3>{{ groupData.accountCount }}</h3>
         </div>
       </div>
     </el-col>
@@ -62,7 +62,7 @@
 
 <script>
 import { timeStampToDate } from '@/utils'
-import { getFlow } from '@/utils/user'
+import { getFlow } from '@/utils/account'
 
 export default {
   name: 'PanelGroup',

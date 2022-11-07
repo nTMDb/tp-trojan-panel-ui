@@ -1,4 +1,4 @@
-import { getUserInfo, login, logout, register } from '@/api/users'
+import { getAccountInfo, login, logout, register } from '@/api/account'
 import { getToken, removeToken, setToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -29,9 +29,9 @@ const mutations = {
 }
 
 const actions = {
-  // user login
-  login({ commit }, userInfo) {
-    const { username, pass } = userInfo
+  // account login
+  login({ commit }, accountInfo) {
+    const { username, pass } = accountInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), pass: pass })
         .then((response) => {
@@ -46,9 +46,9 @@ const actions = {
     })
   },
 
-  // user register
-  register({ commit }, userInfo) {
-    const { username, pass } = userInfo
+  // account register
+  register({ commit }, accountInfo) {
+    const { username, pass } = accountInfo
     return new Promise((resolve, reject) => {
       register({ username: username.trim(), pass: pass.trim() })
         .then((response) => {
@@ -60,10 +60,10 @@ const actions = {
     })
   },
 
-  // get user info
-  getUserInfo({ commit }) {
+  // get account info
+  getAccountInfo({ commit }) {
     return new Promise((resolve, reject) => {
-      getUserInfo()
+      getAccountInfo()
         .then((response) => {
           const { data } = response
 
@@ -83,7 +83,7 @@ const actions = {
     })
   },
 
-  // user logout
+  // account logout
   logout({ commit }) {
     return new Promise((resolve, reject) => {
       logout()
@@ -110,8 +110,8 @@ const actions = {
 }
 
 export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions
+    namespaced: true,
+    state,
+    mutations,
+    actions
 }

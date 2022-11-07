@@ -75,7 +75,9 @@
         >{{ $t('register.register') }}
       </el-button>
       <el-button type="primary" style="width: 100%; margin: 0">
-        <router-link to="/login">{{ $t('register.login') }}</router-link>
+        <router-link to="/login" custom v-slot="{ navigate }">
+          <span @click="navigate" role="link">{{ $t('register.login') }}</span>
+        </router-link>
       </el-button>
     </el-form>
   </div>
@@ -163,7 +165,7 @@ export default {
         if (valid) {
           this.loading = true
           this.$store
-            .dispatch('users/register', this.registerForm)
+            .dispatch('account/register', this.registerForm)
             .then(() => {
               this.$router.push({ path: '/login' })
               this.loading = false

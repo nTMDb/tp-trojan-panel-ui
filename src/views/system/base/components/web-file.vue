@@ -15,7 +15,6 @@
         >{{ $t('config.WebFileSelect') }}
       </el-button>
       <el-button
-        style="margin-left: 10px"
         size="small"
         type="success"
         @click="submitUpload"
@@ -84,4 +83,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-button {
+  margin-left: 10px;
+}
+</style>

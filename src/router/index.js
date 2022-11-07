@@ -62,7 +62,7 @@ export const constantRoutes = [
       {
         path: 'index',
         name: 'index',
-        component: () => import('@/views/users/profile'),
+        component: () => import('@/views/account/profile'),
         meta: {
           title: 'profile',
           name: 'profile'
@@ -98,22 +98,22 @@ export const constantRoutes = [
 
 export const asyncRoutes = [
   {
-    path: '/users-manage',
-    name: 'usersManage',
+    path: '/account-manage',
+    name: 'accountManage',
     component: Layout,
-    redirect: '/users-manage/user-list',
+    redirect: '/account-manage/account-list',
     meta: {
-      title: 'usersManage',
-      icon: 'user',
+      title: 'accountManage',
+      icon: 'account',
       roles: ['sysadmin', 'admin']
     },
     children: [
       {
-        path: 'user-list',
-        name: 'userList',
-        component: () => import('@/views/users/list'),
+        path: 'account-list',
+        name: 'accountList',
+        component: () => import('@/views/account/list'),
         meta: {
-          title: 'userList',
+          title: 'accountList',
           roles: ['sysadmin', 'admin']
         }
       }

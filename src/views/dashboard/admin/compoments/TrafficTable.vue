@@ -29,7 +29,7 @@
 
 <script>
 import { trafficRank } from '@/api/dashboard'
-import { getFlow } from '@/utils/user'
+import { getFlow } from '@/utils/account'
 
 export default {
   name: 'trafficTable',

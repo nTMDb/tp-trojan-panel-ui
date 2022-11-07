@@ -65,7 +65,9 @@
         style="width: 100%; margin: 0"
         v-if="openRegister === 1"
       >
-        <router-link to="/register">{{ $t('login.register') }}</router-link>
+        <router-link to="/register" custom v-slot="{ navigate }">
+          <span @click="navigate" role="link">{{ $t('login.register') }}</span>
+        </router-link>
       </el-button>
     </el-form>
   </div>
@@ -147,7 +149,7 @@ export default {
         if (valid) {
           this.loading = true
           this.$store
-            .dispatch('users/login', this.loginForm)
+            .dispatch('account/login', this.loginForm)
             .then(() => {
               this.$router
                 .push({ path: this.redirect || '/' })

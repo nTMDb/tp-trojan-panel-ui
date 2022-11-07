@@ -56,7 +56,7 @@ export default {
         residualFlow: 0,
         nodeNum: 0,
         expireTime: new Date(),
-        userCount: 0
+        accountCount: 0
       }
     }
   },
