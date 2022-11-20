@@ -474,6 +474,7 @@ export default {
     },
     handleUpdate(row) {
       this.temp = Object.assign({}, row)
+      this.temp.quota = row.quota / 1024 / 1024
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
       this.$nextTick(() => {
