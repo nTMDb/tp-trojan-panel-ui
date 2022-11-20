@@ -56,9 +56,7 @@
       </el-table-column>
       <el-table-column :label="$t('table.quota')" width="110" align="center">
         <template slot-scope="{ row }">
-          <span>{{
-            row.quota < 0 ? '无限' : getFlow(row.quota)
-          }}</span>
+          <span>{{ row.quota < 0 ? '无限' : getFlow(row.quota) }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.download')" width="110" align="center">
@@ -75,8 +73,7 @@
         <template slot-scope="{ row }">
           <span
             :style="
-              row.quota >= 0 &&
-              row.quota - row.upload - row.download <= 0
+              row.quota >= 0 && row.quota - row.upload - row.download <= 0
                 ? 'color: #FF0000;'
                 : ''
             "
@@ -233,7 +230,7 @@ import {
 import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
-import { getFlow } from '@/utils/account'
+import { byteToMb, getFlow, mbToByte } from '@/utils/account'
 import { selectRoleList } from '@/api/role'
 import checkPermission from '@/utils/permission'
 import { setting } from '@/api/system'
@@ -474,7 +471,7 @@ export default {
     },
     handleUpdate(row) {
       this.temp = Object.assign({}, row)
-      this.temp.quota = row.quota / 1024 / 1024
+      this.temp.quota = byteToMb(row.quota)
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
       this.$nextTick(() => {
@@ -521,6 +518,7 @@ export default {
           const tempData = Object.assign({}, this.temp)
           updateAccountById(tempData).then(() => {
             const index = this.list.findIndex((v) => v.id === this.temp.id)
+            this.temp.quota = mbToByte(this.temp.quota)
             this.list.splice(index, 1, this.temp)
             this.dialogFormVisible = false
             this.$notify({

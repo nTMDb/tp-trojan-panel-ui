@@ -25,3 +25,19 @@ export function getFlow(flowValueBytes) {
   }
   return flow
 }
+
+// byte转mb
+export function byteToMb(flowValueBytes) {
+  if (flowValueBytes > 0) {
+    return flowValueBytes / 1024 / 1024
+  }
+  return flowValueBytes
+}
+
+// mb转byte
+export function mbToByte(flowValueBytes) {
+  if (flowValueBytes > 0) {
+    return flowValueBytes * 1024 * 1024
+  }
+  return flowValueBytes
+}
