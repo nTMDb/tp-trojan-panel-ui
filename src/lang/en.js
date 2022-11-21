@@ -83,7 +83,7 @@ export default {
     hysteriaUpMbps: 'Maximum upload speed for a single client/Mbps',
     hysteriaDownMbps: 'Maximum download speed for a single client/Mbps',
     hysteriaTip:
-      'The currently supported hysteria protocol is in the testing stage. It only supports authentication and does not support flow control. If flow control is required, please use the trojan-go protocol.',
+      'The currently supported Hysteria protocol is in the testing stage, and only supports user authentication and does not support traffic statistics.',
     nodeQRCode: 'Generate QR code',
     nodeURL: 'Copy URL',
     blackListIp: 'IP',
