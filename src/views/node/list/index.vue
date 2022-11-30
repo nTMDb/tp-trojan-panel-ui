@@ -74,8 +74,8 @@
       </el-table-column>
       <el-table-column :label="$t('table.nodePing')" width="80" align="center">
         <template slot-scope="{ row }">
-          <el-tag :type="row.ping | pingFilter">
-            <span>{{ row.ping }}ms</span>
+          <el-tag :type="pingIp(row.ip) | pingFilter">
+            <span>{{ pingIp(row.ip) }}ms</span>
           </el-tag>
         </template>
       </el-table-column>
@@ -400,7 +400,7 @@ import {
   updateNodeById
 } from '@/api/node'
 import { selectNodeTypeList } from '@/api/node-type'
-import { getNodeTypeName } from '@/utils/node'
+import {getNodeTypeName, pingIp} from '@/utils/node'
 import checkPermission from '@/utils/permission'
 import { timeStampToDate } from '@/utils'
 import { clashSubscribe } from '@/api/account'
@@ -859,6 +859,7 @@ export default {
     this.getList()
   },
   methods: {
+    pingIp,
     timeStampToDate,
     checkPermission,
     handleQRCode(row) {
