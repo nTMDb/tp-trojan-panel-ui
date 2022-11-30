@@ -357,6 +357,11 @@
             {{ $t('table.hysteriaTip') }}
           </aside>
         </el-form-item>
+        <el-form-item v-show="isNaiveProxy">
+          <aside>
+            {{ $t('table.hysteriaTip') }}
+          </aside>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false"
@@ -440,6 +445,9 @@ export default {
     },
     isHysteria: function () {
       return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
+    },
+    isNaiveProxy: function () {
+      return getNodeTypeName(this.temp.nodeTypeId) === 'naiveproxy'
     },
     xrayStreamSettingsSecuritys: function () {
       // XTLS only supports TCP, mKCP and DomainSocket for now

@@ -83,7 +83,9 @@ export default {
     hysteriaUpMbps: '单客户端最大上传速度/Mbps',
     hysteriaDownMbps: '单客户端最大下载速度/Mbps',
     hysteriaTip:
-      '目前支持的Hysteria协议处于测试阶段，只支持用户认证不支持流量统计。',
+      '目前支持的Hysteria处于测试阶段，只支持用户认证不支持流量统计。',
+    naiveproxyTip:
+      '目前支持的NaiveProxy处于测试阶段，只支持用户认证不支持流量统计。',
     nodeQRCode: '生成二维码',
     nodeURL: '复制URL',
     blackListIp: 'IP',
