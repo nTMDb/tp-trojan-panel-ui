@@ -74,7 +74,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.nodeStatus')"
-        width="80"
+        width="100"
         align="center"
       >
         <template slot-scope="{ row }">
