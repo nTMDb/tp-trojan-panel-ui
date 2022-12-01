@@ -72,10 +72,20 @@
           <span>{{ filterNodeTypes(row.nodeTypeId) }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodePing')" width="80" align="center">
+      <el-table-column
+        :label="$t('table.nodeStatus')"
+        width="80"
+        align="center"
+      >
         <template slot-scope="{ row }">
-          <el-tag :type="pingIp(row.ip) | pingFilter">
-            <span>{{ pingIp(row.ip) }}ms</span>
+          <el-tag :type="handleStatus(row.status)">
+            <span>{{
+              row.status === 1
+                ? $t('table.nodeStatusSuccess')
+                : row.status === 0
+                ? $t('table.nodeStatusError')
+                : $t('table.nodeStatusTimeout')
+            }}</span>
           </el-tag>
         </template>
       </el-table-column>
@@ -400,7 +410,7 @@ import {
   updateNodeById
 } from '@/api/node'
 import { selectNodeTypeList } from '@/api/node-type'
-import {getNodeTypeName, pingIp} from '@/utils/node'
+import { getNodeTypeName } from '@/utils/node'
 import checkPermission from '@/utils/permission'
 import { timeStampToDate } from '@/utils'
 import { clashSubscribe } from '@/api/account'
@@ -422,9 +432,6 @@ export default {
         1: 'success'
       }
       return deletedMap[trojanGoSsEnable]
-    },
-    pingFilter(ping) {
-      return ping < 0 ? 'danger' : 'success'
     }
   },
   computed: {
@@ -859,7 +866,6 @@ export default {
     this.getList()
   },
   methods: {
-    pingIp,
     timeStampToDate,
     checkPermission,
     handleQRCode(row) {
@@ -1030,7 +1036,7 @@ export default {
           }
 
           this.temp.xrayStreamSettings = JSON.stringify(
-              this.temp.xrayStreamSettingsEntity
+            this.temp.xrayStreamSettingsEntity
           )
           this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
           const tempData = Object.assign({}, this.temp)
@@ -1092,6 +1098,9 @@ export default {
           }
         )
       })
+    },
+    handleStatus(status) {
+      return status > 0 ? 'success' : 'danger'
     }
   }
 }
