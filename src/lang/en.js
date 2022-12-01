@@ -58,6 +58,7 @@ export default {
     flow: 'Residual Flow',
     expireDate: 'Expire Date',
     createTime: 'Create Time',
+    reset: 'Reset Traffic',
     pass: 'Password',
     email: 'Email(Only support 163 126 qq gmail)',
     oldPass: 'Old Password',

@@ -58,6 +58,7 @@ export default {
     flow: '剩余流量',
     expireDate: '到期时间',
     createTime: '创建时间',
+    reset: '重设流量',
     pass: '密码',
     email: '邮箱(只支持163 126 qq gmail)',
     oldPass: '原密码',

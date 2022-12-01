@@ -139,3 +139,16 @@ export function clashSubscribe() {
     method: 'get'
   })
 }
+
+/**
+ * 重设下载和上传流量
+ * @param data
+ * @returns
+ */
+export function resetAccountDownloadAndUpload(data) {
+  return request({
+    url: '/account/resetAccountDownloadAndUpload',
+    method: 'post',
+    data
+  })
+}

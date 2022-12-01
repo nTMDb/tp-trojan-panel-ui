@@ -124,6 +124,14 @@
           <el-button
             type="primary"
             size="mini"
+            @click="handleReset(row)"
+            v-if="checkPermission(['sysadmin'])"
+          >
+            {{ $t('table.reset') }}
+          </el-button>
+          <el-button
+            type="primary"
+            size="mini"
             @click="handleUpdate(row)"
             v-if="checkPermission(['sysadmin'])"
           >
@@ -224,6 +232,7 @@
 import {
   createAccount,
   deleteAccountById,
+  resetAccountDownloadAndUpload,
   selectAccountPage,
   updateAccountById
 } from '@/api/account'
@@ -533,6 +542,24 @@ export default {
     },
     roleFilter(roleId) {
       return this.roleList.find((item) => item.id === roleId).desc
+    },
+    handleReset(row) {
+      MessageBox.confirm('确认重设该用户下载和上传流量？', '警告', {
+        confirmButtonText: '是',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        const tempData = Object.assign({}, row)
+        resetAccountDownloadAndUpload(tempData).then(() => {
+          this.getList()
+          this.$notify({
+            title: 'Success',
+            message: '重设成功',
+            type: 'success',
+            duration: 2000
+          })
+        })
+      })
     }
   }
 }
