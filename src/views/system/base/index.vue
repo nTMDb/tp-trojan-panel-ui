@@ -35,7 +35,7 @@ export default {
         expireWarnDay: 0,
         expireWarnEnable: 0,
         id: 1,
-        openRegister: 1,
+        registerEnable: 1,
         registerExpireDays: 0,
         registerQuota: 0
       }

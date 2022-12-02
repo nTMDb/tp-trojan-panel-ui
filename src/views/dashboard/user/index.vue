@@ -9,7 +9,7 @@
         :lg="{ span: 12 }"
         :xl="{ span: 12 }"
       >
-        <el-card class="box-card">
+        <el-card class="box-card" v-if="trafficRankEnable === 1">
           <div slot="header" class="clearfix">
             <span>{{ $t('dashboard.trafficRank') }}</span>
           </div>
@@ -42,6 +42,7 @@
 import PanelGroup from '@/views/dashboard/user/compoments/PanelGroup'
 import { panelGroup } from '@/api/dashboard'
 import TrafficTable from '@/views/dashboard/admin/compoments/TrafficTable'
+import { selectSystemByName } from '@/api/system'
 
 export default {
   name: 'User',
@@ -56,7 +57,8 @@ export default {
         residualFlow: 0,
         nodeNum: 0,
         expireTime: new Date()
-      }
+      },
+      trafficRankEnable: 0
     }
   },
   created() {
@@ -64,6 +66,15 @@ export default {
       const { data } = response
       this.panelGroupData = data
     })
+    this.selectSystemByName()
+  },
+  methods: {
+    selectSystemByName() {
+      selectSystemByName().then((response) => {
+        const { data } = response
+        this.trafficRankEnable = data.trafficRankEnable
+      })
+    }
   }
 }
 </script>

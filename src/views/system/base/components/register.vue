@@ -8,11 +8,11 @@
     >
       <el-form-item
         :label="$t('config.RegisterEnable')"
-        prop="openRegister"
+        prop="registerEnable"
         clearable
       >
         <el-switch
-          v-model="systemConfig.openRegister"
+          v-model="systemConfig.registerEnable"
           :active-value="1"
           :inactive-value="0"
           class="ml-2"
@@ -61,13 +61,13 @@ export default {
   },
   computed: {
     registerDisable: function () {
-      return this.systemConfig.openRegister === 0
+      return this.systemConfig.registerEnable === 0
     }
   },
   data() {
     return {
       updateRules: {
-        openRegister: [
+        registerEnable: [
           { required: true, message: '请输入是否开放注册', trigger: 'change' }
         ],
         registerQuota: [

@@ -63,7 +63,7 @@
       <el-button
         type="primary"
         style="width: 100%; margin: 0"
-        v-if="openRegister === 1"
+        v-if="registerEnable === 1"
       >
         <router-link to="/register" custom v-slot="{ navigate }">
           <span @click="navigate" role="link">{{ $t('login.register') }}</span>
@@ -119,7 +119,7 @@ export default {
       loading: false,
       passwordType: 'password',
       redirect: undefined,
-      openRegister: 0
+      registerEnable: 0
     }
   },
   watch: {
@@ -168,7 +168,7 @@ export default {
     setting() {
       setting().then((response) => {
         const { data } = response
-        this.openRegister = data.openRegister
+        this.registerEnable = data.registerEnable
       })
     }
   }
