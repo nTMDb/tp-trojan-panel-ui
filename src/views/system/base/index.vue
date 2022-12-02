@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-tabs v-model="activeName">
       <el-tab-pane :label="$t('config.accountConfig')" name="account-config">
-        <register :system-config="systemConfig" />
+        <account :system-config="systemConfig" />
       </el-tab-pane>
       <el-tab-pane :label="$t('config.configEmail')" name="config-email">
         <email :system-config="systemConfig" />
