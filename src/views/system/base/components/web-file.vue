@@ -12,7 +12,7 @@
       :before-upload="beforeUpload"
     >
       <el-button slot="trigger" size="small" type="primary"
-        >{{ $t('config.WebFileSelect') }}
+        >{{ $t('config.webFileSelect') }}
       </el-button>
       <el-button
         size="small"
@@ -20,10 +20,10 @@
         @click="submitUpload"
         :disabled="fileList.length === 0"
       >
-        {{ $t('config.WebFileBtn') }}
+        {{ $t('config.webFileBtn') }}
       </el-button>
       <div slot="tip" class="el-upload__tip">
-        {{ $t('config.WebFileTip') }}
+        {{ $t('config.webFileTip') }}
       </div>
     </el-upload>
   </div>

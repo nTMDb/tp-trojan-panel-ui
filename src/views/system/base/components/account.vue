@@ -7,7 +7,7 @@
       label-position="left"
     >
       <el-form-item
-        :label="$t('config.RegisterEnable')"
+        :label="$t('config.registerEnable')"
         prop="registerEnable"
         clearable
       >
@@ -20,7 +20,7 @@
           inactive-color="#ff4949"
         />
       </el-form-item>
-      <el-form-item :label="$t('config.RegisterQuota')" prop="registerQuota">
+      <el-form-item :label="$t('config.registerQuota')" prop="registerQuota">
         <el-input-number
           v-model.number="systemConfig.registerQuota"
           controls-position="right"
@@ -29,7 +29,7 @@
         />
       </el-form-item>
       <el-form-item
-        :label="$t('config.RegisterExpireDays')"
+        :label="$t('config.registerExpireDays')"
         prop="registerExpireDays"
       >
         <el-input-number
@@ -37,6 +37,34 @@
           controls-position="right"
           type="number"
           :disabled="registerDisable"
+        />
+      </el-form-item>
+      <el-form-item
+        :label="$t('config.resetDownloadAndUploadMonth')"
+        prop="resetDownloadAndUploadMonth"
+        clearable
+      >
+        <el-switch
+          v-model="systemConfig.resetDownloadAndUploadMonth"
+          :active-value="1"
+          :inactive-value="0"
+          class="ml-2"
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+        />
+      </el-form-item>
+      <el-form-item
+        :label="$t('config.trafficRankEnable')"
+        prop="trafficRankEnable"
+        clearable
+      >
+        <el-switch
+          v-model="systemConfig.trafficRankEnable"
+          :active-value="1"
+          :inactive-value="0"
+          class="ml-2"
+          active-color="#13ce66"
+          inactive-color="#ff4949"
         />
       </el-form-item>
       <el-form-item>
@@ -52,7 +80,7 @@
 import { updateSystemById } from '@/api/system'
 
 export default {
-  name: 'register',
+  name: 'account',
   props: {
     systemConfig: {
       type: Object,
@@ -95,6 +123,20 @@ export default {
             min: 0,
             max: 365,
             message: '天数在0-365之间',
+            trigger: 'change'
+          }
+        ],
+        resetDownloadAndUploadMonth: [
+          {
+            required: true,
+            message: '请输入是否每月重设下载和上传流量',
+            trigger: 'change'
+          }
+        ],
+        trafficRankEnable: [
+          {
+            required: true,
+            message: '请输入是否开启流量排行',
             trigger: 'change'
           }
         ]

@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import Register from './components/register'
+import Account from './components/account'
 import WebFile from './components/web-file'
 import Email from './components/email'
 import { selectSystemByName } from '@/api/system'
 
 export default {
   name: 'index',
-  components: { Register, WebFile, Email },
+  components: { Account, WebFile, Email },
   data() {
     return {
       activeName: 'account-config',
@@ -37,7 +37,9 @@ export default {
         id: 1,
         registerEnable: 1,
         registerExpireDays: 0,
-        registerQuota: 0
+        registerQuota: 0,
+        resetDownloadAndUploadMonth: 0,
+        trafficRankEnable: 1
       }
     }
   },
