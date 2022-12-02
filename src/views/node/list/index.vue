@@ -869,6 +869,7 @@ export default {
     timeStampToDate,
     checkPermission,
     handleQRCode(row) {
+      this.qrCodeSrc = ''
       const tempData = Object.assign({}, row)
       nodeQRCode(tempData).then((response) => {
         this.qrCodeSrc = 'data:image/png;base64,' + response.data
