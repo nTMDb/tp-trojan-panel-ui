@@ -42,7 +42,7 @@
 import PanelGroup from '@/views/dashboard/user/compoments/PanelGroup'
 import { panelGroup } from '@/api/dashboard'
 import TrafficTable from '@/views/dashboard/admin/compoments/TrafficTable'
-import { selectSystemByName } from '@/api/system'
+import { setting } from '@/api/system'
 
 export default {
   name: 'User',
@@ -69,8 +69,8 @@ export default {
     this.selectSystemByName()
   },
   methods: {
-    selectSystemByName() {
-      selectSystemByName().then((response) => {
+    setting() {
+      setting().then((response) => {
         const { data } = response
         this.trafficRankEnable = data.trafficRankEnable
       })
