@@ -128,7 +128,7 @@ export default {
     trafficRank: '流量排行(前15名, 一小时更新一次)'
   },
   config: {
-    configRegister: '新用户设置',
+    accountConfig: '用户设置',
     configWebFile: '自定义伪装网站',
     configEmail: '系统邮箱设置',
     RegisterEnable: '是否开放注册',

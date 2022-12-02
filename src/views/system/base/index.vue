@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-tabs v-model="activeName">
-      <el-tab-pane :label="$t('config.configRegister')" name="config-register">
+      <el-tab-pane :label="$t('config.accountConfig')" name="account-config">
         <register :system-config="systemConfig" />
       </el-tab-pane>
       <el-tab-pane :label="$t('config.configEmail')" name="config-email">
@@ -25,7 +25,7 @@ export default {
   components: { Register, WebFile, Email },
   data() {
     return {
-      activeName: 'config-register',
+      activeName: 'account-config',
       systemConfig: {
         emailEnable: 0,
         emailHost: undefined,

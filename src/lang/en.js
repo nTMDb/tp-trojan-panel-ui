@@ -128,7 +128,7 @@ export default {
     trafficRank: 'Traffic Rank(Top 15, Update every hour)'
   },
   config: {
-    configRegister: 'Register Config',
+    accountConfig: 'Account Config',
     configWebFile: 'WebFile Config',
     configEmail: 'Email Config',
     RegisterEnable: 'Register Enable',
