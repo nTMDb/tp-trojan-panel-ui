@@ -67,7 +67,6 @@ export default {
     nodeIp: 'IP Address/Domain',
     nodePort: 'Port',
     nodeType: 'Node Type',
-    nodePing: 'Delay',
     nodeStatus:'Status',
     nodeStatusSuccess:'success',
     nodeStatusError:'error',

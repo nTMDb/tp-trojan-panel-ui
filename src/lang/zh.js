@@ -67,7 +67,6 @@ export default {
     nodeIp: 'IP地址/域名',
     nodePort: '端口',
     nodeType: '类型',
-    nodePing: '延迟',
     nodeStatus: '状态',
     nodeStatusSuccess: '正常',
     nodeStatusError: '异常',
