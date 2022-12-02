@@ -66,7 +66,7 @@ export default {
       const { data } = response
       this.panelGroupData = data
     })
-    this.selectSystemByName()
+    this.setting()
   },
   methods: {
     setting() {
