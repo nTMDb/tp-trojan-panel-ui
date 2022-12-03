@@ -76,6 +76,7 @@
         :label="$t('table.nodeStatus')"
         width="100"
         align="center"
+        v-if="checkPermission(['sysadmin', 'admin'])"
       >
         <template slot-scope="{ row }">
           <el-tag :type="handleStatus(row.status)">
@@ -284,7 +285,7 @@
           :label="$t('table.trojanGoSsEnable')"
           prop="trojanGoSsEnable"
           v-show="isTrojanGoEnableWebsocket"
-        >
+          >s
           <el-switch
             v-model="temp.trojanGoSsEnable"
             active-color="#13ce66"
