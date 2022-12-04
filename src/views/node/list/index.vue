@@ -370,7 +370,7 @@
         </el-form-item>
         <el-form-item v-show="isNaiveProxy">
           <aside>
-            {{ $t('table.hysteriaTip') }}
+            {{ $t('table.naiveproxyTip') }}
           </aside>
         </el-form-item>
       </el-form>
