@@ -57,6 +57,45 @@
         </div>
       </div>
     </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
+        <div class="card-panel-icon-wrapper icon-sysinfo">
+          <svg-icon icon-class="sysinfo" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">{{ $t('dashboard.cpuUsed') }}</div>
+          <h3 :style="groupData.cpuUsed | useWarning">
+            {{ groupData.cpuUsed | toPercent }}
+          </h3>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
+        <div class="card-panel-icon-wrapper icon-sysinfo">
+          <svg-icon icon-class="sysinfo" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">{{ $t('dashboard.memUsed') }}</div>
+          <h3 :style="groupData.memUsed | useWarning">
+            {{ groupData.memUsed | toPercent }}
+          </h3>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
+        <div class="card-panel-icon-wrapper icon-sysinfo">
+          <svg-icon icon-class="sysinfo" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">{{ $t('dashboard.diskUsed') }}</div>
+          <h3 :style="groupData.diskUsed | useWarning">
+            {{ groupData.diskUsed | toPercent }}
+          </h3>
+        </div>
+      </div>
+    </el-col>
   </el-row>
 </template>
 
@@ -75,6 +114,14 @@ export default {
   methods: {
     getFlow,
     timeStampToDate
+  },
+  filters: {
+    useWarning: function (value) {
+      return value >= 80 ? 'color: #FF0000;' : ''
+    },
+    toPercent: function (value) {
+      return value + '%'
+    }
   },
   computed: {
     quota: function () {
@@ -140,6 +187,10 @@ export default {
       .icon-time {
         background: #ffb6c1;
       }
+
+      .icon-sysinfo {
+        background: #d4237a;
+      }
     }
 
     .icon-user {
@@ -156,6 +207,10 @@ export default {
 
     .icon-time {
       color: #ffb6c1;
+    }
+
+    .icon-sysinfo {
+      color: #d4237a;
     }
 
     .card-panel-icon-wrapper {

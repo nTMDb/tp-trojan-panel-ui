@@ -114,6 +114,9 @@ export default {
     sidebarLogo: '侧边栏 Logo'
   },
   dashboard: {
+    diskUsed: '磁盘使用率',
+    memUsed: '内存使用率',
+    cpuUsed: 'CPU使用率',
     expireTime: '到期时间',
     nodeCount: '节点总数',
     onLine: '在线用户数',

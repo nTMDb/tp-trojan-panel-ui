@@ -56,7 +56,10 @@ export default {
         residualFlow: 0,
         nodeNum: 0,
         expireTime: new Date(),
-        accountCount: 0
+        accountCount: 0,
+        cpuUsed: 0,
+        memUsed: 0,
+        diskUsed: 0
       }
     }
   },
