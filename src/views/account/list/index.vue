@@ -56,7 +56,9 @@
       </el-table-column>
       <el-table-column :label="$t('table.quota')" width="110" align="center">
         <template slot-scope="{ row }">
-          <span>{{ row.quota < 0 ? '无限' : getFlow(row.quota) }}</span>
+          <span>{{
+            row.quota < 0 ? $t('dashboard.unlimited') : getFlow(row.quota)
+          }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.download')" width="110" align="center">
@@ -79,7 +81,7 @@
             "
             >{{
               row.quota < 0
-                ? '无限'
+                ? $t('dashboard.unlimited')
                 : getFlow(row.quota - row.upload - row.download)
             }}
           </span>
@@ -259,7 +261,7 @@ export default {
   data() {
     const validateUsername = (rule, value, callback) => {
       if (this.temp.username.trim().indexOf('admin') >= 0) {
-        callback(new Error('用户名不能包含admin'))
+        callback(new Error(this.$t('valid.usernameNotExistAdmin')))
       } else {
         callback()
       }
@@ -289,21 +291,25 @@ export default {
       },
       dialogFormVisible: false,
       textMap: {
-        update: '编辑',
-        create: '创建'
+        update: this.$t('table.edit'),
+        create: this.$t('table.add')
       },
       createRules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.username'),
+            trigger: 'change'
+          },
           {
             min: 6,
             max: 20,
-            message: '名称的范围在6-20字符之间',
+            message: this.$t('valid.usernameRange'),
             trigger: 'change'
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: '用户名必须是字母和数字的组合',
+            message: this.$t('valid.usernameElement'),
             trigger: 'change'
           },
           {
@@ -312,26 +318,34 @@ export default {
           }
         ],
         pass: [
-          { required: true, message: '请输入密码', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.pass'),
+            trigger: 'change'
+          },
           {
             min: 6,
             max: 20,
-            message: '密码的范围在6-20字符之间',
+            message: this.$t('valid.passRange'),
             trigger: 'change'
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: '密码必须是字母和数字的组合',
+            message: this.$t('valid.passElement'),
             trigger: 'change'
           }
         ],
         quota: [
-          { required: true, message: '请输入总流量', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.quota'),
+            trigger: 'change'
+          },
           {
             type: 'number',
             min: -1,
             max: 1024000,
-            message: '总流量的范围在-1-1024000之间的整数',
+            message: this.$t('valid.quotaRange'),
             trigger: 'change'
           }
         ],
@@ -339,33 +353,47 @@ export default {
           {
             min: 4,
             max: 64,
-            message: '邮箱的范围在4-64字符之间',
+            message: this.$t('valid.emailRange'),
             trigger: 'change'
           },
           {
             pattern:
               /^([A-Za-z0-9_\-\.])+\@(163.com|126.com|qq.com|gmail.com)$/,
-            message: '请输入正确的邮箱格式(只支持163 126 qq gmail)',
+            message: this.$t('valid.emailElement'),
             trigger: 'change'
           }
         ],
-        deleted: [{ required: true, message: '请输入状态', trigger: 'change' }],
+        deleted: [
+          {
+            required: true,
+            message: this.$t('valid.deleted'),
+            trigger: 'change'
+          }
+        ],
         expireTime: [
-          { required: true, message: '请输入到期时间', trigger: 'change' }
+          {
+            required: true,
+            message: this.$t('valid.expireTime'),
+            trigger: 'change'
+          }
         ]
       },
       updateRules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.username'),
+            trigger: 'change'
+          },
           {
             min: 6,
             max: 20,
-            message: '名称的范围在6-20字符之间',
+            message: this.$t('valid.usernameRange'),
             trigger: 'change'
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: '用户名必须是字母和数字的组合',
+            message: this.$t('valid.usernameElement'),
             trigger: 'change'
           },
           {
@@ -377,22 +405,26 @@ export default {
           {
             min: 6,
             max: 20,
-            message: '密码的范围在6-20字符之间',
+            message: this.$t('valid.passRange'),
             trigger: 'change'
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: '密码必须是字母和数字的组合',
+            message: this.$t('valid.passElement'),
             trigger: 'change'
           }
         ],
         quota: [
-          { required: true, message: '请输入总流量', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.quota'),
+            trigger: 'change'
+          },
           {
             type: 'number',
             min: -1,
             max: 1024000,
-            message: '总流量的范围在-1-1024000之间的整数',
+            message: this.$t('valid.quotaRange'),
             trigger: 'change'
           }
         ],
@@ -400,19 +432,29 @@ export default {
           {
             min: 4,
             max: 64,
-            message: '邮箱的范围在4-64字符之间',
+            message: this.$t('valid.emailRange'),
             trigger: 'change'
           },
           {
             pattern:
               /^([A-Za-z0-9_\-\.])+\@(163.com|126.com|qq.com|gmail.com)$/,
-            message: '请输入正确的邮箱格式(只支持163 126 qq gmail)',
+            message: this.$t('valid.emailElement'),
             trigger: 'change'
           }
         ],
-        deleted: [{ required: true, message: '请输入状态', trigger: 'change' }],
+        deleted: [
+          {
+            required: true,
+            message: this.$t('valid.deleted'),
+            trigger: 'change'
+          }
+        ],
         expireTime: [
-          { required: true, message: '请输入到期时间', trigger: 'change' }
+          {
+            required: true,
+            message: this.$t('valid.expireTime'),
+            trigger: 'change'
+          }
         ]
       },
       dialogStatus: '',

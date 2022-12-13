@@ -150,5 +150,21 @@ export default {
     emailPassword: 'Email Password',
     expireWarnEnable: 'Enable expiration reminder',
     expireWarnDay: 'Reminder days ahead'
+  },
+  valid: {
+    username: 'Please enter user name',
+    usernameRange: 'The name ranges between 6-20 characters',
+    usernameElement: 'Username must be a combination of letters and numbers',
+    usernameNotExistAdmin: 'Username cannot contain admin',
+    pass: 'Please enter password',
+    passRange: 'Password range is between 6-20 characters',
+    passElement: 'Password must be a combination of letters and numbers',
+    quota: 'Please enter the total traffic',
+    quotaRange: 'The range of the total flow is an integer between -1-1024000',
+    emailRange: 'The range of mailbox is between 4-64 characters',
+    emailElement:
+      'Please enter the correct email format (only 163 126 qq gmail is supported)',
+    deleted: 'Please enter status',
+    expireTime: 'Please enter an expiration time'
   }
 }

@@ -389,7 +389,6 @@
 
     <el-dialog title="节点二维码" :visible.sync="dialogQRCodeVisible">
       <el-image style="width: 256px; height: 256px" :src="qrCodeSrc"></el-image>
-      测试
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="dialogQRCodeVisible = false">
           {{ $t('table.confirm') }}

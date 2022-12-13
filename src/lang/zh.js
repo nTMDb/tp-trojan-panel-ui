@@ -148,5 +148,20 @@ export default {
     emailPassword: '邮箱密码',
     expireWarnEnable: '是否开启到期提醒',
     expireWarnDay: '提醒提前的天数'
+  },
+  valid: {
+    username: '请输入用户名',
+    usernameRange: '名称的范围在6-20字符之间',
+    usernameElement: '用户名必须是字母和数字的组合',
+    usernameNotExistAdmin: '用户名不能包含admin',
+    pass: '请输入密码',
+    passRange: '密码的范围在6-20字符之间',
+    passElement: '密码必须是字母和数字的组合',
+    quota: '请输入总流量',
+    quotaRange: '总流量的范围在-1-1024000之间的整数',
+    emailRange: '邮箱的范围在4-64字符之间',
+    emailElement: '请输入正确的邮箱格式(只支持163 126 qq gmail)',
+    deleted: '请输入状态',
+    expireTime: '请输入到期时间'
   }
 }
