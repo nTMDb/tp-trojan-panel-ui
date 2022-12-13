@@ -2,63 +2,6 @@
   <el-row :gutter="40" class="panel-group">
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-user">
-          <svg-icon icon-class="account" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">{{ $t('dashboard.accountCount') }}</div>
-          <h3>{{ groupData.accountCount }}</h3>
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-flow">
-          <svg-icon icon-class="flow" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">{{ $t('dashboard.quota') }}</div>
-          <h3>{{ quota }}</h3>
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-flow">
-          <svg-icon icon-class="flow" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">{{ $t('dashboard.residualFlow') }}</div>
-          <h3 :style="residualFlowStyle">{{ residualFlow }}</h3>
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-node">
-          <svg-icon icon-class="node" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">{{ $t('dashboard.nodeCount') }}</div>
-          <h3>{{ groupData.nodeCount }}</h3>
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-time">
-          <svg-icon icon-class="time" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">{{ $t('dashboard.expireTime') }}</div>
-          <h3 :style="expireTimeStyle">
-            {{ timeStampToDate(groupData.expireTime, false) }}
-          </h3>
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-sysinfo">
           <svg-icon icon-class="sysinfo" class-name="card-panel-icon" />
         </div>
@@ -92,6 +35,63 @@
           <div class="card-panel-text">{{ $t('dashboard.diskUsed') }}</div>
           <h3 :style="groupData.diskUsed | useWarning">
             {{ groupData.diskUsed | toPercent }}
+          </h3>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
+        <div class="card-panel-icon-wrapper icon-node">
+          <svg-icon icon-class="node" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">{{ $t('dashboard.nodeCount') }}</div>
+          <h3>{{ groupData.nodeCount }}</h3>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
+        <div class="card-panel-icon-wrapper icon-user">
+          <svg-icon icon-class="account" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">{{ $t('dashboard.accountCount') }}</div>
+          <h3>{{ groupData.accountCount }}</h3>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
+        <div class="card-panel-icon-wrapper icon-flow">
+          <svg-icon icon-class="flow" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">{{ $t('dashboard.quota') }}</div>
+          <h3>{{ quota }}</h3>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
+        <div class="card-panel-icon-wrapper icon-flow">
+          <svg-icon icon-class="flow" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">{{ $t('dashboard.residualFlow') }}</div>
+          <h3 :style="residualFlowStyle">{{ residualFlow }}</h3>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
+        <div class="card-panel-icon-wrapper icon-time">
+          <svg-icon icon-class="time" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">{{ $t('dashboard.expireTime') }}</div>
+          <h3 :style="expireTimeStyle">
+            {{ timeStampToDate(groupData.expireTime, false) }}
           </h3>
         </div>
       </div>
