@@ -1124,14 +1124,14 @@ export default {
           (e) => {
             Message({
               showClose: true,
-              message: this.$t('valid.urlCopySuccess'),
+              message: this.$t('confirm.urlCopySuccess'),
               type: 'success'
             })
           },
           (e) => {
             Message({
               showClose: true,
-              message: this.$t('valid.urlCopyFail'),
+              message: this.$t('confirm.urlCopyFail'),
               type: 'error'
             })
           }
@@ -1146,14 +1146,14 @@ export default {
           (e) => {
             Message({
               showClose: true,
-              message: this.$t('valid.urlCopySuccess'),
+              message: this.$t('confirm.urlCopySuccess'),
               type: 'success'
             })
           },
           (e) => {
             Message({
               showClose: true,
-              message: this.$t('valid.urlCopyFail'),
+              message: this.$t('confirm.urlCopyFail'),
               type: 'error'
             })
           }

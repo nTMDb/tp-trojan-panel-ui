@@ -152,11 +152,13 @@ export default {
     expireWarnDay: 'Reminder days ahead'
   },
   valid: {
+    passNotSame: 'The two new passwords entered are inconsistent',
     username: 'Please enter user name',
     usernameRange: 'The name ranges between 6-20 characters',
     usernameElement: 'Username must be a combination of letters and numbers',
     usernameNotExistAdmin: 'Username cannot contain admin',
     pass: 'Please enter password',
+    passNew: 'Please enter a new password',
     passRange: 'Password range is between 6-20 characters',
     passElement: 'Password must be a combination of letters and numbers',
     quota: 'Please enter the total traffic',
@@ -165,6 +167,82 @@ export default {
     emailElement:
       'Please enter the correct email format (only 163 126 qq gmail is supported)',
     deleted: 'Please enter status',
-    expireTime: 'Please enter an expiration time'
+    expireTime: 'Please enter an expiration time',
+    nodeName: 'Please enter a node name',
+    nodeNameRange: 'Node names can range between 2-20 characters',
+    nodeIp: 'Please enter IP/domain name',
+    nodeIpRange: 'The range of IP/domain name is between 4-64 characters',
+    nodePort: 'Please enter the port',
+    nodePortRange: 'Please enter a legal port',
+    nodeType: 'Please enter node type',
+    xrayProtocol: 'Please enter agreement',
+    xrayNetwork: 'Please enter the transport type',
+    xraySecurity: 'Please enter Transport Layer Encryption',
+    xrayWsRange: 'Websocket paths range from 2-64 characters',
+    trojanGoSni: 'sni between 4-64 characters',
+    trojanGoMux: 'Please enter whether to enable multiplexing',
+    trojanGoWs: 'Please enter whether to enable Websocket',
+    trojanGoWsRange: 'Websocket paths range from 2-64 characters',
+    trojanGoWsHostRange:
+      'The range of Websocket Host is between 2-64 characters',
+    trojanGoSs: 'Please enter whether to enable SS AEAD',
+    trojanGoSsMethod: 'Please enter SS AEAD encryption method',
+    trojanGoSsPasswordRange:
+      'The range of SS AEAD password is between 2-32 characters',
+    hysteriaProtocol: 'Please enter the pattern',
+    hysteriaProtocolRange: 'Patterns range from 2-16 characters',
+    hysteriaUpMbps:
+      'Please enter the maximum upload speed/Mbps of a single client',
+    hysteriaUpMbpsRange:
+      'The maximum upload speed of a single client is an integer ranging from 1 to 9999999999',
+    hysteriaDownMbps:
+      'Please enter the maximum download speed/Mbps of a single client',
+    hysteriaDownMbpsRange:
+      'The maximum download speed of a single client is an integer ranging from 1 to 9999999999',
+    registerEnable: 'Please enter whether registration is open',
+    registerQuota: 'Please enter the default traffic for new users',
+    registerQuotaRange: 'The flow is between 0-1024000',
+    registerExpireDays: 'Please enter the default expiry days for new users',
+    registerExpireDaysRange: 'Days between 0-365',
+    resetDownloadAndUploadMonth:
+      'Please enter whether to reset download and upload traffic every month',
+    trafficRankEnable: 'Please enter whether to enable traffic ranking',
+    emailEnable: 'Please enter whether to enable the email function',
+    emailHostRange: 'The range of mailbox Host is between 3-64 characters',
+    emailPort: 'Please enter the email port',
+    emailPortRange: 'Please enter a legal port',
+    emailUsernameRange:
+      'The range of email username is between 3-32 characters',
+    emailPasswordRange: 'Please enter whether to enable expiration reminder',
+    expireWarnEnable: 'Please enter whether to enable expiration reminder',
+    expireWarnDay: 'Please enter whether to enable expiration reminder',
+    expireWarnDayRange: 'Days between 0-365',
+    uploadWebFileFormat: 'The file format only supports .zip',
+    uploadWebFileSize: 'The file size cannot exceed 10MB'
+  },
+  confirm: {
+    deleteUser: 'Are you sure to delete this user?',
+    warn: 'warn',
+    yes: 'Yes',
+    cancel: 'Cancel',
+    deleteSuccess: 'delete successful',
+    createSuccess: 'create successful',
+    modifySuccess: 'modify successful',
+    handleReset:
+      "Are you sure to reset the user's download and upload traffic?",
+    resetSuccess: 'reset successful',
+    deleteNode: 'Are you sure to delete this node?',
+    urlCopySuccess: 'URL copied successfully',
+    urlCopyFail: 'URL copy failed',
+    uploadWebFileSuccess: 'upload successful',
+    updateAccountProfile:
+      'The modification is successful and will take effect the next time you log in',
+    logoutPrompt:
+      'You are logged out, you can cancel to stay on this page, or log in again!',
+    logoutConfirm: 're-register',
+    authFail: 'Authentication failed, please log in again!'
+  },
+  remark: {
+    emailEnable: 'Set up your mailbox to receive expiration reminder emails.'
   }
 }

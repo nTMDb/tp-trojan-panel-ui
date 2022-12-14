@@ -1,5 +1,3 @@
-import {updateAccountProfile} from "@/api/account";
-
 export default {
   route: {
     dashboard: '首页',
