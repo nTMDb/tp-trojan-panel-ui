@@ -387,7 +387,10 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="节点二维码" :visible.sync="dialogQRCodeVisible">
+    <el-dialog
+      :title="$t('table.nodeQRCode')"
+      :visible.sync="dialogQRCodeVisible"
+    >
       <el-image style="width: 256px; height: 256px" :src="qrCodeSrc"></el-image>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="dialogQRCodeVisible = false">
@@ -530,54 +533,82 @@ export default {
       dialogFormVisible: false,
       dialogQRCodeVisible: false,
       textMap: {
-        update: '编辑',
-        create: '创建'
+        update: this.$t('table.edit'),
+        create: this.$t('table.add')
       },
       createRules: {
         name: [
-          { required: true, message: '请输入名称', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.nodeName'),
+            trigger: 'change'
+          },
           {
             min: 2,
             max: 20,
-            message: '名称的范围在2-20字符之间',
+            message: this.$t('valid.nodeNameRange'),
             trigger: 'change'
           }
         ],
         ip: [
-          { required: true, message: '请输入IP/域名', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.nodeIp'),
+            trigger: 'change'
+          },
           {
             min: 4,
             max: 64,
-            message: 'IP/域名的范围在4-64字符之间',
+            message: this.$t('valid.nodeIpRange'),
             trigger: 'change'
           }
         ],
         port: [
-          { required: true, message: '请输入端口', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.nodePort'),
+            trigger: 'change'
+          },
           {
             pattern:
               /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
-            message: '请输入合法的端口',
+            message: this.$t('valid.nodePortRange'),
             trigger: 'change'
           }
         ],
         nodeTypeId: [
-          { required: true, message: '请输入节点类型', trigger: 'change' }
+          {
+            required: true,
+            message: this.$t('valid.nodeType'),
+            trigger: 'change'
+          }
         ],
         xrayProtocol: [
-          { required: true, message: '请输入协议', trigger: 'change' }
+          {
+            required: true,
+            message: this.$t('valid.xrayProtocol'),
+            trigger: 'change'
+          }
         ],
         'xrayStreamSettingsEntity.network': [
-          { required: true, message: '请输入传输方式类型', trigger: 'change' }
+          {
+            required: true,
+            message: this.$t('valid.xrayNetwork'),
+            trigger: 'change'
+          }
         ],
         'xrayStreamSettingsEntity.security': [
-          { required: true, message: '请输入传输层加密', trigger: 'change' }
+          {
+            required: true,
+            message: this.$t('valid.xraySecurity'),
+            trigger: 'change'
+          }
         ],
         'xrayStreamSettingsEntity.wsSettings.path': [
           {
             min: 2,
             max: 64,
-            message: 'Websocket路径的范围在2-64字符之间',
+            message: this.$t('valid.xrayWsRange'),
             trigger: 'change'
           }
         ],
@@ -585,21 +616,21 @@ export default {
           {
             min: 4,
             max: 64,
-            message: 'sni在4-64字符之间',
+            message: this.$t('valid.trojanGoSni'),
             trigger: 'change'
           }
         ],
         trojanGoMuxEnable: [
           {
             required: true,
-            message: '请输入是否开启多路复用',
+            message: this.$t('valid.trojanGoMux'),
             trigger: 'change'
           }
         ],
         trojanGoWebsocketEnable: [
           {
             required: true,
-            message: '请输入是否开启Websocket',
+            message: this.$t('valid.trojanGoWs'),
             trigger: 'change'
           }
         ],
@@ -607,7 +638,7 @@ export default {
           {
             min: 2,
             max: 64,
-            message: 'Websocket路径的范围在2-64字符之间',
+            message: this.$t('valid.trojanGoWsRange'),
             trigger: 'change'
           }
         ],
@@ -615,21 +646,21 @@ export default {
           {
             min: 2,
             max: 64,
-            message: 'Websocket Host的范围在2-64字符之间',
+            message: this.$t('valid.trojanGoWsHostRange'),
             trigger: 'change'
           }
         ],
         trojanGoSsEnable: [
           {
             required: true,
-            message: '请输入是否开启SS AEAD',
+            message: this.$t('valid.trojanGoSs'),
             trigger: 'change'
           }
         ],
         trojanGoSsMethod: [
           {
             required: true,
-            message: '请输入SS AEAD加密方式',
+            message: this.$t('valid.trojanGoSsMethod'),
             trigger: 'change'
           }
         ],
@@ -637,97 +668,125 @@ export default {
           {
             min: 2,
             max: 32,
-            message: 'SS AEAD密码的范围在2-32字符之间',
+            message: this.$t('valid.trojanGoSsPasswordRange'),
             trigger: 'change'
           }
         ],
         hysteriaProtocol: [
           {
             required: true,
-            message: '请输入模式',
+            message: this.$t('valid.hysteriaProtocol'),
             trigger: 'change'
           },
           {
             min: 2,
             max: 16,
-            message: '模式的范围在2-16字符之间',
+            message: this.$t('valid.hysteriaProtocolRange'),
             trigger: 'change'
           }
         ],
         hysteriaUpMbps: [
           {
             required: true,
-            message: '请输入单客户端最大上传速度/Mbps',
+            message: this.$t('valid.hysteriaUpMbps'),
             trigger: 'change'
           },
           {
             type: 'number',
             min: 1,
-            max: 999,
-            message: '单客户端最大上传速度的范围在1-999之间的整数',
+            max: 9999999999,
+            message: this.$t('valid.hysteriaUpMbpsRange'),
             trigger: 'change'
           }
         ],
         hysteriaDownMbps: [
           {
             required: true,
-            message: '请输入单客户端最大下载速度/Mbps',
+            message: this.$t('valid.hysteriaDownMbps'),
             trigger: 'change'
           },
           {
             type: 'number',
             min: 1,
-            max: 999,
-            message: '单客户端最大下载速度的范围在1-999之间的整数',
+            max: 9999999999,
+            message: this.$t('valid.hysteriaDownMbpsRange'),
             trigger: 'change'
           }
         ]
       },
       updateRules: {
         name: [
-          { required: true, message: '请输入名称', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.nodeName'),
+            trigger: 'change'
+          },
           {
             min: 2,
             max: 20,
-            message: '名称的范围在2-20字符之间',
+            message: this.$t('valid.nodeNameRange'),
             trigger: 'change'
           }
         ],
         ip: [
-          { required: true, message: '请输入IP/域名', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.nodeIp'),
+            trigger: 'change'
+          },
           {
             min: 4,
             max: 64,
-            message: 'IP/域名的范围在4-64字符之间',
+            message: this.$t('valid.nodeIpRange'),
             trigger: 'change'
           }
         ],
         port: [
-          { required: true, message: '请输入端口', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.nodePort'),
+            trigger: 'change'
+          },
           {
             pattern:
               /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
-            message: '请输入合法的端口',
+            message: this.$t('valid.nodePortRange'),
             trigger: 'change'
           }
         ],
         nodeTypeId: [
-          { required: true, message: '请输入节点类型', trigger: 'change' }
+          {
+            required: true,
+            message: this.$t('valid.nodeType'),
+            trigger: 'change'
+          }
         ],
         xrayProtocol: [
-          { required: true, message: '请输入协议', trigger: 'change' }
+          {
+            required: true,
+            message: this.$t('valid.xrayProtocol'),
+            trigger: 'change'
+          }
         ],
         'xrayStreamSettingsEntity.network': [
-          { required: true, message: '请输入传输方式类型', trigger: 'change' }
+          {
+            required: true,
+            message: this.$t('valid.xrayNetwork'),
+            trigger: 'change'
+          }
         ],
         'xrayStreamSettingsEntity.security': [
-          { required: true, message: '请输入传输层加密', trigger: 'change' }
+          {
+            required: true,
+            message: this.$t('valid.xraySecurity'),
+            trigger: 'change'
+          }
         ],
         'xrayStreamSettingsEntity.wsSettings.path': [
           {
             min: 2,
             max: 64,
-            message: 'Websocket路径的范围在2-64字符之间',
+            message: this.$t('valid.xrayWsRange'),
             trigger: 'change'
           }
         ],
@@ -735,21 +794,21 @@ export default {
           {
             min: 4,
             max: 64,
-            message: 'sni在4-64字符之间',
+            message: this.$t('valid.trojanGoSni'),
             trigger: 'change'
           }
         ],
         trojanGoMuxEnable: [
           {
             required: true,
-            message: '请输入是否开启多路复用',
+            message: this.$t('valid.trojanGoMux'),
             trigger: 'change'
           }
         ],
         trojanGoWebsocketEnable: [
           {
             required: true,
-            message: '请输入是否开启Websocket',
+            message: this.$t('valid.trojanGoWs'),
             trigger: 'change'
           }
         ],
@@ -757,7 +816,7 @@ export default {
           {
             min: 2,
             max: 64,
-            message: 'Websocket路径的范围在2-64字符之间',
+            message: this.$t('valid.trojanGoWsRange'),
             trigger: 'change'
           }
         ],
@@ -765,21 +824,21 @@ export default {
           {
             min: 2,
             max: 64,
-            message: 'Websocket Host的范围在2-64字符之间',
+            message: this.$t('valid.trojanGoWsHostRange'),
             trigger: 'change'
           }
         ],
         trojanGoSsEnable: [
           {
             required: true,
-            message: '请输入是否开启SS AEAD',
+            message: this.$t('valid.trojanGoSs'),
             trigger: 'change'
           }
         ],
         trojanGoSsMethod: [
           {
             required: true,
-            message: '请输入SS AEAD加密方式',
+            message: this.$t('valid.trojanGoSsMethod'),
             trigger: 'change'
           }
         ],
@@ -787,48 +846,48 @@ export default {
           {
             min: 2,
             max: 32,
-            message: 'SS AEAD密码的范围在2-32字符之间',
+            message: this.$t('valid.trojanGoSsPasswordRange'),
             trigger: 'change'
           }
         ],
         hysteriaProtocol: [
           {
             required: true,
-            message: '请输入模式',
+            message: this.$t('valid.hysteriaProtocol'),
             trigger: 'change'
           },
           {
             min: 2,
             max: 16,
-            message: '模式的范围在2-16字符之间',
+            message: this.$t('valid.hysteriaProtocolRange'),
             trigger: 'change'
           }
         ],
         hysteriaUpMbps: [
           {
             required: true,
-            message: '请输入单客户端最大上传速度/Mbps',
+            message: this.$t('valid.hysteriaUpMbps'),
             trigger: 'change'
           },
           {
             type: 'number',
             min: 1,
-            max: 999,
-            message: '单客户端最大上传速度的范围在1-999之间的整数',
+            max: 9999999999,
+            message: this.$t('valid.hysteriaUpMbpsRange'),
             trigger: 'change'
           }
         ],
         hysteriaDownMbps: [
           {
             required: true,
-            message: '请输入单客户端最大下载速度/Mbps',
+            message: this.$t('valid.hysteriaDownMbps'),
             trigger: 'change'
           },
           {
             type: 'number',
             min: 1,
-            max: 999,
-            message: '单客户端最大下载速度的范围在1-999之间的整数',
+            max: 9999999999,
+            message: this.$t('valid.hysteriaDownMbpsRange'),
             trigger: 'change'
           }
         ]
@@ -989,9 +1048,9 @@ export default {
       })
     },
     handleDelete(row, index) {
-      MessageBox.confirm('确认删除该节点？', '警告', {
-        confirmButtonText: '是',
-        cancelButtonText: '取消',
+      MessageBox.confirm(this.$t('valid.deleteNode'), this.$t('valid.warn'), {
+        confirmButtonText: this.$t('valid.yes'),
+        cancelButtonText: this.$t('valid.cancel'),
         type: 'warning'
       }).then(() => {
         const tempData = Object.assign({}, row)
@@ -999,7 +1058,7 @@ export default {
           this.list.splice(index, 1)
           this.$notify({
             title: 'Success',
-            message: '删除成功',
+            message: this.$t('valid.deleteSuccess'),
             type: 'success',
             duration: 2000
           })
@@ -1022,7 +1081,7 @@ export default {
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
-              message: '创建成功',
+              message: this.$t('valid.createSuccess'),
               type: 'success',
               duration: 2000
             })
@@ -1048,7 +1107,7 @@ export default {
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
-              message: '修改成功',
+              message: this.$t('valid.ModifySuccess'),
               type: 'success',
               duration: 2000
             })
@@ -1065,14 +1124,14 @@ export default {
           (e) => {
             Message({
               showClose: true,
-              message: 'URL复制成功',
+              message: this.$t('valid.urlCopySuccess'),
               type: 'success'
             })
           },
           (e) => {
             Message({
               showClose: true,
-              message: 'URL复制失败!',
+              message: this.$t('valid.urlCopyFail'),
               type: 'error'
             })
           }
@@ -1087,14 +1146,14 @@ export default {
           (e) => {
             Message({
               showClose: true,
-              message: 'URL复制成功',
+              message: this.$t('valid.urlCopySuccess'),
               type: 'success'
             })
           },
           (e) => {
             Message({
               showClose: true,
-              message: 'URL复制失败!',
+              message: this.$t('valid.urlCopyFail'),
               type: 'error'
             })
           }

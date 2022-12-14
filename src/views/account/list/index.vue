@@ -530,17 +530,21 @@ export default {
       })
     },
     handleDelete(row, index) {
-      MessageBox.confirm('确认删除该用户？', '警告', {
-        confirmButtonText: '是',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
+      MessageBox.confirm(
+        this.$t('confirm.deleteUser'),
+        this.$t('confirm.warn'),
+        {
+          confirmButtonText: this.$t('confirm.yes'),
+          cancelButtonText: this.$t('confirm.cancel'),
+          type: 'warning'
+        }
+      ).then(() => {
         const tempData = Object.assign({}, row)
         deleteAccountById(tempData).then(() => {
           this.list.splice(index, 1)
           this.$notify({
             title: 'Success',
-            message: '删除成功',
+            message: this.$t('confirm.deleteSuccess'),
             type: 'success',
             duration: 2000
           })
@@ -555,7 +559,7 @@ export default {
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
-              message: '创建成功',
+              message: this.$t('confirm.createSuccess'),
               type: 'success',
               duration: 2000
             })
@@ -574,7 +578,7 @@ export default {
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
-              message: '修改成功',
+              message: this.$t('confirm.ModifySuccess'),
               type: 'success',
               duration: 2000
             })
@@ -586,17 +590,21 @@ export default {
       return this.roleList.find((item) => item.id === roleId).desc
     },
     handleReset(row) {
-      MessageBox.confirm('确认重设该用户下载和上传流量？', '警告', {
-        confirmButtonText: '是',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
+      MessageBox.confirm(
+        this.$t('confirm.handleReset'),
+        this.$t('confirm.warn'),
+        {
+          confirmButtonText: this.$t('confirm.yes'),
+          cancelButtonText: this.$t('confirm.cancel'),
+          type: 'warning'
+        }
+      ).then(() => {
         const tempData = Object.assign({}, row)
         resetAccountDownloadAndUpload(tempData).then(() => {
           this.getList()
           this.$notify({
             title: 'Success',
-            message: '重设成功',
+            message: this.$t('confirm.resetSuccess'),
             type: 'success',
             duration: 2000
           })
