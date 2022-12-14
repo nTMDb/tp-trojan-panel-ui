@@ -68,7 +68,7 @@ const actions = {
           const { data } = response
 
           if (!data) {
-            return reject('认证失败，请重新登录！')
+            return reject(this.$t('confirm.authFail'))
           }
 
           const { username, roles } = data

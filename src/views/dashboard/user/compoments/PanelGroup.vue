@@ -73,12 +73,12 @@ export default {
     },
     residualFlowStyle: function () {
       return this.groupData.quota < 0
-        ? '无限'
+        ? this.$t('dashboard.unlimited')
         : getFlow(this.groupData.residualFlow)
     },
     residualFlow: function () {
       return this.groupData.quota < 0
-        ? '无限'
+        ? this.$t('dashboard.unlimited')
         : getFlow(this.groupData.residualFlow)
     },
     expireTimeStyle: function () {

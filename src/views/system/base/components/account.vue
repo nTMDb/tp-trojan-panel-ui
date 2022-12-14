@@ -96,47 +96,51 @@ export default {
     return {
       updateRules: {
         registerEnable: [
-          { required: true, message: '请输入是否开放注册', trigger: 'change' }
+          {
+            required: true,
+            message: this.$t('valid.registerEnable'),
+            trigger: 'change'
+          }
         ],
         registerQuota: [
           {
             required: true,
-            message: '请输入新用户默认流量',
+            message: this.$t('valid.registerQuota'),
             trigger: 'change'
           },
           {
             type: 'number',
             min: 0,
             max: 1024000,
-            message: '流量在0-1024000之间',
+            message: this.$t('valid.registerQuotaRange'),
             trigger: 'change'
           }
         ],
         registerExpireDays: [
           {
             required: true,
-            message: '请输入新用户默认到期天数',
+            message: this.$t('valid.registerExpireDays'),
             trigger: 'change'
           },
           {
             type: 'number',
             min: 0,
             max: 365,
-            message: '天数在0-365之间',
+            message: this.$t('valid.registerExpireDaysRange'),
             trigger: 'change'
           }
         ],
         resetDownloadAndUploadMonth: [
           {
             required: true,
-            message: '请输入是否每月重设下载和上传流量',
+            message: this.$t('valid.resetDownloadAndUploadMonth'),
             trigger: 'change'
           }
         ],
         trafficRankEnable: [
           {
             required: true,
-            message: '请输入是否开启流量排行',
+            message: this.$t('valid.trafficRankEnable'),
             trigger: 'change'
           }
         ]
@@ -154,7 +158,7 @@ export default {
             })
             this.$notify({
               title: 'Success',
-              message: '修改成功',
+              message: this.$t('confirm.modifySuccess'),
               type: 'success',
               duration: 2000
             })

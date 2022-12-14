@@ -1,3 +1,5 @@
+import {updateAccountProfile} from "@/api/account";
+
 export default {
   route: {
     dashboard: '首页',
@@ -150,11 +152,13 @@ export default {
     expireWarnDay: '提醒提前的天数'
   },
   valid: {
+    passNotSame: '两次新密码输入不一致',
     username: '请输入用户名',
     usernameRange: '名称的范围在6-20字符之间',
     usernameElement: '用户名必须是字母和数字的组合',
     usernameNotExistAdmin: '用户名不能包含admin',
     pass: '请输入密码',
+    passNew: '请输入新密码',
     passRange: '密码的范围在6-20字符之间',
     passElement: '密码必须是字母和数字的组合',
     quota: '请输入总流量',
@@ -187,7 +191,25 @@ export default {
     hysteriaUpMbps: '请输入单客户端最大上传速度/Mbps',
     hysteriaUpMbpsRange: '单客户端最大上传速度的范围在1-9999999999之间的整数',
     hysteriaDownMbps: '请输入单客户端最大下载速度/Mbps',
-    hysteriaDownMbpsRange: '单客户端最大下载速度的范围在1-9999999999之间的整数'
+    hysteriaDownMbpsRange: '单客户端最大下载速度的范围在1-9999999999之间的整数',
+    registerEnable: '请输入是否开放注册',
+    registerQuota: '请输入新用户默认流量',
+    registerQuotaRange: '流量在0-1024000之间',
+    registerExpireDays: '请输入新用户默认到期天数',
+    registerExpireDaysRange: '天数在0-365之间',
+    resetDownloadAndUploadMonth: '请输入是否每月重设下载和上传流量',
+    trafficRankEnable: '请输入是否开启流量排行',
+    emailEnable: '请输入是否开启邮箱功能',
+    emailHostRange: '邮箱Host的范围在3-64字符之间',
+    emailPort: '请输入邮箱端口',
+    emailPortRange: '请输入合法的端口',
+    emailUsernameRange: '邮箱用户名的范围在3-32字符之间',
+    emailPasswordRange: '请输入是否开启到期提醒',
+    expireWarnEnable: '请输入是否开启到期提醒',
+    expireWarnDay: '请输入提醒提前的天数',
+    expireWarnDayRange: '天数在0-365之间',
+    uploadWebFileFormat: '文件格式只支持.zip',
+    uploadWebFileSize: '文件大小不能超过10MB'
   },
   confirm: {
     deleteUser: '确认删除该用户？',
@@ -196,11 +218,19 @@ export default {
     cancel: '取消',
     deleteSuccess: '删除成功',
     createSuccess: '创建成功',
-    ModifySuccess: '修改成功',
+    modifySuccess: '修改成功',
     handleReset: '确认重设该用户下载和上传流量？',
     resetSuccess: '重设成功',
     deleteNode: '确认删除该节点？',
     urlCopySuccess: 'URL复制成功',
-    urlCopyFail: 'URL复制失败'
+    urlCopyFail: 'URL复制失败',
+    uploadWebFileSuccess: '上传成功',
+    updateAccountProfile:"修改成功,下次登陆时生效",
+    logoutPrompt:"您已注销，可以取消以停留在此页面，或重新登录！",
+    logoutConfirm:"重新登录",
+    authFail:"认证失败，请重新登录！"
+  },
+  remark: {
+    emailEnable:"设置你的邮箱，可以接收到期提醒邮件。"
   }
 }

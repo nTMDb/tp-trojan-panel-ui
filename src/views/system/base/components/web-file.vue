@@ -50,7 +50,7 @@ export default {
       uploadWebFile(formData).then(() => {
         this.$notify({
           title: 'Success',
-          message: '上传成功',
+          message: this.$t('confirm.uploadWebFileSuccess'),
           type: 'success',
           duration: 2000
         })
@@ -64,7 +64,7 @@ export default {
     beforeUpload(file) {
       if (!file.name.endsWith('.zip')) {
         Message({
-          message: '文件格式只支持.zip',
+          message: this.$t('confirm.uploadWebFileFormat'),
           type: 'error',
           duration: 5 * 1000
         })
@@ -72,7 +72,7 @@ export default {
       }
       if (file.size / 1024 / 1024 > 10) {
         Message({
-          message: '文件大小不能超过10MB',
+          message: this.$t('confirm.uploadWebFileSize'),
           type: 'error',
           duration: 5 * 1000
         })

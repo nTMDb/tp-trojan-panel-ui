@@ -89,14 +89,14 @@ export default {
   data() {
     const validatePass = (rule, value, callback) => {
       if (this.registerForm.passOne !== this.registerForm.pass) {
-        callback(new Error('两次新密码输入不一致'))
+        callback(new Error(this.$t('valid.passNotSame')))
       } else {
         callback()
       }
     }
     const validateUsername = (rule, value, callback) => {
       if (this.registerForm.username.trim().indexOf('admin') >= 0) {
-        callback(new Error('用户名不能包含admin'))
+        callback(new Error(this.$t('valid.usernameNotExistAdmin')))
       } else {
         callback()
       }
@@ -109,16 +109,20 @@ export default {
       },
       registerRules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.username'),
+            trigger: 'change'
+          },
           {
             min: 6,
             max: 20,
-            message: '名称的范围在6-20字符之间',
+            message: this.$t('valid.usernameRange'),
             trigger: 'change'
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: '用户名必须是字母和数字的组合',
+            message: this.$t('valid.usernameElement'),
             trigger: 'change'
           },
           {
@@ -127,16 +131,16 @@ export default {
           }
         ],
         pass: [
-          { required: true, message: '请输入密码', trigger: 'change' },
+          { required: true, message: this.$t('valid.pass'), trigger: 'change' },
           {
             min: 6,
             max: 20,
-            message: '密码的范围在6-20字符之间',
+            message: this.$t('valid.passRange'),
             trigger: 'change'
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: '密码必须是字母和数字的组合',
+            message: this.$t('valid.passElement'),
             trigger: 'change'
           },
           {

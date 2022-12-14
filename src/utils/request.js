@@ -32,15 +32,11 @@ service.interceptors.response.use(
       })
 
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        MessageBox.confirm(
-          '您已注销，可以取消以停留在此页面，或重新登录！',
-          'Confirm logout',
-          {
-            confirmButtonText: '重新登录',
-            cancelButtonText: '取消',
-            type: 'warning'
-          }
-        ).then(() => {
+        MessageBox.confirm(this.$t('confirm.logoutPrompt'), 'Confirm logout', {
+          confirmButtonText: this.$t('confirm.logoutConfirm'),
+          cancelButtonText: this.$t('confirm.cancel'),
+          type: 'warning'
+        }).then(() => {
           store.dispatch('account/resetToken').then(() => {
             location.reload()
           })

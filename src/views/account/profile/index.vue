@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <aside v-show="emailEnable === 1">
-      设置你的邮箱，可以接收到期提醒邮件。
+      {{ this.$t('remark.emailEnable') }}
     </aside>
     <el-form
       ref="dataForm"
@@ -55,7 +55,7 @@ export default {
   data() {
     const validatePass = (rule, value, callback) => {
       if (this.temp.newPassOne !== this.temp.newPass) {
-        callback(new Error('两次新密码输入不一致'))
+        callback(new Error(this.$t('valid.passNotSame')))
       } else {
         callback()
       }
@@ -74,41 +74,49 @@ export default {
           {
             min: 4,
             max: 64,
-            message: '邮箱的范围在4-64字符之间',
+            message: this.$t('valid.emailRange'),
             trigger: 'change'
           },
           {
             pattern:
               /^([A-Za-z0-9_\-\.])+\@(163.com|126.com|qq.com|gmail.com)$/,
-            message: '请输入正确的邮箱格式(只支持163 126 qq gmail)',
+            message: this.$t('valid.emailElement'),
             trigger: 'change'
           }
         ],
         oldPass: [
-          { required: true, message: '请输入新密码', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.passNew'),
+            trigger: 'change'
+          },
           {
             min: 6,
             max: 20,
-            message: '密码的范围在6-20字符之间',
+            message: this.$t('valid.passRange'),
             trigger: 'change'
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: '密码必须是字母和数字的组合',
+            message: this.$t('valid.passElement'),
             trigger: 'change'
           }
         ],
         newPass: [
-          { required: true, message: '请输入新密码', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.passNew'),
+            trigger: 'change'
+          },
           {
             min: 6,
             max: 20,
-            message: '密码的范围在6-20字符之间',
+            message: this.$t('valid.passRange'),
             trigger: 'change'
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: '密码必须是字母和数字的组合',
+            message: this.$t('valid.passElement'),
             trigger: 'change'
           },
           {
@@ -149,7 +157,7 @@ export default {
             })
             this.$notify({
               title: 'Success',
-              message: '修改成功,下次登陆时生效',
+              message: this.$t('confirm.updateAccountProfile'),
               type: 'success',
               duration: 2000
             })

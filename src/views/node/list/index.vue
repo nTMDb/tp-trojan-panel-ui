@@ -1107,7 +1107,7 @@ export default {
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
-              message: this.$t('valid.ModifySuccess'),
+              message: this.$t('confirm.modifySuccess'),
               type: 'success',
               duration: 2000
             })
