@@ -72,6 +72,24 @@ export const constantRoutes = [
   },
 
   {
+    path: '/server-manage',
+    name: 'serverManage',
+    component: Layout,
+    redirect: '/server-manage/server-list',
+    meta: { title: 'serverManage', icon: 'server' },
+    children: [
+      {
+        path: 'server-list',
+        name: 'serverList',
+        component: () => import('@/views/node-server/list'),
+        meta: {
+          title: 'serverList'
+        }
+      }
+    ]
+  },
+
+  {
     path: '/node-manage',
     name: 'nodeManage',
     component: Layout,
@@ -184,11 +202,11 @@ const createRouter = () =>
     routes: constantRoutes
   })
 
-const router = createRouter();
+const router = createRouter()
 
 export function resetRouter() {
-  const newRouter = createRouter();
-  router.matcher = newRouter.matcher;
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher
 }
 
-export default router;
+export default router

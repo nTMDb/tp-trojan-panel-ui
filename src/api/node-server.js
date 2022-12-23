@@ -70,7 +70,7 @@ export function updateNodeServerById(data) {
  * @param data
  * @returns
  */
-export function updateNodeServerById(data) {
+export function selectNodeServerList(data) {
   return request({
     url: '/nodeServer/selectNodeServerList',
     method: 'get',

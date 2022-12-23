@@ -1,6 +1,8 @@
 export default {
   route: {
     dashboard: '첫 장',
+    serverManage: '서버 관리',
+    serverList: '서버 목록',
     nodeManage: '노드 관리',
     nodeList: '노드 목록',
     accountManage: '사용자 관리',

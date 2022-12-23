@@ -1,6 +1,8 @@
 export default {
   route: {
     dashboard: 'Dashboard',
+    serverManage: 'Server Manage',
+    serverList: 'Server List',
     nodeManage: 'Node Manage',
     nodeList: 'Node List',
     accountManage: 'Account Manage',

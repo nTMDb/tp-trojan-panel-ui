@@ -1,6 +1,8 @@
 export default {
   route: {
     dashboard: '首页',
+    serverManage: '服务器管理',
+    serverList: '服务器列表',
     nodeManage: '节点管理',
     nodeList: '节点列表',
     accountManage: '用户管理',
@@ -98,7 +100,9 @@ export default {
     content: '内容',
     sendFail: '发送失败',
     sendWait: '等待发送',
-    sendSuccess: '发送成功'
+    sendSuccess: '发送成功',
+    nodeServerIp: '服务器IP',
+    nodeServerName: '服务器名称'
   },
   tagsView: {
     refresh: '刷新',
@@ -223,12 +227,12 @@ export default {
     urlCopySuccess: 'URL复制成功',
     urlCopyFail: 'URL复制失败',
     uploadWebFileSuccess: '上传成功',
-    updateAccountProfile:"修改成功,下次登陆时生效",
-    logoutPrompt:"您已注销，可以取消以停留在此页面，或重新登录！",
-    logoutConfirm:"重新登录",
-    authFail:"认证失败，请重新登录！"
+    updateAccountProfile: '修改成功,下次登陆时生效',
+    logoutPrompt: '您已注销，可以取消以停留在此页面，或重新登录！',
+    logoutConfirm: '重新登录',
+    authFail: '认证失败，请重新登录！'
   },
   remark: {
-    emailEnable:"设置你的邮箱，可以接收到期提醒邮件。"
+    emailEnable: '设置你的邮箱，可以接收到期提醒邮件。'
   }
 }

@@ -3,7 +3,7 @@
     <div class="filter-container">
       <el-input
         v-model="listQuery.ip"
-        :placeholder="$t('table.ip')"
+        :placeholder="$t('table.nodeServerIp')"
         style="width: 200px"
         class="filter-item"
         clearable
@@ -11,8 +11,8 @@
         @clear="handleFilter"
       />
       <el-input
-        v-model="listQuery.ip"
-        :placeholder="$t('table.name')"
+        v-model="listQuery.name"
+        :placeholder="$t('table.nodeServerName')"
         style="width: 200px"
         class="filter-item"
         clearable
@@ -53,12 +53,20 @@
         width="80"
         type="index"
       />
-      <el-table-column :label="$t('table.ip')" width="180" align="center">
+      <el-table-column
+        :label="$t('table.nodeServerIp')"
+        width="180"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span>{{ row.ip }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.name')" width="180" align="center">
+      <el-table-column
+        :label="$t('table.nodeServerName')"
+        width="180"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span>{{ row.name }}</span>
         </template>
@@ -82,7 +90,7 @@
             type="primary"
             size="mini"
             @click="handleUpdate(row)"
-            v-if="checkPermission(['sysadmin', 'admin'])"
+            v-if="checkPermission(['sysadmin'])"
           >
             {{ $t('table.edit') }}
           </el-button>
@@ -90,7 +98,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
-            v-if="checkPermission(['sysadmin', 'admin'])"
+            v-if="checkPermission(['sysadmin'])"
           >
             {{ $t('table.delete') }}
           </el-button>
@@ -106,17 +114,17 @@
       @pagination="getList"
     />
 
-    <el-dialog :title="$t('table.add')" :visible.sync="dialogFormVisible">
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form
         ref="dataForm"
-        :rules="createRules"
+        :rules="dialogStatus === 'create' ? createRules : updateRules"
         :model="temp"
         label-position="left"
       >
-        <el-form-item :label="$t('table.ip')" prop="ip" clearable>
+        <el-form-item :label="$t('table.nodeServerIp')" prop="ip" clearable>
           <el-input v-model="temp.ip" />
         </el-form-item>
-        <el-form-item :label="$t('table.name')" prop="name" clearable>
+        <el-form-item :label="$t('table.nodeServerName')" prop="name" clearable>
           <el-input v-model="temp.name" />
         </el-form-item>
       </el-form>
@@ -124,7 +132,10 @@
         <el-button @click="dialogFormVisible = false"
           >{{ $t('table.cancel') }}
         </el-button>
-        <el-button type="primary" @click="createData()">
+        <el-button
+          type="primary"
+          @click="dialogStatus === 'create' ? createData() : updateData()"
+        >
           {{ $t('table.confirm') }}
         </el-button>
       </div>
@@ -136,24 +147,18 @@
 import { timeStampToDate } from '@/utils'
 import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
+import checkPermission from '@/utils/permission'
 import {
   createNodeServer,
-  deleteNodeServerByIp,
-  selectNodeServerPage
-} from '@/api/black-list'
-import checkPermission from '@/utils/permission' // 权限判断指令
+  deleteNodeServerById,
+  selectNodeServerPage,
+  updateNodeServerById
+} from '@/api/node-server'
 
 export default {
-  name: 'Black',
+  name: 'NodeServer',
   components: { Pagination },
   data() {
-    const validateIp = (rule, value, callback) => {
-      if (this.temp.ip === '127.0.0.1') {
-        callback(new Error('IP不能127.0.0.1'))
-      } else {
-        callback()
-      }
-    }
     return {
       tableKey: 0,
       listLoading: true,
@@ -162,29 +167,77 @@ export default {
       listQuery: {
         pageNum: 1,
         pageSize: 20,
-        ip: undefined
+        ip: undefined,
+        name: undefined
       },
       temp: {
         id: undefined,
         ip: '',
+        name: '',
         createTime: new Date()
       },
       dialogFormVisible: false,
+      textMap: {
+        update: this.$t('table.edit'),
+        create: this.$t('table.add')
+      },
       createRules: {
         ip: [
-          { required: true, message: '请输入IP', trigger: 'change' },
           {
-            min: 4,
-            max: 64,
-            message: 'IP的范围在4-64字符之间',
+            required: true,
+            message: this.$t('valid.nodeIp'),
             trigger: 'change'
           },
           {
-            validator: validateIp,
+            min: 4,
+            max: 64,
+            message: this.$t('valid.nodeIpRange'),
+            trigger: 'change'
+          }
+        ],
+        name: [
+          {
+            required: true,
+            message: this.$t('valid.nodeName'),
+            trigger: 'change'
+          },
+          {
+            min: 2,
+            max: 20,
+            message: this.$t('valid.nodeNameRange'),
             trigger: 'change'
           }
         ]
-      }
+      },
+      updateRules: {
+        ip: [
+          {
+            required: true,
+            message: this.$t('valid.nodeIp'),
+            trigger: 'change'
+          },
+          {
+            min: 4,
+            max: 64,
+            message: this.$t('valid.nodeIpRange'),
+            trigger: 'change'
+          }
+        ],
+        name: [
+          {
+            required: true,
+            message: this.$t('valid.nodeName'),
+            trigger: 'change'
+          },
+          {
+            min: 2,
+            max: 20,
+            message: this.$t('valid.nodeNameRange'),
+            trigger: 'change'
+          }
+        ]
+      },
+      dialogStatus: ''
     }
   },
   created() {
@@ -196,7 +249,7 @@ export default {
     getList() {
       this.listLoading = true
       selectNodeServerPage(this.listQuery).then((response) => {
-        this.list = response.data.nodeServerList
+        this.list = response.data.nodeServers
         this.total = response.data.total
 
         setTimeout(() => {
@@ -208,6 +261,7 @@ export default {
       this.temp = {
         id: undefined,
         ip: '',
+        name: '',
         createTime: new Date()
       }
     },
@@ -217,19 +271,20 @@ export default {
     },
     handleCreate() {
       this.resetTemp()
+      this.dialogStatus = 'create'
       this.dialogFormVisible = true
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
     },
     handleDelete(row, index) {
-      MessageBox.confirm('确认删除该IP？', '警告', {
+      MessageBox.confirm('确认删除该服务器？', '警告', {
         confirmButtonText: '是',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
         const tempData = Object.assign({}, row)
-        deleteNodeServerByIp(tempData).then(() => {
+        deleteNodeServerById(tempData).then(() => {
           this.list.splice(index, 1)
           this.$notify({
             title: 'Success',
@@ -249,6 +304,32 @@ export default {
             this.$notify({
               title: 'Success',
               message: '创建成功',
+              type: 'success',
+              duration: 2000
+            })
+          })
+        }
+      })
+    },
+    handleUpdate(row) {
+      this.temp = Object.assign(this.temp, row)
+      this.dialogStatus = 'update'
+      this.dialogFormVisible = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
+    updateData() {
+      this.$refs['dataForm'].validate((valid) => {
+        if (valid) {
+          const tempData = Object.assign({}, this.temp)
+          updateNodeServerById(tempData).then(() => {
+            const index = this.list.findIndex((v) => v.id === this.temp.id)
+            this.list.splice(index, 1, this.temp)
+            this.dialogFormVisible = false
+            this.$notify({
+              title: 'Success',
+              message: this.$t('confirm.modifySuccess'),
               type: 'success',
               duration: 2000
             })
