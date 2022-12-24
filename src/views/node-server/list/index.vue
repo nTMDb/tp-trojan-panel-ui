@@ -72,6 +72,24 @@
         </template>
       </el-table-column>
       <el-table-column
+        :label="$t('table.nodeStatus')"
+        width="100"
+        align="center"
+        v-if="checkPermission(['sysadmin', 'admin'])"
+      >
+        <template slot-scope="{ row }">
+          <el-tag :type="handleStatus(row.status)">
+            <span>{{
+              row.status === 1
+                ? $t('table.nodeStatusSuccess')
+                : row.status === 0
+                ? $t('table.nodeStatusError')
+                : $t('table.nodeStatusTimeout')
+            }}</span>
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column
         :label="$t('table.createTime')"
         width="150"
         align="center"
@@ -336,6 +354,9 @@ export default {
           })
         }
       })
+    },
+    handleStatus(status) {
+      return status > 0 ? 'success' : 'danger'
     }
   }
 }
