@@ -100,7 +100,10 @@ export default {
     content: 'Content',
     sendFail: 'Failed',
     sendWait: 'Waiting',
-    sendSuccess: 'Success'
+    sendSuccess: 'Success',
+    nodeServer: 'Server',
+    nodeServerIp: 'Server IP',
+    nodeServerName: 'Server Name'
   },
   tagsView: {
     refresh: 'Refresh',

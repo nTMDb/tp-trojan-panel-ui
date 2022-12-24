@@ -100,7 +100,10 @@ export default {
     content: '콘텐츠',
     sendFail: '전송 실패',
     sendWait: '보내기를 기다리는 중',
-    sendSuccess: '성공적으로 전송'
+    sendSuccess: '성공적으로 전송',
+    nodeServer: '섬기는 사람',
+    nodeServerIp: '서버 IP',
+    nodeServerName: '서버 닉네임'
   },
   tagsView: {
     refresh: '새로 고침',

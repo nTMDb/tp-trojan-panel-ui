@@ -10,6 +10,20 @@
         @keyup.enter.native="handleFilter"
         @clear="handleFilter"
       />
+      <el-select
+        v-model="listQuery.nodeServerId"
+        class="filter-item"
+        clearable
+        @change="handleFilter"
+        @clear="handleFilter"
+      >
+        <el-option
+          :label="item.name"
+          :value="item.id"
+          :key="item.id"
+          v-for="item in nodeServers"
+        ></el-option>
+      </el-select>
       <el-button
         class="filter-item"
         type="primary"
@@ -57,9 +71,23 @@
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodeIp')" width="150" align="center">
+      <el-table-column
+        v-if="checkPermission(['sysadmin', 'admin'])"
+        :label="$t('table.nodeServerName')"
+        width="150"
+        align="center"
+      >
         <template slot-scope="{ row }">
-          <span>{{ row.ip }}</span>
+          <span>{{ filterNodeServers(row.nodeServerId) }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        :label="$t('table.nodeDomain')"
+        width="150"
+        align="center"
+      >
+        <template slot-scope="{ row }">
+          <span>{{ row.domain }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.nodePort')" width="80" align="center">
@@ -149,8 +177,18 @@
         <el-form-item :label="$t('table.nodeName')" prop="name" clearable>
           <el-input v-model="temp.name" />
         </el-form-item>
-        <el-form-item :label="$t('table.nodeIp')" prop="ip" clearable>
-          <el-input v-model="temp.ip" />
+        <el-form-item :label="$t('table.nodeServer')" prop="nodeServerId">
+          <el-select v-model="temp.nodeServerId" controls-position="right">
+            <el-option
+              :label="item.name"
+              :value="item.id"
+              :key="item.id"
+              v-for="item in nodeServers"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item :label="$t('table.nodeDomain')" prop="domain" clearable>
+          <el-input v-model="temp.domain" />
         </el-form-item>
         <el-form-item :label="$t('table.nodePort')" prop="port">
           <el-input-number
@@ -418,6 +456,7 @@ import { getNodeTypeName } from '@/utils/node'
 import checkPermission from '@/utils/permission'
 import { timeStampToDate } from '@/utils'
 import { clashSubscribe } from '@/api/account'
+import { selectNodeServerList } from '@/api/node-server'
 
 export default {
   name: 'List',
@@ -483,14 +522,16 @@ export default {
       listQuery: {
         pageNum: 1,
         pageSize: 20,
-        name: undefined
+        name: undefined,
+        nodeServerId: undefined
       },
       temp: {
         id: undefined,
+        nodeServerId: undefined,
         nodeSubId: undefined,
         nodeTypeId: 1,
         name: '',
-        ip: '',
+        domain: '',
         port: 443,
 
         xrayProtocol: 'vless',
@@ -550,16 +591,23 @@ export default {
             trigger: 'change'
           }
         ],
-        ip: [
+        nodeServerId: [
           {
             required: true,
-            message: this.$t('valid.nodeIp'),
+            message: this.$t('valid.nodeServerId'),
+            trigger: 'change'
+          }
+        ],
+        domain: [
+          {
+            required: true,
+            message: this.$t('valid.nodeDomain'),
             trigger: 'change'
           },
           {
             min: 4,
             max: 64,
-            message: this.$t('valid.nodeIpRange'),
+            message: this.$t('valid.nodeDomainRange'),
             trigger: 'change'
           }
         ],
@@ -728,7 +776,14 @@ export default {
             trigger: 'change'
           }
         ],
-        ip: [
+        nodeServerId: [
+          {
+            required: true,
+            message: this.$t('valid.nodeServerId'),
+            trigger: 'change'
+          }
+        ],
+        domain: [
           {
             required: true,
             message: this.$t('valid.nodeIp'),
@@ -894,6 +949,7 @@ export default {
       },
       dialogStatus: '',
       nodeTypes: [],
+      nodeServers: [],
       xrayStreamSettingsNetworks: [
         'tcp',
         // 'kcp',
@@ -923,6 +979,7 @@ export default {
   },
   created() {
     this.setNodeTypes()
+    this.setNodeServers()
     this.getList()
   },
   methods: {
@@ -942,6 +999,12 @@ export default {
         this.nodeTypes = data
       })
     },
+    setNodeServers() {
+      selectNodeServerList().then((response) => {
+        const { data } = response
+        this.nodeServers = data
+      })
+    },
     getList() {
       this.listLoading = true
       selectNodePage(this.listQuery).then((response) => {
@@ -956,10 +1019,11 @@ export default {
     resetTemp() {
       this.temp = {
         id: undefined,
+        nodeServerId: undefined,
         nodeSubId: undefined,
         nodeTypeId: 1,
         name: '',
-        ip: '',
+        domain: '',
         port: 443,
 
         xrayProtocol: 'vless',
@@ -1117,6 +1181,9 @@ export default {
     },
     filterNodeTypes(nodeTypeId) {
       return this.nodeTypes.find((item) => item.id === nodeTypeId).name
+    },
+    filterNodeServers(nodeServerId) {
+      return this.nodeServers.find((item) => item.id === nodeServerId).name
     },
     handleCopyURL(row) {
       nodeURL(row).then((response) => {
