@@ -203,26 +203,26 @@ export default {
         ip: [
           {
             required: true,
-            message: this.$t('valid.nodeIp'),
+            message: this.$t('valid.ip'),
             trigger: 'change'
           },
           {
             min: 4,
             max: 64,
-            message: this.$t('valid.nodeIpRange'),
+            message: this.$t('valid.ipRange'),
             trigger: 'change'
           }
         ],
         name: [
           {
             required: true,
-            message: this.$t('valid.nodeName'),
+            message: this.$t('valid.nodeServerName'),
             trigger: 'change'
           },
           {
             min: 2,
             max: 20,
-            message: this.$t('valid.nodeNameRange'),
+            message: this.$t('valid.nodeServerNameRange'),
             trigger: 'change'
           }
         ]
@@ -231,26 +231,26 @@ export default {
         ip: [
           {
             required: true,
-            message: this.$t('valid.nodeIp'),
+            message: this.$t('valid.ip'),
             trigger: 'change'
           },
           {
             min: 4,
             max: 64,
-            message: this.$t('valid.nodeIpRange'),
+            message: this.$t('valid.ipRange'),
             trigger: 'change'
           }
         ],
         name: [
           {
             required: true,
-            message: this.$t('valid.nodeName'),
+            message: this.$t('valid.nodeServerName'),
             trigger: 'change'
           },
           {
             min: 2,
             max: 20,
-            message: this.$t('valid.nodeNameRange'),
+            message: this.$t('valid.nodeServerNameRange'),
             trigger: 'change'
           }
         ]
@@ -296,17 +296,21 @@ export default {
       })
     },
     handleDelete(row, index) {
-      MessageBox.confirm('确认删除该服务器？', '警告', {
-        confirmButtonText: '是',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
+      MessageBox.confirm(
+        this.$t('confirm.deleteNodeServer'),
+        this.$t('confirm.warn'),
+        {
+          confirmButtonText: this.$t('confirm.yes'),
+          cancelButtonText: this.$t('confirm.cancel'),
+          type: 'warning'
+        }
+      ).then(() => {
         const tempData = Object.assign({}, row)
         deleteNodeServerById(tempData).then(() => {
           this.list.splice(index, 1)
           this.$notify({
             title: 'Success',
-            message: '删除成功',
+            message: this.$t('confirm.deleteSuccess'),
             type: 'success',
             duration: 2000
           })
@@ -321,7 +325,7 @@ export default {
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
-              message: '创建成功',
+              message: this.$t('confirm.createSuccess'),
               type: 'success',
               duration: 2000
             })

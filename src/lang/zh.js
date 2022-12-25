@@ -212,26 +212,32 @@ export default {
     expireWarnDay: '请输入提醒提前的天数',
     expireWarnDayRange: '天数在0-365之间',
     uploadWebFileFormat: '文件格式只支持.zip',
-    uploadWebFileSize: '文件大小不能超过10MB'
+    uploadWebFileSize: '文件大小不能超过10MB',
+    nodeServerName: '请输入服务器名称',
+    nodeServerNameRange: '服务器名称的范围在2-20字符之间',
+    ip: '请输入IP',
+    ipRange: 'IP的范围在4-64字符之间'
   },
   confirm: {
-    deleteUser: '确认删除该用户？',
     warn: '警告',
     yes: '是',
     cancel: '取消',
     deleteSuccess: '删除成功',
     createSuccess: '创建成功',
     modifySuccess: '修改成功',
-    handleReset: '确认重设该用户下载和上传流量？',
     resetSuccess: '重设成功',
-    deleteNode: '确认删除该节点？',
     urlCopySuccess: 'URL复制成功',
     urlCopyFail: 'URL复制失败',
     uploadWebFileSuccess: '上传成功',
     updateAccountProfile: '修改成功,下次登陆时生效',
     logoutPrompt: '您已注销，可以取消以停留在此页面，或重新登录！',
     logoutConfirm: '重新登录',
-    authFail: '认证失败，请重新登录！'
+    authFail: '认证失败，请重新登录！',
+    deleteUser: '确认删除该用户？',
+    handleReset: '确认重设该用户下载和上传流量？',
+    deleteNode: '确认删除该节点？',
+    deleteNodeServer: '确认删除该服务器？',
+    deleteBlack: '确认删除该IP？'
   },
   remark: {
     emailEnable: '设置你的邮箱，可以接收到期提醒邮件。'

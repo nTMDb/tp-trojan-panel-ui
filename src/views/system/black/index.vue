@@ -128,7 +128,7 @@ export default {
   data() {
     const validateIp = (rule, value, callback) => {
       if (this.temp.ip === '127.0.0.1') {
-        callback(new Error('IP不能127.0.0.1'))
+        callback(new Error('IP cannot be 127.0.0.1'))
       } else {
         callback()
       }
@@ -151,11 +151,15 @@ export default {
       dialogFormVisible: false,
       createRules: {
         ip: [
-          { required: true, message: '请输入IP', trigger: 'change' },
+          {
+            required: true,
+            message: this.$t('valid.ip'),
+            trigger: 'change'
+          },
           {
             min: 4,
             max: 64,
-            message: 'IP的范围在4-64字符之间',
+            message: this.$t('valid.ipRange'),
             trigger: 'change'
           },
           {
@@ -202,17 +206,21 @@ export default {
       })
     },
     handleDelete(row, index) {
-      MessageBox.confirm('确认删除该IP？', '警告', {
-        confirmButtonText: '是',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
+      MessageBox.confirm(
+        this.$t('confirm.deleteBlack'),
+        this.$t('confirm.warn'),
+        {
+          confirmButtonText: this.$t('confirm.yes'),
+          cancelButtonText: this.$t('confirm.cancel'),
+          type: 'warning'
+        }
+      ).then(() => {
         const tempData = Object.assign({}, row)
         deleteBlackListByIp(tempData).then(() => {
           this.list.splice(index, 1)
           this.$notify({
             title: 'Success',
-            message: '删除成功',
+            message: this.$t('confirm.deleteSuccess'),
             type: 'success',
             duration: 2000
           })
@@ -227,7 +235,7 @@ export default {
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
-              message: '创建成功',
+              message: this.$t('confirm.createSuccess'),
               type: 'success',
               duration: 2000
             })
