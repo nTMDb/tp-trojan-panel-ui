@@ -66,7 +66,7 @@ export default {
     oldPass: '기존 비밀번호',
     newPass: '새 비밀번호',
     nodeName: '노드 이름',
-    nodeIp: 'IP 주소/도메인 이름',
+    nodeDomain: '도메인 이름',
     nodePort: '포트',
     nodeType: '유형',
     nodeStatus: '상태',
@@ -88,10 +88,8 @@ export default {
     hysteriaProtocol: '모델',
     hysteriaUpMbps: '단일 클라이언트 최대 업로드 속도/Mbps',
     hysteriaDownMbps: '단일 클라이언트 최대 다운로드 속도/Mbps',
-    hysteriaTip:
-      '현재 지원되는 Hysteria는 베타 단계이며 사용자 인증만 지원하고 트래픽 통계는 지원하지 않습니다.',
-    naiveproxyTip:
-      '현재 지원되는 NaiveProxy는 테스트 단계이며 사용자 인증만 지원하고 트래픽 통계는 지원하지 않습니다.',
+    hysteriaTip: '현재 지원되는 Hysteria는 베타 단계이며 사용자 인증만 지원하고 트래픽 통계는 지원하지 않습니다.',
+    naiveproxyTip: '현재 지원되는 NaiveProxy는 테스트 단계이며 사용자 인증만 지원하고 트래픽 통계는 지원하지 않습니다.',
     nodeQRCode: 'QR 코드 생성',
     nodeURL: 'URL 복사',
     blackListIp: 'IP',
@@ -172,8 +170,8 @@ export default {
     expireTime: '만료 시간을 입력하세요',
     nodeName: '노드 이름을 입력하세요.',
     nodeNameRange: '노드 이름은 2-20자 사이일 수 있습니다.',
-    nodeIp: 'IP/도메인 이름을 입력하세요.',
-    nodeIpRange: 'IP/도메인 이름의 범위는 4-64자 사이입니다.',
+    nodeDomain: '도메인 이름을 입력하세요.',
+    nodeDomainRange: '도메인 이름의 범위는 4-64자 사이입니다.',
     nodePort: '포트를 입력하십시오',
     nodePortRange: '합법적인 포트를 입력하세요.',
     nodeType: '노드 유형을 입력하십시오',
@@ -192,19 +190,15 @@ export default {
     hysteriaProtocol: '패턴을 입력해주세요',
     hysteriaProtocolRange: '패턴 범위는 2-16자입니다.',
     hysteriaUpMbps: '단일 클라이언트의 최대 업로드 속도/Mbps를 입력하십시오.',
-    hysteriaUpMbpsRange:
-      '단일 클라이언트의 최대 업로드 속도는 1~9999999999 범위의 정수입니다.',
-    hysteriaDownMbps:
-      '단일 클라이언트의 최대 다운로드 속도/Mbps를 입력하십시오.',
-    hysteriaDownMbpsRange:
-      '단일 클라이언트의 최대 다운로드 속도는 1에서 9999999999 사이의 정수입니다.',
+    hysteriaUpMbpsRange: '단일 클라이언트의 최대 업로드 속도는 1~9999999999 범위의 정수입니다.',
+    hysteriaDownMbps: '단일 클라이언트의 최대 다운로드 속도/Mbps를 입력하십시오.',
+    hysteriaDownMbpsRange: '단일 클라이언트의 최대 다운로드 속도는 1에서 9999999999 사이의 정수입니다.',
     registerEnable: '등록 가능 여부를 입력하세요.',
     registerQuota: '신규 사용자의 기본 트래픽을 입력하세요.',
     registerQuotaRange: '흐름은 0-1024000 사이입니다.',
     registerExpireDays: '새 사용자의 기본 만료일을 입력하세요.',
     registerExpireDaysRange: '0-365 사이의 일',
-    resetDownloadAndUploadMonth:
-      '매월 다운로드 및 업로드 트래픽 재설정 여부를 입력하십시오.',
+    resetDownloadAndUploadMonth: '매월 다운로드 및 업로드 트래픽 재설정 여부를 입력하십시오.',
     trafficRankEnable: '트래픽 순위 활성화 여부를 입력하세요.',
     emailEnable: '이메일 기능 활성화 여부를 입력해주세요.',
     emailHostRange: '사서함 호스트의 범위는 3-64자 사이입니다.',
@@ -216,27 +210,32 @@ export default {
     expireWarnDay: '미리 알림 일수를 입력하십시오.',
     expireWarnDayRange: '0-365 사이의 일',
     uploadWebFileFormat: '파일 형식은 .zip만 지원합니다.',
-    uploadWebFileSize: '파일 크기는 10MB를 초과할 수 없습니다.'
+    uploadWebFileSize: '파일 크기는 10MB를 초과할 수 없습니다.',
+    nodeServerName: '서버 이름을 입력하세요.',
+    nodeServerNameRange: '서버 이름의 범위는 2-20자 사이입니다.',
+    ip: '아이피를 입력해주세요',
+    ipRange: 'IP 범위는 4-64자 사이입니다.'
   },
   confirm: {
-    deleteUser: '이 사용자를 삭제하시겠습니까?',
     warn: '경고하다',
     yes: '예',
     cancel: '취소',
     deleteSuccess: '성공적으로 삭제',
     createSuccess: '성공적으로 생성됨',
     modifySuccess: '성공적으로 수정됨',
-    handleReset: '사용자의 다운로드 및 업로드 트래픽을 재설정하시겠습니까?',
     resetSuccess: '재설정 성공',
-    deleteNode: '이 노드를 삭제하시겠습니까?',
     urlCopySuccess: 'URL이 성공적으로 복사되었습니다.',
     urlCopyFail: 'URL 복사 실패',
     uploadWebFileSuccess: '성공적으로 업로드',
     updateAccountProfile: '수정이 완료되었으며 다음에 로그인할 때 적용됩니다.',
-    logoutPrompt:
-      '로그아웃되었습니다. 취소하여 이 페이지에 머물거나 다시 로그인할 수 있습니다!',
+    logoutPrompt: '로그아웃되었습니다. 취소하여 이 페이지에 머물거나 다시 로그인할 수 있습니다!',
     logoutConfirm: '재등록',
-    authFail: '인증에 실패했습니다. 다시 로그인하세요!'
+    authFail: '인증에 실패했습니다. 다시 로그인하세요!',
+    deleteUser: '이 사용자를 삭제하시겠습니까?',
+    handleReset: '사용자의 다운로드 및 업로드 트래픽을 재설정하시겠습니까?',
+    deleteNode: '이 노드를 삭제하시겠습니까?',
+    deleteNodeServer: '이 서버를 삭제하시겠습니까?',
+    deleteBlack: '이 IP를 삭제하시겠습니까?'
   },
   remark: {
     emailEnable: '만료 알림 이메일을 수신하도록 사서함을 설정하십시오.'
