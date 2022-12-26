@@ -72,24 +72,6 @@ export const constantRoutes = [
   },
 
   {
-    path: '/server-manage',
-    name: 'serverManage',
-    component: Layout,
-    redirect: '/server-manage/server-list',
-    meta: { title: 'serverManage', icon: 'server' },
-    children: [
-      {
-        path: 'server-list',
-        name: 'serverList',
-        component: () => import('@/views/node-server/list'),
-        meta: {
-          title: 'serverList'
-        }
-      }
-    ]
-  },
-
-  {
     path: '/node-manage',
     name: 'nodeManage',
     component: Layout,
@@ -132,6 +114,29 @@ export const asyncRoutes = [
         component: () => import('@/views/account/list'),
         meta: {
           title: 'accountList',
+          roles: ['sysadmin', 'admin']
+        }
+      }
+    ]
+  },
+
+  {
+    path: '/server-manage',
+    name: 'serverManage',
+    component: Layout,
+    redirect: '/server-manage/server-list',
+    meta: {
+      title: 'serverManage',
+      icon: 'server',
+      roles: ['sysadmin', 'admin']
+    },
+    children: [
+      {
+        path: 'server-list',
+        name: 'serverList',
+        component: () => import('@/views/node-server/list'),
+        meta: {
+          title: 'serverList',
           roles: ['sysadmin', 'admin']
         }
       }
