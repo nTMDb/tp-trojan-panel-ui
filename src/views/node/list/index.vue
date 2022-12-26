@@ -73,7 +73,6 @@
         </template>
       </el-table-column>
       <el-table-column
-        v-if="checkPermission(['sysadmin', 'admin'])"
         :label="$t('table.nodeServerName')"
         width="150"
         align="center"
