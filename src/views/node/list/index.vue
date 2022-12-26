@@ -1112,17 +1112,21 @@ export default {
       })
     },
     handleDelete(row, index) {
-      MessageBox.confirm(this.$t('valid.deleteNode'), this.$t('valid.warn'), {
-        confirmButtonText: this.$t('valid.yes'),
-        cancelButtonText: this.$t('valid.cancel'),
-        type: 'warning'
-      }).then(() => {
+      MessageBox.confirm(
+        this.$t('confirm.deleteNode'),
+        this.$t('confirm.warn'),
+        {
+          confirmButtonText: this.$t('confirm.yes'),
+          cancelButtonText: this.$t('confirm.cancel'),
+          type: 'warning'
+        }
+      ).then(() => {
         const tempData = Object.assign({}, row)
         deleteNodeById(tempData).then(() => {
           this.list.splice(index, 1)
           this.$notify({
             title: 'Success',
-            message: this.$t('valid.deleteSuccess'),
+            message: this.$t('confirm.deleteSuccess'),
             type: 'success',
             duration: 2000
           })
