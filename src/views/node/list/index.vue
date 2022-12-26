@@ -12,6 +12,7 @@
       />
       <el-select
         v-model="listQuery.nodeServerId"
+        :placeholder="$t('table.nodeServerName')"
         class="filter-item"
         clearable
         @change="handleFilter"
