@@ -2,6 +2,7 @@ import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
+import i18n from '@/lang'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
@@ -32,9 +33,9 @@ service.interceptors.response.use(
       })
 
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        MessageBox.confirm(this.$t('confirm.logoutPrompt'), 'Confirm logout', {
-          confirmButtonText: this.$t('confirm.logoutConfirm'),
-          cancelButtonText: this.$t('confirm.cancel'),
+        MessageBox.confirm(i18n.t('confirm.logoutPrompt'), 'Confirm logout', {
+          confirmButtonText: i18n.t('confirm.logoutConfirm'),
+          cancelButtonText: i18n.t('confirm.cancel'),
           type: 'warning'
         }).then(() => {
           store.dispatch('account/resetToken').then(() => {
