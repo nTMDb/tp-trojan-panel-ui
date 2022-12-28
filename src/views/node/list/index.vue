@@ -323,7 +323,7 @@
           :label="$t('table.trojanGoSsEnable')"
           prop="trojanGoSsEnable"
           v-show="isTrojanGoEnableWebsocket"
-          >s
+          >
           <el-switch
             v-model="temp.trojanGoSsEnable"
             active-color="#13ce66"
