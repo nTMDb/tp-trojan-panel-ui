@@ -506,7 +506,6 @@ export default {
         this.temp.xrayProtocol === 'vmess' ||
         this.temp.xrayStreamSettingsEntity.network !== 'tcp'
       ) {
-        this.temp.xrayStreamSettingsEntity.security = 'tls'
         return ['none', 'tls']
       } else {
         return ['none', 'tls', 'xtls']
