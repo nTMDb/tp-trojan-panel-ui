@@ -172,6 +172,7 @@ export default {
     nodeNameRange: '节点名称的范围在2-20字符之间',
     nodeDomain: '请输入域名',
     nodeDomainRange: '域名的范围在4-64字符之间',
+    nodeDomainFormat: '请输入正确的域名',
     nodePort: '请输入端口',
     nodePortRange: '请输入合法的端口',
     nodeType: '请输入节点类型',

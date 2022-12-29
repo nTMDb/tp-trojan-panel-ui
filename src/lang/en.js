@@ -172,6 +172,7 @@ export default {
     nodeNameRange: 'Node names can range between 2-20 characters',
     nodeDomain: 'Please enter a domain name',
     nodeDomainRange: 'The range of the domain name is between 4-64 characters',
+    nodeDomainFormat: 'Please enter the correct domain name',
     nodePort: 'Please enter the port',
     nodePortRange: 'Please enter a legal port',
     nodeType: 'Please enter node type',
