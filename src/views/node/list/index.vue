@@ -800,6 +800,12 @@ export default {
             max: 64,
             message: this.$t('valid.nodeIpRange'),
             trigger: 'change'
+          },
+          {
+            pattern:
+                /^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/,
+            message: this.$t('valid.nodeDomainFormat'),
+            trigger: 'change'
           }
         ],
         port: [
