@@ -170,6 +170,7 @@ export default {
     expireTime: '만료 시간을 입력하세요',
     nodeName: '노드 이름을 입력하세요',
     nodeNameRange: '노드 이름은 2-20자 사이일 수 있습니다',
+    nodeServerId: '서버를 입력하십시오',
     nodeDomain: '도메인 이름을 입력하세요',
     nodeDomainRange: '도메인 이름의 범위는 4-64자 사이입니다',
     nodeDomainFormat: '올바른 도메인 이름을 입력하세요',

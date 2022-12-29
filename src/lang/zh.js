@@ -170,6 +170,7 @@ export default {
     expireTime: '请输入到期时间',
     nodeName: '请输入节点名称',
     nodeNameRange: '节点名称的范围在2-20字符之间',
+    nodeServerId: '请输入服务器',
     nodeDomain: '请输入域名',
     nodeDomainRange: '域名的范围在4-64字符之间',
     nodeDomainFormat: '请输入正确的域名',

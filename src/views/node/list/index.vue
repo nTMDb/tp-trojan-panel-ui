@@ -611,7 +611,7 @@ export default {
           },
           {
             pattern:
-                /^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/,
+                /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
             message: this.$t('valid.nodeDomainFormat'),
             trigger: 'change'
           }
@@ -802,7 +802,7 @@ export default {
           },
           {
             pattern:
-                /^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/,
+                /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
             message: this.$t('valid.nodeDomainFormat'),
             trigger: 'change'
           }
