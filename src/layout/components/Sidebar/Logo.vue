@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { selectSystemByName } from '@/api/system'
+
 export default {
   name: 'SidebarLogo',
   props: {
@@ -29,8 +31,18 @@ export default {
   },
   data() {
     return {
-      title: 'Trojan Panel',
+      title: '',
       logo: 'https://img-blog.csdnimg.cn/1302ff26dd94451b832096dc2b8af5d2.png'
+    }
+  },
+  created() {
+    this.selectSystemByName()
+  },
+  methods: {
+    selectSystemByName() {
+      selectSystemByName().then((response) => {
+        this.title = response.data.systemName
+      })
     }
   }
 }

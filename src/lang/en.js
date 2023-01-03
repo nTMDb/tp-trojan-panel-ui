@@ -150,7 +150,10 @@ export default {
     emailUsername: 'Email Username',
     emailPassword: 'Email Password',
     expireWarnEnable: 'Enable expiration reminder',
-    expireWarnDay: 'Reminder days ahead'
+    expireWarnDay: 'Reminder days ahead',
+    templateConfig: 'Template Config',
+    systemName: 'System Name',
+    clashRule: 'Clash Rules'
   },
   valid: {
     passNotSame: 'The two new passwords entered are inconsistent',
@@ -216,7 +219,10 @@ export default {
     nodeServerName: 'Please enter a server name',
     nodeServerNameRange: 'The server name can range between 2-20 characters',
     ip: 'Please enter IP',
-    ipRange: 'The range of IP is between 4-64 characters'
+    ipRange: 'The range of IP is between 4-64 characters',
+    systemName: 'Please enter a system name',
+    systemNameRange: 'System names range from 2-32 characters',
+    clashRule: 'Clash rules range from 0-5000 characters'
   },
   confirm: {
     warn: 'Warn',

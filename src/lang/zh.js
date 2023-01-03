@@ -150,7 +150,10 @@ export default {
     emailUsername: '邮箱用户名',
     emailPassword: '邮箱密码',
     expireWarnEnable: '是否开启到期提醒',
-    expireWarnDay: '提醒提前的天数'
+    expireWarnDay: '提醒提前的天数',
+    templateConfig: '模板设置',
+    systemName: '系统名称',
+    clashRule: 'Clash规则'
   },
   valid: {
     passNotSame: '两次新密码输入不一致',
@@ -216,7 +219,10 @@ export default {
     nodeServerName: '请输入服务器名称',
     nodeServerNameRange: '服务器名称的范围在2-20字符之间',
     ip: '请输入IP',
-    ipRange: 'IP的范围在4-64字符之间'
+    ipRange: 'IP的范围在4-64字符之间',
+    systemName: '请输入系统名称',
+    systemNameRange: '系统名称的范围在2-32个字符之间',
+    clashRule: 'Clash规则的范围在0-5000字符之间'
   },
   confirm: {
     warn: '警告',

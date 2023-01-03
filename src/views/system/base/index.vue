@@ -10,6 +10,12 @@
       <el-tab-pane :label="$t('config.configWebFile')" name="config-web-file">
         <web-file />
       </el-tab-pane>
+      <el-tab-pane
+        :label="$t('config.templateConfig')"
+        name="config-template-config"
+      >
+        <template-config :system-config="systemConfig" />
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -18,11 +24,12 @@
 import Account from './components/account'
 import WebFile from './components/web-file'
 import Email from './components/email'
+import TemplateConfig from './components/template-config'
 import { selectSystemByName } from '@/api/system'
 
 export default {
   name: 'index',
-  components: { Account, WebFile, Email },
+  components: { Account, WebFile, Email, TemplateConfig },
   data() {
     return {
       activeName: 'account-config',
@@ -39,7 +46,9 @@ export default {
         registerExpireDays: 0,
         registerQuota: 0,
         resetDownloadAndUploadMonth: 0,
-        trafficRankEnable: 1
+        trafficRankEnable: 1,
+        systemName: '',
+        clashRule: ''
       }
     }
   },

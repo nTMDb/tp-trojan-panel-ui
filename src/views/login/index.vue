@@ -10,7 +10,7 @@
     >
       <div class="title-container">
         <h3 class="title">
-          {{ $t('login.title') }}
+          {{ systemName }}
         </h3>
         <lang-select class="set-language" />
       </div>
@@ -123,7 +123,8 @@ export default {
       loading: false,
       passwordType: 'password',
       redirect: undefined,
-      registerEnable: 0
+      registerEnable: 0,
+      systemName: ''
     }
   },
   watch: {
@@ -173,6 +174,7 @@ export default {
       setting().then((response) => {
         const { data } = response
         this.registerEnable = data.registerEnable
+        this.systemName = data.systemName
       })
     }
   }
