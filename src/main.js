@@ -12,6 +12,7 @@ import '@/icons'
 import '@/permission'
 import i18n from '@/lang'
 import VueClipboard from 'vue-clipboard2'
+import 'default-passive-events'
 
 Vue.use(VueClipboard)
 Vue.use(ElementUI, {
