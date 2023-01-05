@@ -78,7 +78,7 @@
         align="center"
       >
         <template slot-scope="{ row }">
-          <span>{{ filterNodeServers(row.nodeServerId) }}</span>
+          <span>{{ nodeServerComputed(row.nodeServerId) }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -97,7 +97,7 @@
       </el-table-column>
       <el-table-column :label="$t('table.nodeType')" width="120" align="center">
         <template slot-scope="{ row }">
-          <span>{{ filterNodeTypes(row.nodeTypeId) }}</span>
+          <span>{{ nodeTypeComputed(row.nodeTypeId) }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -107,14 +107,8 @@
         v-if="checkPermission(['sysadmin', 'admin'])"
       >
         <template slot-scope="{ row }">
-          <el-tag :type="handleStatus(row.status)">
-            <span>{{
-              row.status === 1
-                ? $t('table.nodeStatusSuccess')
-                : row.status === 0
-                ? $t('table.nodeStatusError')
-                : $t('table.nodeStatusTimeout')
-            }}</span>
+          <el-tag :type="row.status | statusTypeFilter">
+            <span>{{ statusComputed(row.status) }}</span>
           </el-tag>
         </template>
       </el-table-column>
@@ -146,6 +140,9 @@
           </el-button>
           <el-button type="success" size="mini" @click="handleCopyURL(row)">
             {{ $t('table.nodeURL') }}
+          </el-button>
+          <el-button type="success" size="mini" @click="handleInfo(row)">
+            {{ $t('table.nodeInfo') }}
           </el-button>
           <el-button
             size="mini"
@@ -323,7 +320,7 @@
           :label="$t('table.trojanGoSsEnable')"
           prop="trojanGoSsEnable"
           v-show="isTrojanGoEnableWebsocket"
-          >
+        >
           <el-switch
             v-model="temp.trojanGoSsEnable"
             active-color="#13ce66"
@@ -425,22 +422,34 @@
       </div>
     </el-dialog>
 
-    <el-dialog
-      :title="$t('table.nodeQRCode')"
-      :visible.sync="dialogQRCodeVisible"
-    >
-      <el-image style="width: 256px; height: 256px" :src="qrCodeSrc"></el-image>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogQRCodeVisible = false">
-          {{ $t('table.confirm') }}
-        </el-button>
-      </div>
-    </el-dialog>
+    <info
+      :node-info="temp"
+      :is-xray="isXray"
+      :is-trojan-go="isTrojanGo"
+      :is-hysteria="isHysteria"
+      :is-naive-proxy="isNaiveProxy"
+      :is-xray-ws="isXrayWs"
+      :is-trojan-go-enable-ss="isTrojanGoEnableSs"
+      :is-trojan-go-enable-websocket="isTrojanGoEnableWebsocket"
+      :node-servers="nodeServers"
+      :nodeTypes="nodeTypes"
+      :xrayProtocols="xrayProtocols"
+      :xrayStreamSettingsNetworks="xrayStreamSettingsNetworks"
+      :xrayStreamSettingsSecuritys="xrayStreamSettingsSecuritys"
+      :dialogInfoVisible.sync="dialogInfoVisible"
+    />
+
+    <qrcode
+      :qr-code-src="qrCodeSrc"
+      :dialogQRCodeVisible.sync="dialogQRCodeVisible"
+    />
   </div>
 </template>
 
 <script>
 import Pagination from '@/components/Pagination'
+import Info from '@/views/node/list/info'
+import Qrcode from '@/views/node/list/qrcode'
 import { Message, MessageBox } from 'element-ui'
 import {
   createNode,
@@ -460,7 +469,7 @@ import { selectNodeServerList } from '@/api/node-server'
 
 export default {
   name: 'List',
-  components: { Pagination },
+  components: { Qrcode, Info, Pagination },
   filters: {
     trojanGoWebsocketEnableFilter(trojanGoWebsocketEnable) {
       const deletedMap = {
@@ -475,31 +484,34 @@ export default {
         1: 'success'
       }
       return deletedMap[trojanGoSsEnable]
+    },
+    statusTypeFilter(status) {
+      return status > 0 ? 'success' : 'danger'
     }
   },
   computed: {
-    isXray: function () {
+    isXray() {
       return getNodeTypeName(this.temp.nodeTypeId) === 'xray'
     },
-    isXrayWs: function () {
+    isXrayWs() {
       return this.isXray && this.temp.xrayStreamSettingsEntity.network === 'ws'
     },
-    isTrojanGo: function () {
+    isTrojanGo() {
       return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
     },
-    isTrojanGoEnableWebsocket: function () {
+    isTrojanGoEnableWebsocket() {
       return this.isTrojanGo && this.temp.trojanGoWebsocketEnable === 1
     },
-    isTrojanGoEnableSs: function () {
+    isTrojanGoEnableSs() {
       return this.isTrojanGo && this.temp.trojanGoSsEnable === 1
     },
-    isHysteria: function () {
+    isHysteria() {
       return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
     },
-    isNaiveProxy: function () {
+    isNaiveProxy() {
       return getNodeTypeName(this.temp.nodeTypeId) === 'naiveproxy'
     },
-    xrayStreamSettingsSecuritys: function () {
+    xrayStreamSettingsSecuritys() {
       // XTLS only supports TCP, mKCP and DomainSocket for now
       // vmess暂不支持xtls
       if (
@@ -509,6 +521,25 @@ export default {
         return ['none', 'tls']
       } else {
         return ['none', 'tls', 'xtls']
+      }
+    },
+    statusComputed() {
+      return function (status) {
+        return status === 1
+          ? this.$t('table.nodeStatusSuccess')
+          : status === 0
+          ? this.$t('table.nodeStatusError')
+          : this.$t('table.nodeStatusTimeout')
+      }
+    },
+    nodeTypeComputed() {
+      return function (nodeTypeId) {
+        return this.nodeTypes.find((item) => item.id === nodeTypeId).name
+      }
+    },
+    nodeServerComputed() {
+      return function (nodeServerId) {
+        return this.nodeServers.find((item) => item.id === nodeServerId).name
       }
     }
   },
@@ -571,11 +602,40 @@ export default {
         createTime: new Date()
       },
       dialogFormVisible: false,
+      dialogInfoVisible: false,
       dialogQRCodeVisible: false,
       textMap: {
         update: this.$t('table.edit'),
         create: this.$t('table.add')
       },
+      dialogStatus: '',
+      nodeTypes: [],
+      nodeServers: [],
+      xrayStreamSettingsNetworks: [
+        'tcp',
+        // 'kcp',
+        'ws'
+        // 'http',
+        // 'domainsocket',
+        // 'quic',
+        // 'grpc'
+      ],
+      xrayProtocols: [
+        // 'dokodemo-door',
+        // 'http',
+        // 'socks',
+        'vless',
+        'vmess',
+        'trojan'
+        // 'shadowsocks'
+      ],
+      trojanGoSsMethods: [
+        'AES-128-GCM',
+        'AES-256-GCM',
+        'CHACHA20-IETF-POLY1305'
+      ],
+      qrCodeSrc: '',
+      hysteriaProtocols: ['udp', 'faketcp'],
       createRules: {
         name: [
           {
@@ -611,7 +671,7 @@ export default {
           },
           {
             pattern:
-                /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
+              /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
             message: this.$t('valid.nodeDomainFormat'),
             trigger: 'change'
           }
@@ -802,7 +862,7 @@ export default {
           },
           {
             pattern:
-                /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
+              /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
             message: this.$t('valid.nodeDomainFormat'),
             trigger: 'change'
           }
@@ -957,35 +1017,7 @@ export default {
             trigger: 'change'
           }
         ]
-      },
-      dialogStatus: '',
-      nodeTypes: [],
-      nodeServers: [],
-      xrayStreamSettingsNetworks: [
-        'tcp',
-        // 'kcp',
-        'ws'
-        // 'http',
-        // 'domainsocket',
-        // 'quic',
-        // 'grpc'
-      ],
-      xrayProtocols: [
-        // 'dokodemo-door',
-        // 'http',
-        // 'socks',
-        'vless',
-        'vmess',
-        'trojan'
-        // 'shadowsocks'
-      ],
-      trojanGoSsMethods: [
-        'AES-128-GCM',
-        'AES-256-GCM',
-        'CHACHA20-IETF-POLY1305'
-      ],
-      qrCodeSrc: '',
-      hysteriaProtocols: ['udp', 'faketcp']
+      }
     }
   },
   created() {
@@ -1122,6 +1154,37 @@ export default {
         this.$refs['dataForm'].clearValidate()
       })
     },
+    handleInfo(row) {
+      this.temp = Object.assign(this.temp, row)
+      selectNodeById({ id: row.id }).then((response) => {
+        if (this.temp.nodeTypeId === 1) {
+          this.temp.xrayProtocol = response.data.xrayProtocol
+          this.temp.xraySettings = response.data.xraySettings
+          this.temp.xrayStreamSettingsEntity =
+            response.data.xrayStreamSettingsEntity
+          this.temp.xrayTag = response.data.xrayTag
+          this.temp.xraySniffing = response.data.xraySniffing
+          this.temp.xrayAllocate = response.data.xrayAllocate
+        }
+        if (this.temp.nodeTypeId === 2) {
+          this.temp.trojanGoSni = response.data.trojanGoSni
+          this.temp.trojanGoMuxEnable = response.data.trojanGoMuxEnable
+          this.temp.trojanGoWebsocketEnable =
+            response.data.trojanGoWebsocketEnable
+          this.temp.trojanGoWebsocketPath = response.data.trojanGoWebsocketPath
+          this.temp.trojanGoWebsocketHost = response.data.trojanGoWebsocketHost
+          this.temp.trojanGoSsEnable = response.data.trojanGoSsEnable
+          this.temp.trojanGoSsMethod = response.data.trojanGoSsMethod
+          this.temp.trojanGoSsPassword = response.data.trojanGoSsPassword
+        }
+        if (this.temp.nodeTypeId === 3) {
+          this.temp.hysteriaProtocol = response.data.hysteriaProtocol
+          this.temp.hysteriaUpMbps = response.data.hysteriaUpMbps
+          this.temp.hysteriaDownMbps = response.data.hysteriaDownMbps
+        }
+      })
+      this.dialogInfoVisible = true
+    },
     handleDelete(row, index) {
       MessageBox.confirm(
         this.$t('confirm.deleteNode'),
@@ -1194,12 +1257,6 @@ export default {
         }
       })
     },
-    filterNodeTypes(nodeTypeId) {
-      return this.nodeTypes.find((item) => item.id === nodeTypeId).name
-    },
-    filterNodeServers(nodeServerId) {
-      return this.nodeServers.find((item) => item.id === nodeServerId).name
-    },
     handleCopyURL(row) {
       nodeURL(row).then((response) => {
         this.$copyText(response.data).then(
@@ -1241,9 +1298,6 @@ export default {
           }
         )
       })
-    },
-    handleStatus(status) {
-      return status > 0 ? 'success' : 'danger'
     }
   }
 }

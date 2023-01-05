@@ -39,7 +39,7 @@ export default {
     login: '我已有账号'
   },
   table: {
-    enable: '正常',
+    enable: '开启',
     disable: '禁用',
     search: '搜索',
     add: '添加',
@@ -92,6 +92,7 @@ export default {
     naiveproxyTip: '目前支持的NaiveProxy处于测试阶段，只支持用户认证不支持流量统计。',
     nodeQRCode: '生成二维码',
     nodeURL: '复制URL',
+    nodeInfo: '节点详情',
     blackListIp: 'IP',
     toEmail: '收件人',
     subject: '主题',
