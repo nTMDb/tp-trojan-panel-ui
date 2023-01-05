@@ -576,7 +576,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: 'xtls',
+          security: 'tls',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
@@ -1081,7 +1081,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: 'xtls',
+          security: 'tls',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
