@@ -139,6 +139,16 @@ export const asyncRoutes = [
           title: 'serverList',
           roles: ['sysadmin', 'admin']
         }
+      },
+      {
+        path: 'server-detail',
+        name: 'serverDetail',
+        component: () => import('@/views/node-server/detail'),
+        hidden: true,
+        meta: {
+          title: 'serverDetail',
+          roles: ['sysadmin', 'admin']
+        }
       }
     ]
   },
@@ -210,8 +220,8 @@ const createRouter = () =>
 const router = createRouter()
 
 export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher
+    const newRouter = createRouter()
+    router.matcher = newRouter.matcher
 }
 
 export default router

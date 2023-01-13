@@ -78,7 +78,7 @@
         v-if="checkPermission(['sysadmin', 'admin'])"
       >
         <template slot-scope="{ row }">
-          <el-tag :type="handleStatus(row.status)">
+          <el-tag :type="row.status | statusTypeFilter">
             <span>{{
               row.status === 1
                 ? $t('table.nodeStatusSuccess')
@@ -111,6 +111,14 @@
             v-if="checkPermission(['sysadmin'])"
           >
             {{ $t('table.edit') }}
+          </el-button>
+          <el-button
+            type="success"
+            size="mini"
+            :disabled="row.status | disabledFilter"
+            @click="handleDetail(row)"
+          >
+            {{ $t('table.nodeDetail') }}
           </el-button>
           <el-button
             size="mini"
@@ -261,6 +269,14 @@ export default {
   created() {
     this.getList()
   },
+  filters: {
+    statusTypeFilter(status) {
+      return status > 0 ? 'success' : 'danger'
+    },
+    disabledFilter(status) {
+      return status !== 1
+    }
+  },
   methods: {
     checkPermission,
     timeStampToDate,
@@ -359,8 +375,13 @@ export default {
         }
       })
     },
-    handleStatus(status) {
-      return status > 0 ? 'success' : 'danger'
+    handleDetail(row) {
+      this.$router.push({
+        name: 'serverDetail',
+        params: {
+          nodeServerId: row.id
+        }
+      })
     }
   }
 }

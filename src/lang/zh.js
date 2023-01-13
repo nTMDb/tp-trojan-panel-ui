@@ -3,6 +3,7 @@ export default {
     dashboard: '首页',
     serverManage: '服务器管理',
     serverList: '服务器列表',
+    serverDetail: '服务器详情',
     nodeManage: '节点管理',
     nodeList: '节点列表',
     accountManage: '用户管理',

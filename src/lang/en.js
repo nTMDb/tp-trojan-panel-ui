@@ -3,6 +3,7 @@ export default {
     dashboard: 'Dashboard',
     serverManage: 'Server Manage',
     serverList: 'Server List',
+    serverDetail: 'Server Detail',
     nodeManage: 'Node Manage',
     nodeList: 'Node List',
     accountManage: 'Account Manage',
