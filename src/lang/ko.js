@@ -92,7 +92,7 @@ export default {
     naiveproxyTip: '현재 지원되는 NaiveProxy는 테스트 단계이며 사용자 인증만 지원하고 트래픽 통계는 지원하지 않습니다',
     nodeQRCode: 'QR 코드 생성',
     nodeURL: 'URL 복사',
-    nodeInfo: '세부',
+    nodeDetail: '세부',
     blackListIp: 'IP',
     toEmail: '받는 사람',
     subject: '주제',

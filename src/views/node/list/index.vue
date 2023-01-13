@@ -141,8 +141,8 @@
           <el-button type="success" size="mini" @click="handleCopyURL(row)">
             {{ $t('table.nodeURL') }}
           </el-button>
-          <el-button type="success" size="mini" @click="handleInfo(row)">
-            {{ $t('table.nodeInfo') }}
+          <el-button type="success" size="mini" @click="handleDetail(row)">
+            {{ $t('table.nodeDetail') }}
           </el-button>
           <el-button
             size="mini"
@@ -422,7 +422,7 @@
       </div>
     </el-dialog>
 
-    <info
+    <detail
       :node-info="temp"
       :is-xray="isXray"
       :is-trojan-go="isTrojanGo"
@@ -448,8 +448,8 @@
 
 <script>
 import Pagination from '@/components/Pagination'
-import Info from '@/views/node/list/info'
-import Qrcode from '@/views/node/list/qrcode'
+import Detail from '@/views/node/list/components/detail'
+import Qrcode from '@/views/node/list/components/qrcode'
 import { Message, MessageBox } from 'element-ui'
 import {
   createNode,
@@ -469,7 +469,7 @@ import { selectNodeServerList } from '@/api/node-server'
 
 export default {
   name: 'List',
-  components: { Qrcode, Info, Pagination },
+  components: { Qrcode, Detail, Pagination },
   filters: {
     trojanGoWebsocketEnableFilter(trojanGoWebsocketEnable) {
       const deletedMap = {
@@ -1154,7 +1154,7 @@ export default {
         this.$refs['dataForm'].clearValidate()
       })
     },
-    handleInfo(row) {
+    handleDetail(row) {
       this.temp = Object.assign(this.temp, row)
       selectNodeById({ id: row.id }).then((response) => {
         if (this.temp.nodeTypeId === 1) {
