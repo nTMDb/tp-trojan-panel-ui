@@ -116,7 +116,8 @@
     </el-form>
 
     <div slot="footer" class="dialog-footer">
-      <el-button @click="$emit('update:dialogInfoVisible', false)"
+      <el-button type="primary"
+                 @click="$emit('update:dialogInfoVisible', false)"
         >{{ $t('table.confirm') }}
       </el-button>
     </div>
