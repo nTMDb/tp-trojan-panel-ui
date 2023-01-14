@@ -155,7 +155,7 @@ export default {
     expireWarnDay: '사전 알림',
     templateConfig: '템플릿 설정',
     systemName: '시스템 이름',
-    clashRule: 'Clash 규칙'
+    clashRule: 'Clash 규칙 템플릿'
   },
   valid: {
     passNotSame: '입력한 두 개의 새 비밀번호가 일치하지 않습니다',
