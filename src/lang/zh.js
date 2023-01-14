@@ -155,7 +155,7 @@ export default {
     expireWarnDay: '提醒提前的天数',
     templateConfig: '模板设置',
     systemName: '系统名称',
-    clashRule: 'Clash规则模板'
+    clashRule: 'Clash规则'
   },
   valid: {
     passNotSame: '两次新密码输入不一致',

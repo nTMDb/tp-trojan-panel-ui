@@ -155,7 +155,7 @@ export default {
     expireWarnDay: 'Reminder days ahead',
     templateConfig: 'Template Config',
     systemName: 'System Name',
-    clashRule: 'Clash rule template'
+    clashRule: 'Clash Rule'
   },
   valid: {
     passNotSame: 'The two new passwords entered are inconsistent',
