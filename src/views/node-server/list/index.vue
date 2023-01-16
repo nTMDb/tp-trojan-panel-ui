@@ -376,12 +376,8 @@ export default {
       })
     },
     handleDetail(row) {
-      this.$router.push({
-        name: 'serverDetail',
-        params: {
-          nodeServerId: row.id
-        }
-      })
+      this.$store.dispatch('nodeServer/setNodeServer', { id: row.id })
+      this.$router.push({ path: 'server-detail' })
     }
   }
 }

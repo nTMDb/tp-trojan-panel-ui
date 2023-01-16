@@ -21,11 +21,12 @@ export default {
     }
   },
   created() {
-    let nodeServerId = this.$route.params.nodeServerId
-    nodeServerState({ id: nodeServerId }).then((response) => {
-      const { data } = response
-      this.nodeServerGroupData = data
-    })
+    nodeServerState({ id: this.$store.getters.nodeServerId }).then(
+      (response) => {
+        const { data } = response
+        this.nodeServerGroupData = data
+      }
+    )
   }
 }
 </script>
