@@ -7,6 +7,7 @@
 <script>
 import NodeServerGroup from '@/views/node-server/detail/compoments/NodeServerGroup'
 import { nodeServerState } from '@/api/node-server'
+import Cookies from 'js-cookie'
 
 export default {
   name: 'index',
@@ -21,12 +22,10 @@ export default {
     }
   },
   created() {
-    nodeServerState({ id: this.$store.getters.nodeServerId }).then(
-      (response) => {
-        const { data } = response
-        this.nodeServerGroupData = data
-      }
-    )
+    nodeServerState({ id: Cookies.get('nodeServerId') }).then((response) => {
+      const { data } = response
+      this.nodeServerGroupData = data
+    })
   }
 }
 </script>

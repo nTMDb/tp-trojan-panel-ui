@@ -180,6 +180,7 @@ import {
   selectNodeServerPage,
   updateNodeServerById
 } from '@/api/node-server'
+import Cookies from "js-cookie";
 
 export default {
   name: 'NodeServer',
@@ -376,7 +377,7 @@ export default {
       })
     },
     handleDetail(row) {
-      this.$store.dispatch('nodeServer/setNodeServer', { id: row.id })
+      Cookies.set('nodeServerId', row.id)
       this.$router.push({ path: 'server-detail' })
     }
   }

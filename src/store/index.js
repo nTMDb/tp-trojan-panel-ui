@@ -6,7 +6,6 @@ import app from '@/store/modules/app'
 import account from '@/store/modules/account'
 import permission from '@/store/modules/permission'
 import tagsView from '@/store/modules/tagsView'
-import nodeServer from "@/store/modules/node-server";
 
 Vue.use(Vuex)
 
@@ -16,7 +15,6 @@ const store = new Vuex.Store({
     settings,
     tagsView,
     account,
-    nodeServer,
     permission
   },
   getters
