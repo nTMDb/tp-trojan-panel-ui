@@ -77,3 +77,16 @@ export function selectNodeServerList(data) {
     params: data
   })
 }
+
+/**
+ * 查询服务器状态
+ * @param data
+ * @returns
+ */
+export function nodeServerState(data) {
+  return request({
+    url: '/nodeServer/nodeServerState',
+    method: 'get',
+    params: data
+  })
+}

@@ -6,6 +6,7 @@
 
 <script>
 import NodeServerGroup from '@/views/node-server/detail/compoments/NodeServerGroup'
+import { nodeServerState } from '@/api/node-server'
 
 export default {
   name: 'index',
@@ -21,7 +22,10 @@ export default {
   },
   created() {
     let nodeServerId = this.$route.params.nodeServerId
-
+    nodeServerState({ id: nodeServerId }).then((response) => {
+      const { data } = response
+      this.nodeServerGroupData = data
+    })
   }
 }
 </script>
