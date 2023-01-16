@@ -15,7 +15,10 @@
         English
       </el-dropdown-item>
       <el-dropdown-item :disabled="language === 'ko'" command="ko">
-        한국어
+        한국인
+      </el-dropdown-item>
+      <el-dropdown-item :disabled="language === 'fa'" command="fa">
+        فارسی
       </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
