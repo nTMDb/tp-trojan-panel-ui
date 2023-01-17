@@ -48,7 +48,9 @@ export default {
         resetDownloadAndUploadMonth: 0,
         trafficRankEnable: 1,
         systemName: '',
-        clashRule: ''
+        clashRule: '',
+        xrayTemplate: '',
+        xrayTemplateEntity:{}
       }
     }
   },
@@ -59,6 +61,9 @@ export default {
     selectDate() {
       selectSystemByName().then((response) => {
         this.systemConfig = response.data
+        this.systemConfig.xrayTemplateEntity = JSON.parse(
+            this.systemConfig.xrayTemplate
+        )
       })
     }
   }

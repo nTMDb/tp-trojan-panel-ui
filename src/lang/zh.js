@@ -155,7 +155,8 @@ export default {
     expireWarnDay: '提醒提前的天数',
     templateConfig: '模板设置',
     systemName: '系统名称',
-    clashRule: 'Clash规则'
+    clashRule: 'Clash规则',
+    xrayTemplate: 'Xray模板'
   },
   valid: {
     passNotSame: '两次新密码输入不一致',
@@ -224,7 +225,8 @@ export default {
     ipRange: 'IP的范围在4-64字符之间',
     systemName: '请输入系统名称',
     systemNameRange: '系统名称的范围在2-32个字符之间',
-    clashRule: 'Clash规则的范围在0-5000字符之间'
+    clashRuleRange: 'Clash规则的范围在0-5000字符之间',
+    xrayTemplateRange: 'Xray模板的范围在0-5000字符之间'
   },
   confirm: {
     warn: '警告',

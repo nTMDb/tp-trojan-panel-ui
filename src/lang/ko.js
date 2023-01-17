@@ -155,7 +155,8 @@ export default {
     expireWarnDay: '사전 알림',
     templateConfig: '템플릿 설정',
     systemName: '시스템 이름',
-    clashRule: 'Clash 규칙'
+    clashRule: 'Clash 규칙',
+    xrayTemplate: 'Xray 템플릿'
   },
   valid: {
     passNotSame: '입력한 두 개의 새 비밀번호가 일치하지 않습니다',
@@ -224,7 +225,8 @@ export default {
     ipRange: 'IP 범위는 4-64자 사이입니다',
     systemName: '시스템 이름을 입력하세요',
     systemNameRange: '시스템 이름 범위는 2-32자입니다',
-    clashRule: 'Clash 규칙 범위는 0-5000자입니다'
+    clashRuleRange: 'Clash 규칙 범위는 0-5000자입니다',
+    xrayTemplateRange: 'Xray 템플릿의 범위는 0-5000자 사이입니다.'
   },
   confirm: {
     warn: '경고하다',

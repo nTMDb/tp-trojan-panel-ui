@@ -14,6 +14,12 @@ import i18n from '@/lang'
 import VueClipboard from 'vue-clipboard2'
 import 'default-passive-events'
 
+import VCA from '@vue/composition-api'
+import JsonEditorVue from 'json-editor-vue'
+
+Vue.use(VCA)
+Vue.use(JsonEditorVue)
+
 Vue.use(VueClipboard)
 Vue.use(ElementUI, {
   size: Cookies.get('size') || 'small', // set element-ui default size

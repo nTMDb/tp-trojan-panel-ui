@@ -20,6 +20,9 @@
           v-model="systemConfig.clashRule"
         />
       </el-form-item>
+      <el-form-item :label="$t('config.xrayTemplate')" prop="xrayTemplate">
+        <JsonEditorVue v-model="systemConfig.xrayTemplateEntity" mode="text" />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="updateData()"
           >{{ $t('table.confirm') }}
@@ -31,9 +34,11 @@
 
 <script>
 import { updateSystemById } from '@/api/system'
+import JsonEditorVue from 'json-editor-vue'
 
 export default {
   name: 'templateConfig',
+  components: { JsonEditorVue },
   props: {
     systemConfig: {
       type: Object,
@@ -63,12 +68,23 @@ export default {
             message: this.$t('valid.clashRuleRange'),
             trigger: 'change'
           }
+        ],
+        xrayTemplate: [
+          {
+            min: 0,
+            max: 5000,
+            message: this.$t('valid.xrayTemplateRange'),
+            trigger: 'change'
+          }
         ]
       }
     }
   },
   methods: {
     updateData() {
+      this.systemConfig.xrayTemplate = JSON.stringify(
+        this.systemConfig.xrayTemplateEntity
+      )
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.systemConfig)

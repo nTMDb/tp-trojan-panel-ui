@@ -155,7 +155,8 @@ export default {
     expireWarnDay: 'Reminder days ahead',
     templateConfig: 'Template Config',
     systemName: 'System Name',
-    clashRule: 'Clash Rule'
+    clashRule: 'Clash Rule',
+    xrayTemplate: 'Xray Template'
   },
   valid: {
     passNotSame: 'The two new passwords entered are inconsistent',
@@ -224,7 +225,8 @@ export default {
     ipRange: 'The range of IP is between 4-64 characters',
     systemName: 'Please enter a system name',
     systemNameRange: 'System names range from 2-32 characters',
-    clashRule: 'Clash rules range from 0-5000 characters'
+    clashRuleRange: 'Clash rules range from 0-5000 characters',
+    xrayTemplateRange: 'The range of Xray templates is between 0-5000 characters'
   },
   confirm: {
     warn: 'Warn',

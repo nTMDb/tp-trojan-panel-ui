@@ -155,7 +155,8 @@ export default {
     expireWarnDay: 'یادآوری از روز قبل',
     templateConfig: 'تنظیمات قالب',
     systemName: 'نام سیستم',
-    clashRule: 'قوانین برخورد'
+    clashRule: 'قوانین برخورد',
+    xrayTemplate: 'قالب Xray'
   },
   valid: {
     passNotSame: 'دو کلمه عبور جدید وارد شده ناسازگار هستند',
@@ -224,7 +225,8 @@ export default {
     ipRange: 'محدوده IP بین 4-64 کاراکتر است',
     systemName: 'لطفا یک نام سیستم وارد کنید',
     systemNameRange: 'نام سیستم ها از 2 تا 32 کاراکتر متغیر است',
-    clashRule: 'قوانین کلش از 0 تا 5000 کاراکتر متغیر است'
+    clashRuleRange: 'قوانین کلش از 0 تا 5000 کاراکتر متغیر است',
+    xrayTemplateRange: 'نمای اشعه ایکس از 0 تا 5000 کاراکتر.'
   },
   confirm: {
     warn: 'هشدار دهد',
