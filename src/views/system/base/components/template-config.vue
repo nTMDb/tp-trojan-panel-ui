@@ -21,7 +21,11 @@
         />
       </el-form-item>
       <el-form-item :label="$t('config.xrayTemplate')" prop="xrayTemplate">
-        <JsonEditorVue v-model="systemConfig.xrayTemplateEntity" mode="text" />
+        <JsonEditorVue
+          v-model="systemConfig.xrayTemplateEntity"
+          v-bind="systemConfig.xrayTemplateEntity"
+          mode="tree"
+        />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="updateData()"
@@ -82,6 +86,9 @@ export default {
   },
   methods: {
     updateData() {
+      this.systemConfig.xrayTemplateEntity = JSON.parse(
+        this.systemConfig.xrayTemplateEntity
+      )
       this.systemConfig.xrayTemplate = JSON.stringify(
         this.systemConfig.xrayTemplateEntity
       )
