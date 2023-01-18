@@ -86,9 +86,10 @@ export default {
   },
   methods: {
     updateData() {
-      this.systemConfig.xrayTemplateEntity = JSON.parse(
-        this.systemConfig.xrayTemplateEntity
-      )
+      if (typeof this.systemConfig.xrayTemplateEntity !== 'object')
+        this.systemConfig.xrayTemplateEntity = JSON.parse(
+          this.systemConfig.xrayTemplateEntity
+        )
       this.systemConfig.xrayTemplate = JSON.stringify(
         this.systemConfig.xrayTemplateEntity
       )
