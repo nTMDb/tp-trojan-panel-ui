@@ -24,7 +24,7 @@
         <JsonEditorVue
           v-model="systemConfig.xrayTemplateEntity"
           v-bind="systemConfig.xrayTemplateEntity"
-          mode="tree"
+          mode="text"
         />
       </el-form-item>
       <el-form-item>
