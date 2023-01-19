@@ -12,7 +12,6 @@ import '@/icons'
 import '@/permission'
 import i18n from '@/lang'
 import VueClipboard from 'vue-clipboard2'
-import 'default-passive-events'
 
 import VCA from '@vue/composition-api'
 import JsonEditorVue from 'json-editor-vue'
