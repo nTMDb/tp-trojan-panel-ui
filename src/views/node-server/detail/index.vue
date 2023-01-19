@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-editor-container">
-    <node-server-group :node-server-group-data="nodeServerGroupData" />
+    <NodeServerGroup :node-server-group-data="nodeServerGroupData" />
   </div>
 </template>
 

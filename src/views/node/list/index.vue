@@ -156,7 +156,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination
+    <Pagination
       v-show="total > 0"
       :total="total"
       :page.sync="listQuery.pageNum"
@@ -422,7 +422,7 @@
       </div>
     </el-dialog>
 
-    <detail
+    <Detail
       :node-info="temp"
       :is-xray="isXray"
       :is-trojan-go="isTrojanGo"
@@ -439,7 +439,7 @@
       :dialogInfoVisible.sync="dialogInfoVisible"
     />
 
-    <qrcode
+    <Qrcode
       :qr-code-src="qrCodeSrc"
       :dialogQRCodeVisible.sync="dialogQRCodeVisible"
     />
@@ -448,8 +448,8 @@
 
 <script>
 import Pagination from '@/components/Pagination'
-import Detail from '@/views/node/list/components/detail'
-import Qrcode from '@/views/node/list/components/qrcode'
+import Detail from '@/views/node/list/components/Detail'
+import Qrcode from '@/views/node/list/components/Qrcode'
 import { Message, MessageBox } from 'element-ui'
 import {
   createNode,

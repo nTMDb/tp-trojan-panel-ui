@@ -126,7 +126,7 @@
 
 <script>
 export default {
-  name: 'info',
+  name: 'Detail.vue',
   props: {
     dialogInfoVisible: {
       type: Boolean,

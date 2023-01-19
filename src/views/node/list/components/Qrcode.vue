@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'qrcode',
+  name: 'Qrcode',
   props: {
     dialogQRCodeVisible: {
       type: Boolean,
