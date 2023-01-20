@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { selectSystemByName } from '@/api/system'
+import { setting } from '@/api/system'
 
 export default {
   name: 'SidebarLogo',
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     selectSystemByName() {
-      selectSystemByName().then((response) => {
+      setting().then((response) => {
         this.title = response.data.systemName
       })
     }
