@@ -36,10 +36,10 @@ export default {
     }
   },
   created() {
-    this.selectSystemByName()
+    this.setting()
   },
   methods: {
-    selectSystemByName() {
+    setting() {
       setting().then((response) => {
         this.title = response.data.systemName
       })
