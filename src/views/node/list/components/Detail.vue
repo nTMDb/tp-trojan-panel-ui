@@ -27,7 +27,9 @@
       <el-form-item
         :label="$t('table.alterId')"
         v-show="
-          nodeInfo.xrayProtocol === 'vless' || nodeInfo.xrayProtocol === 'vmess'
+          isXray &&
+          (nodeInfo.xrayProtocol === 'vless' ||
+            nodeInfo.xrayProtocol === 'vmess')
         "
       >
         <el-tag>{{ nodeInfo.alterId }}</el-tag>
