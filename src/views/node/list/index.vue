@@ -423,7 +423,7 @@
     </el-dialog>
 
     <Detail
-      :node-info="temp"
+      :node-info="nodeDetail"
       :is-xray="isXray"
       :is-trojan-go="isTrojanGo"
       :is-hysteria="isHysteria"
@@ -457,6 +457,7 @@ import {
   nodeQRCode,
   nodeURL,
   selectNodeById,
+  selectNodeInfo,
   selectNodePage,
   updateNodeById
 } from '@/api/node'
@@ -564,6 +565,56 @@ export default {
         domain: '',
         port: 443,
 
+        xrayProtocol: 'vless',
+        xraySettings: '',
+        xraySettingsEntity: {
+          fallbacks: [
+            {
+              dest: 80
+            }
+          ]
+        },
+        xrayStreamSettings: '',
+        xrayStreamSettingsEntity: {
+          network: 'tcp',
+          security: 'tls',
+          tlsSettings: {},
+          xtlsSettings: {},
+          wsSettings: {
+            path: '/trojan-panel-websocket-path'
+          }
+        },
+        xrayTag: 'user',
+        xraySniffing: '',
+        xrayAllocate: '',
+
+        trojanGoSni: '',
+        trojanGoMuxEnable: 1,
+        trojanGoWebsocketEnable: 0,
+        trojanGoWebsocketPath: '/trojan-panel-websocket-path',
+        trojanGoWebsocketHost: '',
+        trojanGoSsEnable: 0,
+        trojanGoSsMethod: 'AES-128-GCM',
+        trojanGoSsPassword: '',
+
+        hysteriaProtocol: 'udp',
+        hysteriaUpMbps: 100,
+        hysteriaDownMbps: 100,
+        createTime: new Date()
+      },
+      nodeDetail: {
+        id: undefined,
+        nodeServerId: undefined,
+        nodeSubId: undefined,
+        nodeTypeId: 1,
+        name: '',
+        domain: '',
+        port: 443,
+        password: '',
+        uuid: '',
+        alterId: 0,
+
+        xrayFlow: 'xtls-rprx-direct',
         xrayProtocol: 'vless',
         xraySettings: '',
         xraySettingsEntity: {
@@ -1155,32 +1206,38 @@ export default {
       })
     },
     handleDetail(row) {
-      this.temp = Object.assign(this.temp, row)
-      selectNodeById({ id: row.id }).then((response) => {
-        if (this.temp.nodeTypeId === 1) {
-          this.temp.xrayProtocol = response.data.xrayProtocol
-          this.temp.xraySettings = response.data.xraySettings
-          this.temp.xrayStreamSettingsEntity =
+      this.nodeDetail = Object.assign(this.temp, row)
+      selectNodeInfo({ id: row.id }).then((response) => {
+        if (this.nodeDetail.nodeTypeId === 1) {
+          this.nodeDetail.xrayProtocol = response.data.xrayProtocol
+          this.nodeDetail.xraySettings = response.data.xraySettings
+          this.nodeDetail.xrayStreamSettingsEntity =
             response.data.xrayStreamSettingsEntity
-          this.temp.xrayTag = response.data.xrayTag
-          this.temp.xraySniffing = response.data.xraySniffing
-          this.temp.xrayAllocate = response.data.xrayAllocate
+          this.nodeDetail.xrayTag = response.data.xrayTag
+          this.nodeDetail.xraySniffing = response.data.xraySniffing
+          this.nodeDetail.xrayAllocate = response.data.xrayAllocate
+          this.nodeDetail.password = response.data.password
+          this.nodeDetail.uuid = response.data.uuid
+          this.nodeDetail.alterId = response.data.alterId
+          this.nodeDetail.xrayFlow = response.data.xrayFlow
         }
-        if (this.temp.nodeTypeId === 2) {
-          this.temp.trojanGoSni = response.data.trojanGoSni
-          this.temp.trojanGoMuxEnable = response.data.trojanGoMuxEnable
-          this.temp.trojanGoWebsocketEnable =
+        if (this.nodeDetail.nodeTypeId === 2) {
+          this.nodeDetail.trojanGoSni = response.data.trojanGoSni
+          this.nodeDetail.trojanGoMuxEnable = response.data.trojanGoMuxEnable
+          this.nodeDetail.trojanGoWebsocketEnable =
             response.data.trojanGoWebsocketEnable
-          this.temp.trojanGoWebsocketPath = response.data.trojanGoWebsocketPath
-          this.temp.trojanGoWebsocketHost = response.data.trojanGoWebsocketHost
-          this.temp.trojanGoSsEnable = response.data.trojanGoSsEnable
-          this.temp.trojanGoSsMethod = response.data.trojanGoSsMethod
-          this.temp.trojanGoSsPassword = response.data.trojanGoSsPassword
+          this.nodeDetail.trojanGoWebsocketPath =
+            response.data.trojanGoWebsocketPath
+          this.nodeDetail.trojanGoWebsocketHost =
+            response.data.trojanGoWebsocketHost
+          this.nodeDetail.trojanGoSsEnable = response.data.trojanGoSsEnable
+          this.nodeDetail.trojanGoSsMethod = response.data.trojanGoSsMethod
+          this.nodeDetail.trojanGoSsPassword = response.data.trojanGoSsPassword
         }
-        if (this.temp.nodeTypeId === 3) {
-          this.temp.hysteriaProtocol = response.data.hysteriaProtocol
-          this.temp.hysteriaUpMbps = response.data.hysteriaUpMbps
-          this.temp.hysteriaDownMbps = response.data.hysteriaDownMbps
+        if (this.nodeDetail.nodeTypeId === 3) {
+          this.nodeDetail.hysteriaProtocol = response.data.hysteriaProtocol
+          this.nodeDetail.hysteriaUpMbps = response.data.hysteriaUpMbps
+          this.nodeDetail.hysteriaDownMbps = response.data.hysteriaDownMbps
         }
       })
       this.dialogInfoVisible = true

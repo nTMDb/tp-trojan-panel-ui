@@ -18,6 +18,26 @@
           {{ nodeTypeComputed(nodeInfo.nodeTypeId) }}
         </el-tag>
       </el-form-item>
+      <el-form-item :label="$t('table.password')">
+        <el-tag>{{ nodeInfo.password }}</el-tag>
+      </el-form-item>
+      <el-form-item :label="$t('table.uuid')" v-show="isXray">
+        <el-tag>{{ nodeInfo.uuid }}</el-tag>
+      </el-form-item>
+      <el-form-item
+        :label="$t('table.alterId')"
+        v-show="
+          nodeInfo.xrayProtocol === 'vless' || nodeInfo.xrayProtocol === 'vmess'
+        "
+      >
+        <el-tag>{{ nodeInfo.alterId }}</el-tag>
+      </el-form-item>
+      <el-form-item
+        :label="$t('table.xrayFlow')"
+        v-show="isXray && nodeInfo.xrayProtocol === 'vless'"
+      >
+        <el-tag>{{ nodeInfo.xrayFlow }}</el-tag>
+      </el-form-item>
       <el-form-item :label="$t('table.xrayProtocol')" v-show="isXray">
         <el-tag>{{ nodeInfo.xrayProtocol }}</el-tag>
       </el-form-item>
@@ -116,8 +136,9 @@
     </el-form>
 
     <div slot="footer" class="dialog-footer">
-      <el-button type="primary"
-                 @click="$emit('update:dialogInfoVisible', false)"
+      <el-button
+        type="primary"
+        @click="$emit('update:dialogInfoVisible', false)"
         >{{ $t('table.confirm') }}
       </el-button>
     </div>

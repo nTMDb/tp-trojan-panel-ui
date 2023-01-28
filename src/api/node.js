@@ -14,6 +14,19 @@ export function selectNodeById(data) {
 }
 
 /**
+ * 查询节点连接信息
+ * @param data
+ * @returns
+ */
+export function selectNodeInfo(data) {
+  return request({
+    url: '/node/selectNodeInfo',
+    method: 'get',
+    params: data
+  })
+}
+
+/**
  * 创建节点
  * @param data
  * @returns
