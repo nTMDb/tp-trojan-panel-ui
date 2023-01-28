@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :title="$t('table.nodeDetail')" :visible.sync="dialogInfoVisible">
+  <el-dialog :title="$t('table.nodeDetail')" :visible.sync="dialogInfoVisible" @close="$emit('update:dialogInfoVisible', false)">
     <el-form :model="nodeInfo" label-position="left">
       <el-form-item :label="$t('table.nodeName')">
         <el-tag>{{ nodeInfo.name }}</el-tag>
