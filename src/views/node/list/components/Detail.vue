@@ -1,5 +1,9 @@
 <template>
-  <el-dialog :title="$t('table.nodeDetail')" :visible.sync="dialogInfoVisible" @close="$emit('update:dialogInfoVisible', false)">
+  <el-dialog
+    :title="$t('table.nodeDetail')"
+    :visible.sync="dialogInfoVisible"
+    @close="$emit('update:dialogInfoVisible', false)"
+  >
     <el-form :model="nodeInfo" label-position="left">
       <el-form-item :label="$t('table.nodeName')">
         <el-tag>{{ nodeInfo.name }}</el-tag>
@@ -21,23 +25,13 @@
       <el-form-item :label="$t('table.password')">
         <el-tag>{{ nodeInfo.password }}</el-tag>
       </el-form-item>
-      <el-form-item :label="$t('table.uuid')" v-show="isXray">
+      <el-form-item :label="$t('table.uuid')" v-show="showUUID">
         <el-tag>{{ nodeInfo.uuid }}</el-tag>
       </el-form-item>
-      <el-form-item
-        :label="$t('table.alterId')"
-        v-show="
-          isXray &&
-          (nodeInfo.xrayProtocol === 'vless' ||
-            nodeInfo.xrayProtocol === 'vmess')
-        "
-      >
+      <el-form-item :label="$t('table.alterId')" v-show="showAlterId">
         <el-tag>{{ nodeInfo.alterId }}</el-tag>
       </el-form-item>
-      <el-form-item
-        :label="$t('table.xrayFlow')"
-        v-show="isXray && nodeInfo.xrayProtocol === 'vless'"
-      >
+      <el-form-item :label="$t('table.xrayFlow')" v-show="showXrayFlow">
         <el-tag>{{ nodeInfo.xrayFlow }}</el-tag>
       </el-form-item>
       <el-form-item :label="$t('table.xrayProtocol')" v-show="isXray">
@@ -209,6 +203,23 @@ export default {
     }
   },
   computed: {
+    showUUID() {
+      return (
+        this.isXray &&
+        (this.nodeInfo.xrayProtocol === 'vless' ||
+          this.nodeInfo.xrayProtocol === 'vmess')
+      )
+    },
+    showAlterId() {
+      return (
+        this.isXray &&
+        (this.nodeInfo.xrayProtocol === 'vless' ||
+          this.nodeInfo.xrayProtocol === 'vmess')
+      )
+    },
+    showXrayFlow() {
+      return this.isXray && this.nodeInfo.xrayProtocol === 'vless'
+    },
     trojanGoMuxEnableComputed() {
       return function (trojanGoMuxEnable) {
         return trojanGoMuxEnable === 1
