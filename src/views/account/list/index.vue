@@ -587,7 +587,12 @@ export default {
       })
     },
     roleFilter(roleId) {
-      return this.roleList.find((item) => item.id === roleId).desc
+      let role = this.roleList.find((item) => item.id === roleId)
+      if (role && role.desc) {
+        return role.desc
+      } else {
+        return ''
+      }
     },
     handleReset(row) {
       MessageBox.confirm(

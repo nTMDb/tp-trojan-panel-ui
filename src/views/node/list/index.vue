@@ -535,12 +535,23 @@ export default {
     },
     nodeTypeComputed() {
       return function (nodeTypeId) {
-        return this.nodeTypes.find((item) => item.id === nodeTypeId).name
+        let nodeType = this.nodeTypes.find((item) => item.id === nodeTypeId)
+        if (nodeType && nodeType.name) {
+          return nodeType.name
+        }
+        return ''
       }
     },
     nodeServerComputed() {
       return function (nodeServerId) {
-        return this.nodeServers.find((item) => item.id === nodeServerId).name
+        let nodeServer = this.nodeServers.find(
+          (item) => item.id === nodeServerId
+        )
+        if (nodeServer && nodeServer.name) {
+          return nodeServer.name
+        } else {
+          return ''
+        }
       }
     }
   },

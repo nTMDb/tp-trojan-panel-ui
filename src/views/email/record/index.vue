@@ -164,7 +164,12 @@ export default {
       this.getList()
     },
     stateDescFilter(state) {
-      return this.stateDesc.find((item) => item.value === state).desc
+      let stateDesc = this.stateDesc.find((item) => item.value === state)
+      if (stateDesc && stateDesc.desc) {
+        return stateDesc.desc
+      } else {
+        return ''
+      }
     }
   }
 }
