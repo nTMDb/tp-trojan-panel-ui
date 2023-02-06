@@ -139,33 +139,12 @@
       :limit.sync="listQuery.pageSize"
       @pagination="getList"
     />
-
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form
-        ref="dataForm"
-        :rules="dialogStatus === 'create' ? createRules : updateRules"
-        :model="temp"
-        label-position="left"
-      >
-        <el-form-item :label="$t('table.nodeServerIp')" prop="ip" clearable>
-          <el-input v-model="temp.ip" />
-        </el-form-item>
-        <el-form-item :label="$t('table.nodeServerName')" prop="name" clearable>
-          <el-input v-model="temp.name" />
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false"
-          >{{ $t('table.cancel') }}
-        </el-button>
-        <el-button
-          type="primary"
-          @click="dialogStatus === 'create' ? createData() : updateData()"
-        >
-          {{ $t('table.confirm') }}
-        </el-button>
-      </div>
-    </el-dialog>
+    <NodeServerForm
+      :node-server="temp"
+      :dialog-status="dialogStatus"
+      :dialog-form-visible="dialogFormVisible"
+      :text-map="textMap"
+    />
   </div>
 </template>
 
@@ -174,17 +153,13 @@ import { timeStampToDate } from '@/utils'
 import Pagination from '@/components/Pagination'
 import { MessageBox } from 'element-ui'
 import checkPermission from '@/utils/permission'
-import {
-  createNodeServer,
-  deleteNodeServerById,
-  selectNodeServerPage,
-  updateNodeServerById
-} from '@/api/node-server'
-import Cookies from "js-cookie";
+import { deleteNodeServerById, selectNodeServerPage } from '@/api/node-server'
+import Cookies from 'js-cookie'
+import NodeServerForm from '@/views/node-server/list/compoments/NodeServerForm'
 
 export default {
   name: 'NodeServer',
-  components: { Pagination },
+  components: { NodeServerForm, Pagination },
   data() {
     return {
       tableKey: 0,
@@ -207,62 +182,6 @@ export default {
       textMap: {
         update: this.$t('table.edit'),
         create: this.$t('table.add')
-      },
-      createRules: {
-        ip: [
-          {
-            required: true,
-            message: this.$t('valid.ip'),
-            trigger: 'change'
-          },
-          {
-            min: 4,
-            max: 64,
-            message: this.$t('valid.ipRange'),
-            trigger: 'change'
-          }
-        ],
-        name: [
-          {
-            required: true,
-            message: this.$t('valid.nodeServerName'),
-            trigger: 'change'
-          },
-          {
-            min: 2,
-            max: 20,
-            message: this.$t('valid.nodeServerNameRange'),
-            trigger: 'change'
-          }
-        ]
-      },
-      updateRules: {
-        ip: [
-          {
-            required: true,
-            message: this.$t('valid.ip'),
-            trigger: 'change'
-          },
-          {
-            min: 4,
-            max: 64,
-            message: this.$t('valid.ipRange'),
-            trigger: 'change'
-          }
-        ],
-        name: [
-          {
-            required: true,
-            message: this.$t('valid.nodeServerName'),
-            trigger: 'change'
-          },
-          {
-            min: 2,
-            max: 20,
-            message: this.$t('valid.nodeServerNameRange'),
-            trigger: 'change'
-          }
-        ]
       },
       dialogStatus: ''
     }
@@ -334,46 +253,12 @@ export default {
         })
       })
     },
-    createData() {
-      this.$refs['dataForm'].validate((valid) => {
-        if (valid) {
-          createNodeServer(this.temp).then(() => {
-            this.getList()
-            this.dialogFormVisible = false
-            this.$notify({
-              title: 'Success',
-              message: this.$t('confirm.createSuccess'),
-              type: 'success',
-              duration: 2000
-            })
-          })
-        }
-      })
-    },
     handleUpdate(row) {
       this.temp = Object.assign(this.temp, row)
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
-      })
-    },
-    updateData() {
-      this.$refs['dataForm'].validate((valid) => {
-        if (valid) {
-          const tempData = Object.assign({}, this.temp)
-          updateNodeServerById(tempData).then(() => {
-            const index = this.list.findIndex((v) => v.id === this.temp.id)
-            this.list.splice(index, 1, this.temp)
-            this.dialogFormVisible = false
-            this.$notify({
-              title: 'Success',
-              message: this.$t('confirm.modifySuccess'),
-              type: 'success',
-              duration: 2000
-            })
-          })
-        }
       })
     },
     handleDetail(row) {
