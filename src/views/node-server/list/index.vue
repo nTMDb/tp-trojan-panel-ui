@@ -149,6 +149,7 @@
       @pagination="getList"
     />
     <NodeServerForm
+      ref="nodeServerForm"
       :node-server="temp"
       :dialog-status="dialogStatus"
       :dialog-form-visible="dialogFormVisible"
@@ -238,9 +239,7 @@ export default {
       this.resetTemp()
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
-      })
+      this.$refs.nodeServerForm.clearValidate()
     },
     handleDelete(row, index) {
       MessageBox.confirm(
@@ -268,9 +267,7 @@ export default {
       this.temp = Object.assign(this.temp, row)
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
-      })
+      this.$refs.nodeServerForm.clearValidate()
     },
     handleDetail(row) {
       Cookies.set('nodeServerId', row.id)

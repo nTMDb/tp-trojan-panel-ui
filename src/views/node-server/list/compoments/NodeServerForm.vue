@@ -90,7 +90,7 @@ export default {
             trigger: 'change'
           }
         ],
-        port: [
+        grpcPort: [
           {
             required: true,
             message: this.$t('valid.nodePort'),
@@ -131,7 +131,7 @@ export default {
             trigger: 'change'
           }
         ],
-        port: [
+        grpcPort: [
           {
             required: true,
             message: this.$t('valid.nodePort'),
@@ -148,6 +148,11 @@ export default {
     }
   },
   methods: {
+    clearValidate() {
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
