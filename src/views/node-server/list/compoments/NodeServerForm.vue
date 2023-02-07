@@ -16,7 +16,11 @@
       <el-form-item :label="$t('table.nodeServerName')" prop="name" clearable>
         <el-input v-model="nodeServer.name" />
       </el-form-item>
-      <el-form-item :label="$t('table.nodeServerGrpcPort')" prop="name" clearable>
+      <el-form-item
+        :label="$t('table.nodeServerGrpcPort')"
+        prop="grpcPort"
+        clearable
+      >
         <el-input v-model="nodeServer.grpcPort" />
       </el-form-item>
     </el-form>
@@ -85,6 +89,19 @@ export default {
             message: this.$t('valid.nodeServerNameRange'),
             trigger: 'change'
           }
+        ],
+        port: [
+          {
+            required: true,
+            message: this.$t('valid.nodePort'),
+            trigger: 'change'
+          },
+          {
+            pattern:
+              /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
+            message: this.$t('valid.nodePortRange'),
+            trigger: 'change'
+          }
         ]
       },
       updateRules: {
@@ -111,6 +128,19 @@ export default {
             min: 2,
             max: 20,
             message: this.$t('valid.nodeServerNameRange'),
+            trigger: 'change'
+          }
+        ],
+        port: [
+          {
+            required: true,
+            message: this.$t('valid.nodePort'),
+            trigger: 'change'
+          },
+          {
+            pattern:
+              /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
+            message: this.$t('valid.nodePortRange'),
             trigger: 'change'
           }
         ]
