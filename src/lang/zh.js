@@ -107,7 +107,8 @@ export default {
     sendSuccess: '发送成功',
     nodeServer: '服务器',
     nodeServerIp: '服务器IP',
-    nodeServerName: '服务器名称'
+    nodeServerName: '服务器名称',
+    nodeServerGrpcPort: 'API端口'
   },
   tagsView: {
     refresh: '刷新',

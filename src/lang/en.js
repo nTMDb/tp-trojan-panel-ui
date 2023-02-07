@@ -107,7 +107,8 @@ export default {
     sendSuccess: 'Success',
     nodeServer: 'Server',
     nodeServerIp: 'Server IP',
-    nodeServerName: 'Server Name'
+    nodeServerName: 'Server Name',
+    nodeServerGrpcPort: 'Server API port'
   },
   tagsView: {
     refresh: 'Refresh',

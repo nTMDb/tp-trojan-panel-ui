@@ -63,6 +63,15 @@
         </template>
       </el-table-column>
       <el-table-column
+        :label="$t('table.nodeServerGrpcPort')"
+        width="180"
+        align="center"
+      >
+        <template slot-scope="{ row }">
+          <span>{{ row.grpcPort }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
         :label="$t('table.nodeServerName')"
         width="180"
         align="center"
@@ -176,6 +185,7 @@ export default {
         id: undefined,
         ip: '',
         name: '',
+        grpcPort: 8100,
         createTime: new Date()
       },
       dialogFormVisible: false,
@@ -216,6 +226,7 @@ export default {
         id: undefined,
         ip: '',
         name: '',
+        grpcPort: 8100,
         createTime: new Date()
       }
     },

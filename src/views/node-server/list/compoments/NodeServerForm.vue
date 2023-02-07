@@ -16,6 +16,9 @@
       <el-form-item :label="$t('table.nodeServerName')" prop="name" clearable>
         <el-input v-model="nodeServer.name" />
       </el-form-item>
+      <el-form-item :label="$t('table.nodeServerGrpcPort')" prop="name" clearable>
+        <el-input v-model="nodeServer.grpcPort" />
+      </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="$emit('update:dialogFormVisible', false)"

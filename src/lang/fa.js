@@ -107,7 +107,8 @@ export default {
     sendSuccess: 'با موفقیت ارسال شد',
     nodeServer: 'سرور',
     nodeServerIp: 'آی پی سرور',
-    nodeServerName: 'نام سرور'
+    nodeServerName: 'نام سرور',
+    nodeServerGrpcPort: 'پورت API سرور'
   },
   tagsView: {
     refresh: 'تازه کردن',
