@@ -261,6 +261,34 @@
           </el-select>
         </el-form-item>
         <el-form-item
+          :label="$t('table.xrayFlow')"
+          prop="xrayFlow"
+          v-show="showXrayFlow"
+        >
+          <el-select v-model="temp.xrayFlow" controls-position="right">
+            <el-option
+              :label="item"
+              :value="item"
+              :key="index"
+              v-for="(item, index) in xrayFlows"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.xraySSMethod')"
+          prop="xraySSMethod"
+          v-show="isXrayShadowsocks"
+        >
+          <el-select v-model="temp.xraySSMethod" controls-position="right">
+            <el-option
+              :label="item"
+              :value="item"
+              :key="index"
+              v-for="(item, index) in xraySSMethods"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item
           :label="$t('table.trojanGoSni')"
           v-show="isTrojanGo"
           prop="trojanGoSni"
@@ -497,6 +525,12 @@ export default {
     isXrayWs() {
       return this.isXray && this.temp.xrayStreamSettingsEntity.network === 'ws'
     },
+    showXrayFlow() {
+      return this.isXray && (this.temp.xrayProtocol === 'vless' || this.temp.xrayProtocol === 'trojan')
+    },
+    isXrayShadowsocks() {
+      return this.isXray && this.temp.xrayProtocol === 'shadowsocks'
+    },
     isTrojanGo() {
       return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
     },
@@ -576,6 +610,8 @@ export default {
         domain: '',
         port: 443,
 
+        xrayFlow: 'xtls-rprx-vision',
+        xraySSMethod: 'aes-256-gcm',
         xrayProtocol: 'vless',
         xraySettings: '',
         xraySettingsEntity: {
@@ -625,7 +661,8 @@ export default {
         uuid: '',
         alterId: 0,
 
-        xrayFlow: 'xtls-rprx-direct',
+        xrayFlow: 'xtls-rprx-vision',
+        xraySSMethod: 'aes-256-gcm',
         xrayProtocol: 'vless',
         xraySettings: '',
         xraySettingsEntity: {
@@ -682,14 +719,30 @@ export default {
         // 'quic',
         // 'grpc'
       ],
+      xrayFlows: [
+        'none',
+        'xtls-rprx-vision',
+        'xtls-rprx-vision',
+        'xtls-rprx-vision,none',
+        'xtls-rprx-origin',
+        'xtls-rprx-origin-udp443',
+        'xtls-rprx-direct'
+      ],
+      xraySSMethods: [
+        'none',
+        'aes-128-gcm',
+        'aes-256-gcm',
+        'chacha20-poly1305',
+        'xchacha20-poly1305'
+      ],
       xrayProtocols: [
         // 'dokodemo-door',
         // 'http',
         // 'socks',
         'vless',
         'vmess',
-        'trojan'
-        // 'shadowsocks'
+        'trojan',
+        'shadowsocks'
       ],
       trojanGoSsMethods: [
         'AES-128-GCM',
@@ -1231,6 +1284,7 @@ export default {
           this.nodeDetail.uuid = response.data.uuid
           this.nodeDetail.alterId = response.data.alterId
           this.nodeDetail.xrayFlow = response.data.xrayFlow
+          this.nodeDetail.xraySSMethod = response.data.xraySSMethod
         }
         if (this.nodeDetail.nodeTypeId === 2) {
           this.nodeDetail.trojanGoSni = response.data.trojanGoSni

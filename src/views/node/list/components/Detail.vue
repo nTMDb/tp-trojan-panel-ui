@@ -31,11 +31,17 @@
       <el-form-item :label="$t('table.alterId')" v-show="showAlterId">
         <el-tag>{{ nodeInfo.alterId }}</el-tag>
       </el-form-item>
+      <el-form-item :label="$t('table.xrayProtocol')" v-show="isXray">
+        <el-tag>{{ nodeInfo.xrayProtocol }}</el-tag>
+      </el-form-item>
       <el-form-item :label="$t('table.xrayFlow')" v-show="showXrayFlow">
         <el-tag>{{ nodeInfo.xrayFlow }}</el-tag>
       </el-form-item>
-      <el-form-item :label="$t('table.xrayProtocol')" v-show="isXray">
-        <el-tag>{{ nodeInfo.xrayProtocol }}</el-tag>
+      <el-form-item
+        :label="$t('table.xraySSMethod')"
+        v-show="isXrayShadowsocks"
+      >
+        <el-tag>{{ nodeInfo.xraySSMethod }}</el-tag>
       </el-form-item>
       <el-form-item
         :label="$t('table.xrayStreamSettingsNetwork')"
@@ -219,6 +225,9 @@ export default {
     },
     showXrayFlow() {
       return this.isXray && this.nodeInfo.xrayProtocol === 'vless'
+    },
+    isXrayShadowsocks() {
+      return this.isXray && this.temp.xrayProtocol === 'shadowsocks'
     },
     trojanGoMuxEnableComputed() {
       return function (trojanGoMuxEnable) {
