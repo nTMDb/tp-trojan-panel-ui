@@ -190,6 +190,8 @@ export default {
     nodePortRange: '请输入合法的端口',
     nodeType: '请输入节点类型',
     xrayProtocol: '请输入协议',
+    xrayFlow: '请输入流控',
+    xraySSMethod: '请输入加密方式',
     xrayNetwork: '请输入传输方式类型',
     xraySecurity: '请输入传输层加密',
     xrayWsRange: 'Websocket路径的范围在2-64字符之间',

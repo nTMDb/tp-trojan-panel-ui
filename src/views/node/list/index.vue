@@ -610,9 +610,9 @@ export default {
         domain: '',
         port: 443,
 
+        xrayProtocol: 'vless',
         xrayFlow: 'xtls-rprx-vision',
         xraySSMethod: 'aes-256-gcm',
-        xrayProtocol: 'vless',
         xraySettings: '',
         xraySettingsEntity: {
           fallbacks: [
@@ -661,9 +661,9 @@ export default {
         uuid: '',
         alterId: 0,
 
+        xrayProtocol: 'vless',
         xrayFlow: 'xtls-rprx-vision',
         xraySSMethod: 'aes-256-gcm',
-        xrayProtocol: 'vless',
         xraySettings: '',
         xraySettingsEntity: {
           fallbacks: [
@@ -815,6 +815,20 @@ export default {
           {
             required: true,
             message: this.$t('valid.xrayProtocol'),
+            trigger: 'change'
+          }
+        ],
+        xrayFlow: [
+          {
+            required: true,
+            message: this.$t('valid.xrayFlow'),
+            trigger: 'change'
+          }
+        ],
+        xraySSMethod: [
+          {
+            required: true,
+            message: this.$t('valid.xraySSMethod'),
             trigger: 'change'
           }
         ],
@@ -1185,6 +1199,8 @@ export default {
         port: 443,
 
         xrayProtocol: 'vless',
+        xrayFlow: 'xtls-rprx-vision',
+        xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
           fallbacks: [
