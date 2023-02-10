@@ -156,7 +156,7 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          createNodeServer(this.temp).then(() => {
+          createNodeServer(this.nodeServer).then(() => {
             this.getList()
             this.dialogFormVisible = false
             this.$notify({
@@ -172,10 +172,10 @@ export default {
     updateData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          const tempData = Object.assign({}, this.temp)
+          const tempData = Object.assign({}, this.nodeServer)
           updateNodeServerById(tempData).then(() => {
-            const index = this.list.findIndex((v) => v.id === this.temp.id)
-            this.list.splice(index, 1, this.temp)
+            const index = this.list.findIndex((v) => v.id === this.nodeServer.id)
+            this.list.splice(index, 1, this.nodeServer)
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
