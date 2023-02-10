@@ -45,7 +45,7 @@
       </el-form-item>
       <el-form-item
         :label="$t('table.xrayStreamSettingsNetwork')"
-        v-show="isXray"
+        v-show="isXray && !isXrayShadowsocks"
       >
         <el-tag>
           {{ nodeInfo.xrayStreamSettingsEntity.network }}
@@ -61,9 +61,21 @@
       </el-form-item>
       <el-form-item
         :label="$t('table.xrayStreamSettingsSecurity')"
-        v-show="isXray"
+        v-show="isXray && !isXrayShadowsocks"
       >
         <el-tag>{{ nodeInfo.xrayStreamSettingsEntity.security }}</el-tag>
+      </el-form-item>
+      <el-form-item
+        :label="$t('table.xraySSNetwork')"
+        v-show="isXrayShadowsocks"
+      >
+        <el-tag>{{ nodeInfo.xraySettingsEntity.network }}</el-tag>
+      </el-form-item>
+      <el-form-item
+        :label="$t('table.xraySSMethod')"
+        v-show="isXrayShadowsocks"
+      >
+        <el-tag>{{ nodeInfo.xraySettingsEntity.xraySSMethod }}</el-tag>
       </el-form-item>
       <el-form-item :label="$t('table.trojanGoSni')" v-show="isTrojanGo">
         <el-tag>{{ nodeInfo.trojanGoSni }}</el-tag>
@@ -163,6 +175,14 @@ export default {
       type: Boolean,
       required: true
     },
+    isXrayShadowsocks: {
+      type: Boolean,
+      required: true
+    },
+    showXrayFlow: {
+      type: Boolean,
+      required: true
+    },
     isTrojanGo: {
       type: Boolean,
       required: true
@@ -194,18 +214,6 @@ export default {
     nodeTypes: {
       type: Array,
       required: true
-    },
-    xrayProtocols: {
-      type: Array,
-      required: true
-    },
-    xrayStreamSettingsNetworks: {
-      type: Array,
-      required: true
-    },
-    xrayStreamSettingsSecuritys: {
-      type: Array,
-      required: true
     }
   },
   computed: {
@@ -222,12 +230,6 @@ export default {
         (this.nodeInfo.xrayProtocol === 'vless' ||
           this.nodeInfo.xrayProtocol === 'vmess')
       )
-    },
-    showXrayFlow() {
-      return this.isXray && this.nodeInfo.xrayProtocol === 'vless'
-    },
-    isXrayShadowsocks() {
-      return this.isXray && this.nodeInfo.xrayProtocol === 'shadowsocks'
     },
     trojanGoMuxEnableComputed() {
       return function (trojanGoMuxEnable) {

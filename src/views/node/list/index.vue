@@ -222,7 +222,7 @@
         <el-form-item
           :label="$t('table.xrayStreamSettingsNetwork')"
           prop="xrayStreamSettingsEntity.network"
-          v-show="isXray"
+          v-show="isXray && !isXrayShadowsocks"
         >
           <el-select
             v-model="temp.xrayStreamSettingsEntity.network"
@@ -246,7 +246,7 @@
         <el-form-item
           :label="$t('table.xrayStreamSettingsSecurity')"
           prop="xrayStreamSettingsEntity.security"
-          v-show="isXray"
+          v-show="isXray && !isXrayShadowsocks"
         >
           <el-select
             v-model="temp.xrayStreamSettingsEntity.security"
@@ -285,6 +285,23 @@
               :value="item"
               :key="index"
               v-for="(item, index) in xraySSMethods"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.xraySSNetwork')"
+          prop="xraySSNetwork"
+          v-show="isXrayShadowsocks"
+        >
+          <el-select
+            v-model="temp.xraySettingsEntity.network"
+            controls-position="right"
+          >
+            <el-option
+              :label="item"
+              :value="item"
+              :key="index"
+              v-for="(item, index) in xraySettingsNetworks"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -457,13 +474,12 @@
       :is-hysteria="isHysteria"
       :is-naive-proxy="isNaiveProxy"
       :is-xray-ws="isXrayWs"
+      :is-xray-shadowsocks="isXrayShadowsocks"
+      :show-xray-flow="showXrayFlow"
       :is-trojan-go-enable-ss="isTrojanGoEnableSs"
       :is-trojan-go-enable-websocket="isTrojanGoEnableWebsocket"
       :node-servers="nodeServers"
       :nodeTypes="nodeTypes"
-      :xrayProtocols="xrayProtocols"
-      :xrayStreamSettingsNetworks="xrayStreamSettingsNetworks"
-      :xrayStreamSettingsSecuritys="xrayStreamSettingsSecuritys"
       :dialogInfoVisible.sync="dialogInfoVisible"
     />
 
@@ -525,11 +541,17 @@ export default {
     isXrayWs() {
       return this.isXray && this.temp.xrayStreamSettingsEntity.network === 'ws'
     },
-    showXrayFlow() {
-      return this.isXray && (this.temp.xrayProtocol === 'vless' || this.temp.xrayProtocol === 'trojan')
+    isXrayVless() {
+      return this.isXray && this.temp.xrayProtocol === 'vless'
+    },
+    isXrayTrojan() {
+      return this.isXray && this.temp.xrayProtocol === 'trojan'
     },
     isXrayShadowsocks() {
       return this.isXray && this.temp.xrayProtocol === 'shadowsocks'
+    },
+    showXrayFlow() {
+      return this.isXrayVless || this.isXrayTrojan
     },
     isTrojanGo() {
       return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
@@ -619,7 +641,8 @@ export default {
             {
               dest: 80
             }
-          ]
+          ],
+          network: 'tcp'
         },
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
@@ -670,7 +693,8 @@ export default {
             {
               dest: 80
             }
-          ]
+          ],
+          network: 'tcp'
         },
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
@@ -719,6 +743,7 @@ export default {
         // 'quic',
         // 'grpc'
       ],
+      xraySettingsNetworks: ['tcp', 'udp', 'tcp,udp'],
       xrayFlows: [
         'none',
         'xtls-rprx-vision',
