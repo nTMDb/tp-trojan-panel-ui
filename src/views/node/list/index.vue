@@ -722,7 +722,6 @@ export default {
       xrayFlows: [
         'none',
         'xtls-rprx-vision',
-        'xtls-rprx-vision',
         'xtls-rprx-vision,none',
         'xtls-rprx-origin',
         'xtls-rprx-origin-udp443',
