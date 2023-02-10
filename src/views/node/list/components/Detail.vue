@@ -227,7 +227,7 @@ export default {
       return this.isXray && this.nodeInfo.xrayProtocol === 'vless'
     },
     isXrayShadowsocks() {
-      return this.isXray && this.temp.xrayProtocol === 'shadowsocks'
+      return this.isXray && this.nodeInfo.xrayProtocol === 'shadowsocks'
     },
     trojanGoMuxEnableComputed() {
       return function (trojanGoMuxEnable) {
