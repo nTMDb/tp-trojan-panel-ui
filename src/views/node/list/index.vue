@@ -856,6 +856,13 @@ export default {
             trigger: 'change'
           }
         ],
+        xraySSNetwork: [
+          {
+            required: true,
+            message: this.$t('valid.xraySSNetwork'),
+            trigger: 'change'
+          }
+        ],
         'xrayStreamSettingsEntity.network': [
           {
             required: true,
@@ -1047,6 +1054,27 @@ export default {
             trigger: 'change'
           }
         ],
+        xrayFlow: [
+          {
+            required: true,
+            message: this.$t('valid.xrayFlow'),
+            trigger: 'change'
+          }
+        ],
+        xraySSMethod: [
+          {
+            required: true,
+            message: this.$t('valid.xraySSMethod'),
+            trigger: 'change'
+          }
+        ],
+        xraySSNetwork: [
+          {
+            required: true,
+            message: this.$t('valid.xraySSNetwork'),
+            trigger: 'change'
+          }
+        ],
         'xrayStreamSettingsEntity.network': [
           {
             required: true,
@@ -1231,7 +1259,8 @@ export default {
             {
               dest: 80
             }
-          ]
+          ],
+          network: 'tcp'
         },
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
