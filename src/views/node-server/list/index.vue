@@ -152,7 +152,7 @@
       ref="nodeServerForm"
       :node-server="temp"
       :dialog-status="dialogStatus"
-      :dialog-form-visible="dialogFormVisible"
+      :dialog-form-visible.sync="dialogFormVisible"
       :text-map="textMap"
     />
   </div>
