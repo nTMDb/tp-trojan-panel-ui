@@ -290,7 +290,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.xraySSNetwork')"
-          prop="xraySSNetwork"
+          prop="xraySettingsEntity.network"
           v-show="isXrayShadowsocks"
         >
           <el-select
@@ -1068,7 +1068,7 @@ export default {
             trigger: 'change'
           }
         ],
-        xraySSNetwork: [
+        'xraySettingsEntity.network': [
           {
             required: true,
             message: this.$t('valid.xraySSNetwork'),
