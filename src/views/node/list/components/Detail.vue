@@ -34,15 +34,6 @@
       <el-form-item :label="$t('table.xrayProtocol')" v-show="isXray">
         <el-tag>{{ nodeInfo.xrayProtocol }}</el-tag>
       </el-form-item>
-      <el-form-item :label="$t('table.xrayFlow')" v-show="showXrayFlow">
-        <el-tag>{{ nodeInfo.xrayFlow }}</el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.xraySSMethod')"
-        v-show="isXrayShadowsocks"
-      >
-        <el-tag>{{ nodeInfo.xraySSMethod }}</el-tag>
-      </el-form-item>
       <el-form-item
         :label="$t('table.xrayStreamSettingsNetwork')"
         v-show="isXray && !isXrayShadowsocks"
@@ -53,7 +44,7 @@
       </el-form-item>
       <el-form-item
         :label="$t('table.xrayStreamSettingsWsSettingsPath')"
-        v-show="isXrayWs"
+        v-show="isXrayWs && !isXrayShadowsocks"
       >
         <el-tag
           >{{ nodeInfo.xrayStreamSettingsEntity.wsSettings.path }}
@@ -65,17 +56,20 @@
       >
         <el-tag>{{ nodeInfo.xrayStreamSettingsEntity.security }}</el-tag>
       </el-form-item>
-      <el-form-item
-        :label="$t('table.xraySSNetwork')"
-        v-show="isXrayShadowsocks"
-      >
-        <el-tag>{{ nodeInfo.xraySettingsEntity.network }}</el-tag>
+      <el-form-item :label="$t('table.xrayFlow')" v-show="showXrayFlow">
+        <el-tag>{{ nodeInfo.xrayFlow }}</el-tag>
       </el-form-item>
       <el-form-item
         :label="$t('table.xraySSMethod')"
         v-show="isXrayShadowsocks"
       >
-        <el-tag>{{ nodeInfo.xraySettingsEntity.xraySSMethod }}</el-tag>
+        <el-tag>{{ nodeInfo.xraySSMethod }}</el-tag>
+      </el-form-item>
+      <el-form-item
+        :label="$t('table.xraySSNetwork')"
+        v-show="isXrayShadowsocks"
+      >
+        <el-tag>{{ nodeInfo.xraySettingsEntity.network }}</el-tag>
       </el-form-item>
       <el-form-item :label="$t('table.trojanGoSni')" v-show="isTrojanGo">
         <el-tag>{{ nodeInfo.trojanGoSni }}</el-tag>

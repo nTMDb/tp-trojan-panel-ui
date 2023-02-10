@@ -239,7 +239,7 @@
         <el-form-item
           :label="$t('table.xrayStreamSettingsWsSettingsPath')"
           prop="xrayStreamSettingsEntity.wsSettings.path"
-          v-show="isXrayWs"
+          v-show="isXrayWs && !isXrayShadowsocks"
         >
           <el-input v-model="temp.xrayStreamSettingsEntity.wsSettings.path" />
         </el-form-item>
