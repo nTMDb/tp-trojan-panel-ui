@@ -582,15 +582,13 @@ export default {
     },
     xrayFlows() {
       // xtls-rprx-vision只支持tls1.3
-      if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
-        return [
-          'none',
-          'xtls-rprx-vision',
-          'xtls-rprx-vision,none',
-          'xtls-rprx-direct'
-        ]
+      if (
+        this.temp.xrayProtocol === 'vless' &&
+        this.temp.xrayStreamSettingsEntity.security === 'tls'
+      ) {
+        return ['none', 'xtls-rprx-vision', 'xtls-rprx-vision,none']
       } else {
-        return ['none', 'xtls-rprx-direct']
+        return ['xtls-rprx-origin', 'xtls-rprx-direct']
       }
     },
     statusComputed() {
@@ -646,7 +644,7 @@ export default {
         port: 443,
 
         xrayProtocol: 'vless',
-        xrayFlow: 'none',
+        xrayFlow: '',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
@@ -698,7 +696,7 @@ export default {
         alterId: 0,
 
         xrayProtocol: 'vless',
-        xrayFlow: 'none',
+        xrayFlow: '',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
@@ -1256,7 +1254,7 @@ export default {
         port: 443,
 
         xrayProtocol: 'vless',
-        xrayFlow: 'none',
+        xrayFlow: '',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
