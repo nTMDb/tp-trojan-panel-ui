@@ -158,7 +158,7 @@ export default {
         if (valid) {
           createNodeServer(this.nodeServer).then(() => {
             this.getList()
-            this.dialogFormVisible = false
+            this.$emit('update:dialogFormVisible', false)
             this.$notify({
               title: 'Success',
               message: this.$t('confirm.createSuccess'),
@@ -176,7 +176,7 @@ export default {
           updateNodeServerById(tempData).then(() => {
             const index = this.list.findIndex((v) => v.id === this.nodeServer.id)
             this.list.splice(index, 1, this.nodeServer)
-            this.dialogFormVisible = false
+            this.$emit('update:dialogFormVisible', false)
             this.$notify({
               title: 'Success',
               message: this.$t('confirm.modifySuccess'),
