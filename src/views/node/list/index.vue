@@ -583,7 +583,7 @@ export default {
     xrayFlows() {
       // xtls-rprx-vision只支持tls1.3
       if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
-        this.temp.xrayFlow = 'xtls-rprx-vision,none'
+        this.temp.xrayFlow = 'none'
         return ['none', 'xtls-rprx-vision', 'xtls-rprx-vision,none']
       } else {
         this.temp.xrayFlow = 'xtls-rprx-direct'
@@ -657,7 +657,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: 'tls',
+          security: 'none',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
@@ -709,7 +709,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: 'tls',
+          security: 'none',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
@@ -1267,7 +1267,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: 'tls',
+          security: 'none',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
