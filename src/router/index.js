@@ -31,7 +31,7 @@ export const constantRoutes = [
 
   {
     path: '/',
-    redirect: '/dashboard',
+    redirect: '/dashboard/index',
     hidden: true
   },
 
