@@ -154,6 +154,7 @@
       :dialog-status="dialogStatus"
       :dialog-form-visible.sync="dialogFormVisible"
       :text-map="textMap"
+      :get-list="getList"
     />
   </div>
 </template>

@@ -22,9 +22,9 @@
         clearable
       >
         <el-input-number
-            v-model.number="nodeServer.grpcPort"
-            controls-position="right"
-            type="number"
+          v-model.number="nodeServer.grpcPort"
+          controls-position="right"
+          type="number"
         />
       </el-form-item>
     </el-form>
@@ -62,6 +62,10 @@ export default {
     },
     textMap: {
       type: Object,
+      required: true
+    },
+    getList: {
+      type: Function,
       required: true
     }
   },
@@ -178,8 +182,7 @@ export default {
         if (valid) {
           const tempData = Object.assign({}, this.nodeServer)
           updateNodeServerById(tempData).then(() => {
-            const index = this.list.findIndex((v) => v.id === this.nodeServer.id)
-            this.list.splice(index, 1, this.nodeServer)
+            this.getList()
             this.$emit('update:dialogFormVisible', false)
             this.$notify({
               title: 'Success',
