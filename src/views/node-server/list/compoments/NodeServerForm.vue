@@ -21,7 +21,7 @@
         prop="grpcPort"
         clearable
       >
-        <el-input v-model="nodeServer.grpcPort" />
+        <el-input type="number" v-model="nodeServer.grpcPort" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
