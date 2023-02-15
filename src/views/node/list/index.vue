@@ -551,7 +551,7 @@ export default {
       return this.isXray && this.temp.xrayProtocol === 'shadowsocks'
     },
     showXrayFlow() {
-      return (this.isXrayVless || this.isXrayTrojan) && this.temp.xrayStreamSettingsEntity.security === 'xtls'
+      return this.isXrayVless || this.isXrayTrojan
     },
     isTrojanGo() {
       return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
