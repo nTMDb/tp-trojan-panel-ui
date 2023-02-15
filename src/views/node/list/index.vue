@@ -633,7 +633,7 @@ export default {
         port: 443,
 
         xrayProtocol: 'vless',
-        xrayFlow: 'xtls-rprx-vision',
+        xrayFlow: 'xtls-rprx-direct',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
@@ -685,7 +685,7 @@ export default {
         alterId: 0,
 
         xrayProtocol: 'vless',
-        xrayFlow: 'xtls-rprx-vision',
+        xrayFlow: 'xtls-rprx-direct',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
@@ -1251,7 +1251,7 @@ export default {
         port: 443,
 
         xrayProtocol: 'vless',
-        xrayFlow: 'xtls-rprx-vision',
+        xrayFlow: 'xtls-rprx-direct',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
