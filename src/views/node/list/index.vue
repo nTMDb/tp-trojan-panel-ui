@@ -583,7 +583,7 @@ export default {
     xrayFlows() {
       // xtls-rprx-vision只支持tls1.3
       if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
-        this.temp.xrayFlow = 'xtls-rprx-vision'
+        this.temp.xrayFlow = 'xtls-rprx-vision,none'
         return ['none', 'xtls-rprx-vision', 'xtls-rprx-vision,none']
       } else {
         this.temp.xrayFlow = 'xtls-rprx-direct'
