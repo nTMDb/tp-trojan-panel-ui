@@ -1403,7 +1403,10 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          if (this.temp.xrayStreamSettings.network !== 'none') {
+          if (
+            this.temp.xrayProtocol === 'vless' &&
+            this.temp.xrayStreamSettings.network !== 'none'
+          ) {
             this.temp.xraySettingsEntity.decryption = 'none'
           }
 
@@ -1427,7 +1430,10 @@ export default {
     updateData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          if (this.temp.xrayStreamSettings.network !== 'none') {
+          if (
+            this.temp.xrayProtocol === 'vless' &&
+            this.temp.xrayStreamSettings.network !== 'none'
+          ) {
             this.temp.xraySettingsEntity.decryption = 'none'
           }
 
