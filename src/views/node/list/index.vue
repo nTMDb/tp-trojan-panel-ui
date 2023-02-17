@@ -647,6 +647,7 @@ export default {
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
+          clients: [],
           fallbacks: [
             {
               dest: 80
@@ -699,6 +700,7 @@ export default {
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
+          clients: [],
           fallbacks: [
             {
               dest: 80
@@ -1257,6 +1259,7 @@ export default {
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
+          clients: [],
           fallbacks: [
             {
               dest: 80
