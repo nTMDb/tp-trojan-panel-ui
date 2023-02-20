@@ -54,6 +54,15 @@
         type="index"
       />
       <el-table-column
+        :label="$t('table.nodeServerName')"
+        width="180"
+        align="center"
+      >
+        <template slot-scope="{ row }">
+          <span>{{ row.name }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
         :label="$t('table.nodeServerIp')"
         width="180"
         align="center"
@@ -69,15 +78,6 @@
       >
         <template slot-scope="{ row }">
           <span>{{ row.grpcPort }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-        :label="$t('table.nodeServerName')"
-        width="180"
-        align="center"
-      >
-        <template slot-scope="{ row }">
-          <span>{{ row.name }}</span>
         </template>
       </el-table-column>
       <el-table-column

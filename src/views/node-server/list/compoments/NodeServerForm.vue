@@ -10,11 +10,11 @@
       :model="nodeServer"
       label-position="left"
     >
-      <el-form-item :label="$t('table.nodeServerIp')" prop="ip" clearable>
-        <el-input v-model="nodeServer.ip" />
-      </el-form-item>
       <el-form-item :label="$t('table.nodeServerName')" prop="name" clearable>
         <el-input v-model="nodeServer.name" />
+      </el-form-item>
+      <el-form-item :label="$t('table.nodeServerIp')" prop="ip" clearable>
+        <el-input v-model="nodeServer.ip" />
       </el-form-item>
       <el-form-item
         :label="$t('table.nodeServerGrpcPort')"
