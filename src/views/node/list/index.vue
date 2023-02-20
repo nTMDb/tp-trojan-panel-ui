@@ -582,8 +582,10 @@ export default {
         this.temp.xrayProtocol === 'shadowsocks' ||
         this.temp.xrayStreamSettingsEntity.network !== 'tcp'
       ) {
+        this.temp.xrayStreamSettingsEntity.security = 'none'
         return ['none', 'tls']
       } else {
+        this.temp.xrayStreamSettingsEntity.security = 'xtls'
         return ['none', 'tls', 'xtls']
       }
     },
