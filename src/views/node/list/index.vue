@@ -579,6 +579,7 @@ export default {
       // vmess暂不支持xtls
       if (
         this.temp.xrayProtocol === 'vmess' ||
+        this.temp.xrayProtocol === 'shadowsocks' ||
         this.temp.xrayStreamSettingsEntity.network !== 'tcp'
       ) {
         return ['none', 'tls']
