@@ -183,6 +183,12 @@
               v-for="item in nodeServers"
             ></el-option>
           </el-select>
+          <el-button
+            type="primary"
+            size="mini"
+            icon="el-icon-plus"
+            @click="toAddNodeServer"
+          ></el-button>
         </el-form-item>
         <el-form-item :label="$t('table.nodeDomain')" prop="domain" clearable>
           <el-input v-model="temp.domain" />
@@ -1211,6 +1217,9 @@ export default {
     this.getList()
   },
   methods: {
+    toAddNodeServer() {
+      this.$router.push({ path: '/server-manage/server-list' })
+    },
     timeStampToDate,
     checkPermission,
     handleQRCode(row) {
