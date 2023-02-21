@@ -582,15 +582,18 @@ export default {
         this.temp.xrayProtocol === 'shadowsocks' ||
         this.temp.xrayStreamSettingsEntity.network !== 'tcp'
       ) {
-        return ['none', 'tls']
+        return ['tls']
       } else {
-        return ['none', 'tls', 'xtls']
+        return ['tls', 'xtls']
       }
     },
     xrayFlows() {
       // xtls-rprx-vision只支持TLS
       if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
-        if (this.temp.xrayFlow === '') {
+        if (
+          this.temp.xrayFlow === '' ||
+          this.temp.xrayFlow === 'xtls-rprx-direct'
+        ) {
           this.temp.xrayFlow = 'xtls-rprx-vision'
         }
         return ['none', 'xtls-rprx-vision', 'xtls-rprx-vision,none']
@@ -654,7 +657,7 @@ export default {
         port: 443,
 
         xrayProtocol: 'vless',
-        xrayFlow: '',
+        xrayFlow: 'xtls-rprx-vision',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
@@ -669,7 +672,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: 'none',
+          security: 'tls',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
@@ -707,7 +710,7 @@ export default {
         alterId: 0,
 
         xrayProtocol: 'vless',
-        xrayFlow: '',
+        xrayFlow: 'xtls-rprx-vision',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
@@ -722,7 +725,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: 'none',
+          security: 'tls',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
@@ -1269,7 +1272,7 @@ export default {
         port: 443,
 
         xrayProtocol: 'vless',
-        xrayFlow: '',
+        xrayFlow: 'xtls-rprx-vision',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
@@ -1284,7 +1287,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: 'none',
+          security: 'tls',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
