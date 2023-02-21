@@ -257,6 +257,7 @@
           <el-select
             v-model="temp.xrayStreamSettingsEntity.security"
             controls-position="right"
+            :change="xrayStreamSettingsSecurityChange"
           >
             <el-option
               :label="item"
@@ -1216,6 +1217,13 @@ export default {
     this.getList()
   },
   methods: {
+    xrayStreamSettingsSecurityChange() {
+      if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
+        this.temp.xrayFlow = 'xtls-rprx-vision'
+      } else {
+        this.temp.xrayFlow = 'xtls-rprx-direct'
+      }
+    },
     toAddNodeServer() {
       this.$router.push({ path: '/server-manage/server-list' })
     },
