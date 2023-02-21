@@ -257,7 +257,7 @@
           <el-select
             v-model="temp.xrayStreamSettingsEntity.security"
             controls-position="right"
-            :change="xrayStreamSettingsSecurityChange"
+            @change="xrayStreamSettingsSecurityChange"
           >
             <el-option
               :label="item"
