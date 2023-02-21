@@ -590,17 +590,8 @@ export default {
     xrayFlows() {
       // xtls-rprx-vision只支持TLS
       if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
-        if (
-          this.temp.xrayFlow === '' ||
-          this.temp.xrayFlow === 'xtls-rprx-direct'
-        ) {
-          this.temp.xrayFlow = 'xtls-rprx-vision'
-        }
         return ['none', 'xtls-rprx-vision', 'xtls-rprx-vision,none']
       } else {
-        if (this.temp.xrayFlow === '') {
-          this.temp.xrayFlow = 'xtls-rprx-direct'
-        }
         return ['xtls-rprx-origin', 'xtls-rprx-direct']
       }
     },
