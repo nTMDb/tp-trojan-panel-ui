@@ -1354,6 +1354,7 @@ export default {
     handleDetail(row) {
       this.nodeDetail = Object.assign(this.temp, row)
       selectNodeInfo({ id: row.id }).then((response) => {
+        this.nodeDetail.password = response.data.password
         if (this.nodeDetail.nodeTypeId === 1) {
           this.nodeDetail.xrayProtocol = response.data.xrayProtocol
           this.nodeDetail.xraySettings = response.data.xraySettings
@@ -1362,7 +1363,6 @@ export default {
           this.nodeDetail.xrayTag = response.data.xrayTag
           this.nodeDetail.xraySniffing = response.data.xraySniffing
           this.nodeDetail.xrayAllocate = response.data.xrayAllocate
-          this.nodeDetail.password = response.data.password
           this.nodeDetail.uuid = response.data.uuid
           this.nodeDetail.alterId = response.data.alterId
           this.nodeDetail.xrayFlow = response.data.xrayFlow
