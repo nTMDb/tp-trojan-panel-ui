@@ -582,14 +582,8 @@ export default {
         this.temp.xrayProtocol === 'shadowsocks' ||
         this.temp.xrayStreamSettingsEntity.network !== 'tcp'
       ) {
-        if (this.temp.xrayStreamSettingsEntity.security === '') {
-          this.temp.xrayStreamSettingsEntity.security = 'tls'
-        }
         return ['none', 'tls']
       } else {
-        if (this.temp.xrayStreamSettingsEntity.security === '') {
-          this.temp.xrayStreamSettingsEntity.security = 'xtls'
-        }
         return ['none', 'tls', 'xtls']
       }
     },
@@ -675,7 +669,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: '',
+          security: 'none',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
@@ -728,7 +722,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: '',
+          security: 'none',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
@@ -1290,7 +1284,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: '',
+          security: 'none',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
