@@ -191,7 +191,6 @@ export default {
     nodePortRange: '합법적인 포트를 입력하세요',
     nodeType: '노드 유형을 입력하십시오',
     xrayProtocol: '동의를 입력하십시오',
-    xrayFlow: '흐름 제어를 입력하십시오',
     xraySSMethod: '암호화 방법을 입력하세요',
     xraySSNetwork: '네트워크 프로토콜을 입력하십시오',
     xrayNetwork: '운송 유형을 입력하십시오',

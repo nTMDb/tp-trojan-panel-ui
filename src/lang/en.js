@@ -191,7 +191,6 @@ export default {
     nodePortRange: 'Please enter a legal port',
     nodeType: 'Please enter node type',
     xrayProtocol: 'Please enter agreement',
-    xrayFlow: 'Please enter flow control',
     xraySSMethod: 'Please enter the encryption method',
     xraySSNetwork: 'Please enter network protocol',
     xrayNetwork: 'Please enter the transport type',

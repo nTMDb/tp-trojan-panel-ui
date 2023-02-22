@@ -545,6 +545,15 @@ export default {
     isXray() {
       return getNodeTypeName(this.temp.nodeTypeId) === 'xray'
     },
+    isTrojanGo() {
+      return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
+    },
+    isHysteria() {
+      return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
+    },
+    isNaiveProxy() {
+      return getNodeTypeName(this.temp.nodeTypeId) === 'naiveproxy'
+    },
     isXrayWs() {
       return this.isXray && this.temp.xrayStreamSettingsEntity.network === 'ws'
     },
@@ -558,22 +567,13 @@ export default {
       return this.isXray && this.temp.xrayProtocol === 'shadowsocks'
     },
     showXrayFlow() {
-      return this.isXrayVless || this.isXrayTrojan
-    },
-    isTrojanGo() {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
+      return this.isXrayVless || (this.isXrayTrojan && this.temp.xrayStreamSettingsEntity.security === 'xtls')
     },
     isTrojanGoEnableWebsocket() {
       return this.isTrojanGo && this.temp.trojanGoWebsocketEnable === 1
     },
     isTrojanGoEnableSs() {
       return this.isTrojanGo && this.temp.trojanGoSsEnable === 1
-    },
-    isHysteria() {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
-    },
-    isNaiveProxy() {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'naiveproxy'
     },
     xrayStreamSettingsSecuritys() {
       // XTLS only supports TCP, mKCP and DomainSocket for now
@@ -583,17 +583,19 @@ export default {
         this.temp.xrayProtocol === 'shadowsocks' ||
         this.temp.xrayStreamSettingsEntity.network !== 'tcp'
       ) {
-        return ['tls']
+        return ['none', 'tls']
       } else {
-        return ['tls', 'xtls']
+        return ['none', 'tls', 'xtls']
       }
     },
     xrayFlows() {
       // xtls-rprx-vision只支持TLS
       if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
         return ['none', 'xtls-rprx-vision', 'xtls-rprx-vision,none']
-      } else {
+      } else if (this.temp.xrayStreamSettingsEntity.security === 'xtls') {
         return ['xtls-rprx-origin', 'xtls-rprx-direct']
+      } else {
+        return ['none']
       }
     },
     statusComputed() {
@@ -649,7 +651,7 @@ export default {
         port: 443,
 
         xrayProtocol: 'vless',
-        xrayFlow: 'xtls-rprx-vision',
+        xrayFlow: '',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
@@ -664,7 +666,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: 'tls',
+          security: 'none',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
@@ -849,13 +851,6 @@ export default {
           {
             required: true,
             message: this.$t('valid.xrayProtocol'),
-            trigger: 'change'
-          }
-        ],
-        xrayFlow: [
-          {
-            required: true,
-            message: this.$t('valid.xrayFlow'),
             trigger: 'change'
           }
         ],
@@ -1064,13 +1059,6 @@ export default {
             trigger: 'change'
           }
         ],
-        xrayFlow: [
-          {
-            required: true,
-            message: this.$t('valid.xrayFlow'),
-            trigger: 'change'
-          }
-        ],
         xraySSMethod: [
           {
             required: true,
@@ -1220,8 +1208,10 @@ export default {
     xrayStreamSettingsSecurityChange() {
       if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
         this.temp.xrayFlow = 'xtls-rprx-vision'
-      } else {
+      } else if (this.temp.xrayStreamSettingsEntity.security === 'xtls') {
         this.temp.xrayFlow = 'xtls-rprx-direct'
+      } else {
+        this.temp.xrayFlow = 'none'
       }
     },
     toAddNodeServer() {

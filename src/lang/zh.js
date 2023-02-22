@@ -191,7 +191,6 @@ export default {
     nodePortRange: '请输入合法的端口',
     nodeType: '请输入节点类型',
     xrayProtocol: '请输入协议',
-    xrayFlow: '请输入流控',
     xraySSMethod: '请输入加密方式',
     xraySSNetwork: '请输入网络协议',
     xrayNetwork: '请输入传输方式类型',
