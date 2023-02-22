@@ -567,7 +567,11 @@ export default {
       return this.isXray && this.temp.xrayProtocol === 'shadowsocks'
     },
     showXrayFlow() {
-      return this.isXrayVless || (this.isXrayTrojan && this.temp.xrayStreamSettingsEntity.security === 'xtls')
+      return (
+        this.isXrayVless ||
+        (this.isXrayTrojan &&
+          this.temp.xrayStreamSettingsEntity.security === 'xtls')
+      )
     },
     isTrojanGoEnableWebsocket() {
       return this.isTrojanGo && this.temp.trojanGoWebsocketEnable === 1
@@ -577,16 +581,11 @@ export default {
     },
     xrayStreamSettingsSecuritys() {
       // XTLS only supports TCP, mKCP and DomainSocket for now
-      // vmess暂不支持xtls
-      if (
-        this.temp.xrayProtocol === 'vmess' ||
-        this.temp.xrayProtocol === 'shadowsocks' ||
-        this.temp.xrayStreamSettingsEntity.network !== 'tcp'
-      ) {
-        return ['none', 'tls']
-      } else {
-        return ['none', 'tls', 'xtls']
+      let securitys = ['none', 'tls']
+      if (this.temp.xrayStreamSettingsEntity.network === 'tcp') {
+        securitys.push('xtls')
       }
+      return securitys
     },
     xrayFlows() {
       // xtls-rprx-vision只支持TLS
@@ -595,7 +594,7 @@ export default {
       } else if (this.temp.xrayStreamSettingsEntity.security === 'xtls') {
         return ['xtls-rprx-origin', 'xtls-rprx-direct']
       } else {
-        return ['none']
+        return ['']
       }
     },
     statusComputed() {
@@ -704,7 +703,7 @@ export default {
         alterId: 0,
 
         xrayProtocol: 'vless',
-        xrayFlow: 'xtls-rprx-vision',
+        xrayFlow: '',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
@@ -719,7 +718,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: 'tls',
+          security: 'none',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
@@ -1211,7 +1210,7 @@ export default {
       } else if (this.temp.xrayStreamSettingsEntity.security === 'xtls') {
         this.temp.xrayFlow = 'xtls-rprx-direct'
       } else {
-        this.temp.xrayFlow = 'none'
+        this.temp.xrayFlow = ''
       }
     },
     toAddNodeServer() {
@@ -1261,7 +1260,7 @@ export default {
         port: 443,
 
         xrayProtocol: 'vless',
-        xrayFlow: 'xtls-rprx-vision',
+        xrayFlow: '',
         xraySSMethod: 'aes-256-gcm',
         xraySettings: '',
         xraySettingsEntity: {
@@ -1276,7 +1275,7 @@ export default {
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
           network: 'tcp',
-          security: 'tls',
+          security: 'none',
           tlsSettings: {},
           xtlsSettings: {},
           wsSettings: {
