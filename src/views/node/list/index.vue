@@ -1428,6 +1428,7 @@ export default {
         if (this.temp.nodeTypeId === 1) {
           this.temp.xrayProtocol = response.data.xrayProtocol
           this.temp.xraySettings = response.data.xraySettings
+          this.nodeDetail.xraySettingsEntity = response.data.xraySettingsEntity
           this.temp.xrayStreamSettingsEntity =
             response.data.xrayStreamSettingsEntity
           this.temp.xrayTag = response.data.xrayTag
