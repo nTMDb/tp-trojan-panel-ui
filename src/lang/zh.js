@@ -196,6 +196,8 @@ export default {
     xrayNetwork: '请输入传输方式类型',
     xraySecurity: '请输入传输层加密',
     xrayWsRange: 'Websocket路径的范围在2-64字符之间',
+    xrayFallbackPathPrefix: 'path必须以/开头',
+    xrayFallbackDest: '请输入desc',
     trojanGoSni: 'sni在4-64字符之间',
     trojanGoMux: '请输入是否开启多路复用',
     trojanGoWs: '请输入是否开启Websocket',

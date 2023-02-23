@@ -15,13 +15,13 @@
       <el-form-item label="alpn" prop="alpn" clearable>
         <el-input v-model="temp.alpn" />
       </el-form-item>
-      <el-form-item :label="$t('table.xrayFallbackPath')" prop="path" clearable>
+      <el-form-item label="path" prop="path" clearable>
         <el-input v-model="temp.path" />
       </el-form-item>
-      <el-form-item :label="$t('table.xrayFallbackDest')" prop="dest" clearable>
+      <el-form-item label="dest" prop="dest" clearable>
         <el-input v-model="temp.dest" />
       </el-form-item>
-      <el-form-item :label="$t('table.xrayFallbackXver')" prop="xver" clearable>
+      <el-form-item label="xver" prop="xver" clearable>
         <el-input v-model="temp.xver" />
       </el-form-item>
     </el-form>

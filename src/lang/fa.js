@@ -196,6 +196,8 @@ export default {
     xrayNetwork: 'لطفا نوع حمل و نقل را وارد کنید',
     xraySecurity: 'لطفاً رمزگذاری لایه انتقال را وارد کنید',
     xrayWsRange: 'مسیرهای Websocket از 2 تا 64 کاراکتر متغیر است',
+    xrayFallbackPathPrefix: 'مسیر باید با / شروع شود',
+    xrayFallbackDest: 'لطفا توصیف را وارد کنید',
     trojanGoSni: 'sni بین 4-64 کاراکتر',
     trojanGoMux: 'لطفاً وارد کنید که آیا مالتی پلکسی فعال شود یا خیر',
     trojanGoWs: 'لطفاً وارد کنید که آیا Websocket فعال شود یا خیر',
