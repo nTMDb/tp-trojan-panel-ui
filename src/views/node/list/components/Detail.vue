@@ -74,15 +74,15 @@
         </el-form-item>
         <el-form-item :label="$t('table.xrayFallbacks')" v-show="showFallback">
           <el-tag
-            v-for="(fallback, index) in nodeInfo.xraySettingsEntity.fallbacks"
+            v-for="(item, index) in nodeInfo.xraySettingsEntity.fallbacks"
             :key="index"
             :disable-transitions="false"
             type="success"
             effect="dark"
             size="medium"
-            @click="handleFallbackDetail(fallback)"
+            @click="handleFallbackDetail(item)"
           >
-            {{ fallback.dest }}
+            {{ item.dest }}
           </el-tag>
         </el-form-item>
         <el-form-item :label="$t('table.trojanGoSni')" v-show="isTrojanGo">

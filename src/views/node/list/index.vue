@@ -318,17 +318,17 @@
           v-show="showFallback"
         >
           <el-tag
-            v-for="(fallback, index) in temp.xraySettingsEntity.fallbacks"
+            v-for="(item, index) in temp.xraySettingsEntity.fallbacks"
             :key="index"
             :disable-transitions="false"
             type="success"
-            @close="deleteFallback(fallback)"
+            @close="deleteFallback(item)"
             effect="dark"
             size="medium"
             closable
-            @click="handleFallbackDetail(fallback)"
+            @click="handleFallbackDetail(item)"
           >
-            {{ fallback.dest }}
+            {{ item.dest }}
           </el-tag>
           <el-button
             type="primary"
