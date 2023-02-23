@@ -554,9 +554,6 @@ export default {
     isNaiveProxy() {
       return getNodeTypeName(this.temp.nodeTypeId) === 'naiveproxy'
     },
-    isXrayWs() {
-      return this.isXray && this.temp.xrayStreamSettingsEntity.network === 'ws'
-    },
     isXrayVless() {
       return this.isXray && this.temp.xrayProtocol === 'vless'
     },
@@ -569,6 +566,9 @@ export default {
     isXrayShadowsocks() {
       return this.isXray && this.temp.xrayProtocol === 'shadowsocks'
     },
+    isXrayWs() {
+      return this.isXray && this.temp.xrayStreamSettingsEntity.network === 'ws'
+    },
     showXrayFlow() {
       return (
         (this.isXrayVless &&
@@ -578,19 +578,14 @@ export default {
           this.temp.xrayStreamSettingsEntity.security === 'xtls')
       )
     },
-    isTrojanGoEnableWebsocket() {
-      return this.isTrojanGo && this.temp.trojanGoWebsocketEnable === 1
-    },
-    isTrojanGoEnableSs() {
-      return this.isTrojanGo && this.temp.trojanGoSsEnable === 1
-    },
     xrayStreamSettingsSecuritys() {
       // XTLS only supports TCP, mKCP and DomainSocket for now
       let securitys = ['none', 'tls']
       if (
         this.temp.xrayStreamSettingsEntity.network === 'tcp' &&
         !this.isXrayVmess &&
-        !this.isXrayShadowsocks
+        !this.isXrayShadowsocks &&
+        !this.isXrayWs
       ) {
         securitys.push('xtls')
       }
@@ -605,6 +600,12 @@ export default {
       } else {
         return ['']
       }
+    },
+    isTrojanGoEnableWebsocket() {
+      return this.isTrojanGo && this.temp.trojanGoWebsocketEnable === 1
+    },
+    isTrojanGoEnableSs() {
+      return this.isTrojanGo && this.temp.trojanGoSsEnable === 1
     },
     statusComputed() {
       return function (status) {
