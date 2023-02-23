@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     :title="textMap[dialogStatus]"
-    :visible.sync="dialogFormVisible"
+    :visible="dialogFormVisible"
     @close="$emit('update:dialogFormVisible', false)"
     width="150"
   >

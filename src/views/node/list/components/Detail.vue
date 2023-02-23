@@ -2,7 +2,7 @@
   <div>
     <el-dialog
       :title="$t('table.detail')"
-      :visible.sync="dialogInfoVisible"
+      :visible="dialogInfoVisible"
       @close="$emit('update:dialogInfoVisible', false)"
     >
       <el-form :model="nodeInfo" label-position="left">

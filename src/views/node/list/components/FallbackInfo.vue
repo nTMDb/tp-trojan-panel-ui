@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     :title="$t('table.detail')"
-    :visible.sync="dialogVisible"
+    :visible="dialogVisible"
     @close="$emit('update:dialogVisible', false)"
     width="30%"
   >

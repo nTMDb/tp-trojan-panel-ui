@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     :title="$t('table.add')"
-    :visible.sync="dialogFallbackFormVisible"
+    :visible="dialogFallbackFormVisible"
     @close="$emit('update:dialogFallbackFormVisible', false)"
     width="30%"
   >

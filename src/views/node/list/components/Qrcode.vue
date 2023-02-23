@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     :title="$t('table.nodeQRCode')"
-    :visible.sync="dialogQRCodeVisible"
+    :visible="dialogQRCodeVisible"
     @close="$emit('update:dialogQRCodeVisible', false)"
   >
     <el-image style="width: 256px; height: 256px" :src="qrCodeSrc"></el-image>
