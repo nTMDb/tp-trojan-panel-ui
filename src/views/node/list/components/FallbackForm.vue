@@ -8,24 +8,24 @@
     <el-form
       ref="dataForm"
       :rules="createRules"
-      :model="fallback"
+      :model="temp"
       label-position="left"
     >
       <el-form-item label="name" prop="name">
-        <el-input v-model="fallback.name" clearable />
+        <el-input v-model="temp.name" clearable />
       </el-form-item>
       <el-form-item label="alpn" prop="alpn">
-        <el-input v-model="fallback.alpn" clearable />
+        <el-input v-model="temp.alpn" clearable />
       </el-form-item>
       <el-form-item label="path" prop="path">
-        <el-input v-model="fallback.path" clearable />
+        <el-input v-model="temp.path" clearable />
       </el-form-item>
       <el-form-item label="dest" prop="dest">
-        <el-input v-model="fallback.dest" clearable />
+        <el-input v-model="temp.dest" clearable />
       </el-form-item>
       <el-form-item label="xver" prop="xver">
         <el-input-number
-          v-model.number="fallback.xver"
+          v-model.number="temp.xver"
           controls-position="right"
           type="number"
         />
@@ -46,10 +46,6 @@
 export default {
   name: 'FallbackForm',
   props: {
-    fallback: {
-      type: Object,
-      required: true
-    },
     createFallback: {
       type: Function,
       required: true
@@ -61,7 +57,7 @@ export default {
   },
   data() {
     const pathPrefixValidate = (rule, value, callback) => {
-      if (this.fallback.path && !this.fallback.path.startsWith('/')) {
+      if (this.temp.path && !this.temp.path.startsWith('/')) {
         callback(new Error(this.$t('valid.xrayFallbackPathPrefix')))
       } else {
         callback()
@@ -69,9 +65,9 @@ export default {
     }
     const xverValidate = (rule, value, callback) => {
       if (
-        this.fallback.xver !== 0 &&
-        this.fallback.xver !== 1 &&
-        this.fallback.xver !== 2
+        this.temp.xver !== 0 &&
+        this.temp.xver !== 1 &&
+        this.temp.xver !== 2
       ) {
         callback(new Error(this.$t('valid.xrayFallbackXver')))
       } else {
@@ -79,6 +75,13 @@ export default {
       }
     }
     return {
+      temp: {
+        name: '',
+        alpn: '',
+        path: undefined,
+        dest: '80',
+        xver: 0
+      },
       createRules: {
         path: [
           {
@@ -103,15 +106,20 @@ export default {
     }
   },
   methods: {
-    clearValidate() {
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
-      })
+    resetTemp() {
+      this.temp = {
+        name: '',
+        alpn: '',
+        path: undefined,
+        dest: '80',
+        xver: 0
+      }
     },
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          this.createFallback(this.fallback)
+          const tempData = Object.assign({}, this.temp)
+          this.createFallback(tempData)
           this.$emit('update:dialogFallbackFormVisible', false)
         }
       })

@@ -334,7 +334,7 @@
             type="primary"
             size="mini"
             icon="el-icon-plus"
-            @click="dialogFallbackFormVisible = true"
+            @click="handleCreateFallback"
           ></el-button>
         </el-form-item>
         <el-form-item
@@ -513,7 +513,7 @@
     />
 
     <FallbackForm
-      :fallback="fallback"
+      ref="fallbackForm"
       :create-fallback="createFallback"
       :dialog-fallback-form-visible.sync="dialogFallbackFormVisible"
     />
@@ -1275,6 +1275,10 @@ export default {
     this.getList()
   },
   methods: {
+    handleCreateFallback() {
+      this.$refs.fallbackForm.resetTemp()
+      this.dialogFallbackFormVisible = true
+    },
     handleFallbackDetail(fallback) {
       this.dialogFallbackDetailVisible = true
       this.fallback = fallback
