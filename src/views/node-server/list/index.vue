@@ -127,7 +127,7 @@
             :disabled="row.status | disabledFilter"
             @click="handleDetail(row)"
           >
-            {{ $t('table.nodeDetail') }}
+            {{ $t('table.detail') }}
           </el-button>
           <el-button
             size="mini"

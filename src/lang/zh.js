@@ -100,7 +100,7 @@ export default {
     naiveproxyTip: '目前支持的NaiveProxy处于测试阶段，只支持用户认证不支持流量统计。',
     nodeQRCode: '生成二维码',
     nodeURL: '复制URL',
-    nodeDetail: '详情',
+    detail: '详情',
     blackListIp: 'IP',
     toEmail: '收件人',
     subject: '主题',

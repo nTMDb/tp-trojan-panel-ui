@@ -141,7 +141,7 @@
             {{ $t('table.nodeURL') }}
           </el-button>
           <el-button type="success" size="mini" @click="handleDetail(row)">
-            {{ $t('table.nodeDetail') }}
+            {{ $t('table.detail') }}
           </el-button>
           <el-button
             size="mini"
@@ -170,8 +170,8 @@
         :model="temp"
         label-position="left"
       >
-        <el-form-item :label="$t('table.nodeName')" prop="name" >
-          <el-input v-model="temp.name" clearable/>
+        <el-form-item :label="$t('table.nodeName')" prop="name">
+          <el-input v-model="temp.name" clearable />
         </el-form-item>
         <el-form-item :label="$t('table.nodeServer')" prop="nodeServerId">
           <el-select v-model="temp.nodeServerId" controls-position="right">
@@ -189,8 +189,8 @@
             @click="toAddNodeServer"
           ></el-button>
         </el-form-item>
-        <el-form-item :label="$t('table.nodeDomain')" prop="domain" >
-          <el-input v-model="temp.domain" clearable/>
+        <el-form-item :label="$t('table.nodeDomain')" prop="domain">
+          <el-input v-model="temp.domain" clearable />
         </el-form-item>
         <el-form-item :label="$t('table.nodePort')" prop="port">
           <el-input-number
@@ -326,6 +326,7 @@
             effect="dark"
             size="medium"
             closable
+            @click="handleFallbackDetail(fallback)"
           >
             {{ fallback.dest }}
           </el-tag>
@@ -333,7 +334,7 @@
             type="primary"
             size="mini"
             icon="el-icon-plus"
-            @click="handleCreateFallback"
+            @click="dialogFallbackFormVisible = true"
           ></el-button>
         </el-form-item>
         <el-form-item
@@ -341,7 +342,7 @@
           v-show="isTrojanGo"
           prop="trojanGoSni"
         >
-          <el-input v-model="temp.trojanGoSni" clearable/>
+          <el-input v-model="temp.trojanGoSni" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoMuxEnable')"
@@ -380,15 +381,14 @@
           prop="trojanGoWebsocketPath"
           v-show="isTrojanGoEnableWebsocket"
         >
-          <el-input v-model="temp.trojanGoWebsocketPath" clearable/>
+          <el-input v-model="temp.trojanGoWebsocketPath" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketHost')"
           prop="trojanGoWebsocketHost"
-
           v-show="isTrojanGoEnableWebsocket"
         >
-          <el-input v-model="temp.trojanGoWebsocketHost" clearable/>
+          <el-input v-model="temp.trojanGoWebsocketHost" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSsEnable')"
@@ -507,14 +507,20 @@
       :is-trojan-go-enable-ss="isTrojanGoEnableSs"
       :is-trojan-go-enable-websocket="isTrojanGoEnableWebsocket"
       :node-servers="nodeServers"
-      :nodeTypes="nodeTypes"
-      :dialogInfoVisible.sync="dialogInfoVisible"
+      :node-types="nodeTypes"
+      :dialog-info-visible.sync="dialogInfoVisible"
+      :show-fallback="showFallback"
     />
 
     <FallbackForm
       :fallback="fallback"
       :create-fallback="createFallback"
       :dialog-fallback-form-visible.sync="dialogFallbackFormVisible"
+    />
+
+    <FallbackInfo
+      :dialog-visible.sync="dialogFallbackDetailVisible"
+      :fallback="fallback"
     />
 
     <Qrcode
@@ -546,10 +552,11 @@ import { timeStampToDate } from '@/utils'
 import { clashSubscribe } from '@/api/account'
 import { selectNodeServerList } from '@/api/node-server'
 import FallbackForm from '@/views/node/list/components/FallbackForm'
+import FallbackInfo from '@/views/node/list/components/FallbackInfo'
 
 export default {
   name: 'List',
-  components: { FallbackForm, Qrcode, Detail, Pagination },
+  components: { FallbackInfo, FallbackForm, Qrcode, Detail, Pagination },
   filters: {
     trojanGoWebsocketEnableFilter(trojanGoWebsocketEnable) {
       const deletedMap = {
@@ -679,7 +686,7 @@ export default {
       fallback: {
         name: '',
         alpn: '',
-        path: '',
+        path: undefined,
         dest: '80',
         xver: 0
       },
@@ -712,7 +719,7 @@ export default {
             {
               name: '',
               alpn: '',
-              path: '',
+              path: undefined,
               dest: '80',
               xver: 0
             }
@@ -769,7 +776,7 @@ export default {
             {
               name: '',
               alpn: '',
-              path: '',
+              path: undefined,
               dest: '80',
               xver: 0
             }
@@ -808,6 +815,7 @@ export default {
       dialogInfoVisible: false,
       dialogQRCodeVisible: false,
       dialogFallbackFormVisible: false,
+      dialogFallbackDetailVisible: false,
       dialogFallbackStatus: '',
       textMap: {
         update: this.$t('table.edit'),
@@ -1267,8 +1275,9 @@ export default {
     this.getList()
   },
   methods: {
-    handleCreateFallback() {
-      this.dialogFallbackFormVisible = true
+    handleFallbackDetail(fallback) {
+      this.dialogFallbackDetailVisible = true
+      this.fallback = fallback
     },
     deleteFallback(fallback) {
       for (let i = 0; i < this.temp.xraySettingsEntity.fallbacks.length; i++) {
@@ -1365,7 +1374,7 @@ export default {
             {
               name: '',
               alpn: '',
-              path: '',
+              path: undefined,
               dest: '80',
               xver: 0
             }

@@ -100,7 +100,7 @@ export default {
     naiveproxyTip: 'NaiveProxy پشتیبانی شده در حال حاضر در مرحله آزمایش است و فقط از احراز هویت کاربر پشتیبانی می کند و از آمار ترافیک پشتیبانی نمی کند.',
     nodeQRCode: 'کد QR ایجاد کنید',
     nodeURL: 'URL را کپی کنید',
-    nodeDetail: 'جزئیات',
+    detail: 'جزئیات',
     blackListIp: 'IP',
     toEmail: 'گیرنده',
     subject: 'موضوع',

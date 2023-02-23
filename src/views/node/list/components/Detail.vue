@@ -1,161 +1,186 @@
 <template>
-  <el-dialog
-    :title="$t('table.nodeDetail')"
-    :visible.sync="dialogInfoVisible"
-    @close="$emit('update:dialogInfoVisible', false)"
-  >
-    <el-form :model="nodeInfo" label-position="left">
-      <el-form-item :label="$t('table.nodeName')">
-        <el-tag>{{ nodeInfo.name }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.nodeServer')">
-        <el-tag>{{ nodeServerComputed(nodeInfo.nodeServerId) }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.nodeDomain')">
-        <el-tag>{{ nodeInfo.domain }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.nodePort')">
-        <el-tag>{{ nodeInfo.port }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.nodeType')">
-        <el-tag>
-          {{ nodeTypeComputed(nodeInfo.nodeTypeId) }}
-        </el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.password')">
-        <el-tag>{{ nodeInfo.password }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.uuid')" v-show="showUUID">
-        <el-tag>{{ nodeInfo.uuid }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.alterId')" v-show="showAlterId">
-        <el-tag>{{ nodeInfo.alterId }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.xrayProtocol')" v-show="isXray">
-        <el-tag>{{ nodeInfo.xrayProtocol }}</el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.xrayStreamSettingsNetwork')"
-        v-show="isXray && !isXrayShadowsocks"
-      >
-        <el-tag>
-          {{ nodeInfo.xrayStreamSettingsEntity.network }}
-        </el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.xrayStreamSettingsWsSettingsPath')"
-        v-show="isXrayWs && !isXrayShadowsocks"
-      >
-        <el-tag
-          >{{ nodeInfo.xrayStreamSettingsEntity.wsSettings.path }}
-        </el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.xrayStreamSettingsSecurity')"
-        v-show="isXray && !isXrayShadowsocks"
-      >
-        <el-tag>{{ nodeInfo.xrayStreamSettingsEntity.security }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.xrayFlow')" v-show="showXrayFlow">
-        <el-tag>{{ nodeInfo.xrayFlow }}</el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.xraySSMethod')"
-        v-show="isXrayShadowsocks"
-      >
-        <el-tag>{{ nodeInfo.xraySSMethod }}</el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.xraySSNetwork')"
-        v-show="isXrayShadowsocks"
-      >
-        <el-tag>{{ nodeInfo.xraySettingsEntity.network }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.trojanGoSni')" v-show="isTrojanGo">
-        <el-tag>{{ nodeInfo.trojanGoSni }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.trojanGoMuxEnable')" v-show="isTrojanGo">
-        <el-tag>
-          {{ trojanGoMuxEnableComputed(nodeInfo.trojanGoMuxEnable) }}
-        </el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.trojanGoWebsocketEnable')"
-        v-show="isTrojanGo"
-      >
-        <el-tag>
-          {{
-            trojanGoWebsocketEnableComputed(nodeInfo.trojanGoWebsocketEnable)
-          }}
-        </el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.trojanGoWebsocketPath')"
-        v-show="isTrojanGoEnableWebsocket"
-      >
-        <el-tag>{{ nodeInfo.trojanGoWebsocketPath }}</el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.trojanGoWebsocketHost')"
-        v-show="isTrojanGoEnableWebsocket"
-      >
-        <el-tag>{{ nodeInfo.trojanGoWebsocketHost }}</el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.trojanGoSsEnable')"
-        v-show="isTrojanGoEnableWebsocket"
-      >
-        <el-tag
-          >{{ trojanGoSsEnableComputed(nodeInfo.trojanGoSsEnable) }}
-        </el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.trojanGoSsMethod')"
-        v-show="isTrojanGoEnableWebsocket && isTrojanGoEnableSs"
-      >
-        <el-tag>{{ nodeInfo.trojanGoSsMethod }}</el-tag>
-      </el-form-item>
-      <el-form-item
-        :label="$t('table.trojanGoSsPassword')"
-        v-show="isTrojanGoEnableWebsocket && isTrojanGoEnableSs"
-      >
-        <el-tag>{{ nodeInfo.trojanGoSsPassword }}</el-tag>
-      </el-form-item>
+  <div>
+    <el-dialog
+      :title="$t('table.detail')"
+      :visible.sync="dialogInfoVisible"
+      @close="$emit('update:dialogInfoVisible', false)"
+    >
+      <el-form :model="nodeInfo" label-position="left">
+        <el-form-item :label="$t('table.nodeName')">
+          <el-tag>{{ nodeInfo.name }}</el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.nodeServer')">
+          <el-tag>{{ nodeServerComputed(nodeInfo.nodeServerId) }}</el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.nodeDomain')">
+          <el-tag>{{ nodeInfo.domain }}</el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.nodePort')">
+          <el-tag>{{ nodeInfo.port }}</el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.nodeType')">
+          <el-tag>
+            {{ nodeTypeComputed(nodeInfo.nodeTypeId) }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.password')">
+          <el-tag>{{ nodeInfo.password }}</el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.uuid')" v-show="showUUID">
+          <el-tag>{{ nodeInfo.uuid }}</el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.alterId')" v-show="showAlterId">
+          <el-tag>{{ nodeInfo.alterId }}</el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.xrayProtocol')" v-show="isXray">
+          <el-tag>{{ nodeInfo.xrayProtocol }}</el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.xrayStreamSettingsNetwork')"
+          v-show="isXray && !isXrayShadowsocks"
+        >
+          <el-tag>
+            {{ nodeInfo.xrayStreamSettingsEntity.network }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.xrayStreamSettingsWsSettingsPath')"
+          v-show="isXrayWs && !isXrayShadowsocks"
+        >
+          <el-tag
+            >{{ nodeInfo.xrayStreamSettingsEntity.wsSettings.path }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.xrayStreamSettingsSecurity')"
+          v-show="isXray && !isXrayShadowsocks"
+        >
+          <el-tag>{{ nodeInfo.xrayStreamSettingsEntity.security }}</el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.xrayFlow')" v-show="showXrayFlow">
+          <el-tag>{{ nodeInfo.xrayFlow }}</el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.xraySSMethod')"
+          v-show="isXrayShadowsocks"
+        >
+          <el-tag>{{ nodeInfo.xraySSMethod }}</el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.xraySSNetwork')"
+          v-show="isXrayShadowsocks"
+        >
+          <el-tag>{{ nodeInfo.xraySettingsEntity.network }}</el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.xrayFallbacks')" v-show="showFallback">
+          <el-tag
+            v-for="(fallback, index) in nodeInfo.xraySettingsEntity.fallbacks"
+            :key="index"
+            :disable-transitions="false"
+            type="success"
+            effect="dark"
+            size="medium"
+            @click="handleFallbackDetail(fallback)"
+          >
+            {{ fallback.dest }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.trojanGoSni')" v-show="isTrojanGo">
+          <el-tag>{{ nodeInfo.trojanGoSni }}</el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.trojanGoMuxEnable')"
+          v-show="isTrojanGo"
+        >
+          <el-tag>
+            {{ trojanGoMuxEnableComputed(nodeInfo.trojanGoMuxEnable) }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.trojanGoWebsocketEnable')"
+          v-show="isTrojanGo"
+        >
+          <el-tag>
+            {{
+              trojanGoWebsocketEnableComputed(nodeInfo.trojanGoWebsocketEnable)
+            }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.trojanGoWebsocketPath')"
+          v-show="isTrojanGoEnableWebsocket"
+        >
+          <el-tag>{{ nodeInfo.trojanGoWebsocketPath }}</el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.trojanGoWebsocketHost')"
+          v-show="isTrojanGoEnableWebsocket"
+        >
+          <el-tag>{{ nodeInfo.trojanGoWebsocketHost }}</el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.trojanGoSsEnable')"
+          v-show="isTrojanGoEnableWebsocket"
+        >
+          <el-tag
+            >{{ trojanGoSsEnableComputed(nodeInfo.trojanGoSsEnable) }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.trojanGoSsMethod')"
+          v-show="isTrojanGoEnableWebsocket && isTrojanGoEnableSs"
+        >
+          <el-tag>{{ nodeInfo.trojanGoSsMethod }}</el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.trojanGoSsPassword')"
+          v-show="isTrojanGoEnableWebsocket && isTrojanGoEnableSs"
+        >
+          <el-tag>{{ nodeInfo.trojanGoSsPassword }}</el-tag>
+        </el-form-item>
 
-      <el-form-item :label="$t('table.hysteriaProtocol')" v-show="isHysteria">
-        <el-tag>{{ nodeInfo.hysteriaProtocol }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.hysteriaUpMbps')" v-show="isHysteria">
-        <el-tag>{{ nodeInfo.hysteriaUpMbps }}</el-tag>
-      </el-form-item>
-      <el-form-item :label="$t('table.hysteriaDownMbps')" v-show="isHysteria">
-        <el-tag>{{ nodeInfo.hysteriaDownMbps }}</el-tag>
-      </el-form-item>
-      <el-form-item v-show="isHysteria">
-        <aside>
-          {{ $t('table.hysteriaTip') }}
-        </aside>
-      </el-form-item>
-      <el-form-item v-show="isNaiveProxy">
-        <aside>
-          {{ $t('table.naiveproxyTip') }}
-        </aside>
-      </el-form-item>
-    </el-form>
+        <el-form-item :label="$t('table.hysteriaProtocol')" v-show="isHysteria">
+          <el-tag>{{ nodeInfo.hysteriaProtocol }}</el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.hysteriaUpMbps')" v-show="isHysteria">
+          <el-tag>{{ nodeInfo.hysteriaUpMbps }}</el-tag>
+        </el-form-item>
+        <el-form-item :label="$t('table.hysteriaDownMbps')" v-show="isHysteria">
+          <el-tag>{{ nodeInfo.hysteriaDownMbps }}</el-tag>
+        </el-form-item>
+        <el-form-item v-show="isHysteria">
+          <aside>
+            {{ $t('table.hysteriaTip') }}
+          </aside>
+        </el-form-item>
+        <el-form-item v-show="isNaiveProxy">
+          <aside>
+            {{ $t('table.naiveproxyTip') }}
+          </aside>
+        </el-form-item>
+      </el-form>
 
-    <div slot="footer" class="dialog-footer">
-      <el-button
-        type="primary"
-        @click="$emit('update:dialogInfoVisible', false)"
-        >{{ $t('table.confirm') }}
-      </el-button>
-    </div>
-  </el-dialog>
+      <div slot="footer" class="dialog-footer">
+        <el-button
+          type="primary"
+          @click="$emit('update:dialogInfoVisible', false)"
+          >{{ $t('table.confirm') }}
+        </el-button>
+      </div>
+    </el-dialog>
+    <FallbackInfo
+      :dialog-visible.sync="dialogDetailFallbackDetailVisible"
+      :fallback="fallback"
+    />
+  </div>
 </template>
 
 <script>
+import FallbackInfo from '@/views/node/list/components/FallbackInfo'
+
 export default {
   name: 'Detail',
+  components: { FallbackInfo },
   props: {
     dialogInfoVisible: {
       type: Boolean,
@@ -174,6 +199,10 @@ export default {
       required: true
     },
     showXrayFlow: {
+      type: Boolean,
+      required: true
+    },
+    showFallback: {
       type: Boolean,
       required: true
     },
@@ -267,6 +296,24 @@ export default {
           return ''
         }
       }
+    }
+  },
+  data() {
+    return {
+      fallback: {
+        name: '',
+        alpn: '',
+        path: undefined,
+        dest: '80',
+        xver: 0
+      },
+      dialogDetailFallbackDetailVisible: false
+    }
+  },
+  methods: {
+    handleFallbackDetail(fallback) {
+      this.dialogDetailFallbackDetailVisible = true
+      this.fallback = fallback
     }
   }
 }

@@ -100,7 +100,7 @@ export default {
     naiveproxyTip: 'The currently supported NaiveProxy is in the testing stage, and only supports user authentication and does not support traffic statistics.',
     nodeQRCode: 'Generate QR code',
     nodeURL: 'Copy URL',
-    nodeDetail: 'Details',
+    detail: 'Details',
     blackListIp: 'IP',
     toEmail: 'To Email',
     subject: 'Subject',
