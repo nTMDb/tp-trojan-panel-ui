@@ -9,7 +9,6 @@
       <el-form-item
         :label="$t('config.registerEnable')"
         prop="registerEnable"
-        clearable
       >
         <el-switch
           v-model="systemConfig.registerEnable"
@@ -42,7 +41,6 @@
       <el-form-item
         :label="$t('config.resetDownloadAndUploadMonth')"
         prop="resetDownloadAndUploadMonth"
-        clearable
       >
         <el-switch
           v-model="systemConfig.resetDownloadAndUploadMonth"
@@ -56,7 +54,6 @@
       <el-form-item
         :label="$t('config.trafficRankEnable')"
         prop="trafficRankEnable"
-        clearable
       >
         <el-switch
           v-model="systemConfig.trafficRankEnable"

@@ -15,7 +15,7 @@
         <lang-select class="set-language" />
       </div>
 
-      <el-form-item prop="username" clearable>
+      <el-form-item prop="username" >
         <span class="svg-container">
           <svg-icon icon-class="username" />
         </span>
@@ -27,10 +27,11 @@
           type="text"
           tabindex="1"
           auto-complete="on"
+          clearable
         />
       </el-form-item>
 
-      <el-form-item prop="pass" clearable>
+      <el-form-item prop="pass" >
         <span class="svg-container">
           <svg-icon icon-class="pass" />
         </span>
@@ -44,6 +45,7 @@
           tabindex="2"
           auto-complete="on"
           @keyup.enter.native="handleLogin"
+          clearable
         />
         <span class="show-pwd" @click="showPwd">
           <svg-icon

@@ -95,8 +95,8 @@
         :model="temp"
         label-position="left"
       >
-        <el-form-item :label="$t('table.blackListIp')" prop="ip" clearable>
-          <el-input v-model="temp.ip" />
+        <el-form-item :label="$t('table.blackListIp')" prop="ip" >
+          <el-input v-model="temp.ip" clearable />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

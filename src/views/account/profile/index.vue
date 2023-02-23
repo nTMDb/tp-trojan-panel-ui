@@ -9,32 +9,36 @@
       :model="temp"
       label-position="left"
     >
-      <el-form-item :label="$t('table.email')" prop="email" clearable>
+      <el-form-item :label="$t('table.email')" prop="email" >
         <el-input
           v-model="temp.email"
           type="password"
           :placeholder="$t('table.email')"
+          clearable
         />
       </el-form-item>
-      <el-form-item :label="$t('table.oldPass')" prop="oldPass" clearable>
+      <el-form-item :label="$t('table.oldPass')" prop="oldPass" >
         <el-input
           v-model="temp.oldPass"
           type="password"
           :placeholder="$t('table.oldPass')"
+          clearable
         />
       </el-form-item>
-      <el-form-item :label="$t('table.newPass')" prop="newPass" clearable>
+      <el-form-item :label="$t('table.newPass')" prop="newPass" >
         <el-input
           v-model="temp.newPassOne"
           type="password"
           :placeholder="$t('table.newPass')"
+          clearable
         />
       </el-form-item>
-      <el-form-item :label="$t('table.newPass')" prop="newPass" clearable>
+      <el-form-item :label="$t('table.newPass')" prop="newPass" >
         <el-input
           v-model="temp.newPass"
           type="password"
           :placeholder="$t('table.newPass')"
+          clearable
         />
       </el-form-item>
       <el-form-item>

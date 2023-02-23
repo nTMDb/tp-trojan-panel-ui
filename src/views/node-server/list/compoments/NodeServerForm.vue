@@ -11,17 +11,13 @@
       :model="nodeServer"
       label-position="left"
     >
-      <el-form-item :label="$t('table.nodeServerName')" prop="name" clearable>
-        <el-input v-model="nodeServer.name" />
+      <el-form-item :label="$t('table.nodeServerName')" prop="name">
+        <el-input v-model="nodeServer.name" clearable />
       </el-form-item>
-      <el-form-item :label="$t('table.nodeServerIp')" prop="ip" clearable>
-        <el-input v-model="nodeServer.ip" />
+      <el-form-item :label="$t('table.nodeServerIp')" prop="ip">
+        <el-input v-model="nodeServer.ip" clearable />
       </el-form-item>
-      <el-form-item
-        :label="$t('table.nodeServerGrpcPort')"
-        prop="grpcPort"
-        clearable
-      >
+      <el-form-item :label="$t('table.nodeServerGrpcPort')" prop="grpcPort">
         <el-input-number
           v-model.number="nodeServer.grpcPort"
           controls-position="right"

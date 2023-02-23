@@ -12,7 +12,7 @@
         <h3 class="title">{{ $t('register.title') }}</h3>
       </div>
 
-      <el-form-item prop="username" clearable>
+      <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="username" />
         </span>
@@ -24,10 +24,11 @@
           type="text"
           tabindex="1"
           auto-complete="on"
+          clearable
         />
       </el-form-item>
 
-      <el-form-item prop="pass" clearable>
+      <el-form-item prop="pass">
         <span class="svg-container">
           <svg-icon icon-class="pass" />
         </span>
@@ -39,6 +40,7 @@
           name="password"
           tabindex="2"
           auto-complete="on"
+          clearable
         />
         <span class="show-pwd" @click="showPwd">
           <svg-icon
@@ -47,7 +49,7 @@
         </span>
       </el-form-item>
 
-      <el-form-item prop="pass" clearable>
+      <el-form-item prop="pass">
         <span class="svg-container">
           <svg-icon icon-class="pass" />
         </span>
@@ -59,6 +61,7 @@
           name="password"
           tabindex="3"
           auto-complete="on"
+          clearable
           @keyup.enter.native="handleRegister"
         />
         <span class="show-pwd" @click="showPwd">

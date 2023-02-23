@@ -6,18 +6,15 @@
       :model="systemConfig"
       label-position="left"
     >
-      <el-form-item
-        :label="$t('config.systemName')"
-        prop="systemName"
-        clearable
-      >
-        <el-input v-model="systemConfig.systemName" />
+      <el-form-item :label="$t('config.systemName')" prop="systemName">
+        <el-input v-model="systemConfig.systemName" clearable />
       </el-form-item>
-      <el-form-item :label="$t('config.clashRule')" prop="clashRule" clearable>
+      <el-form-item :label="$t('config.clashRule')" prop="clashRule">
         <el-input
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 8 }"
           v-model="systemConfig.clashRule"
+          clearable
         />
       </el-form-item>
       <el-form-item :label="$t('config.xrayTemplate')" prop="xrayTemplate">

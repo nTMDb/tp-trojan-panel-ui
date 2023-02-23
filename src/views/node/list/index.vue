@@ -14,7 +14,6 @@
         v-model="listQuery.nodeServerId"
         :placeholder="$t('table.nodeServerName')"
         class="filter-item"
-        clearable
         @change="handleFilter"
         @clear="handleFilter"
       >
@@ -171,8 +170,8 @@
         :model="temp"
         label-position="left"
       >
-        <el-form-item :label="$t('table.nodeName')" prop="name" clearable>
-          <el-input v-model="temp.name" />
+        <el-form-item :label="$t('table.nodeName')" prop="name" >
+          <el-input v-model="temp.name" clearable/>
         </el-form-item>
         <el-form-item :label="$t('table.nodeServer')" prop="nodeServerId">
           <el-select v-model="temp.nodeServerId" controls-position="right">
@@ -190,8 +189,8 @@
             @click="toAddNodeServer"
           ></el-button>
         </el-form-item>
-        <el-form-item :label="$t('table.nodeDomain')" prop="domain" clearable>
-          <el-input v-model="temp.domain" />
+        <el-form-item :label="$t('table.nodeDomain')" prop="domain" >
+          <el-input v-model="temp.domain" clearable/>
         </el-form-item>
         <el-form-item :label="$t('table.nodePort')" prop="port">
           <el-input-number
@@ -341,9 +340,8 @@
           :label="$t('table.trojanGoSni')"
           v-show="isTrojanGo"
           prop="trojanGoSni"
-          clearable
         >
-          <el-input v-model="temp.trojanGoSni" />
+          <el-input v-model="temp.trojanGoSni" clearable/>
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoMuxEnable')"
@@ -380,18 +378,17 @@
         <el-form-item
           :label="$t('table.trojanGoWebsocketPath')"
           prop="trojanGoWebsocketPath"
-          clearable
           v-show="isTrojanGoEnableWebsocket"
         >
-          <el-input v-model="temp.trojanGoWebsocketPath" />
+          <el-input v-model="temp.trojanGoWebsocketPath" clearable/>
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketHost')"
           prop="trojanGoWebsocketHost"
-          clearable
+
           v-show="isTrojanGoEnableWebsocket"
         >
-          <el-input v-model="temp.trojanGoWebsocketHost" />
+          <el-input v-model="temp.trojanGoWebsocketHost" clearable/>
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSsEnable')"
@@ -430,10 +427,9 @@
         <el-form-item
           :label="$t('table.trojanGoSsPassword')"
           prop="trojanGoSsPassword"
-          clearable
           v-show="isTrojanGoEnableWebsocket && isTrojanGoEnableSs"
         >
-          <el-input v-model="temp.trojanGoSsPassword" />
+          <el-input v-model="temp.trojanGoSsPassword" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaProtocol')"

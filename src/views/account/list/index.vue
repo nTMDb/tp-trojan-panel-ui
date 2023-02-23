@@ -170,18 +170,19 @@
           v-if="dialogStatus === 'create'"
           :label="$t('table.username')"
           prop="username"
-          clearable
         >
           <el-input
             v-model="temp.username"
             :placeholder="$t('table.username')"
+            clearable
           />
         </el-form-item>
-        <el-form-item :label="$t('table.pass')" prop="pass" clearable>
+        <el-form-item :label="$t('table.pass')" prop="pass">
           <el-input
             v-model="temp.pass"
             type="password"
             :placeholder="$t('table.pass')"
+            clearable
           />
         </el-form-item>
         <el-form-item :label="$t('table.editQuota')" prop="quota">
@@ -191,8 +192,12 @@
             type="number"
           />
         </el-form-item>
-        <el-form-item :label="$t('table.email')" prop="email" clearable>
-          <el-input v-model="temp.email" :placeholder="$t('table.email')" />
+        <el-form-item :label="$t('table.email')" prop="email">
+          <el-input
+            v-model="temp.email"
+            :placeholder="$t('table.email')"
+            clearable
+          />
         </el-form-item>
         <el-form-item :label="$t('table.status')" prop="deleted">
           <el-switch

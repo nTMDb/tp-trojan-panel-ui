@@ -11,17 +11,17 @@
       :model="fallback"
       label-position="left"
     >
-      <el-form-item label="name" prop="name" clearable>
-        <el-input v-model="fallback.name" />
+      <el-form-item label="name" prop="name">
+        <el-input v-model="fallback.name" clearable />
       </el-form-item>
-      <el-form-item label="alpn" prop="alpn" clearable>
-        <el-input v-model="fallback.alpn" />
+      <el-form-item label="alpn" prop="alpn">
+        <el-input v-model="fallback.alpn" clearable />
       </el-form-item>
-      <el-form-item label="path" prop="path" clearable>
-        <el-input v-model="fallback.path" />
+      <el-form-item label="path" prop="path">
+        <el-input v-model="fallback.path" clearable />
       </el-form-item>
-      <el-form-item label="dest" prop="dest" clearable>
-        <el-input v-model="fallback.dest" />
+      <el-form-item label="dest" prop="dest">
+        <el-input v-model="fallback.dest" clearable />
       </el-form-item>
       <el-form-item label="xver" prop="xver">
         <el-input-number
