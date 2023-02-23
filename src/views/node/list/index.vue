@@ -560,6 +560,9 @@ export default {
     isXrayVless() {
       return this.isXray && this.temp.xrayProtocol === 'vless'
     },
+    isXrayVmess() {
+      return this.isXray && this.temp.xrayProtocol === 'vmess'
+    },
     isXrayTrojan() {
       return this.isXray && this.temp.xrayProtocol === 'trojan'
     },
@@ -568,7 +571,9 @@ export default {
     },
     showXrayFlow() {
       return (
-        this.isXrayVless ||
+        (this.isXrayVless &&
+          (this.temp.xrayStreamSettingsEntity.security === 'tls' ||
+            this.temp.xrayStreamSettingsEntity.security === 'xtls')) ||
         (this.isXrayTrojan &&
           this.temp.xrayStreamSettingsEntity.security === 'xtls')
       )
@@ -582,7 +587,11 @@ export default {
     xrayStreamSettingsSecuritys() {
       // XTLS only supports TCP, mKCP and DomainSocket for now
       let securitys = ['none', 'tls']
-      if (this.temp.xrayStreamSettingsEntity.network === 'tcp') {
+      if (
+        this.temp.xrayStreamSettingsEntity.network === 'tcp' &&
+        !this.isXrayVmess &&
+        !this.isXrayShadowsocks
+      ) {
         securitys.push('xtls')
       }
       return securitys
@@ -1205,9 +1214,16 @@ export default {
   },
   methods: {
     xrayStreamSettingsSecurityChange() {
-      if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
+      if (
+        this.isXrayVless &&
+        this.temp.xrayStreamSettingsEntity.security === 'tls'
+      ) {
         this.temp.xrayFlow = 'xtls-rprx-vision'
-      } else if (this.temp.xrayStreamSettingsEntity.security === 'xtls') {
+      } else if (
+        this.isXrayVless ||
+        (this.isXrayTrojan &&
+          this.temp.xrayStreamSettingsEntity.security === 'xtls')
+      ) {
         this.temp.xrayFlow = 'xtls-rprx-direct'
       } else {
         this.temp.xrayFlow = ''
