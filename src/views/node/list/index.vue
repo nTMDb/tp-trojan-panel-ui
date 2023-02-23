@@ -233,6 +233,7 @@
           <el-select
             v-model="temp.xrayStreamSettingsEntity.network"
             controls-position="right"
+            @change="xrayStreamSettingsNetworkChange"
           >
             <el-option
               :label="item"
@@ -580,6 +581,7 @@ export default {
     },
     xrayStreamSettingsSecuritys() {
       // XTLS only supports TCP, mKCP and DomainSocket for now
+      // xtls不支持vmess、ws
       let securitys = ['none', 'tls']
       if (
         this.temp.xrayStreamSettingsEntity.network === 'tcp' &&
@@ -870,7 +872,7 @@ export default {
             trigger: 'change'
           }
         ],
-        xraySSNetwork: [
+        'xraySettingsEntity.network': [
           {
             required: true,
             message: this.$t('valid.xraySSNetwork'),
@@ -1214,7 +1216,13 @@ export default {
     this.getList()
   },
   methods: {
+    xrayStreamSettingsNetworkChange() {
+      if (this.temp.xrayStreamSettingsEntity.network === 'ws') {
+        this.temp.xrayStreamSettingsEntity.security = 'tls'
+      }
+    },
     xrayStreamSettingsSecurityChange() {
+      // xray vless和xray trojan xtls才有流控
       if (
         this.isXrayVless &&
         this.temp.xrayStreamSettingsEntity.security === 'tls'
