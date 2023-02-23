@@ -23,9 +23,7 @@
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button
-        type="primary"
-        @click="$emit('update:dialogVisible', false)"
+      <el-button type="primary" @click="$emit('update:dialogVisible', false)"
         >{{ $t('table.confirm') }}
       </el-button>
     </div>
@@ -48,8 +46,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.el-tag + .el-tag {
-  margin-left: 10px;
-}
-</style>
+<style scoped></style>

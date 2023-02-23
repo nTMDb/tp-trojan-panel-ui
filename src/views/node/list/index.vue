@@ -320,7 +320,7 @@
           <el-tag
             v-for="(item, index) in temp.xraySettingsEntity.fallbacks"
             :key="index"
-            :disable-transitions="false"
+            :disable-transitions="true"
             type="success"
             @close="deleteFallback(item)"
             effect="dark"

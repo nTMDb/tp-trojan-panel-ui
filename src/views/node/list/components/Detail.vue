@@ -76,7 +76,7 @@
           <el-tag
             v-for="(item, index) in nodeInfo.xraySettingsEntity.fallbacks"
             :key="index"
-            :disable-transitions="false"
+            :disable-transitions="true"
             type="success"
             effect="dark"
             size="medium"
@@ -319,4 +319,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-tag + .el-tag {
+  margin-left: 10px;
+}
+</style>
