@@ -3,7 +3,7 @@
     :title="$t('table.add')"
     :visible.sync="dialogFallbackFormVisible"
     @close="$emit('update:dialogFallbackFormVisible', false)"
-    width="150"
+    width="30%"
   >
     <el-form
       ref="dataForm"
