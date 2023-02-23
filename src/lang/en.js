@@ -84,6 +84,7 @@ export default {
     xrayStreamSettingsNetwork: 'Transmission Type',
     xrayStreamSettingsSecurity: 'Transport Layer Encryption',
     xrayStreamSettingsWsSettingsPath: 'Websocket Path',
+    xrayFallbacks: 'Fall Back',
     trojanGoSni: 'SNI',
     trojanGoMuxEnable: 'Enable Mux',
     trojanGoWebsocketEnable: 'Enable Websocket',

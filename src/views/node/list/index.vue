@@ -314,6 +314,30 @@
           </el-select>
         </el-form-item>
         <el-form-item
+          :label="$t('table.xrayFallbacks')"
+          prop="xraySettingsEntity.fallbacks"
+          v-show="showFallback"
+        >
+          <el-tag
+            v-for="(fallback, index) in temp.xraySettingsEntity.fallbacks"
+            :key="index"
+            :disable-transitions="false"
+            type="success"
+            @close="deleteFallback(fallback)"
+            effect="dark"
+            size="medium"
+            closable
+          >
+            {{ fallback.dest }}
+          </el-tag>
+          <el-button
+            type="primary"
+            size="mini"
+            icon="el-icon-plus"
+            @click="handleCreateFallback"
+          ></el-button>
+        </el-form-item>
+        <el-form-item
           :label="$t('table.trojanGoSni')"
           v-show="isTrojanGo"
           prop="trojanGoSni"
@@ -491,6 +515,12 @@
       :dialogInfoVisible.sync="dialogInfoVisible"
     />
 
+    <FallbackForm
+      :fallback="fallback"
+      :create-fallback="createFallback"
+      :dialog-fallback-form-visible.sync="dialogFallbackFormVisible"
+    />
+
     <Qrcode
       :qr-code-src="qrCodeSrc"
       :dialogQRCodeVisible.sync="dialogQRCodeVisible"
@@ -519,10 +549,11 @@ import checkPermission from '@/utils/permission'
 import { timeStampToDate } from '@/utils'
 import { clashSubscribe } from '@/api/account'
 import { selectNodeServerList } from '@/api/node-server'
+import FallbackForm from '@/views/node/list/components/FallbackForm'
 
 export default {
   name: 'List',
-  components: { Qrcode, Detail, Pagination },
+  components: { FallbackForm, Qrcode, Detail, Pagination },
   filters: {
     trojanGoWebsocketEnableFilter(trojanGoWebsocketEnable) {
       const deletedMap = {
@@ -577,6 +608,13 @@ export default {
             this.temp.xrayStreamSettingsEntity.security === 'xtls')) ||
         (this.isXrayTrojan &&
           this.temp.xrayStreamSettingsEntity.security === 'xtls')
+      )
+    },
+    showFallback() {
+      return (
+        this.isXray &&
+        this.temp.xraySettingsEntity.network === 'tcp' &&
+        this.temp.xrayStreamSettingsEntity.security === 'tls'
       )
     },
     xrayStreamSettingsSecuritys() {
@@ -642,6 +680,13 @@ export default {
   },
   data() {
     return {
+      fallback: {
+        name: '',
+        alpn: '',
+        path: '',
+        dest: '80',
+        xver: 0
+      },
       tableKey: 0,
       listLoading: true,
       list: null,
@@ -669,7 +714,11 @@ export default {
           clients: [],
           fallbacks: [
             {
-              dest: 80
+              name: '',
+              alpn: '',
+              path: '',
+              dest: '80',
+              xver: 0
             }
           ],
           network: 'tcp'
@@ -722,7 +771,11 @@ export default {
           clients: [],
           fallbacks: [
             {
-              dest: 80
+              name: '',
+              alpn: '',
+              path: '',
+              dest: '80',
+              xver: 0
             }
           ],
           network: 'tcp'
@@ -758,6 +811,8 @@ export default {
       dialogFormVisible: false,
       dialogInfoVisible: false,
       dialogQRCodeVisible: false,
+      dialogFallbackFormVisible: false,
+      dialogFallbackStatus: '',
       textMap: {
         update: this.$t('table.edit'),
         create: this.$t('table.add')
@@ -1216,6 +1271,26 @@ export default {
     this.getList()
   },
   methods: {
+    handleCreateFallback() {
+      this.dialogFallbackFormVisible = true
+    },
+    deleteFallback(fallback) {
+      for (let i = 0; i < this.temp.xraySettingsEntity.fallbacks.length; i++) {
+        let temp = this.temp.xraySettingsEntity.fallbacks[i]
+        if (
+          fallback.alpn === temp.alpn &&
+          fallback.name === temp.name &&
+          fallback.path === temp.path &&
+          fallback.dest === temp.dest &&
+          fallback.xver === temp.xver
+        ) {
+          this.temp.xraySettingsEntity.fallbacks.splice(i, 1)
+        }
+      }
+    },
+    createFallback(fallback) {
+      this.temp.xraySettingsEntity.fallbacks.push(fallback)
+    },
     xrayStreamSettingsNetworkChange() {
       if (this.temp.xrayStreamSettingsEntity.network === 'ws') {
         this.temp.xrayStreamSettingsEntity.security = 'tls'
@@ -1292,7 +1367,11 @@ export default {
           clients: [],
           fallbacks: [
             {
-              dest: 80
+              name: '',
+              alpn: '',
+              path: '',
+              dest: '80',
+              xver: 0
             }
           ],
           network: 'tcp'
@@ -1537,6 +1616,10 @@ export default {
 
 <style scoped>
 .el-button {
+  margin-left: 10px;
+}
+
+.el-tag + .el-tag {
   margin-left: 10px;
 }
 </style>

@@ -3,6 +3,7 @@
     :title="textMap[dialogStatus]"
     :visible.sync="dialogFormVisible"
     @close="$emit('update:dialogFormVisible', false)"
+    width="150"
   >
     <el-form
       ref="dataForm"

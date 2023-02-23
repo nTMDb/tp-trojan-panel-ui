@@ -84,6 +84,7 @@ export default {
     xrayStreamSettingsNetwork: 'نوع حمل و نقل',
     xrayStreamSettingsSecurity: 'رمزگذاری لایه انتقال',
     xrayStreamSettingsWsSettingsPath: 'مسیر وب سوکت',
+    xrayFallbacks: 'عقب افتادن',
     trojanGoSni: 'SNI',
     trojanGoMuxEnable: 'فعال کردن مالتی پلکس شدن',
     trojanGoWebsocketEnable: 'فعال کردن Websocket',

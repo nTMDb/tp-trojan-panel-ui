@@ -84,6 +84,7 @@ export default {
     xrayStreamSettingsNetwork: '운송 유형',
     xrayStreamSettingsSecurity: '전송 계층 암호화',
     xrayStreamSettingsWsSettingsPath: 'Websocket길',
+    xrayFallbacks: '물러서다',
     trojanGoSni: 'SNI',
     trojanGoMuxEnable: '멀티플렉싱 활성화 여부',
     trojanGoWebsocketEnable: 'Websocket열지 여부',
