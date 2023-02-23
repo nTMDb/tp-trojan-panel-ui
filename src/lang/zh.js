@@ -199,6 +199,7 @@ export default {
     xrayWsRange: 'Websocket路径的范围在2-64字符之间',
     xrayFallbackPathPrefix: 'path必须以/开头',
     xrayFallbackDest: '请输入desc',
+    xrayFallbackXver: 'xver只可以使1、2、3',
     trojanGoSni: 'sni在4-64字符之间',
     trojanGoMux: '请输入是否开启多路复用',
     trojanGoWs: '请输入是否开启Websocket',

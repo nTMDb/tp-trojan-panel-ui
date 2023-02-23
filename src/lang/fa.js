@@ -199,6 +199,7 @@ export default {
     xrayWsRange: 'مسیرهای Websocket از 2 تا 64 کاراکتر متغیر است',
     xrayFallbackPathPrefix: 'مسیر باید با / شروع شود',
     xrayFallbackDest: 'لطفا توصیف را وارد کنید',
+    xrayFallbackXver: 'xver فقط می تواند 1، 2، 3 را بسازد',
     trojanGoSni: 'sni بین 4-64 کاراکتر',
     trojanGoMux: 'لطفاً وارد کنید که آیا مالتی پلکسی فعال شود یا خیر',
     trojanGoWs: 'لطفاً وارد کنید که آیا Websocket فعال شود یا خیر',

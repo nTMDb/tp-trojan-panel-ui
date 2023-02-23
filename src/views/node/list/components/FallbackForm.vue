@@ -67,6 +67,17 @@ export default {
         callback()
       }
     }
+    const xverValidate = (rule, value, callback) => {
+      if (
+        this.fallback.xver !== 0 &&
+        this.fallback.xver !== 1 &&
+        this.fallback.xver !== 2
+      ) {
+        callback(new Error(this.$t('valid.xrayFallbackXver')))
+      } else {
+        callback()
+      }
+    }
     return {
       createRules: {
         path: [
@@ -79,6 +90,12 @@ export default {
           {
             required: true,
             message: this.$t('valid.xrayFallbackDest'),
+            trigger: 'change'
+          }
+        ],
+        xver: [
+          {
+            validator: xverValidate,
             trigger: 'change'
           }
         ]

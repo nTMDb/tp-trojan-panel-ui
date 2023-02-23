@@ -199,6 +199,7 @@ export default {
     xrayWsRange: 'Websocket 경로 범위는 2-64자입니다',
     xrayFallbackPathPrefix: '경로는 /로 시작해야 합니다',
     xrayFallbackDest: '설명을 입력하십시오',
+    xrayFallbackXver: 'xver는 1, 2, 3만 만들 수 있습니다',
     trojanGoSni: '4-64자 사이의 sni',
     trojanGoMux: '멀티플렉싱 활성화 여부를 입력하십시오',
     trojanGoWs: 'Websocket 활성화 여부를 입력하십시오',

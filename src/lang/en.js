@@ -199,6 +199,7 @@ export default {
     xrayWsRange: 'Websocket paths range from 2-64 characters',
     xrayFallbackPathPrefix: 'path must start with /',
     xrayFallbackDest: 'Please enter desc',
+    xrayFallbackXver: 'xver can only make 1, 2, 3',
     trojanGoSni: 'sni between 4-64 characters',
     trojanGoMux: 'Please enter whether to enable multiplexing',
     trojanGoWs: 'Please enter whether to enable Websocket',
