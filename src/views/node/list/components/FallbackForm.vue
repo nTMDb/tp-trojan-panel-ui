@@ -118,19 +118,19 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          let tempData = {
-            name: this.temp.name,
-            alpn: this.temp.alpn,
-            dest: this.temp.dest,
-            xver: this.temp.xver
+          let tempData = {}
+          if (this.temp.name) {
+            tempData.name = this.temp.name
+          }
+          if (this.temp.alpn) {
+            tempData.alpn = this.temp.alpn
           }
           // path以/开头否则不传改字段
-          if (
-            this.temp.path &&
-            this.temp.path !== '' &&
-            this.temp.path.startsWith('/')
-          ) {
+          if (this.temp.path && this.temp.path.startsWith('/')) {
             tempData.path = this.temp.path
+          }
+          if (this.temp.xver) {
+            tempData.xver = this.temp.xver
           }
           this.createFallback(tempData)
           this.$emit('update:dialogVisible', false)
