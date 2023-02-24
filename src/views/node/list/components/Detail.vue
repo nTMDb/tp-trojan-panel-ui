@@ -148,6 +148,9 @@
         <el-form-item :label="$t('table.hysteriaDownMbps')" v-show="isHysteria">
           <el-tag>{{ nodeInfo.hysteriaDownMbps }}</el-tag>
         </el-form-item>
+        <el-form-item :label="$t('table.naiveProxyUsername')" v-show="isNaiveProxy">
+          <el-tag>{{ nodeInfo.naiveProxyUsername }}</el-tag>
+        </el-form-item>
         <el-form-item v-show="isHysteria">
           <aside>
             {{ $t('table.hysteriaTip') }}

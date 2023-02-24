@@ -809,6 +809,7 @@ export default {
         hysteriaProtocol: 'udp',
         hysteriaUpMbps: 100,
         hysteriaDownMbps: 100,
+        naiveProxyUsername: '',
         createTime: new Date()
       },
       dialogFormVisible: false,
@@ -1497,6 +1498,9 @@ export default {
           this.nodeDetail.hysteriaProtocol = response.data.hysteriaProtocol
           this.nodeDetail.hysteriaUpMbps = response.data.hysteriaUpMbps
           this.nodeDetail.hysteriaDownMbps = response.data.hysteriaDownMbps
+        }
+        if (this.nodeDetail.nodeTypeId === 4) {
+          this.nodeDetail.naiveProxyUsername = response.data.naiveProxyUsername
         }
       })
       this.dialogInfoVisible = true

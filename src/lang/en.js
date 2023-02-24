@@ -96,6 +96,7 @@ export default {
     hysteriaProtocol: 'Protocol',
     hysteriaUpMbps: 'Maximum upload speed for a single client/Mbps',
     hysteriaDownMbps: 'Maximum download speed for a single client/Mbps',
+    naiveProxyUsername: 'Username',
     hysteriaTip: 'The currently supported Hysteria is in the testing stage, and only supports user authentication and does not support traffic statistics.',
     naiveproxyTip: 'The currently supported NaiveProxy is in the testing stage, and only supports user authentication and does not support traffic statistics.',
     nodeQRCode: 'Generate QR code',
