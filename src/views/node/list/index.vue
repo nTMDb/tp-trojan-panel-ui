@@ -616,7 +616,7 @@ export default {
     showFallback() {
       return (
         this.isXray &&
-        this.temp.xraySettingsEntity.network === 'tcp' &&
+        this.temp.xrayStreamSettingsEntity.network === 'tcp' &&
         this.temp.xrayStreamSettingsEntity.security === 'tls'
       )
     },
