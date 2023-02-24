@@ -1333,8 +1333,8 @@ export default {
       const tempData = Object.assign({}, row)
       nodeQRCode(tempData).then((response) => {
         this.qrCodeSrc = 'data:image/png;base64,' + response.data
+        this.dialogQRCodeVisible = true
       })
-      this.dialogQRCodeVisible = true
     },
     setNodeTypes() {
       selectNodeTypeList().then((response) => {
@@ -1456,11 +1456,11 @@ export default {
           this.temp.hysteriaUpMbps = response.data.hysteriaUpMbps
           this.temp.hysteriaDownMbps = response.data.hysteriaDownMbps
         }
-      })
-      this.dialogStatus = 'update'
-      this.dialogFormVisible = true
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
+        this.dialogStatus = 'update'
+        this.dialogFormVisible = true
+        this.$nextTick(() => {
+          this.$refs['dataForm'].clearValidate()
+        })
       })
     },
     handleDetail(row) {
@@ -1502,8 +1502,8 @@ export default {
         if (this.nodeDetail.nodeTypeId === 4) {
           this.nodeDetail.naiveProxyUsername = response.data.naiveProxyUsername
         }
+        this.dialogInfoVisible = true
       })
-      this.dialogInfoVisible = true
     },
     handleDelete(row, index) {
       MessageBox.confirm(
