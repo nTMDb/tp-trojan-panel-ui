@@ -134,7 +134,6 @@ export default {
           }
           this.createFallback(tempData)
           this.$emit('update:dialogVisible', false)
-          console.log(tempData)
         }
       })
     }
