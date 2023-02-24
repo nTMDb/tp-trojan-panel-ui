@@ -1,8 +1,8 @@
 <template>
   <el-dialog
     :title="$t('table.add')"
-    :visible="dialogFallbackFormVisible"
-    @close="$emit('update:dialogFallbackFormVisible', false)"
+    :visible="dialogVisible"
+    @close="$emit('update:dialogVisible', false)"
     width="30%"
   >
     <el-form
@@ -32,7 +32,7 @@
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="$emit('update:dialogFallbackFormVisible', false)"
+      <el-button @click="$emit('update:dialogVisible', false)"
         >{{ $t('table.cancel') }}
       </el-button>
       <el-button type="primary" @click="createData()">
@@ -50,7 +50,7 @@ export default {
       type: Function,
       required: true
     },
-    dialogFallbackFormVisible: {
+    dialogVisible: {
       type: Boolean,
       required: true
     }
@@ -120,7 +120,7 @@ export default {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
           this.createFallback(tempData)
-          this.$emit('update:dialogFallbackFormVisible', false)
+          this.$emit('update:dialogVisible', false)
         }
       })
     }

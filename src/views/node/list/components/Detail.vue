@@ -2,8 +2,8 @@
   <div>
     <el-dialog
       :title="$t('table.detail')"
-      :visible="dialogInfoVisible"
-      @close="$emit('update:dialogInfoVisible', false)"
+      :visible="dialogVisible"
+      @close="$emit('update:dialogVisible', false)"
     >
       <el-form :model="nodeInfo" label-position="left">
         <el-form-item :label="$t('table.nodeName')">
@@ -163,15 +163,17 @@
       <div slot="footer" class="dialog-footer">
         <el-button
           type="primary"
-          @click="$emit('update:dialogInfoVisible', false)"
+          @click="$emit('update:dialogVisible', false)"
           >{{ $t('table.confirm') }}
         </el-button>
       </div>
     </el-dialog>
+
     <FallbackInfo
       :dialog-visible.sync="dialogDetailFallbackDetailVisible"
       :fallback="fallback"
     />
+
   </div>
 </template>
 
@@ -182,7 +184,7 @@ export default {
   name: 'Detail',
   components: { FallbackInfo },
   props: {
-    dialogInfoVisible: {
+    dialogVisible: {
       type: Boolean,
       required: true
     },

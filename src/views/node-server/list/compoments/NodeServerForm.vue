@@ -1,8 +1,8 @@
 <template>
   <el-dialog
     :title="textMap[dialogStatus]"
-    :visible="dialogFormVisible"
-    @close="$emit('update:dialogFormVisible', false)"
+    :visible="dialogVisible"
+    @close="$emit('update:dialogVisible', false)"
     width="150"
   >
     <el-form
@@ -26,7 +26,7 @@
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="$emit('update:dialogFormVisible', false)"
+      <el-button @click="$emit('update:dialogVisible', false)"
         >{{ $t('table.cancel') }}
       </el-button>
       <el-button
@@ -53,12 +53,8 @@ export default {
       type: String,
       required: true
     },
-    dialogFormVisible: {
+    dialogVisible: {
       type: Boolean,
-      required: true
-    },
-    textMap: {
-      type: Object,
       required: true
     },
     getList: {
@@ -68,6 +64,10 @@ export default {
   },
   data() {
     return {
+      textMap: {
+        update: this.$t('table.edit'),
+        create: this.$t('table.add')
+      },
       createRules: {
         ip: [
           {
@@ -163,7 +163,7 @@ export default {
         if (valid) {
           createNodeServer(this.nodeServer).then(() => {
             this.getList()
-            this.$emit('update:dialogFormVisible', false)
+            this.$emit('update:dialogVisible', false)
             this.$notify({
               title: 'Success',
               message: this.$t('confirm.createSuccess'),
@@ -180,7 +180,7 @@ export default {
           const tempData = Object.assign({}, this.nodeServer)
           updateNodeServerById(tempData).then(() => {
             this.getList()
-            this.$emit('update:dialogFormVisible', false)
+            this.$emit('update:dialogVisible', false)
             this.$notify({
               title: 'Success',
               message: this.$t('confirm.modifySuccess'),

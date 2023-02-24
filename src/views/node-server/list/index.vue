@@ -148,12 +148,12 @@
       :limit.sync="listQuery.pageSize"
       @pagination="getList"
     />
+
     <NodeServerForm
       ref="nodeServerForm"
       :node-server="temp"
       :dialog-status="dialogStatus"
-      :dialog-form-visible.sync="dialogFormVisible"
-      :text-map="textMap"
+      :dialog-visible.sync="dialogFormVisible"
       :get-list="getList"
     />
   </div>

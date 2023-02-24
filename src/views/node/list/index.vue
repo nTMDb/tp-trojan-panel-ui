@@ -508,14 +508,14 @@
       :is-trojan-go-enable-websocket="isTrojanGoEnableWebsocket"
       :node-servers="nodeServers"
       :node-types="nodeTypes"
-      :dialog-info-visible.sync="dialogInfoVisible"
+      :dialog-visible.sync="dialogInfoVisible"
       :show-fallback="showFallback"
     />
 
     <FallbackForm
       ref="fallbackForm"
       :create-fallback="createFallback"
-      :dialog-fallback-form-visible.sync="dialogFallbackFormVisible"
+      :dialog-visible.sync="dialogFallbackFormVisible"
     />
 
     <FallbackInfo
@@ -525,7 +525,7 @@
 
     <Qrcode
       :qr-code-src="qrCodeSrc"
-      :dialogQRCodeVisible.sync="dialogQRCodeVisible"
+      :dialog-visible.sync="dialogQRCodeVisible"
     />
   </div>
 </template>

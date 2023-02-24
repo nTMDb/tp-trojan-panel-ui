@@ -1,14 +1,14 @@
 <template>
   <el-dialog
     :title="$t('table.nodeQRCode')"
-    :visible="dialogQRCodeVisible"
-    @close="$emit('update:dialogQRCodeVisible', false)"
+    :visible="dialogVisible"
+    @close="$emit('update:dialogVisible', false)"
   >
     <el-image style="width: 256px; height: 256px" :src="qrCodeSrc"></el-image>
     <div slot="footer" class="dialog-footer">
       <el-button
         type="primary"
-        @click="$emit('update:dialogQRCodeVisible', false)"
+        @click="$emit('update:dialogVisible', false)"
       >
         {{ $t('table.confirm') }}
       </el-button>
@@ -20,7 +20,7 @@
 export default {
   name: 'Qrcode',
   props: {
-    dialogQRCodeVisible: {
+    dialogVisible: {
       type: Boolean,
       required: true
     },
