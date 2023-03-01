@@ -112,7 +112,8 @@ export default {
     nodeServer: '섬기는 사람',
     nodeServerIp: '서버 IP',
     nodeServerName: '서버 닉네임',
-    nodeServerGrpcPort: '서버 API 포트'
+    nodeServerGrpcPort: '서버 API 포트',
+    trojanPanelCoreVersion: 'TP Core 버전'
   },
   tagsView: {
     refresh: '새로 고침',

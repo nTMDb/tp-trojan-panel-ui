@@ -99,6 +99,15 @@
         </template>
       </el-table-column>
       <el-table-column
+        :label="$t('table.trojanPanelCoreVersion')"
+        width="180"
+        align="center"
+      >
+        <template slot-scope="{ row }">
+          <span>{{ row.trojanPanelCoreVersion }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
         :label="$t('table.createTime')"
         width="150"
         align="center"
@@ -188,6 +197,7 @@ export default {
         ip: '',
         name: '',
         grpcPort: 8100,
+        trojanPanelCoreVersion: '',
         createTime: new Date()
       },
       dialogFormVisible: false,
@@ -229,6 +239,7 @@ export default {
         ip: '',
         name: '',
         grpcPort: 8100,
+        trojanPanelCoreVersion: '',
         createTime: new Date()
       }
     },

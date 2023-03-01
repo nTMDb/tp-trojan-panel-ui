@@ -112,7 +112,8 @@ export default {
     nodeServer: 'سرور',
     nodeServerIp: 'آی پی سرور',
     nodeServerName: 'نام سرور',
-    nodeServerGrpcPort: 'پورت API سرور'
+    nodeServerGrpcPort: 'پورت API سرور',
+    trojanPanelCoreVersion: 'نسخه TP Core',
   },
   tagsView: {
     refresh: 'تازه کردن',

@@ -112,7 +112,8 @@ export default {
     nodeServer: '服务器',
     nodeServerIp: '服务器IP',
     nodeServerName: '服务器名称',
-    nodeServerGrpcPort: 'API端口'
+    nodeServerGrpcPort: 'API端口',
+    trojanPanelCoreVersion: 'TP Core 版本'
   },
   tagsView: {
     refresh: '刷新',
