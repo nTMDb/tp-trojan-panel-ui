@@ -10,7 +10,7 @@ yarn run build
 
 # Author
 
-[@jonssonyan](https://twitter.com/jonssonyan)
+[jonssonyan](https://github.com/jonssonyan)
 
 # Community
 
