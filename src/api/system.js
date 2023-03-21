@@ -51,3 +51,15 @@ export function uploadWebFile(data) {
     data
   })
 }
+
+/**
+ * 获取Logo
+ * @param data
+ * @returns
+ */
+export function getLogo() {
+  return request({
+    url: '/image/logo',
+    method: 'get'
+  })
+}

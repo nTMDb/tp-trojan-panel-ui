@@ -25,7 +25,7 @@
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img
-            src="@/assets/avatar.png?imageView2/1/w/80/h/80"
+            src="/api/image/logo"
             class="user-avatar"
           />
           <i class="el-icon-caret-bottom" />
