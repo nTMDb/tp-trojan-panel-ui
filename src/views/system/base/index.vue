@@ -50,7 +50,8 @@ export default {
         systemName: '',
         clashRule: '',
         xrayTemplate: '',
-        xrayTemplateEntity:{}
+        xrayTemplateEntity: {},
+        fileList: []
       }
     }
   },
@@ -62,7 +63,7 @@ export default {
       selectSystemByName().then((response) => {
         this.systemConfig = response.data
         this.systemConfig.xrayTemplateEntity = JSON.parse(
-            this.systemConfig.xrayTemplate
+          this.systemConfig.xrayTemplate
         )
       })
     }

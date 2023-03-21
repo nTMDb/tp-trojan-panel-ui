@@ -10,6 +10,7 @@
       accept=".zip"
       :on-change="handleChange"
       :before-upload="beforeUpload"
+      :limit="1"
     >
       <el-button slot="trigger" size="small" type="primary"
         >{{ $t('config.webFileSelect') }}
