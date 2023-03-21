@@ -51,7 +51,7 @@ export default {
         clashRule: '',
         xrayTemplate: '',
         xrayTemplateEntity: {},
-        fileList: []
+        fileRawList: []
       }
     }
   },

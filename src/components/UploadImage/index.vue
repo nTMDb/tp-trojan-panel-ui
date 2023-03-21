@@ -31,15 +31,20 @@ import { Message } from 'element-ui'
 export default {
   name: 'index',
   props: {
-    fileList: {
+    fileRawList: {
       type: Array,
-      required: false,
-      default: () => [{ name: 'logo.png', url: '/api/image/logo' }]
+      required: false
+    }
+  },
+  data() {
+    return {
+      fileList: [{ name: 'logo.png', url: '/api/image/logo' }]
     }
   },
   methods: {
     handleRemove(file) {
-      this.$emit('update:fileList', [])
+      this.fileList = []
+      this.$emit('update:fileRawList', [])
     },
     beforeUpload(file) {
       const isJPG = file.type === 'image/png'
@@ -63,7 +68,8 @@ export default {
     },
     handleChange(file, fileList) {
       // 上传自动覆盖
-      this.$emit('update:fileList', [file])
+      this.$emit('update:fileRawList', [file.raw])
+      this.fileList = [file]
     }
   }
 }

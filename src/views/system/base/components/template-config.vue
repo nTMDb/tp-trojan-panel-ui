@@ -7,7 +7,7 @@
       label-position="left"
     >
       <el-form-item :label="$t('config.systemLogo')" prop="systemName">
-        <upload-image :file-list.sync="systemConfig.fileList" />
+        <upload-image :file-raw-list.sync="systemConfig.fileRawList" />
       </el-form-item>
       <el-form-item :label="$t('config.systemName')" prop="systemName">
         <el-input v-model="systemConfig.systemName" clearable />
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { updateSystemById } from '@/api/system'
+import { updateSystemById, uploadLogo } from '@/api/system'
 import JsonEditorVue from 'json-editor-vue'
 import UploadImage from '@/components/UploadImage'
 
@@ -108,6 +108,22 @@ export default {
               duration: 2000
             })
           })
+
+          if (this.systemConfig.fileRawList.length > 0) {
+            let formData = new FormData()
+            formData.append('file', this.systemConfig.fileRawList[0])
+            uploadLogo(formData).then(() => {
+              this.$nextTick(() => {
+                this.$refs['dataForm'].clearValidate()
+              })
+              this.$notify({
+                title: 'Success',
+                message: this.$t('confirm.modifySuccess'),
+                type: 'success',
+                duration: 2000
+              })
+            })
+          }
         }
       })
     }

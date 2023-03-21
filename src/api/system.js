@@ -53,6 +53,19 @@ export function uploadWebFile(data) {
 }
 
 /**
+ * 上传Logo
+ * @param data
+ * @returns
+ */
+export function uploadLogo(data) {
+  return request({
+    url: '/system/uploadLogo',
+    method: 'post',
+    data
+  })
+}
+
+/**
  * 获取Logo
  * @param data
  * @returns
