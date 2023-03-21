@@ -88,13 +88,7 @@
       >
         <template slot-scope="{ row }">
           <el-tag :type="row.status | statusTypeFilter">
-            <span>{{
-              row.status === 1
-                ? $t('table.nodeStatusSuccess')
-                : row.status === 0
-                ? $t('table.nodeStatusError')
-                : $t('table.nodeStatusTimeout')
-            }}</span>
+            <span>{{ statusComputed(row.status) }}</span>
           </el-tag>
         </template>
       </el-table-column>
@@ -217,6 +211,15 @@ export default {
     },
     disabledFilter(status) {
       return status !== 1
+    }
+  },
+  computed: {
+    statusComputed() {
+      return function (status) {
+        return status === 1
+          ? this.$t('table.nodeStatusSuccess')
+          : this.$t('table.nodeStatusError')
+      }
     }
   },
   methods: {

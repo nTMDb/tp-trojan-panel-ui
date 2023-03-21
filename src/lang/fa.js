@@ -73,7 +73,6 @@ export default {
     nodeStatus: 'حالت',
     nodeStatusSuccess: 'معمولی',
     nodeStatusError: 'غیرطبیعی',
-    nodeStatusTimeout: 'تایم اوت',
     password: 'کلمه عبور',
     uuid: 'UUID',
     alterId: 'Alter Id',

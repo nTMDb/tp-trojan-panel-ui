@@ -73,7 +73,6 @@ export default {
     nodeStatus: 'Status',
     nodeStatusSuccess: 'success',
     nodeStatusError: 'error',
-    nodeStatusTimeout: 'time out',
     password: 'password',
     uuid: 'UUID',
     alterId: 'Alter Id',

@@ -73,7 +73,6 @@ export default {
     nodeStatus: '状态',
     nodeStatusSuccess: '正常',
     nodeStatusError: '异常',
-    nodeStatusTimeout: '超时',
     password: '密码',
     uuid: 'UUID',
     alterId: 'Alter Id',

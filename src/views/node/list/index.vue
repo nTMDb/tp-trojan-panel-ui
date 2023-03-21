@@ -654,9 +654,7 @@ export default {
       return function (status) {
         return status === 1
           ? this.$t('table.nodeStatusSuccess')
-          : status === 0
-          ? this.$t('table.nodeStatusError')
-          : this.$t('table.nodeStatusTimeout')
+          : this.$t('table.nodeStatusError')
       }
     },
     nodeTypeComputed() {

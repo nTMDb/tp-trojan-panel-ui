@@ -73,7 +73,6 @@ export default {
     nodeStatus: '상태',
     nodeStatusSuccess: '정상',
     nodeStatusError: '이상',
-    nodeStatusTimeout: '타임아웃',
     password: '비밀번호',
     uuid: 'UUID',
     alterId: 'Alter Id',
