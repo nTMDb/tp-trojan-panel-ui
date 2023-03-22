@@ -4,7 +4,7 @@
     ref="upload"
     action=""
     :file-list="fileList"
-    :auto-upload="false"
+    :http-request="uploadFile"
     accept=".png"
     :on-change="handleChange"
     :before-upload="beforeUpload"
@@ -27,15 +27,10 @@
 
 <script>
 import { Message } from 'element-ui'
+import { uploadLogo } from '@/api/system'
 
 export default {
   name: 'index',
-  props: {
-    fileRawList: {
-      type: Array,
-      required: false
-    }
-  },
   data() {
     return {
       fileList: [{ name: 'logo.png', url: '/api/image/logo' }]
@@ -44,7 +39,6 @@ export default {
   methods: {
     handleRemove(file) {
       this.fileList = []
-      this.$emit('update:fileRawList', [])
     },
     beforeUpload(file) {
       const isJPG = file.type === 'image/png'
@@ -68,8 +62,24 @@ export default {
     },
     handleChange(file, fileList) {
       // 上传自动覆盖
-      this.$emit('update:fileRawList', [file.raw])
       this.fileList = [file]
+    },
+    uploadFile(params) {
+      if (this.fileList.length > 0) {
+        let formData = new FormData()
+        formData.append('file', this.fileList[0].raw)
+        uploadLogo(formData).then(() => {
+          this.$nextTick(() => {
+            this.$refs['dataForm'].clearValidate()
+          })
+          this.$notify({
+            title: 'Success',
+            message: this.$t('confirm.modifySuccess'),
+            type: 'success',
+            duration: 2000
+          })
+        })
+      }
     }
   }
 }

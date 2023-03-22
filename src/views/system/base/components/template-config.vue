@@ -7,7 +7,7 @@
       label-position="left"
     >
       <el-form-item :label="$t('config.systemLogo')" prop="systemName">
-        <upload-image :file-raw-list.sync="systemConfig.fileRawList" />
+        <upload-image />
       </el-form-item>
       <el-form-item :label="$t('config.systemName')" prop="systemName">
         <el-input v-model="systemConfig.systemName" clearable />
@@ -108,22 +108,6 @@ export default {
               duration: 2000
             })
           })
-
-          if (this.systemConfig.fileRawList.length > 0) {
-            let formData = new FormData()
-            formData.append('file', this.systemConfig.fileRawList[0])
-            uploadLogo(formData).then(() => {
-              this.$nextTick(() => {
-                this.$refs['dataForm'].clearValidate()
-              })
-              this.$notify({
-                title: 'Success',
-                message: this.$t('confirm.modifySuccess'),
-                type: 'success',
-                duration: 2000
-              })
-            })
-          }
         }
       })
     }
