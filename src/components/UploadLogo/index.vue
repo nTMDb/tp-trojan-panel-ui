@@ -9,6 +9,7 @@
     :on-change="handleChange"
     :before-upload="beforeUpload"
     :limit="1"
+    :disabled="uploadDisable"
   >
     <i slot="default" class="el-icon-plus"></i>
     <div slot="file" slot-scope="{ file }">
@@ -33,7 +34,13 @@ export default {
   name: 'index',
   data() {
     return {
-      fileList: [{ name: 'logo.png', url: '/api/image/logo' }]
+      fileList: [{ name: 'logo.png', url: '/api/image/logo' }],
+      uploadDisable: true
+    }
+  },
+  watch: {
+    fileList: function (val) {
+      this.uploadDisable = val.length >= 1
     }
   },
   methods: {
@@ -69,9 +76,6 @@ export default {
         let formData = new FormData()
         formData.append('file', this.fileList[0].raw)
         uploadLogo(formData).then(() => {
-          this.$nextTick(() => {
-            this.$refs['dataForm'].clearValidate()
-          })
           this.$notify({
             title: 'Success',
             message: this.$t('confirm.modifySuccess'),
