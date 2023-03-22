@@ -7,7 +7,7 @@
       label-position="left"
     >
       <el-form-item :label="$t('config.systemLogo')" prop="systemName">
-        <upload-image />
+        <upload-logo />
       </el-form-item>
       <el-form-item :label="$t('config.systemName')" prop="systemName">
         <el-input v-model="systemConfig.systemName" clearable />
@@ -37,13 +37,13 @@
 </template>
 
 <script>
-import { updateSystemById, uploadLogo } from '@/api/system'
+import { updateSystemById } from '@/api/system'
 import JsonEditorVue from 'json-editor-vue'
-import UploadImage from '@/components/UploadImage'
+import UploadLogo from '@/components/UploadLogo'
 
 export default {
   name: 'templateConfig',
-  components: { JsonEditorVue, UploadImage },
+  components: { JsonEditorVue, UploadLogo },
   props: {
     systemConfig: {
       type: Object,
