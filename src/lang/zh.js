@@ -122,7 +122,21 @@ export default {
     coverByAccountName: '是否根据用户名覆盖',
     coverByNodeServerName: '是否根据服务器名称覆盖',
     yes: '是',
-    no: '否'
+    no: '否',
+    fileTaskName: '名称',
+    fileTaskType: '类型',
+    fileTaskStatus: '状态',
+    fileTaskErrMsg: '错误信息',
+    taskTypeAccountExport: '账户导出',
+    taskTypeNodeServerExport: '服务器导出',
+    taskTypeAccountImport: '账户导入',
+    taskTypeNodeServerImport: '服务器导入',
+    taskFail: '失败',
+    taskWait: '等待',
+    taskDoing: '正在进行',
+    taskSuccess: '成功',
+    fileTaskAccountUsername: '创建人',
+    fileTaskDownload: '下载'
   },
   tagsView: {
     refresh: '刷新',
@@ -276,7 +290,8 @@ export default {
     deleteNode: '确认删除该节点？',
     deleteNodeServer: '确认删除该服务器？',
     deleteBlack: '确认删除该IP？',
-    taskSubmitSuccess: '任务提交成功，请稍后到任务管理中查看'
+    taskSubmitSuccess: '任务提交成功，请稍后到任务管理中查看',
+    taskDownloadSuccess: '下载成功'
   },
   remark: {
     emailEnable: '设置你的邮箱，可以接收到期提醒邮件。'

@@ -1,5 +1,9 @@
 <template>
-  <el-dialog :title="$t('table.import')" :visible="dialogFormVisible">
+  <el-dialog
+    :title="$t('table.import')"
+    :visible="dialogFormVisible"
+    @close="$emit('update:dialogFormVisible', false)"
+  >
     <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left">
       <el-form-item :label="label" prop="cover">
         <el-switch
