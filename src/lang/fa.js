@@ -113,6 +113,12 @@ export default {
     nodeServerName: 'نام سرور',
     nodeServerGrpcPort: 'پورت API سرور',
     trojanPanelCoreVersion: 'نسخه TP Core',
+    import: 'وارد كردن',
+    export: 'صادرات',
+    coverByAccountName: 'اینکه آیا با نام کاربری لغو شود یا نه',
+    coverByNodeServerName: 'اینکه آیا بر اساس نام سرور لغو شود',
+    yes: 'آره',
+    no: 'نه'
   },
   tagsView: {
     refresh: 'تازه کردن',
@@ -154,7 +160,9 @@ export default {
     trafficRankEnable: 'آیا برای فعال کردن رتبه بندی ترافیک',
     webFileBtn: 'روی سرور آپلود کنید',
     webFileSelect: 'فایل را انتخاب کنید',
+    webFileTip: 'فرمت فایل فقط از .zip پشتیبانی می کند و اندازه آن نمی تواند از 10 مگابایت تجاوز کند',
     imageFileTip: 'فرمت فایل فقط از .png پشتیبانی می کند و اندازه آن نمی تواند از 3 مگابایت تجاوز کند',
+    csvFileTip: 'فرمت فایل فقط از .csv پشتیبانی می کند و اندازه آن نمی تواند از 10 مگابایت تجاوز کند',
     emailEnable: 'فعال کردن عملکرد صندوق پستی',
     emailHost: 'ایمیل هاست',
     emailPort: 'پورت صندوق پستی',
@@ -241,7 +249,8 @@ export default {
     systemName: 'لطفا یک نام سیستم وارد کنید',
     systemNameRange: 'نام سیستم ها از 2 تا 32 کاراکتر متغیر است',
     clashRuleRange: 'قوانین کلش از 0 تا 5000 کاراکتر متغیر است',
-    xrayTemplateRange: 'نمای اشعه ایکس از 0 تا 5000 کاراکتر.'
+    xrayTemplateRange: 'نمای اشعه ایکس از 0 تا 5000 کاراکتر.',
+    cover: 'لطفاً بازنویسی را وارد کنید'
   },
   confirm: {
     warn: 'هشدار دهد',

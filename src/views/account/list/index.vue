@@ -27,6 +27,24 @@
       >
         {{ $t('table.add') }}
       </el-button>
+      <el-button
+        class="filter-item"
+        type="success"
+        icon="el-icon-upload2"
+        @click="handleImport"
+        v-if="checkPermission(['sysadmin'])"
+      >
+        {{ $t('table.import') }}
+      </el-button>
+      <el-button
+        class="filter-item"
+        type="success"
+        icon="el-icon-download"
+        @click="handleExport"
+        v-if="checkPermission(['sysadmin'])"
+      >
+        {{ $t('table.export') }}
+      </el-button>
     </div>
     <el-table
       :key="tableKey"
@@ -232,6 +250,12 @@
         </el-button>
       </div>
     </el-dialog>
+    <import-tip
+      ref="importTip"
+      :dialog-form-visible.sync="importVisible"
+      :label="$t('table.coverByAccountName')"
+      :import-data="importData"
+    />
   </div>
 </template>
 
@@ -239,11 +263,15 @@
 import {
   createAccount,
   deleteAccountById,
+  exportAccount,
+  importAccount,
   resetAccountDownloadAndUpload,
   selectAccountPage,
   updateAccountById
 } from '@/api/account'
 import Pagination from '@/components/Pagination'
+import ImportTip from '@/components/ImportTip'
+
 import { MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
 import { byteToMb, getFlow, mbToByte } from '@/utils/account'
@@ -262,7 +290,7 @@ export default {
       return deletedMap[deleted]
     }
   },
-  components: { Pagination },
+  components: { Pagination, ImportTip },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (this.temp.username.trim().indexOf('admin') >= 0) {
@@ -299,6 +327,7 @@ export default {
         update: this.$t('table.edit'),
         create: this.$t('table.add')
       },
+      importVisible: false,
       createRules: {
         username: [
           {
@@ -618,6 +647,39 @@ export default {
             type: 'success',
             duration: 2000
           })
+        })
+      })
+    },
+    importData(params) {
+      this.$refs['importTip'].$refs['dataForm'].validate((valid) => {
+        if (valid) {
+          const tempData = Object.assign({}, this.$refs['importTip'].temp)
+          let formData = new FormData()
+          formData.append('file', params.file)
+          formData.append('cover', tempData.cover)
+          importAccount(tempData).then(() => {
+            this.importVisible = false
+            this.$notify({
+              title: 'Success',
+              message: this.$t('confirm.taskSubmitSuccess'),
+              type: 'success',
+              duration: 2000
+            })
+          })
+        }
+      })
+    },
+    handleImport() {
+      this.importVisible = true
+    },
+    handleExport() {
+      exportAccount().then(() => {
+        this.importVisible = false
+        this.$notify({
+          title: 'Success',
+          message: this.$t('confirm.taskSubmitSuccess'),
+          type: 'success',
+          duration: 2000
         })
       })
     }

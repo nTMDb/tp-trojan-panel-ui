@@ -112,7 +112,13 @@ export default {
     nodeServerIp: 'Server IP',
     nodeServerName: 'Server Name',
     nodeServerGrpcPort: 'Server API port',
-    trojanPanelCoreVersion: 'TP Core Version'
+    trojanPanelCoreVersion: 'TP Core Version',
+    import: 'Import',
+    export: 'Export',
+    coverByAccountName: 'Whether to override by username',
+    coverByNodeServerName: 'Whether to override based on server name',
+    yes: 'Yes',
+    no: 'No'
   },
   tagsView: {
     refresh: 'Refresh',
@@ -156,6 +162,7 @@ export default {
     webFileSelect: 'select file',
     webFileTip: 'The file format only supports .zip, and the size cannot exceed 10MB',
     imageFileTip: 'The file format only supports .png, and the size cannot exceed 3MB',
+    csvFileTip: 'The file format only supports .csv, and the size cannot exceed 10MB',
     emailEnable: 'Enable Email',
     emailHost: 'Email Host',
     emailPort: 'Email Port',
@@ -242,7 +249,8 @@ export default {
     systemName: 'Please enter a system name',
     systemNameRange: 'System names range from 2-32 characters',
     clashRuleRange: 'Clash rules range from 0-5000 characters',
-    xrayTemplateRange: 'The range of Xray templates is between 0-5000 characters'
+    xrayTemplateRange: 'The range of Xray templates is between 0-5000 characters',
+    cover: 'Please enter whether to overwrite'
   },
   confirm: {
     warn: 'Warn',

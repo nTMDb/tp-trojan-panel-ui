@@ -90,3 +90,29 @@ export function nodeServerState(data) {
     params: data
   })
 }
+
+/**
+ * 导出服务器
+ * @param data
+ * @returns {*}
+ */
+export function exportNodeServer(data) {
+  return request({
+    url: '/nodeServer/exportNodeServer',
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 导出服务器
+ * @param data
+ * @returns {*}
+ */
+export function importNodeServer(data) {
+  return request({
+    url: '/nodeServer/importNodeServer',
+    method: 'post',
+    data
+  })
+}

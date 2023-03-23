@@ -152,3 +152,29 @@ export function resetAccountDownloadAndUpload(data) {
     data
   })
 }
+
+/**
+ * 导出用户
+ * @param data
+ * @returns {*}
+ */
+export function exportAccount(data) {
+  return request({
+    url: '/account/exportAccount',
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 导入用户
+ * @param data
+ * @returns {*}
+ */
+export function importAccount(data) {
+  return request({
+    url: '/account/importAccount',
+    method: 'post',
+    data
+  })
+}

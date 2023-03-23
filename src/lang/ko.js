@@ -112,7 +112,13 @@ export default {
     nodeServerIp: '서버 IP',
     nodeServerName: '서버 닉네임',
     nodeServerGrpcPort: '서버 API 포트',
-    trojanPanelCoreVersion: 'TP Core 버전'
+    trojanPanelCoreVersion: 'TP Core 버전',
+    import: '수입',
+    export: '내보내다',
+    coverByAccountName: '사용자 이름으로 재정의할지 여부',
+    coverByNodeServerName: '서버 이름을 기반으로 재정의할지 여부',
+    yes: '예',
+    no: '아니요'
   },
   tagsView: {
     refresh: '새로 고침',
@@ -154,7 +160,9 @@ export default {
     trafficRankEnable: '트래픽 순위 활성화 여부',
     webFileBtn: '서버에 업로드',
     webFileSelect: '파일 선택',
+    webFileTip: '파일 형식은 .zip만 지원하며 크기는 10MB를 초과할 수 없습니다.',
     imageFileTip: '파일 형식은 .png만 지원하며 크기는 3MB를 초과할 수 없습니다',
+    csvFileTip: '파일 형식은 .csv만 지원하며 크기는 10MB를 초과할 수 없습니다',
     emailEnable: '사서함 기능 활성화 여부',
     emailHost: '우편Host',
     emailPort: '사서함 포트',
@@ -241,7 +249,8 @@ export default {
     systemName: '시스템 이름을 입력하세요',
     systemNameRange: '시스템 이름 범위는 2-32자입니다',
     clashRuleRange: 'Clash 규칙 범위는 0-5000자입니다',
-    xrayTemplateRange: 'Xray 템플릿의 범위는 0-5000자 사이입니다.'
+    xrayTemplateRange: 'Xray 템플릿의 범위는 0-5000자 사이입니다.',
+    cover: '덮어쓰기 여부를 입력해주세요'
   },
   confirm: {
     warn: '경고하다',

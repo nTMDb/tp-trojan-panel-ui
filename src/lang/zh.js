@@ -112,7 +112,13 @@ export default {
     nodeServerIp: '服务器IP',
     nodeServerName: '服务器名称',
     nodeServerGrpcPort: 'API端口',
-    trojanPanelCoreVersion: 'TP Core 版本'
+    trojanPanelCoreVersion: 'TP Core 版本',
+    import: '导入',
+    export: '导出',
+    coverByAccountName: '是否根据用户名覆盖',
+    coverByNodeServerName: '是否根据服务器名称覆盖',
+    yes: '是',
+    no: '否',
   },
   tagsView: {
     refresh: '刷新',
@@ -156,6 +162,7 @@ export default {
     webFileSelect: '选取文件',
     webFileTip: '文件格式只支持.zip，且大小不能超过10MB',
     imageFileTip: '文件格式只支持.png，且大小不能超过3MB',
+    csvFileTip: '文件格式只支持.csv，且大小不能超过10MB',
     emailEnable: '是否开启邮箱功能',
     emailHost: '邮箱Host',
     emailPort: '邮箱端口',
@@ -242,7 +249,8 @@ export default {
     systemName: '请输入系统名称',
     systemNameRange: '系统名称的范围在2-32个字符之间',
     clashRuleRange: 'Clash规则的范围在0-5000字符之间',
-    xrayTemplateRange: 'Xray模板的范围在0-5000字符之间'
+    xrayTemplateRange: 'Xray模板的范围在0-5000字符之间',
+    cover: '请输入是否覆盖'
   },
   confirm: {
     warn: '警告',
@@ -263,7 +271,8 @@ export default {
     handleReset: '确认重设该用户下载和上传流量？',
     deleteNode: '确认删除该节点？',
     deleteNodeServer: '确认删除该服务器？',
-    deleteBlack: '确认删除该IP？'
+    deleteBlack: '确认删除该IP？',
+    taskSubmitSuccess: '任务提交成功，请稍后到任务管理中查看',
   },
   remark: {
     emailEnable: '设置你的邮箱，可以接收到期提醒邮件。'
