@@ -14,7 +14,9 @@ export default {
     blackList: '黑名单',
     emailManage: '邮件管理',
     emailRecord: '发送记录',
-    profile: '个人中心'
+    profile: '个人中心',
+    taskManage: '任务管理',
+    taskList: '任务列表'
   },
   navbar: {
     size: '布局大小',
@@ -96,8 +98,10 @@ export default {
     hysteriaUpMbps: '单客户端最大上传速度/Mbps',
     hysteriaDownMbps: '单客户端最大下载速度/Mbps',
     naiveProxyUsername: '用户',
-    hysteriaTip: '目前支持的Hysteria处于测试阶段，只支持用户认证不支持流量统计。',
-    naiveproxyTip: '目前支持的NaiveProxy处于测试阶段，只支持用户认证不支持流量统计。',
+    hysteriaTip:
+      '目前支持的Hysteria处于测试阶段，只支持用户认证不支持流量统计。',
+    naiveproxyTip:
+      '目前支持的NaiveProxy处于测试阶段，只支持用户认证不支持流量统计。',
     nodeQRCode: '生成二维码',
     nodeURL: '复制URL',
     detail: '详情',
@@ -118,7 +122,7 @@ export default {
     coverByAccountName: '是否根据用户名覆盖',
     coverByNodeServerName: '是否根据服务器名称覆盖',
     yes: '是',
-    no: '否',
+    no: '否'
   },
   tagsView: {
     refresh: '刷新',
@@ -272,7 +276,7 @@ export default {
     deleteNode: '确认删除该节点？',
     deleteNodeServer: '确认删除该服务器？',
     deleteBlack: '确认删除该IP？',
-    taskSubmitSuccess: '任务提交成功，请稍后到任务管理中查看',
+    taskSubmitSuccess: '任务提交成功，请稍后到任务管理中查看'
   },
   remark: {
     emailEnable: '设置你的邮箱，可以接收到期提醒邮件。'

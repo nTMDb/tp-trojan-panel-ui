@@ -657,7 +657,7 @@ export default {
           let formData = new FormData()
           formData.append('file', params.file)
           formData.append('cover', tempData.cover)
-          importAccount(tempData).then(() => {
+          importAccount(formData).then(() => {
             this.importVisible = false
             this.$notify({
               title: 'Success',

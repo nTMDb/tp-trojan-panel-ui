@@ -14,7 +14,9 @@ export default {
     blackList: 'Black List Config',
     emailManage: 'Email Manage',
     emailRecord: 'Send Record',
-    profile: 'Profile'
+    profile: 'Profile',
+    taskManage: 'TaskManage',
+    taskList: 'TaskList'
   },
   navbar: {
     size: 'Global Size',

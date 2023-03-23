@@ -14,7 +14,9 @@ export default {
     blackList: '블랙리스트',
     emailManage: '메일 관리',
     emailRecord: '기록 보내기',
-    profile: '개인 센터'
+    profile: '개인 센터',
+    taskManage: '작업 관리',
+    taskList: '작업 목록'
   },
   navbar: {
     size: '레이아웃 크기',

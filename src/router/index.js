@@ -187,6 +187,31 @@ export const asyncRoutes = [
   },
 
   {
+    path: '/taskManage',
+    name: 'taskManage',
+    component: Layout,
+    redirect: '/taskManage/task-list',
+    meta: {
+      title: 'taskManage',
+      name: 'taskManage',
+      icon: 'email',
+      roles: ['sysadmin']
+    },
+    children: [
+      {
+        path: 'task-list',
+        name: 'taskList',
+        component: () => import('@/views/task-manage/list'),
+        meta: {
+          title: 'taskList',
+          name: 'taskList',
+          roles: ['sysadmin']
+        }
+      }
+    ]
+  },
+
+  {
     path: '/system',
     name: 'system',
     component: Layout,

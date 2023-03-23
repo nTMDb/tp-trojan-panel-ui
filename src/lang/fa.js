@@ -14,7 +14,9 @@ export default {
     blackList: 'لیست سیاه',
     emailManage: 'مدیریت ایمیل',
     emailRecord: 'ارسال رکورد',
-    profile: 'مرکز شخصی'
+    profile: 'مرکز شخصی',
+    taskManage: 'مدیریت کارها',
+    taskList: 'فهرست وظیفه یا لیست کار'
   },
   navbar: {
     size: 'اندازه طرح',
