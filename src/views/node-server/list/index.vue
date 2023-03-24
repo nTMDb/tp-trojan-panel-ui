@@ -196,12 +196,12 @@ import { MessageBox } from 'element-ui'
 import checkPermission from '@/utils/permission'
 import {
   deleteNodeServerById,
+  exportNodeServer,
   importNodeServer,
   selectNodeServerPage
 } from '@/api/node-server'
 import Cookies from 'js-cookie'
 import NodeServerForm from '@/views/node-server/list/compoments/NodeServerForm'
-import { exportAccount, importAccount } from '@/api/account'
 import { downloadCsvTemplate } from '@/api/file-task'
 
 export default {
@@ -345,7 +345,7 @@ export default {
       this.importVisible = true
     },
     handleExport() {
-      exportAccount().then(() => {
+      exportNodeServer().then(() => {
         this.importVisible = false
         this.$notify({
           title: 'Success',
