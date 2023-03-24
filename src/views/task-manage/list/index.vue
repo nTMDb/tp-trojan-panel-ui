@@ -124,12 +124,14 @@
 </template>
 
 <script>
+import Pagination from '@/components/Pagination'
 import checkPermission from '@/utils/permission'
 import { timeStampToDate } from '@/utils'
 import { downloadFileTask, selectFileTaskPage } from '@/api/file-task'
 
 export default {
   name: 'TaskList',
+  components: { Pagination },
   data() {
     return {
       tableKey: 0,
@@ -220,7 +222,18 @@ export default {
     },
     handleDownload(row) {
       const tempData = Object.assign({}, row)
-      downloadFileTask(tempData).then(() => {
+      downloadFileTask(tempData).then((res) => {
+        // 将二进制文件转化为可访问的url
+        const blob = new Blob([JSON.stringify(res)], {
+          type: 'application/octet-stream'
+        })
+        let url = window.URL.createObjectURL(blob)
+        let a = document.createElement('a')
+        document.body.appendChild(a)
+        a.href = url
+        // 模拟点击下载
+        a.click()
+        window.URL.revokeObjectURL(url)
         this.$notify({
           title: 'Success',
           message: this.$t('confirm.taskDownloadSuccess'),

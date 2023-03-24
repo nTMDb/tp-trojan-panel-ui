@@ -25,7 +25,9 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     const res = response.data
-    if (res.code !== 20000) {
+    if (res.code === 20000 || res instanceof Blob) {
+      return res
+    } else {
       Message({
         message: res.message || 'Error',
         type: 'error',
@@ -44,8 +46,6 @@ service.interceptors.response.use(
         })
       }
       return Promise.reject(new Error(res.message || 'Error'))
-    } else {
-      return res
     }
   },
   (error) => {

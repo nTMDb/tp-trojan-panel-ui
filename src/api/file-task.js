@@ -35,6 +35,7 @@ export function downloadFileTask(data) {
   return request({
     url: '/fileTask/downloadFileTask',
     method: 'post',
+    responseType: 'blob',
     data
   })
 }
@@ -48,6 +49,7 @@ export function downloadCsvTemplate(data) {
   return request({
     url: '/fileTask/downloadCsvTemplate',
     method: 'post',
+    responseType: 'blob',
     data
   })
 }
