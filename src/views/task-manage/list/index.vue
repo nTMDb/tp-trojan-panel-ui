@@ -224,13 +224,15 @@ export default {
       const tempData = Object.assign({}, row)
       downloadFileTask(tempData).then((res) => {
         // 将二进制文件转化为可访问的url
-        const blob = new Blob([JSON.stringify(res)], {
+        const blob = new Blob([res.data], {
           type: 'application/octet-stream'
         })
         let url = window.URL.createObjectURL(blob)
         let a = document.createElement('a')
         document.body.appendChild(a)
         a.href = url
+        let dis = res.headers['content-disposition']
+        a.download = dis.split('attachment; filename=')[1]
         // 模拟点击下载
         a.click()
         window.URL.revokeObjectURL(url)

@@ -25,8 +25,10 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     const res = response.data
-    if (res.code === 20000 || res instanceof Blob) {
+    if (res.code === 20000) {
       return res
+    } else if (res instanceof Blob) {
+      return response
     } else {
       Message({
         message: res.message || 'Error',
@@ -34,7 +36,7 @@ service.interceptors.response.use(
         duration: 5 * 1000
       })
 
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+      if (res.code === 50014 || res.code === 50008 || res.code === 50401) {
         MessageBox.confirm(i18n.t('confirm.logoutPrompt'), 'Confirm logout', {
           confirmButtonText: i18n.t('confirm.logoutConfirm'),
           cancelButtonText: i18n.t('confirm.cancel'),
