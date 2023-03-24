@@ -48,7 +48,6 @@
         :label="$t('table.fileTaskType')"
         width="100"
         align="center"
-        v-if="checkPermission(['sysadmin', 'admin'])"
       >
         <template slot-scope="{ row }">
           <el-tag type="success">
@@ -60,7 +59,6 @@
         :label="$t('table.fileTaskStatus')"
         width="100"
         align="center"
-        v-if="checkPermission(['sysadmin', 'admin'])"
       >
         <template slot-scope="{ row }">
           <el-tag :type="row.status | statusTypeFilter">

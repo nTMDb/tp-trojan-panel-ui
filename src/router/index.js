@@ -195,7 +195,7 @@ export const asyncRoutes = [
       title: 'taskManage',
       name: 'taskManage',
       icon: 'task',
-      roles: ['sysadmin']
+      roles: ['sysadmin', 'admin']
     },
     children: [
       {
@@ -258,8 +258,8 @@ const createRouter = () =>
 const router = createRouter()
 
 export function resetRouter() {
-    const newRouter = createRouter()
-    router.matcher = newRouter.matcher
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher
 }
 
 export default router

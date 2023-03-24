@@ -33,6 +33,14 @@
           <el-button slot="trigger" size="small" type="primary"
             >{{ $t('config.webFileSelect') }}
           </el-button>
+          <el-button
+            class="filter-item"
+            type="success"
+            icon="el-icon-download"
+            @click="downloadCsvTemplate"
+          >
+            {{ $t('table.downloadCsvTemplate') }}
+          </el-button>
           <div slot="tip" class="el-upload__tip">
             {{ $t('config.csvFileTip') }}
           </div>
@@ -69,6 +77,10 @@ export default {
       required: true
     },
     importData: {
+      type: Function,
+      required: true
+    },
+    downloadCsvTemplate: {
       type: Function,
       required: true
     }
@@ -116,4 +128,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-button {
+  margin-left: 10px;
+}
+</style>

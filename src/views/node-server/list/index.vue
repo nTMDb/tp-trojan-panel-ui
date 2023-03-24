@@ -36,6 +36,24 @@
       >
         {{ $t('table.add') }}
       </el-button>
+      <el-button
+        class="filter-item"
+        type="success"
+        icon="el-icon-upload2"
+        @click="handleImport"
+        v-if="checkPermission(['sysadmin'])"
+      >
+        {{ $t('table.import') }}
+      </el-button>
+      <el-button
+        class="filter-item"
+        type="success"
+        icon="el-icon-download"
+        @click="handleExport"
+        v-if="checkPermission(['sysadmin'])"
+      >
+        {{ $t('table.export') }}
+      </el-button>
     </div>
     <el-table
       :key="tableKey"
@@ -159,21 +177,36 @@
       :dialog-visible.sync="dialogFormVisible"
       :get-list="getList"
     />
+
+    <import-tip
+      ref="importTip"
+      :dialog-form-visible.sync="importVisible"
+      :label="$t('table.coverByNodeServerName')"
+      :import-data="importData"
+      :download-csv-template="downloadCsvTemplate"
+    />
   </div>
 </template>
 
 <script>
 import { timeStampToDate } from '@/utils'
 import Pagination from '@/components/Pagination'
+import ImportTip from '@/components/ImportTip'
 import { MessageBox } from 'element-ui'
 import checkPermission from '@/utils/permission'
-import { deleteNodeServerById, selectNodeServerPage } from '@/api/node-server'
+import {
+  deleteNodeServerById,
+  importNodeServer,
+  selectNodeServerPage
+} from '@/api/node-server'
 import Cookies from 'js-cookie'
 import NodeServerForm from '@/views/node-server/list/compoments/NodeServerForm'
+import { exportAccount, importAccount } from '@/api/account'
+import { downloadCsvTemplate } from '@/api/file-task'
 
 export default {
   name: 'NodeServer',
-  components: { NodeServerForm, Pagination },
+  components: { NodeServerForm, Pagination, ImportTip },
   data() {
     return {
       tableKey: 0,
@@ -199,6 +232,7 @@ export default {
         update: this.$t('table.edit'),
         create: this.$t('table.add')
       },
+      importVisible: false,
       dialogStatus: ''
     }
   },
@@ -287,6 +321,62 @@ export default {
     handleDetail(row) {
       Cookies.set('nodeServerId', row.id)
       this.$router.push({ path: 'server-detail' })
+    },
+    importData(params) {
+      this.$refs['importTip'].$refs['dataForm'].validate((valid) => {
+        if (valid) {
+          const tempData = Object.assign({}, this.$refs['importTip'].temp)
+          let formData = new FormData()
+          formData.append('file', params.file)
+          formData.append('cover', tempData.cover)
+          importNodeServer(formData).then(() => {
+            this.importVisible = false
+            this.$notify({
+              title: 'Success',
+              message: this.$t('confirm.taskSubmitSuccess'),
+              type: 'success',
+              duration: 2000
+            })
+          })
+        }
+      })
+    },
+    handleImport() {
+      this.importVisible = true
+    },
+    handleExport() {
+      exportAccount().then(() => {
+        this.importVisible = false
+        this.$notify({
+          title: 'Success',
+          message: this.$t('confirm.taskSubmitSuccess'),
+          type: 'success',
+          duration: 2000
+        })
+      })
+    },
+    downloadCsvTemplate() {
+      downloadCsvTemplate({ id: 2 }).then((res) => {
+        // 将二进制文件转化为可访问的url
+        const blob = new Blob([res.data], {
+          type: 'application/octet-stream'
+        })
+        let url = window.URL.createObjectURL(blob)
+        let a = document.createElement('a')
+        document.body.appendChild(a)
+        a.href = url
+        let dis = res.headers['content-disposition']
+        a.download = dis.split('attachment; filename=')[1]
+        // 模拟点击下载
+        a.click()
+        window.URL.revokeObjectURL(url)
+        this.$notify({
+          title: 'Success',
+          message: this.$t('confirm.taskDownloadSuccess'),
+          type: 'success',
+          duration: 2000
+        })
+      })
     }
   }
 }

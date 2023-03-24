@@ -136,7 +136,8 @@ export default {
     taskDoing: '正在进行',
     taskSuccess: '成功',
     fileTaskAccountUsername: '创建人',
-    fileTaskDownload: '下载'
+    fileTaskDownload: '下载',
+    downloadCsvTemplate: '下载模板'
   },
   tagsView: {
     refresh: '刷新',

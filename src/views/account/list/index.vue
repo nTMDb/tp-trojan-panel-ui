@@ -255,6 +255,7 @@
       :dialog-form-visible.sync="importVisible"
       :label="$t('table.coverByAccountName')"
       :import-data="importData"
+      :download-csv-template="downloadCsvTemplate"
     />
   </div>
 </template>
@@ -278,6 +279,7 @@ import { byteToMb, getFlow, mbToByte } from '@/utils/account'
 import { selectRoleList } from '@/api/role'
 import checkPermission from '@/utils/permission'
 import { setting } from '@/api/system'
+import { downloadCsvTemplate } from '@/api/file-task'
 
 export default {
   name: 'List',
@@ -678,6 +680,29 @@ export default {
         this.$notify({
           title: 'Success',
           message: this.$t('confirm.taskSubmitSuccess'),
+          type: 'success',
+          duration: 2000
+        })
+      })
+    },
+    downloadCsvTemplate() {
+      downloadCsvTemplate({ id: 1 }).then((res) => {
+        // 将二进制文件转化为可访问的url
+        const blob = new Blob([res.data], {
+          type: 'application/octet-stream'
+        })
+        let url = window.URL.createObjectURL(blob)
+        let a = document.createElement('a')
+        document.body.appendChild(a)
+        a.href = url
+        let dis = res.headers['content-disposition']
+        a.download = dis.split('attachment; filename=')[1]
+        // 模拟点击下载
+        a.click()
+        window.URL.revokeObjectURL(url)
+        this.$notify({
+          title: 'Success',
+          message: this.$t('confirm.taskDownloadSuccess'),
           type: 'success',
           duration: 2000
         })
