@@ -120,7 +120,22 @@ export default {
     coverByAccountName: 'اینکه آیا با نام کاربری لغو شود یا نه',
     coverByNodeServerName: 'اینکه آیا بر اساس نام سرور لغو شود',
     yes: 'آره',
-    no: 'نه'
+    no: 'نه',
+    fileTaskName: 'نام',
+    fileTaskType: 'نوع',
+    fileTaskStatus: 'حالت',
+    fileTaskErrMsg: 'پیغام خطا',
+    taskTypeAccountExport: 'صادرات حساب',
+    taskTypeNodeServerExport: 'صادرات سرور',
+    taskTypeAccountImport: 'واردات حساب',
+    taskTypeNodeServerImport: 'واردات سرور',
+    taskFail: 'شکست',
+    taskWait: 'صبر کن',
+    taskDoing: 'در حال پیش رفت',
+    taskSuccess: 'موفقیت',
+    fileTaskAccountUsername: 'موسس',
+    fileTaskDownload: 'دانلود',
+    downloadCsvTemplate: 'دانلود قالب'
   },
   tagsView: {
     refresh: 'تازه کردن',
@@ -273,7 +288,9 @@ export default {
     handleReset: 'آیا مطمئن هستید که ترافیک دانلود و آپلود کاربر را بازنشانی می کنید؟',
     deleteNode: 'آیا مطمئن هستید که این گره را حذف می کنید؟',
     deleteNodeServer: 'آیا مطمئن هستید که می خواهید این سرور را حذف کنید؟',
-    deleteBlack: 'آیا مطمئن هستید که این IP را حذف می کنید؟'
+    deleteBlack: 'آیا مطمئن هستید که این IP را حذف می کنید؟',
+    taskSubmitSuccess: 'کار با موفقیت ارسال شد، لطفاً بعداً آن را در مدیریت کار بررسی کنید',
+    taskDownloadSuccess: 'دانلود با موفقیت'
   },
   remark: {
     emailEnable: 'صندوق پستی خود را برای دریافت ایمیل های یادآوری انقضا تنظیم کنید.'

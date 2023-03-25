@@ -120,7 +120,22 @@ export default {
     coverByAccountName: '사용자 이름으로 재정의할지 여부',
     coverByNodeServerName: '서버 이름을 기반으로 재정의할지 여부',
     yes: '예',
-    no: '아니요'
+    no: '아니요',
+    fileTaskName: '이름',
+    fileTaskType: '유형',
+    fileTaskStatus: '상태',
+    fileTaskErrMsg: '에러 메시지',
+    taskTypeAccountExport: '계정 내보내기',
+    taskTypeNodeServerExport: '서버 내보내기',
+    taskTypeAccountImport: '계정 가져오기',
+    taskTypeNodeServerImport: '서버 가져오기',
+    taskFail: '실패하다',
+    taskWait: '기다리다',
+    taskDoing: '진행 중',
+    taskSuccess: '성공',
+    fileTaskAccountUsername: '설립자',
+    fileTaskDownload: '다운로드',
+    downloadCsvTemplate: '템플릿 다운로드'
   },
   tagsView: {
     refresh: '새로 고침',
@@ -273,7 +288,9 @@ export default {
     handleReset: '사용자의 다운로드 및 업로드 트래픽을 재설정하시겠습니까?',
     deleteNode: '이 노드를 삭제하시겠습니까?',
     deleteNodeServer: '이 서버를 삭제하시겠습니까?',
-    deleteBlack: '이 IP를 삭제하시겠습니까?'
+    deleteBlack: '이 IP를 삭제하시겠습니까?',
+    taskSubmitSuccess: '작업이 성공적으로 제출되었습니다. 나중에 작업 관리에서 확인하십시오.',
+    taskDownloadSuccess: '다운로드 성공'
   },
   remark: {
     emailEnable: '만료 알림 이메일을 수신하도록 사서함을 설정하십시오'
