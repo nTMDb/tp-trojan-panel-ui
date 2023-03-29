@@ -100,6 +100,7 @@
       >
         <template slot-scope="{ row, $index }">
           <el-button
+            :disabled="row.status !== 2"
             type="primary"
             size="mini"
             @click="handleDownload(row, $index)"
