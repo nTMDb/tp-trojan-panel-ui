@@ -70,6 +70,25 @@
           />
         </span>
       </el-form-item>
+
+      <!-- 验证码 -->
+      <el-form-item prop="captchaCode">
+        <span class="svg-container">
+          <svg-icon icon-class="valid_code" />
+        </span>
+        <el-input
+          v-model="registerForm.captchaCode"
+          auto-complete="off"
+          :placeholder="$t('login.code')"
+          style="width: 65%"
+          @keyup.enter="handleRegister"
+        />
+
+        <div class="captcha">
+          <img :src="captchaImg" @click="handleCaptchaGenerate" height="38px" />
+        </div>
+      </el-form-item>
+
       <el-button
         :loading="loading"
         type="primary"
@@ -87,6 +106,8 @@
 </template>
 
 <script>
+import { generateCaptcha } from '@/api/account'
+
 export default {
   name: 'index',
   data() {
@@ -108,8 +129,11 @@ export default {
       registerForm: {
         username: '',
         passOne: '',
-        pass: ''
+        pass: '',
+        captchaId: '',
+        captchaCode: ''
       },
+      captchaImg: '',
       registerRules: {
         username: [
           {
@@ -150,13 +174,25 @@ export default {
             validator: validatePass,
             trigger: 'change'
           }
+        ],
+        captchaCode: [
+          { required: true, message: this.$t('valid.code'), trigger: 'change' }
         ]
       },
       loading: false,
       passwordType: 'password'
     }
   },
+  created() {
+    this.handleCaptchaGenerate()
+  },
   methods: {
+    handleCaptchaGenerate() {
+      generateCaptcha().then((response) => {
+        this.registerForm.captchaId = response.data.captchaId
+        this.captchaImg = response.data.captchaImg
+      })
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -179,6 +215,7 @@ export default {
             })
             .catch(() => {
               this.loading = false
+              this.handleCaptchaGenerate()
             })
         } else {
           // console.log('error submit!!')
@@ -297,6 +334,18 @@ $light_gray: #eee;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
+  }
+
+  .captcha {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    img {
+      height: 48px;
+      cursor: pointer;
+      vertical-align: middle;
+    }
   }
 }
 </style>
