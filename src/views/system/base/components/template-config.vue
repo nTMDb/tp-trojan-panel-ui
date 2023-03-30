@@ -69,7 +69,7 @@ export default {
         clashRule: [
           {
             min: 0,
-            max: 5000,
+            max: 10240,
             message: this.$t('valid.clashRuleRange'),
             trigger: 'change'
           }
@@ -77,7 +77,7 @@ export default {
         xrayTemplate: [
           {
             min: 0,
-            max: 5000,
+            max: 10240,
             message: this.$t('valid.xrayTemplateRange'),
             trigger: 'change'
           }
