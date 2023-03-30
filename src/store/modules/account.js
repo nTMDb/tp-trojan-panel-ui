@@ -31,9 +31,14 @@ const mutations = {
 const actions = {
   // account login
   login({ commit }, accountInfo) {
-    const { username, pass } = accountInfo
+    const { username, pass, captchaId, captchaCode } = accountInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), pass: pass })
+      login({
+        username: username.trim(),
+        pass: pass,
+        captchaId: captchaId,
+        captchaCode: captchaCode
+      })
         .then((response) => {
           const { data } = response
           commit('SET_TOKEN', data.token)
@@ -110,8 +115,8 @@ const actions = {
 }
 
 export default {
-    namespaced: true,
-    state,
-    mutations,
-    actions
+  namespaced: true,
+  state,
+  mutations,
+  actions
 }

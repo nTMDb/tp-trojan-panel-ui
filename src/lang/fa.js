@@ -30,7 +30,8 @@ export default {
     logIn: 'وارد شدن',
     username: 'حساب',
     password: 'کلمه عبور',
-    register: 'حسابی ندارید؟'
+    register: 'حسابی ندارید؟',
+    code: 'کد تایید'
   },
   register: {
     title: 'ثبت نام کاربر',
@@ -267,7 +268,8 @@ export default {
     systemNameRange: 'نام سیستم ها از 2 تا 32 کاراکتر متغیر است',
     clashRuleRange: 'قوانین کلش از 0 تا 5000 کاراکتر متغیر است',
     xrayTemplateRange: 'نمای اشعه ایکس از 0 تا 5000 کاراکتر.',
-    cover: 'لطفاً بازنویسی را وارد کنید'
+    cover: 'لطفاً بازنویسی را وارد کنید',
+    code: 'لطفا کد تایید را وارد کنید'
   },
   confirm: {
     warn: 'هشدار دهد',

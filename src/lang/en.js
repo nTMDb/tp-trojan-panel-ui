@@ -30,7 +30,8 @@ export default {
     logIn: 'Login',
     username: 'Username',
     password: 'Password',
-    register: 'No account?'
+    register: 'No account?',
+    code: 'verification code'
   },
   register: {
     title: 'User Registration',
@@ -267,7 +268,8 @@ export default {
     systemNameRange: 'System names range from 2-32 characters',
     clashRuleRange: 'Clash rules range from 0-5000 characters',
     xrayTemplateRange: 'The range of Xray templates is between 0-5000 characters',
-    cover: 'Please enter whether to overwrite'
+    cover: 'Please enter whether to overwrite',
+    code: 'please enter verification code'
   },
   confirm: {
     warn: 'Warn',

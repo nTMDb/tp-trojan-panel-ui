@@ -178,3 +178,15 @@ export function importAccount(data) {
     data
   })
 }
+
+/**
+ * 生成验证码
+ * @param data
+ * @returns
+ */
+export function generateCaptcha() {
+  return request({
+    url: '/auth/generateCaptcha/',
+    method: 'get'
+  })
+}

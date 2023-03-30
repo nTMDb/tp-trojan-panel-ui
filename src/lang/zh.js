@@ -30,7 +30,8 @@ export default {
     logIn: '登录',
     username: '账号',
     password: '密码',
-    register: '没有账号?'
+    register: '没有账号?',
+    code: '验证码'
   },
   register: {
     title: '用户注册',
@@ -267,7 +268,8 @@ export default {
     systemNameRange: '系统名称的范围在2-32个字符之间',
     clashRuleRange: 'Clash规则的范围在0-5000字符之间',
     xrayTemplateRange: 'Xray模板的范围在0-5000字符之间',
-    cover: '请输入是否覆盖'
+    cover: '请输入是否覆盖',
+    code: '请输入验证码'
   },
   confirm: {
     warn: '警告',

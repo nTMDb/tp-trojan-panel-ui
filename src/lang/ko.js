@@ -30,7 +30,8 @@ export default {
     logIn: '로그인',
     username: '계정',
     password: '비밀번호',
-    register: '계정이 없나요?'
+    register: '계정이 없나요?',
+    code: '확인 코드'
   },
   register: {
     title: '사용자 등록',
@@ -267,7 +268,8 @@ export default {
     systemNameRange: '시스템 이름 범위는 2-32자입니다',
     clashRuleRange: 'Clash 규칙 범위는 0-5000자입니다',
     xrayTemplateRange: 'Xray 템플릿의 범위는 0-5000자 사이입니다.',
-    cover: '덮어쓰기 여부를 입력해주세요'
+    cover: '덮어쓰기 여부를 입력해주세요',
+    code: '인증 코드를 입력하세요'
   },
   confirm: {
     warn: '경고하다',

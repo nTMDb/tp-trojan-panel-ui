@@ -15,7 +15,7 @@
         <lang-select class="set-language" />
       </div>
 
-      <el-form-item prop="username" >
+      <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="username" />
         </span>
@@ -31,7 +31,7 @@
         />
       </el-form-item>
 
-      <el-form-item prop="pass" >
+      <el-form-item prop="pass">
         <span class="svg-container">
           <svg-icon icon-class="pass" />
         </span>
@@ -52,6 +52,24 @@
             :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
           />
         </span>
+      </el-form-item>
+
+      <!-- 验证码 -->
+      <el-form-item prop="captchaCode">
+        <span class="svg-container">
+          <svg-icon icon-class="valid_code" />
+        </span>
+        <el-input
+          v-model="loginForm.captchaCode"
+          auto-complete="off"
+          :placeholder="$t('login.code')"
+          style="width: 65%"
+          @keyup.enter="handleLogin"
+        />
+
+        <div class="captcha">
+          <img :src="captchaImg" @click="handleCaptchaGenerate" height="38px" />
+        </div>
       </el-form-item>
 
       <el-button
@@ -78,6 +96,7 @@
 <script>
 import LangSelect from '@/components/LangSelect'
 import { setting } from '@/api/system'
+import { generateCaptcha } from '@/api/account'
 
 export default {
   name: 'index',
@@ -86,8 +105,11 @@ export default {
     return {
       loginForm: {
         username: '',
-        pass: ''
+        pass: '',
+        captchaId: '',
+        captchaCode: ''
       },
+      captchaImg: '',
       loginRules: {
         username: [
           {
@@ -120,6 +142,9 @@ export default {
             message: this.$t('valid.passElement'),
             trigger: 'change'
           }
+        ],
+        captchaCode: [
+          { required: true, message: this.$t('valid.code'), trigger: 'change' }
         ]
       },
       loading: false,
@@ -139,8 +164,15 @@ export default {
   },
   created() {
     this.setting()
+    this.handleCaptchaGenerate()
   },
   methods: {
+    handleCaptchaGenerate() {
+      generateCaptcha().then((response) => {
+        this.loginForm.captchaId = response.data.captchaId
+        this.captchaImg = response.data.captchaImg
+      })
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -165,6 +197,7 @@ export default {
             })
             .catch(() => {
               this.loading = false
+              this.handleCaptchaGenerate()
             })
         } else {
           // console.log('error submit!!')
@@ -299,6 +332,18 @@ $light_gray: #eee;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
+  }
+
+  .captcha {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    img {
+      height: 48px;
+      cursor: pointer;
+      vertical-align: middle;
+    }
   }
 
   .thirdparty-button {
