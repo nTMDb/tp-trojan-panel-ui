@@ -639,7 +639,7 @@ export default {
     xrayFlows() {
       // xtls-rprx-vision只支持TLS
       if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
-        return ['none', 'xtls-rprx-vision', 'xtls-rprx-vision,none']
+        return ['none', 'xtls-rprx-vision']
       } else if (this.temp.xrayStreamSettingsEntity.security === 'xtls') {
         return ['xtls-rprx-origin', 'xtls-rprx-direct']
       } else {
