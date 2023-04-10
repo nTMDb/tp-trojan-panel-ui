@@ -74,7 +74,7 @@
       <!-- 验证码 -->
       <el-form-item prop="captchaCode">
         <span class="svg-container">
-          <svg-icon icon-class="valid_code" />
+          <svg-icon icon-class="valid-code" />
         </span>
         <el-input
           v-model="registerForm.captchaCode"
