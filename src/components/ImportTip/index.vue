@@ -25,7 +25,7 @@
           :file-list="fileList"
           :http-request="importData"
           :auto-upload="false"
-          accept=".csv"
+          accept=".json"
           :on-change="handleChange"
           :before-upload="beforeUpload"
           :limit="1"
@@ -37,12 +37,12 @@
             class="filter-item"
             type="success"
             icon="el-icon-download"
-            @click="downloadCsvTemplate"
+            @click="downloadTemplate"
           >
-            {{ $t('table.downloadCsvTemplate') }}
+            {{ $t('table.downloadTemplate') }}
           </el-button>
           <div slot="tip" class="el-upload__tip">
-            {{ $t('config.csvFileTip') }}
+            {{ $t('config.jsonFileTip') }}
           </div>
         </el-upload>
       </el-form-item>
@@ -80,7 +80,7 @@ export default {
       type: Function,
       required: true
     },
-    downloadCsvTemplate: {
+    downloadTemplate: {
       type: Function,
       required: true
     }
@@ -104,7 +104,7 @@ export default {
       this.fileList = [file]
     },
     beforeUpload(file) {
-      if (!file.name.endsWith('.csv')) {
+      if (!file.name.endsWith('.json')) {
         Message({
           message: this.$t('confirm.uploadWebFileFormat'),
           type: 'error',

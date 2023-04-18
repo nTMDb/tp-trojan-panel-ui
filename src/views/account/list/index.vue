@@ -255,7 +255,7 @@
       :dialog-form-visible.sync="importVisible"
       :label="$t('table.coverByAccountName')"
       :import-data="importData"
-      :download-csv-template="downloadCsvTemplate"
+      :download-template="downloadTemplate"
     />
   </div>
 </template>
@@ -279,7 +279,7 @@ import { byteToMb, getFlow, mbToByte } from '@/utils/account'
 import { selectRoleList } from '@/api/role'
 import checkPermission from '@/utils/permission'
 import { setting } from '@/api/system'
-import { downloadCsvTemplate } from '@/api/file-task'
+import { downloadTemplate } from '@/api/file-task'
 
 export default {
   name: 'List',
@@ -685,8 +685,8 @@ export default {
         })
       })
     },
-    downloadCsvTemplate() {
-      downloadCsvTemplate({ id: 1 }).then((res) => {
+    downloadTemplate() {
+      downloadTemplate({ id: 1 }).then((res) => {
         // 将二进制文件转化为可访问的url
         const blob = new Blob([res.data], {
           type: 'application/octet-stream'

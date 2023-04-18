@@ -183,7 +183,7 @@
       :dialog-form-visible.sync="importVisible"
       :label="$t('table.coverByNodeServerName')"
       :import-data="importData"
-      :download-csv-template="downloadCsvTemplate"
+      :download-template="downloadTemplate"
     />
   </div>
 </template>
@@ -202,7 +202,7 @@ import {
 } from '@/api/node-server'
 import Cookies from 'js-cookie'
 import NodeServerForm from '@/views/node-server/list/compoments/NodeServerForm'
-import { downloadCsvTemplate } from '@/api/file-task'
+import { downloadTemplate } from '@/api/file-task'
 
 export default {
   name: 'NodeServer',
@@ -355,8 +355,8 @@ export default {
         })
       })
     },
-    downloadCsvTemplate() {
-      downloadCsvTemplate({ id: 2 }).then((res) => {
+    downloadTemplate() {
+      downloadTemplate({ id: 2 }).then((res) => {
         // 将二进制文件转化为可访问的url
         const blob = new Blob([res.data], {
           type: 'application/octet-stream'

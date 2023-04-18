@@ -136,7 +136,7 @@ export default {
     taskSuccess: 'موفقیت',
     fileTaskAccountUsername: 'موسس',
     fileTaskDownload: 'دانلود',
-    downloadCsvTemplate: 'دانلود قالب'
+    downloadTemplate: 'دانلود قالب'
   },
   tagsView: {
     refresh: 'تازه کردن',
@@ -180,7 +180,7 @@ export default {
     webFileSelect: 'فایل را انتخاب کنید',
     webFileTip: 'فرمت فایل فقط از .zip پشتیبانی می کند و اندازه آن نمی تواند از 10 مگابایت تجاوز کند',
     imageFileTip: 'فرمت فایل فقط از .png پشتیبانی می کند و اندازه آن نمی تواند از 3 مگابایت تجاوز کند',
-    csvFileTip: 'فرمت فایل فقط از .csv پشتیبانی می کند و اندازه آن نمی تواند از 10 مگابایت تجاوز کند',
+    jsonFileTip: 'فرمت فایل فقط از .json پشتیبانی می کند و اندازه آن نمی تواند از 10 مگابایت تجاوز کند',
     emailEnable: 'فعال کردن عملکرد صندوق پستی',
     emailHost: 'ایمیل هاست',
     emailPort: 'پورت صندوق پستی',

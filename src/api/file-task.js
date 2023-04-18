@@ -45,9 +45,9 @@ export function downloadFileTask(data) {
  * @param data
  * @returns
  */
-export function downloadCsvTemplate(data) {
+export function downloadTemplate(data) {
   return request({
-    url: '/fileTask/downloadCsvTemplate',
+    url: '/fileTask/downloadTemplate',
     method: 'post',
     responseType: 'blob',
     data

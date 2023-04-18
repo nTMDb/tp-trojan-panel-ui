@@ -136,7 +136,7 @@ export default {
     taskSuccess: '성공',
     fileTaskAccountUsername: '설립자',
     fileTaskDownload: '다운로드',
-    downloadCsvTemplate: '템플릿 다운로드'
+    downloadTemplate: '템플릿 다운로드'
   },
   tagsView: {
     refresh: '새로 고침',
@@ -180,7 +180,7 @@ export default {
     webFileSelect: '파일 선택',
     webFileTip: '파일 형식은 .zip만 지원하며 크기는 10MB를 초과할 수 없습니다.',
     imageFileTip: '파일 형식은 .png만 지원하며 크기는 3MB를 초과할 수 없습니다',
-    csvFileTip: '파일 형식은 .csv만 지원하며 크기는 10MB를 초과할 수 없습니다',
+    jsonFileTip: '파일 형식은 .json만 지원하며 크기는 10MB를 초과할 수 없습니다',
     emailEnable: '사서함 기능 활성화 여부',
     emailHost: '우편Host',
     emailPort: '사서함 포트',

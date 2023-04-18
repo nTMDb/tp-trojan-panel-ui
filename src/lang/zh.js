@@ -136,7 +136,7 @@ export default {
     taskSuccess: '成功',
     fileTaskAccountUsername: '创建人',
     fileTaskDownload: '下载',
-    downloadCsvTemplate: '下载模板'
+    downloadTemplate: '下载模板'
   },
   tagsView: {
     refresh: '刷新',
@@ -180,7 +180,7 @@ export default {
     webFileSelect: '选取文件',
     webFileTip: '文件格式只支持.zip，且大小不能超过10MB',
     imageFileTip: '文件格式只支持.png，且大小不能超过3MB',
-    csvFileTip: '文件格式只支持.csv，且大小不能超过10MB',
+    jsonFileTip: '文件格式只支持.json，且大小不能超过10MB',
     emailEnable: '是否开启邮箱功能',
     emailHost: '邮箱Host',
     emailPort: '邮箱端口',

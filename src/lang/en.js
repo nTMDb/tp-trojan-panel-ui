@@ -136,7 +136,7 @@ export default {
     taskSuccess: 'Success',
     fileTaskAccountUsername: 'Creator',
     fileTaskDownload: 'Download',
-    downloadCsvTemplate: 'Download Template'
+    downloadTemplate: 'Download Template'
   },
   tagsView: {
     refresh: 'Refresh',
@@ -180,7 +180,7 @@ export default {
     webFileSelect: 'select file',
     webFileTip: 'The file format only supports .zip, and the size cannot exceed 10MB',
     imageFileTip: 'The file format only supports .png, and the size cannot exceed 3MB',
-    csvFileTip: 'The file format only supports .csv, and the size cannot exceed 10MB',
+    jsonFileTip: 'The file format only supports .json, and the size cannot exceed 10MB',
     emailEnable: 'Enable Email',
     emailHost: 'Email Host',
     emailPort: 'Email Port',
