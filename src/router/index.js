@@ -55,19 +55,19 @@ export const constantRoutes = [
   },
 
   {
-    path: '/profile',
+    path: '/modify',
     component: Layout,
     hidden: true,
-    redirect: '/profile/index',
-    meta: { title: 'profile', name: 'profile' },
+    redirect: '/modify/index',
+    meta: { title: 'modify', name: 'modify' },
     children: [
       {
         path: 'index',
         name: 'index',
-        component: () => import('@/views/account/profile'),
+        component: () => import('@/views/account/modify'),
         meta: {
-          title: 'profile',
-          name: 'profile'
+          title: 'modify',
+          name: 'modify'
         }
       }
     ]

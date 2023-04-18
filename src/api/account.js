@@ -81,9 +81,22 @@ export function deleteAccountById(data) {
  * @param data
  * @returns
  */
-export function updateAccountProfile(data) {
+export function updateAccountPass(data) {
   return request({
-    url: '/account/updateAccountProfile',
+    url: '/account/updateAccountPass',
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 修改用户名或者邮箱
+ * @param data
+ * @returns
+ */
+export function updateAccountProperty(data) {
+  return request({
+    url: '/account/updateAccountProperty',
     method: 'post',
     data
   })
@@ -185,8 +198,8 @@ export function importAccount(data) {
  * @returns
  */
 export function generateCaptcha() {
-  return request({
-    url: '/auth/generateCaptcha/',
-    method: 'get'
-  })
+    return request({
+        url: '/auth/generateCaptcha/',
+        method: 'get'
+    })
 }

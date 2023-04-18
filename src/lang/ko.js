@@ -16,7 +16,8 @@ export default {
     emailRecord: '기록 보내기',
     profile: '개인 센터',
     taskManage: '작업 관리',
-    taskList: '작업 목록'
+    taskList: '작업 목록',
+    modify: '속성 수정'
   },
   navbar: {
     size: '레이아웃 크기',
@@ -178,7 +179,7 @@ export default {
     trafficRankEnable: '트래픽 순위 활성화 여부',
     webFileBtn: '서버에 업로드',
     webFileSelect: '파일 선택',
-    webFileTip: '파일 형식은 .zip만 지원하며 크기는 10MB를 초과할 수 없습니다.',
+    webFileTip: '파일 형식은 .zip만 지원하며 크기는 10MB를 초과할 수 없습니다',
     imageFileTip: '파일 형식은 .png만 지원하며 크기는 3MB를 초과할 수 없습니다',
     jsonFileTip: '파일 형식은 .json만 지원하며 크기는 10MB를 초과할 수 없습니다',
     emailEnable: '사서함 기능 활성화 여부',
@@ -192,7 +193,9 @@ export default {
     systemLogo: 'Logo',
     systemName: '시스템 이름',
     clashRule: 'Clash 규칙',
-    xrayTemplate: 'Xray 템플릿'
+    xrayTemplate: 'Xray 템플릿',
+    modifyPass: '비밀번호 변경',
+    modifyProperty: '정보 수정',
   },
   valid: {
     passNotSame: '입력한 두 개의 새 비밀번호가 일치하지 않습니다',
@@ -267,9 +270,10 @@ export default {
     systemName: '시스템 이름을 입력하세요',
     systemNameRange: '시스템 이름 범위는 2-32자입니다',
     clashRuleRange: 'Clash 규칙 범위는 0-5000자입니다',
-    xrayTemplateRange: 'Xray 템플릿의 범위는 0-5000자 사이입니다.',
+    xrayTemplateRange: 'Xray 템플릿의 범위는 0-5000자 사이입니다',
     cover: '덮어쓰기 여부를 입력해주세요',
-    code: '인증 코드를 입력하세요'
+    code: '인증 코드를 입력하세요',
+    emailAOrUsernameExist: '이메일과 사용자 이름은 하나만 입력해야 합니다'
   },
   confirm: {
     warn: '경고하다',
@@ -282,7 +286,7 @@ export default {
     urlCopySuccess: 'URL이 성공적으로 복사되었습니다',
     urlCopyFail: 'URL 복사 실패',
     uploadWebFileSuccess: '성공적으로 업로드',
-    updateAccountProfile: '수정이 완료되었으며 다음에 로그인할 때 적용됩니다',
+    updateAccountPass: '수정이 완료되었으며 다음에 로그인할 때 적용됩니다',
     logoutPrompt: '로그아웃되었습니다. 취소하여 이 페이지에 머물거나 다시 로그인할 수 있습니다!',
     logoutConfirm: '재등록',
     authFail: '인증에 실패했습니다. 다시 로그인하세요!',
@@ -291,7 +295,7 @@ export default {
     deleteNode: '이 노드를 삭제하시겠습니까?',
     deleteNodeServer: '이 서버를 삭제하시겠습니까?',
     deleteBlack: '이 IP를 삭제하시겠습니까?',
-    taskSubmitSuccess: '작업이 성공적으로 제출되었습니다. 나중에 작업 관리에서 확인하십시오.',
+    taskSubmitSuccess: '작업이 성공적으로 제출되었습니다. 나중에 작업 관리에서 확인하십시오',
     taskDownloadSuccess: '다운로드 성공'
   },
   remark: {

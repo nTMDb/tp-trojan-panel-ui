@@ -16,7 +16,8 @@ export default {
     emailRecord: 'Send Record',
     profile: 'Profile',
     taskManage: 'TaskManage',
-    taskList: 'TaskList'
+    taskList: 'TaskList',
+    modify: 'Modify Property'
   },
   navbar: {
     size: 'Global Size',
@@ -192,7 +193,9 @@ export default {
     systemLogo: 'Logo',
     systemName: 'System Name',
     clashRule: 'Clash Rule',
-    xrayTemplate: 'Xray Template'
+    xrayTemplate: 'Xray Template',
+    modifyPass: 'Modify Pass',
+    modifyProperty: 'Modify Info',
   },
   valid: {
     passNotSame: 'The two new passwords entered are inconsistent',
@@ -269,7 +272,8 @@ export default {
     clashRuleRange: 'Clash rules range from 0-5000 characters',
     xrayTemplateRange: 'The range of Xray templates is between 0-5000 characters',
     cover: 'Please enter whether to overwrite',
-    code: 'please enter verification code'
+    code: 'please enter verification code',
+    emailAOrUsernameExist: 'E-mail and username must fill in one'
   },
   confirm: {
     warn: 'Warn',
@@ -282,7 +286,7 @@ export default {
     urlCopySuccess: 'URL copied successfully',
     urlCopyFail: 'URL copy failed',
     uploadWebFileSuccess: 'upload successful',
-    updateAccountProfile: 'The modification is successful and will take effect the next time you log in',
+    updateAccountPass: 'The modification is successful and will take effect the next time you log in',
     logoutPrompt: 'You are logged out, you can cancel to stay on this page, or log in again!',
     logoutConfirm: 're-register',
     authFail: 'Authentication failed, please log in again!',

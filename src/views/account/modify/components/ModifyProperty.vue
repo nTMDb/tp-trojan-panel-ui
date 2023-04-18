@@ -9,35 +9,25 @@
       :model="temp"
       label-position="left"
     >
-      <el-form-item :label="$t('table.email')" prop="email" >
+      <el-form-item :label="$t('table.email')" prop="email">
         <el-input
           v-model="temp.email"
-          type="password"
           :placeholder="$t('table.email')"
           clearable
         />
       </el-form-item>
-      <el-form-item :label="$t('table.oldPass')" prop="oldPass" >
+      <el-form-item :label="$t('table.username')" prop="username">
         <el-input
-          v-model="temp.oldPass"
-          type="password"
-          :placeholder="$t('table.oldPass')"
+          v-model="temp.username"
+          :placeholder="$t('table.username')"
           clearable
         />
       </el-form-item>
-      <el-form-item :label="$t('table.newPass')" prop="newPass" >
+      <el-form-item :label="$t('table.pass')" prop="pass">
         <el-input
-          v-model="temp.newPassOne"
+          v-model="temp.pass"
           type="password"
-          :placeholder="$t('table.newPass')"
-          clearable
-        />
-      </el-form-item>
-      <el-form-item :label="$t('table.newPass')" prop="newPass" >
-        <el-input
-          v-model="temp.newPass"
-          type="password"
-          :placeholder="$t('table.newPass')"
+          :placeholder="$t('table.pass')"
           clearable
         />
       </el-form-item>
@@ -51,26 +41,24 @@
 </template>
 
 <script>
-import { updateAccountProfile } from '@/api/account'
+import { updateAccountProperty } from '@/api/account'
 import { setting } from '@/api/system'
 
 export default {
-  name: 'Modify',
+  name: 'ModifyProperty',
   data() {
-    const validatePass = (rule, value, callback) => {
-      if (this.temp.newPassOne !== this.temp.newPass) {
-        callback(new Error(this.$t('valid.passNotSame')))
+    const validateEmailAndUsername = (rule, value, callback) => {
+      if (this.temp.email && this.temp.username) {
+        callback(new Error(this.$t('valid.emailAOrUsernameExist')))
       } else {
         callback()
       }
     }
     return {
       temp: {
-        username: this.$store.getters.username,
         email: undefined,
-        oldPass: '',
-        newPassOne: '',
-        newPass: ''
+        username: undefined,
+        pass: ''
       },
       emailEnable: 0,
       updateRules: {
@@ -88,28 +76,31 @@ export default {
             trigger: 'change'
           }
         ],
-        oldPass: [
+        username: [
           {
-            required: true,
-            message: this.$t('valid.passNew'),
+            message: this.$t('valid.username'),
             trigger: 'change'
           },
           {
             min: 6,
             max: 20,
-            message: this.$t('valid.passRange'),
+            message: this.$t('valid.usernameRange'),
             trigger: 'change'
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
-            message: this.$t('valid.passElement'),
+            message: this.$t('valid.usernameElement'),
+            trigger: 'change'
+          },
+          {
+            validator: validateEmailAndUsername,
             trigger: 'change'
           }
         ],
-        newPass: [
+        pass: [
           {
             required: true,
-            message: this.$t('valid.passNew'),
+            message: this.$t('valid.pass'),
             trigger: 'change'
           },
           {
@@ -124,7 +115,7 @@ export default {
             trigger: 'change'
           },
           {
-            validator: validatePass,
+            validator: validateEmailAndUsername,
             trigger: 'change'
           }
         ]
@@ -137,11 +128,9 @@ export default {
   methods: {
     resetTemp() {
       this.temp = {
-        username: this.$store.getters.username,
         email: undefined,
-        oldPass: '',
-        newPassOne: '',
-        newPass: ''
+        username: undefined,
+        pass: ''
       }
     },
     setting() {
@@ -154,14 +143,14 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
-          updateAccountProfile(tempData).then(() => {
+          updateAccountProperty(tempData).then(() => {
             this.resetTemp()
             this.$nextTick(() => {
               this.$refs['dataForm'].clearValidate()
             })
             this.$notify({
               title: 'Success',
-              message: this.$t('confirm.updateAccountProfile'),
+              message: this.$t('confirm.updateAccountProperty'),
               type: 'success',
               duration: 2000
             })

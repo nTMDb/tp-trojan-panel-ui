@@ -16,7 +16,8 @@ export default {
     emailRecord: '发送记录',
     profile: '个人中心',
     taskManage: '任务管理',
-    taskList: '任务列表'
+    taskList: '任务列表',
+    modify: '修改属性'
   },
   navbar: {
     size: '布局大小',
@@ -192,7 +193,9 @@ export default {
     systemLogo: 'Logo',
     systemName: '系统名称',
     clashRule: 'Clash规则',
-    xrayTemplate: 'Xray模板'
+    xrayTemplate: 'Xray模板',
+    modifyPass: '修改密码',
+    modifyProperty: '修改信息',
   },
   valid: {
     passNotSame: '两次新密码输入不一致',
@@ -269,7 +272,8 @@ export default {
     clashRuleRange: 'Clash规则的范围在0-5000字符之间',
     xrayTemplateRange: 'Xray模板的范围在0-5000字符之间',
     cover: '请输入是否覆盖',
-    code: '请输入验证码'
+    code: '请输入验证码',
+    emailAOrUsernameExist: '邮箱和用户名必须填写一个'
   },
   confirm: {
     warn: '警告',
@@ -282,7 +286,7 @@ export default {
     urlCopySuccess: 'URL复制成功',
     urlCopyFail: 'URL复制失败',
     uploadWebFileSuccess: '上传成功',
-    updateAccountProfile: '修改成功,下次登陆时生效',
+    updateAccountPass: '修改成功,下次登陆时生效',
     logoutPrompt: '您已注销，可以取消以停留在此页面，或重新登录！',
     logoutConfirm: '重新登录',
     authFail: '认证失败，请重新登录！',

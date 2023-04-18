@@ -16,7 +16,8 @@ export default {
     emailRecord: 'ارسال رکورد',
     profile: 'مرکز شخصی',
     taskManage: 'مدیریت کارها',
-    taskList: 'فهرست وظیفه یا لیست کار'
+    taskList: 'فهرست وظیفه یا لیست کار',
+    modify: 'اصلاح خواص'
   },
   navbar: {
     size: 'اندازه طرح',
@@ -192,7 +193,9 @@ export default {
     systemLogo: 'Logo',
     systemName: 'نام سیستم',
     clashRule: 'قوانین برخورد',
-    xrayTemplate: 'قالب Xray'
+    xrayTemplate: 'قالب Xray',
+    modifyPass: 'تغییر رمز عبور',
+    modifyProperty: 'اطلاعات را اصلاح کنید',
   },
   valid: {
     passNotSame: 'دو کلمه عبور جدید وارد شده ناسازگار هستند',
@@ -269,7 +272,8 @@ export default {
     clashRuleRange: 'قوانین کلش از 0 تا 5000 کاراکتر متغیر است',
     xrayTemplateRange: 'نمای اشعه ایکس از 0 تا 5000 کاراکتر.',
     cover: 'لطفاً بازنویسی را وارد کنید',
-    code: 'لطفا کد تایید را وارد کنید'
+    code: 'لطفا کد تایید را وارد کنید',
+    emailAOrUsernameExist: 'ایمیل و نام کاربری باید یکی را پر کنند'
   },
   confirm: {
     warn: 'هشدار دهد',
@@ -282,7 +286,7 @@ export default {
     urlCopySuccess: 'URL با موفقیت کپی شد',
     urlCopyFail: 'کپی URL انجام نشد',
     uploadWebFileSuccess: 'با موفقیت آپلود شد',
-    updateAccountProfile: 'این اصلاح با موفقیت انجام شد و دفعه بعد که وارد سیستم شوید اعمال خواهد شد',
+    updateAccountPass: 'این اصلاح با موفقیت انجام شد و دفعه بعد که وارد سیستم شوید اعمال خواهد شد',
     logoutPrompt: 'شما از سیستم خارج شده اید، می توانید برای ماندن در این صفحه لغو کنید یا دوباره وارد شوید!',
     logoutConfirm: 'دوباره ثبت نام کنید',
     authFail: 'احراز هویت ناموفق بود، لطفا دوباره وارد شوید!',
