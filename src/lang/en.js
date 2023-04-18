@@ -287,6 +287,7 @@ export default {
     urlCopyFail: 'URL copy failed',
     uploadWebFileSuccess: 'upload successful',
     updateAccountPass: 'The modification is successful and will take effect the next time you log in',
+    updateAccountProperty: 'Successfully modified',
     logoutPrompt: 'You are logged out, you can cancel to stay on this page, or log in again!',
     logoutConfirm: 're-register',
     authFail: 'Authentication failed, please log in again!',

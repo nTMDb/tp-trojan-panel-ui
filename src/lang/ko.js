@@ -287,6 +287,7 @@ export default {
     urlCopyFail: 'URL 복사 실패',
     uploadWebFileSuccess: '성공적으로 업로드',
     updateAccountPass: '수정이 완료되었으며 다음에 로그인할 때 적용됩니다',
+    updateAccountProperty: '성공적으로 수정됨',
     logoutPrompt: '로그아웃되었습니다. 취소하여 이 페이지에 머물거나 다시 로그인할 수 있습니다!',
     logoutConfirm: '재등록',
     authFail: '인증에 실패했습니다. 다시 로그인하세요!',

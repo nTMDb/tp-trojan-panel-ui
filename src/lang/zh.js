@@ -287,6 +287,7 @@ export default {
     urlCopyFail: 'URL复制失败',
     uploadWebFileSuccess: '上传成功',
     updateAccountPass: '修改成功,下次登陆时生效',
+    updateAccountProperty: '修改成功',
     logoutPrompt: '您已注销，可以取消以停留在此页面，或重新登录！',
     logoutConfirm: '重新登录',
     authFail: '认证失败，请重新登录！',

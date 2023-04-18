@@ -287,6 +287,7 @@ export default {
     urlCopyFail: 'کپی URL انجام نشد',
     uploadWebFileSuccess: 'با موفقیت آپلود شد',
     updateAccountPass: 'این اصلاح با موفقیت انجام شد و دفعه بعد که وارد سیستم شوید اعمال خواهد شد',
+    updateAccountProperty: 'با موفقیت اصلاح شد',
     logoutPrompt: 'شما از سیستم خارج شده اید، می توانید برای ماندن در این صفحه لغو کنید یا دوباره وارد شوید!',
     logoutConfirm: 'دوباره ثبت نام کنید',
     authFail: 'احراز هویت ناموفق بود، لطفا دوباره وارد شوید!',

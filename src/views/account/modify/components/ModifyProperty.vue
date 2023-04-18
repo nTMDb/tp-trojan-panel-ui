@@ -48,7 +48,7 @@ export default {
   name: 'ModifyProperty',
   data() {
     const validateEmailAndUsername = (rule, value, callback) => {
-      if (this.temp.email && this.temp.username) {
+      if (!this.temp.email && !this.temp.username) {
         callback(new Error(this.$t('valid.emailAOrUsernameExist')))
       } else {
         callback()
