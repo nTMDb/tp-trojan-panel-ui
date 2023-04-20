@@ -495,7 +495,7 @@
       </div>
     </el-dialog>
 
-    <Detail
+    <NodeDetail
       :node-info="nodeDetail"
       :is-xray="isXray"
       :is-trojan-go="isTrojanGo"
@@ -523,7 +523,7 @@
       :fallback="fallback"
     />
 
-    <Qrcode
+    <NodeQrcode
       :qr-code-src="qrCodeSrc"
       :dialog-visible.sync="dialogQRCodeVisible"
     />
@@ -532,8 +532,8 @@
 
 <script>
 import Pagination from '@/components/Pagination'
-import Detail from '@/views/node/list/components/Detail'
-import Qrcode from '@/views/node/list/components/Qrcode'
+import NodeDetail from '@/views/node/list/components/NodeDetail'
+import NodeQrcode from '@/views/node/list/components/NodeQrcode'
 import { Message, MessageBox } from 'element-ui'
 import {
   createNode,
@@ -556,7 +556,13 @@ import FallbackInfo from '@/views/node/list/components/FallbackInfo'
 
 export default {
   name: 'List',
-  components: { FallbackInfo, FallbackForm, Qrcode, Detail, Pagination },
+  components: {
+    FallbackInfo,
+    FallbackForm,
+    NodeQrcode,
+    NodeDetail,
+    Pagination
+  },
   filters: {
     trojanGoWebsocketEnableFilter(trojanGoWebsocketEnable) {
       const deletedMap = {
