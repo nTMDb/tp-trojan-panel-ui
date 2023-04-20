@@ -606,11 +606,9 @@ export default {
     },
     showXrayFlow() {
       return (
-        (this.isXrayVless &&
-          (this.temp.xrayStreamSettingsEntity.security === 'tls' ||
-            this.temp.xrayStreamSettingsEntity.security === 'xtls')) ||
-        (this.isXrayTrojan &&
-          this.temp.xrayStreamSettingsEntity.security === 'xtls')
+        this.isXrayVless &&
+        (this.temp.xrayStreamSettingsEntity.security === 'tls' ||
+          this.temp.xrayStreamSettingsEntity.security === 'reality')
       )
     },
     showFallback() {
@@ -623,28 +621,14 @@ export default {
       )
     },
     xrayStreamSettingsSecuritys() {
-      // XTLS only supports TCP, mKCP and DomainSocket for now
-      // xtls不支持vmess、ws
       let securitys = ['none', 'tls']
-      if (
-        this.temp.xrayStreamSettingsEntity.network === 'tcp' &&
-        !this.isXrayVmess &&
-        !this.isXrayShadowsocks &&
-        !this.isXrayWs
-      ) {
-        securitys.push('xtls')
+      if (this.isXrayVless) {
+        securitys.push('reality')
       }
       return securitys
     },
     xrayFlows() {
-      // xtls-rprx-vision只支持TLS
-      if (this.temp.xrayStreamSettingsEntity.security === 'tls') {
-        return ['none', 'xtls-rprx-vision']
-      } else if (this.temp.xrayStreamSettingsEntity.security === 'xtls') {
-        return ['xtls-rprx-origin', 'xtls-rprx-direct']
-      } else {
-        return ['']
-      }
+      return ['none', 'xtls-rprx-vision']
     },
     isTrojanGoEnableWebsocket() {
       return this.isTrojanGo && this.temp.trojanGoWebsocketEnable === 1
@@ -731,7 +715,7 @@ export default {
           network: 'tcp',
           security: 'none',
           tlsSettings: {},
-          xtlsSettings: {},
+          realitySettings: {},
           wsSettings: {
             path: '/trojan-panel-websocket-path'
           }
@@ -788,7 +772,7 @@ export default {
           network: 'tcp',
           security: 'none',
           tlsSettings: {},
-          xtlsSettings: {},
+          realitySettings: {},
           wsSettings: {
             path: '/trojan-panel-websocket-path'
           }
@@ -1307,18 +1291,12 @@ export default {
       }
     },
     xrayStreamSettingsSecurityChange() {
-      // xray vless和xray trojan xtls才有流控
       if (
         this.isXrayVless &&
-        this.temp.xrayStreamSettingsEntity.security === 'tls'
+        (this.temp.xrayStreamSettingsEntity.security === 'tls' ||
+          this.temp.xrayStreamSettingsEntity.security === 'reality')
       ) {
         this.temp.xrayFlow = 'xtls-rprx-vision'
-      } else if (
-        this.isXrayVless ||
-        (this.isXrayTrojan &&
-          this.temp.xrayStreamSettingsEntity.security === 'xtls')
-      ) {
-        this.temp.xrayFlow = 'xtls-rprx-direct'
       } else {
         this.temp.xrayFlow = ''
       }
@@ -1391,7 +1369,7 @@ export default {
           network: 'tcp',
           security: 'none',
           tlsSettings: {},
-          xtlsSettings: {},
+          realitySettings: {},
           wsSettings: {
             path: '/trojan-panel-websocket-path'
           }
