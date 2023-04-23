@@ -184,7 +184,7 @@
 import FallbackInfo from '@/views/node/list/components/FallbackInfo'
 
 export default {
-  name: 'Detail',
+  name: 'NodeDetail',
   components: { FallbackInfo },
   props: {
     dialogVisible: {
