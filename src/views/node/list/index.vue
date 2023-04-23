@@ -12,7 +12,7 @@
       />
       <el-select
         v-model="listQuery.nodeServerId"
-        :placeholder="$t('table.nodeServerName')"
+        :placeholder="$t('table.nodeServerName').toString()"
         class="filter-item"
         @change="handleFilter"
         @clear="handleFilter"
@@ -60,19 +60,23 @@
       style="width: 100%"
     >
       <el-table-column
-        :label="$t('table.id')"
+        :label="$t('table.id').toString()"
         sortable="custom"
         align="center"
         width="80"
         type="index"
       />
-      <el-table-column :label="$t('table.nodeName')" width="120" align="center">
+      <el-table-column
+        :label="$t('table.nodeName').toString()"
+        width="120"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.nodeServerName')"
+        :label="$t('table.nodeServerName').toString()"
         width="150"
         align="center"
       >
@@ -81,7 +85,7 @@
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.nodeDomain')"
+        :label="$t('table.nodeDomain').toString()"
         width="150"
         align="center"
       >
@@ -89,18 +93,26 @@
           <span>{{ row.domain }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodePort')" width="80" align="center">
+      <el-table-column
+        :label="$t('table.nodePort').toString()"
+        width="80"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span>{{ row.port }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.nodeType')" width="120" align="center">
+      <el-table-column
+        :label="$t('table.nodeType').toString()"
+        width="120"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span>{{ nodeTypeComputed(row.nodeTypeId) }}</span>
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.nodeStatus')"
+        :label="$t('table.nodeStatus').toString()"
         width="100"
         align="center"
         v-if="checkPermission(['sysadmin', 'admin'])"
@@ -112,7 +124,7 @@
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.createTime')"
+        :label="$t('table.createTime').toString()"
         width="150"
         align="center"
       >
@@ -163,364 +175,40 @@
       @pagination="getList"
     />
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form
-        ref="dataForm"
-        :rules="dialogStatus === 'create' ? createRules : updateRules"
-        :model="temp"
-        label-position="left"
-      >
-        <el-form-item :label="$t('table.nodeName')" prop="name">
-          <el-input v-model="temp.name" clearable />
-        </el-form-item>
-        <el-form-item :label="$t('table.nodeServer')" prop="nodeServerId">
-          <el-select v-model="temp.nodeServerId" controls-position="right">
-            <el-option
-              :label="item.name"
-              :value="item.id"
-              :key="item.id"
-              v-for="item in nodeServers"
-            ></el-option>
-          </el-select>
-          <el-button
-            type="primary"
-            size="mini"
-            icon="el-icon-plus"
-            @click="toAddNodeServer"
-          ></el-button>
-        </el-form-item>
-        <el-form-item :label="$t('table.nodeDomain')" prop="domain">
-          <el-input v-model="temp.domain" clearable />
-        </el-form-item>
-        <el-form-item :label="$t('table.nodePort')" prop="port">
-          <el-input-number
-            v-model.number="temp.port"
-            controls-position="right"
-            type="number"
-          />
-        </el-form-item>
-
-        <el-form-item :label="$t('table.nodeType')" prop="nodeTypeId">
-          <el-select v-model="temp.nodeTypeId" controls-position="right">
-            <el-option
-              :label="item.name"
-              :value="item.id"
-              :key="item.id"
-              v-for="item in nodeTypes"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.xrayProtocol')"
-          prop="xrayProtocol"
-          v-show="isXray"
-        >
-          <el-select v-model="temp.xrayProtocol" controls-position="right">
-            <el-option
-              :label="item"
-              :value="item"
-              :key="index"
-              v-for="(item, index) in xrayProtocols"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.xrayStreamSettingsNetwork')"
-          prop="xrayStreamSettingsEntity.network"
-          v-show="isXray && !isXrayShadowsocks"
-        >
-          <el-select
-            v-model="temp.xrayStreamSettingsEntity.network"
-            controls-position="right"
-            @change="xrayStreamSettingsNetworkChange"
-          >
-            <el-option
-              :label="item"
-              :value="item"
-              :key="item"
-              v-for="item in xrayStreamSettingsNetworks"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.xrayStreamSettingsWsSettingsPath')"
-          prop="xrayStreamSettingsEntity.wsSettings.path"
-          v-show="isXrayWs && !isXrayShadowsocks"
-        >
-          <el-input v-model="temp.xrayStreamSettingsEntity.wsSettings.path" />
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.xrayStreamSettingsSecurity')"
-          prop="xrayStreamSettingsEntity.security"
-          v-show="isXray && !isXrayShadowsocks"
-        >
-          <el-select
-            v-model="temp.xrayStreamSettingsEntity.security"
-            controls-position="right"
-            @change="xrayStreamSettingsSecurityChange"
-          >
-            <el-option
-              :label="item"
-              :value="item"
-              :key="item"
-              v-for="item in xrayStreamSettingsSecuritys"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.xrayFlow')"
-          prop="xrayFlow"
-          v-show="showXrayFlow"
-        >
-          <el-select v-model="temp.xrayFlow" controls-position="right">
-            <el-option
-              :label="item"
-              :value="item"
-              :key="index"
-              v-for="(item, index) in xrayFlows"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.xraySSMethod')"
-          prop="xraySSMethod"
-          v-show="isXrayShadowsocks"
-        >
-          <el-select v-model="temp.xraySSMethod" controls-position="right">
-            <el-option
-              :label="item"
-              :value="item"
-              :key="index"
-              v-for="(item, index) in xraySSMethods"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.xraySSNetwork')"
-          prop="xraySettingsEntity.network"
-          v-show="isXrayShadowsocks"
-        >
-          <el-select
-            v-model="temp.xraySettingsEntity.network"
-            controls-position="right"
-          >
-            <el-option
-              :label="item"
-              :value="item"
-              :key="index"
-              v-for="(item, index) in xraySettingsNetworks"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.xrayFallbacks')"
-          prop="xraySettingsEntity.fallbacks"
-          v-show="showFallback"
-        >
-          <el-tag
-            v-for="(item, index) in temp.xraySettingsEntity.fallbacks"
-            :key="index"
-            :disable-transitions="true"
-            type="success"
-            @close="deleteFallback(item)"
-            effect="dark"
-            size="medium"
-            closable
-            @click="handleFallbackDetail(item)"
-          >
-            {{ item.dest }}
-          </el-tag>
-          <el-button
-            type="primary"
-            size="mini"
-            icon="el-icon-plus"
-            @click="handleCreateFallback"
-          ></el-button>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoSni')"
-          v-show="isTrojanGo"
-          prop="trojanGoSni"
-        >
-          <el-input v-model="temp.trojanGoSni" clearable />
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoMuxEnable')"
-          v-show="isTrojanGo"
-          prop="trojanGoMuxEnable"
-        >
-          <el-switch
-            v-model="temp.trojanGoMuxEnable"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            :active-text="$t('table.enable')"
-            :inactive-text="$t('table.disable')"
-            :active-value="1"
-            :inactive-value="0"
-          >
-          </el-switch>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoWebsocketEnable')"
-          v-show="isTrojanGo"
-          prop="trojanGoWebsocketEnable"
-        >
-          <el-switch
-            v-model="temp.trojanGoWebsocketEnable"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            :active-text="$t('table.enable')"
-            :inactive-text="$t('table.disable')"
-            :active-value="1"
-            :inactive-value="0"
-          >
-          </el-switch>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoWebsocketPath')"
-          prop="trojanGoWebsocketPath"
-          v-show="isTrojanGoEnableWebsocket"
-        >
-          <el-input v-model="temp.trojanGoWebsocketPath" clearable />
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoWebsocketHost')"
-          prop="trojanGoWebsocketHost"
-          v-show="isTrojanGoEnableWebsocket"
-        >
-          <el-input v-model="temp.trojanGoWebsocketHost" clearable />
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoSsEnable')"
-          prop="trojanGoSsEnable"
-          v-show="isTrojanGoEnableWebsocket"
-        >
-          <el-switch
-            v-model="temp.trojanGoSsEnable"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            :active-text="$t('table.enable')"
-            :inactive-text="$t('table.disable')"
-            :active-value="1"
-            :inactive-value="0"
-          >
-          </el-switch>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoSsMethod')"
-          prop="trojanGoSsMethod"
-          v-show="isTrojanGoEnableWebsocket && isTrojanGoEnableSs"
-        >
-          <el-select
-            v-model="temp.trojanGoSsMethod"
-            :placeholder="$t('table.trojanGoSsMethod')"
-            controls-position="right"
-          >
-            <el-option
-              :label="item"
-              :value="item"
-              :key="item"
-              v-for="item in trojanGoSsMethods"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoSsPassword')"
-          prop="trojanGoSsPassword"
-          v-show="isTrojanGoEnableWebsocket && isTrojanGoEnableSs"
-        >
-          <el-input v-model="temp.trojanGoSsPassword" clearable />
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.hysteriaProtocol')"
-          prop="hysteriaProtocol"
-          v-show="isHysteria"
-        >
-          <el-select
-            v-model="temp.hysteriaProtocol"
-            :placeholder="$t('table.hysteriaProtocol')"
-            controls-position="right"
-          >
-            <el-option
-              :label="item"
-              :value="item"
-              :key="item"
-              v-for="item in hysteriaProtocols"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.hysteriaUpMbps')"
-          v-show="isHysteria"
-          prop="hysteriaUpMbps"
-        >
-          <el-input-number
-            v-model.number="temp.hysteriaUpMbps"
-            controls-position="right"
-            type="number"
-          />
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.hysteriaDownMbps')"
-          v-show="isHysteria"
-          prop="hysteriaDownMbps"
-        >
-          <el-input-number
-            v-model.number="temp.hysteriaDownMbps"
-            controls-position="right"
-            type="number"
-          />
-        </el-form-item>
-        <el-form-item v-show="isHysteria">
-          <aside>
-            {{ $t('table.hysteriaTip') }}
-          </aside>
-        </el-form-item>
-        <el-form-item v-show="isNaiveProxy">
-          <aside>
-            {{ $t('table.naiveproxyTip') }}
-          </aside>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false"
-          >{{ $t('table.cancel') }}
-        </el-button>
-        <el-button
-          type="primary"
-          @click="dialogStatus === 'create' ? createData() : updateData()"
-        >
-          {{ $t('table.confirm') }}
-        </el-button>
-      </div>
-    </el-dialog>
+    <NodeForm
+      ref="nodeForm"
+      :dialog-form-visible-props.sync="dialogFormVisible"
+      :node-props="temp"
+      :dialog-status-props="dialogStatus"
+      :is-xray-props="isXray"
+      :is-trojan-go-props="isTrojanGo"
+      :is-hysteria-props="isHysteria"
+      :is-naive-proxy-props="isNaiveProxy"
+      :is-xray-shadowsocks-props="isXrayShadowsocks"
+      :is-xray-ws-props="isXrayWs"
+      :show-fallback-props="showFallback"
+      :show-xray-flow-props="showXrayFlow"
+      :is-trojan-go-enable-websocket-props="isTrojanGoEnableWebsocket"
+      :is-trojan-go-enable-ss-props="isTrojanGoEnableSs"
+      :node-servers-props="nodeServers"
+      :node-types-props="nodeTypes"
+    />
 
     <NodeDetail
-      :node-info="nodeDetail"
-      :is-xray="isXray"
-      :is-trojan-go="isTrojanGo"
-      :is-hysteria="isHysteria"
-      :is-naive-proxy="isNaiveProxy"
-      :is-xray-ws="isXrayWs"
-      :is-xray-shadowsocks="isXrayShadowsocks"
-      :show-xray-flow="showXrayFlow"
-      :is-trojan-go-enable-ss="isTrojanGoEnableSs"
-      :is-trojan-go-enable-websocket="isTrojanGoEnableWebsocket"
-      :node-servers="nodeServers"
-      :node-types="nodeTypes"
-      :dialog-visible.sync="dialogInfoVisible"
-      :show-fallback="showFallback"
-    />
-
-    <FallbackForm
-      ref="fallbackForm"
-      :create-fallback="createFallback"
-      :dialog-visible.sync="dialogFallbackFormVisible"
-    />
-
-    <FallbackInfo
-      :dialog-visible.sync="dialogFallbackDetailVisible"
-      :fallback="fallback"
+      :dialog-visible-props.sync="dialogInfoVisible"
+      :node-info-props="nodeDetail"
+      :is-xray-props="isXray"
+      :is-trojan-go-props="isTrojanGo"
+      :is-hysteria-props="isHysteria"
+      :is-naive-proxy-props="isNaiveProxy"
+      :is-xray-shadowsocks-props="isXrayShadowsocks"
+      :is-xray-ws-props="isXrayWs"
+      :show-fallback-props="showFallback"
+      :show-xray-flow-props="showXrayFlow"
+      :is-trojan-go-enable-websocket-props="isTrojanGoEnableWebsocket"
+      :is-trojan-go-enable-ss-props="isTrojanGoEnableSs"
+      :node-servers-props="nodeServers"
+      :node-types-props="nodeTypes"
     />
 
     <NodeQrcode
@@ -536,14 +224,12 @@ import NodeDetail from '@/views/node/list/components/NodeDetail'
 import NodeQrcode from '@/views/node/list/components/NodeQrcode'
 import { Message, MessageBox } from 'element-ui'
 import {
-  createNode,
   deleteNodeById,
   nodeQRCode,
   nodeURL,
   selectNodeById,
   selectNodeInfo,
-  selectNodePage,
-  updateNodeById
+  selectNodePage
 } from '@/api/node'
 import { selectNodeTypeList } from '@/api/node-type'
 import { getNodeTypeName } from '@/utils/node'
@@ -553,10 +239,12 @@ import { clashSubscribe } from '@/api/account'
 import { selectNodeServerList } from '@/api/node-server'
 import FallbackForm from '@/views/node/list/components/FallbackForm'
 import FallbackInfo from '@/views/node/list/components/FallbackInfo'
+import NodeForm from '@/views/node/list/components/NodeForm'
 
 export default {
-  name: 'List',
+  name: 'index',
   components: {
+    NodeForm,
     FallbackInfo,
     FallbackForm,
     NodeQrcode,
@@ -564,83 +252,86 @@ export default {
     Pagination
   },
   filters: {
-    trojanGoWebsocketEnableFilter(trojanGoWebsocketEnable) {
-      const deletedMap = {
-        0: 'danger',
-        1: 'success'
-      }
-      return deletedMap[trojanGoWebsocketEnable]
-    },
-    trojanGoSsEnableFilter(trojanGoSsEnable) {
-      const deletedMap = {
-        0: 'danger',
-        1: 'success'
-      }
-      return deletedMap[trojanGoSsEnable]
-    },
     statusTypeFilter(status) {
       return status > 0 ? 'success' : 'danger'
     }
   },
   computed: {
     isXray() {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'xray'
+      return function (temp) {
+        return getNodeTypeName(temp.nodeTypeId) === 'xray'
+      }
     },
     isTrojanGo() {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
+      return function (temp) {
+        return getNodeTypeName(temp.nodeTypeId) === 'trojan-go'
+      }
     },
     isHysteria() {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
+      return function (temp) {
+        return getNodeTypeName(temp.nodeTypeId) === 'hysteria'
+      }
     },
     isNaiveProxy() {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'naiveproxy'
+      return function (temp) {
+        return getNodeTypeName(temp.nodeTypeId) === 'naiveproxy'
+      }
     },
     isXrayVless() {
-      return this.isXray && this.temp.xrayProtocol === 'vless'
+      return function (temp) {
+        return this.isXray(temp) && temp.xrayProtocol === 'vless'
+      }
     },
     isXrayVmess() {
-      return this.isXray && this.temp.xrayProtocol === 'vmess'
+      return function (temp) {
+        return this.isXray(temp) && temp.xrayProtocol === 'vmess'
+      }
     },
     isXrayTrojan() {
-      return this.isXray && this.temp.xrayProtocol === 'trojan'
+      return function (temp) {
+        return this.isXray(temp) && temp.xrayProtocol === 'trojan'
+      }
     },
     isXrayShadowsocks() {
-      return this.isXray && this.temp.xrayProtocol === 'shadowsocks'
+      return function (temp) {
+        return this.isXray(temp) && temp.xrayProtocol === 'shadowsocks'
+      }
     },
     isXrayWs() {
-      return this.isXray && this.temp.xrayStreamSettingsEntity.network === 'ws'
+      return function (temp) {
+        return (
+          this.isXray(temp) && temp.xrayStreamSettingsEntity.network === 'ws'
+        )
+      }
     },
     showXrayFlow() {
-      return (
-        this.isXrayVless &&
-        (this.temp.xrayStreamSettingsEntity.security === 'tls' ||
-          this.temp.xrayStreamSettingsEntity.security === 'reality')
-      )
+      return function (temp) {
+        return (
+          this.isXrayVless(temp) &&
+          (temp.xrayStreamSettingsEntity.security === 'tls' ||
+            temp.xrayStreamSettingsEntity.security === 'reality')
+        )
+      }
     },
     showFallback() {
-      return (
-        this.isXray &&
-        (this.temp.xrayProtocol === 'vless' ||
-          this.temp.xrayProtocol === 'trojan') &&
-        this.temp.xrayStreamSettingsEntity.network === 'tcp' &&
-        this.temp.xrayStreamSettingsEntity.security === 'tls'
-      )
-    },
-    xrayStreamSettingsSecuritys() {
-      let securitys = ['none', 'tls']
-      if (this.isXrayVless) {
-        securitys.push('reality')
+      return function (temp) {
+        return (
+          this.isXray(temp) &&
+          (temp.xrayProtocol === 'vless' || temp.xrayProtocol === 'trojan') &&
+          temp.xrayStreamSettingsEntity.network === 'tcp' &&
+          temp.xrayStreamSettingsEntity.security === 'tls'
+        )
       }
-      return securitys
-    },
-    xrayFlows() {
-      return ['none', 'xtls-rprx-vision']
     },
     isTrojanGoEnableWebsocket() {
-      return this.isTrojanGo && this.temp.trojanGoWebsocketEnable === 1
+      return function (temp) {
+        return this.isTrojanGo(temp) && temp.trojanGoWebsocketEnable === 1
+      }
     },
     isTrojanGoEnableSs() {
-      return this.isTrojanGo && this.temp.trojanGoSsEnable === 1
+      return function (temp) {
+        return this.isTrojanGo(temp) && temp.trojanGoSsEnable === 1
+      }
     },
     statusComputed() {
       return function (status) {
@@ -673,13 +364,6 @@ export default {
   },
   data() {
     return {
-      fallback: {
-        name: '',
-        alpn: '',
-        path: undefined,
-        dest: '80',
-        xver: 0
-      },
       tableKey: 0,
       listLoading: true,
       list: null,
@@ -802,461 +486,16 @@ export default {
         naiveProxyUsername: '',
         createTime: new Date()
       },
+      dialogStatus: '',
       dialogFormVisible: false,
       dialogInfoVisible: false,
       dialogQRCodeVisible: false,
-      dialogFallbackFormVisible: false,
-      dialogFallbackDetailVisible: false,
-      dialogFallbackStatus: '',
+      qrCodeSrc: '',
+      nodeTypes: [],
+      nodeServers: [],
       textMap: {
         update: this.$t('table.edit'),
         create: this.$t('table.add')
-      },
-      dialogStatus: '',
-      nodeTypes: [],
-      nodeServers: [],
-      xrayStreamSettingsNetworks: [
-        'tcp',
-        // 'kcp',
-        'ws'
-        // 'http',
-        // 'domainsocket',
-        // 'quic',
-        // 'grpc'
-      ],
-      xraySettingsNetworks: ['tcp', 'udp', 'tcp,udp'],
-      xraySSMethods: [
-        'none',
-        'aes-128-gcm',
-        'aes-256-gcm',
-        'chacha20-poly1305',
-        'xchacha20-poly1305'
-      ],
-      xrayProtocols: [
-        // 'dokodemo-door',
-        // 'http',
-        // 'socks',
-        'vless',
-        'vmess',
-        'trojan',
-        'shadowsocks'
-      ],
-      trojanGoSsMethods: [
-        'AES-128-GCM',
-        'AES-256-GCM',
-        'CHACHA20-IETF-POLY1305'
-      ],
-      qrCodeSrc: '',
-      hysteriaProtocols: ['udp', 'faketcp'],
-      createRules: {
-        name: [
-          {
-            required: true,
-            message: this.$t('valid.nodeName'),
-            trigger: 'change'
-          },
-          {
-            min: 2,
-            max: 20,
-            message: this.$t('valid.nodeNameRange'),
-            trigger: 'change'
-          }
-        ],
-        nodeServerId: [
-          {
-            required: true,
-            message: this.$t('valid.nodeServerId'),
-            trigger: 'change'
-          }
-        ],
-        domain: [
-          {
-            required: true,
-            message: this.$t('valid.nodeDomain'),
-            trigger: 'change'
-          },
-          {
-            min: 4,
-            max: 64,
-            message: this.$t('valid.nodeDomainRange'),
-            trigger: 'change'
-          },
-          {
-            pattern:
-              /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
-            message: this.$t('valid.nodeDomainFormat'),
-            trigger: 'change'
-          }
-        ],
-        port: [
-          {
-            required: true,
-            message: this.$t('valid.nodePort'),
-            trigger: 'change'
-          },
-          {
-            pattern:
-              /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
-            message: this.$t('valid.nodePortRange'),
-            trigger: 'change'
-          }
-        ],
-        nodeTypeId: [
-          {
-            required: true,
-            message: this.$t('valid.nodeType'),
-            trigger: 'change'
-          }
-        ],
-        xrayProtocol: [
-          {
-            required: true,
-            message: this.$t('valid.xrayProtocol'),
-            trigger: 'change'
-          }
-        ],
-        xraySSMethod: [
-          {
-            required: true,
-            message: this.$t('valid.xraySSMethod'),
-            trigger: 'change'
-          }
-        ],
-        'xraySettingsEntity.network': [
-          {
-            required: true,
-            message: this.$t('valid.xraySSNetwork'),
-            trigger: 'change'
-          }
-        ],
-        'xrayStreamSettingsEntity.network': [
-          {
-            required: true,
-            message: this.$t('valid.xrayNetwork'),
-            trigger: 'change'
-          }
-        ],
-        'xrayStreamSettingsEntity.security': [
-          {
-            required: true,
-            message: this.$t('valid.xraySecurity'),
-            trigger: 'change'
-          }
-        ],
-        'xrayStreamSettingsEntity.wsSettings.path': [
-          {
-            min: 2,
-            max: 64,
-            message: this.$t('valid.xrayWsRange'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoSni: [
-          {
-            min: 4,
-            max: 64,
-            message: this.$t('valid.trojanGoSni'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoMuxEnable: [
-          {
-            required: true,
-            message: this.$t('valid.trojanGoMux'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoWebsocketEnable: [
-          {
-            required: true,
-            message: this.$t('valid.trojanGoWs'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoWebsocketPath: [
-          {
-            min: 2,
-            max: 64,
-            message: this.$t('valid.trojanGoWsRange'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoWebsocketHost: [
-          {
-            min: 2,
-            max: 64,
-            message: this.$t('valid.trojanGoWsHostRange'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoSsEnable: [
-          {
-            required: true,
-            message: this.$t('valid.trojanGoSs'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoSsMethod: [
-          {
-            required: true,
-            message: this.$t('valid.trojanGoSsMethod'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoSsPassword: [
-          {
-            min: 2,
-            max: 32,
-            message: this.$t('valid.trojanGoSsPasswordRange'),
-            trigger: 'change'
-          }
-        ],
-        hysteriaProtocol: [
-          {
-            required: true,
-            message: this.$t('valid.hysteriaProtocol'),
-            trigger: 'change'
-          },
-          {
-            min: 2,
-            max: 16,
-            message: this.$t('valid.hysteriaProtocolRange'),
-            trigger: 'change'
-          }
-        ],
-        hysteriaUpMbps: [
-          {
-            required: true,
-            message: this.$t('valid.hysteriaUpMbps'),
-            trigger: 'change'
-          },
-          {
-            type: 'number',
-            min: 1,
-            max: 9999999999,
-            message: this.$t('valid.hysteriaUpMbpsRange'),
-            trigger: 'change'
-          }
-        ],
-        hysteriaDownMbps: [
-          {
-            required: true,
-            message: this.$t('valid.hysteriaDownMbps'),
-            trigger: 'change'
-          },
-          {
-            type: 'number',
-            min: 1,
-            max: 9999999999,
-            message: this.$t('valid.hysteriaDownMbpsRange'),
-            trigger: 'change'
-          }
-        ]
-      },
-      updateRules: {
-        name: [
-          {
-            required: true,
-            message: this.$t('valid.nodeName'),
-            trigger: 'change'
-          },
-          {
-            min: 2,
-            max: 20,
-            message: this.$t('valid.nodeNameRange'),
-            trigger: 'change'
-          }
-        ],
-        nodeServerId: [
-          {
-            required: true,
-            message: this.$t('valid.nodeServerId'),
-            trigger: 'change'
-          }
-        ],
-        domain: [
-          {
-            required: true,
-            message: this.$t('valid.ip'),
-            trigger: 'change'
-          },
-          {
-            min: 4,
-            max: 64,
-            message: this.$t('valid.ipRange'),
-            trigger: 'change'
-          },
-          {
-            pattern:
-              /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
-            message: this.$t('valid.nodeDomainFormat'),
-            trigger: 'change'
-          }
-        ],
-        port: [
-          {
-            required: true,
-            message: this.$t('valid.nodePort'),
-            trigger: 'change'
-          },
-          {
-            pattern:
-              /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
-            message: this.$t('valid.nodePortRange'),
-            trigger: 'change'
-          }
-        ],
-        nodeTypeId: [
-          {
-            required: true,
-            message: this.$t('valid.nodeType'),
-            trigger: 'change'
-          }
-        ],
-        xrayProtocol: [
-          {
-            required: true,
-            message: this.$t('valid.xrayProtocol'),
-            trigger: 'change'
-          }
-        ],
-        xraySSMethod: [
-          {
-            required: true,
-            message: this.$t('valid.xraySSMethod'),
-            trigger: 'change'
-          }
-        ],
-        'xraySettingsEntity.network': [
-          {
-            required: true,
-            message: this.$t('valid.xraySSNetwork'),
-            trigger: 'change'
-          }
-        ],
-        'xrayStreamSettingsEntity.network': [
-          {
-            required: true,
-            message: this.$t('valid.xrayNetwork'),
-            trigger: 'change'
-          }
-        ],
-        'xrayStreamSettingsEntity.security': [
-          {
-            required: true,
-            message: this.$t('valid.xraySecurity'),
-            trigger: 'change'
-          }
-        ],
-        'xrayStreamSettingsEntity.wsSettings.path': [
-          {
-            min: 2,
-            max: 64,
-            message: this.$t('valid.xrayWsRange'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoSni: [
-          {
-            min: 4,
-            max: 64,
-            message: this.$t('valid.trojanGoSni'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoMuxEnable: [
-          {
-            required: true,
-            message: this.$t('valid.trojanGoMux'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoWebsocketEnable: [
-          {
-            required: true,
-            message: this.$t('valid.trojanGoWs'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoWebsocketPath: [
-          {
-            min: 2,
-            max: 64,
-            message: this.$t('valid.trojanGoWsRange'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoWebsocketHost: [
-          {
-            min: 2,
-            max: 64,
-            message: this.$t('valid.trojanGoWsHostRange'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoSsEnable: [
-          {
-            required: true,
-            message: this.$t('valid.trojanGoSs'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoSsMethod: [
-          {
-            required: true,
-            message: this.$t('valid.trojanGoSsMethod'),
-            trigger: 'change'
-          }
-        ],
-        trojanGoSsPassword: [
-          {
-            min: 2,
-            max: 32,
-            message: this.$t('valid.trojanGoSsPasswordRange'),
-            trigger: 'change'
-          }
-        ],
-        hysteriaProtocol: [
-          {
-            required: true,
-            message: this.$t('valid.hysteriaProtocol'),
-            trigger: 'change'
-          },
-          {
-            min: 2,
-            max: 16,
-            message: this.$t('valid.hysteriaProtocolRange'),
-            trigger: 'change'
-          }
-        ],
-        hysteriaUpMbps: [
-          {
-            required: true,
-            message: this.$t('valid.hysteriaUpMbps'),
-            trigger: 'change'
-          },
-          {
-            type: 'number',
-            min: 1,
-            max: 9999999999,
-            message: this.$t('valid.hysteriaUpMbpsRange'),
-            trigger: 'change'
-          }
-        ],
-        hysteriaDownMbps: [
-          {
-            required: true,
-            message: this.$t('valid.hysteriaDownMbps'),
-            trigger: 'change'
-          },
-          {
-            type: 'number',
-            min: 1,
-            max: 9999999999,
-            message: this.$t('valid.hysteriaDownMbpsRange'),
-            trigger: 'change'
-          }
-        ]
       }
     }
   },
@@ -1266,50 +505,6 @@ export default {
     this.getList()
   },
   methods: {
-    handleCreateFallback() {
-      this.$refs.fallbackForm.resetTemp()
-      this.dialogFallbackFormVisible = true
-    },
-    handleFallbackDetail(fallback) {
-      this.dialogFallbackDetailVisible = true
-      this.fallback = fallback
-    },
-    deleteFallback(fallback) {
-      for (let i = 0; i < this.temp.xraySettingsEntity.fallbacks.length; i++) {
-        let temp = this.temp.xraySettingsEntity.fallbacks[i]
-        if (
-          fallback.alpn === temp.alpn &&
-          fallback.name === temp.name &&
-          fallback.path === temp.path &&
-          fallback.dest === temp.dest &&
-          fallback.xver === temp.xver
-        ) {
-          this.temp.xraySettingsEntity.fallbacks.splice(i, 1)
-        }
-      }
-    },
-    createFallback(fallback) {
-      this.temp.xraySettingsEntity.fallbacks.push(fallback)
-    },
-    xrayStreamSettingsNetworkChange() {
-      if (this.temp.xrayStreamSettingsEntity.network === 'ws') {
-        this.temp.xrayStreamSettingsEntity.security = 'tls'
-      }
-    },
-    xrayStreamSettingsSecurityChange() {
-      if (
-        this.isXrayVless &&
-        (this.temp.xrayStreamSettingsEntity.security === 'tls' ||
-          this.temp.xrayStreamSettingsEntity.security === 'reality')
-      ) {
-        this.temp.xrayFlow = 'xtls-rprx-vision'
-      } else {
-        this.temp.xrayFlow = ''
-      }
-    },
-    toAddNodeServer() {
-      this.$router.push({ path: '/server-manage/server-list' })
-    },
     timeStampToDate,
     checkPermission,
     handleQRCode(row) {
@@ -1408,7 +603,7 @@ export default {
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
       this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
+        this.$refs['nodeForm'].$refs['dataForm'].clearValidate()
       })
     },
     handleUpdate(row) {
@@ -1443,7 +638,7 @@ export default {
         this.dialogStatus = 'update'
         this.dialogFormVisible = true
         this.$nextTick(() => {
-          this.$refs['dataForm'].clearValidate()
+          this.$refs['nodeForm'].$refs['dataForm'].clearValidate()
         })
       })
     },
@@ -1491,11 +686,11 @@ export default {
     },
     handleDelete(row, index) {
       MessageBox.confirm(
-        this.$t('confirm.deleteNode'),
-        this.$t('confirm.warn'),
+        this.$t('confirm.deleteNode').toString(),
+        this.$t('confirm.warn').toString(),
         {
-          confirmButtonText: this.$t('confirm.yes'),
-          cancelButtonText: this.$t('confirm.cancel'),
+          confirmButtonText: this.$t('confirm.yes').toString(),
+          cancelButtonText: this.$t('confirm.cancel').toString(),
           type: 'warning'
         }
       ).then(() => {
@@ -1504,83 +699,27 @@ export default {
           this.list.splice(index, 1)
           this.$notify({
             title: 'Success',
-            message: this.$t('confirm.deleteSuccess'),
+            message: this.$t('confirm.deleteSuccess').toString(),
             type: 'success',
             duration: 2000
           })
         })
       })
     },
-    createData() {
-      this.$refs['dataForm'].validate((valid) => {
-        if (valid) {
-          if (
-            this.temp.xrayProtocol === 'vless' &&
-            this.temp.xrayStreamSettings.network !== 'none'
-          ) {
-            this.temp.xraySettingsEntity.decryption = 'none'
-          }
-
-          this.temp.xrayStreamSettings = JSON.stringify(
-            this.temp.xrayStreamSettingsEntity
-          )
-          this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
-          createNode(this.temp).then(() => {
-            this.getList()
-            this.dialogFormVisible = false
-            this.$notify({
-              title: 'Success',
-              message: this.$t('confirm.createSuccess'),
-              type: 'success',
-              duration: 2000
-            })
-          })
-        }
-      })
-    },
-    updateData() {
-      this.$refs['dataForm'].validate((valid) => {
-        if (valid) {
-          if (
-            this.temp.xrayProtocol === 'vless' &&
-            this.temp.xrayStreamSettings.network !== 'none'
-          ) {
-            this.temp.xraySettingsEntity.decryption = 'none'
-          }
-
-          this.temp.xrayStreamSettings = JSON.stringify(
-            this.temp.xrayStreamSettingsEntity
-          )
-          this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
-          const tempData = Object.assign({}, this.temp)
-          updateNodeById(tempData).then(() => {
-            const index = this.list.findIndex((v) => v.id === this.temp.id)
-            this.list.splice(index, 1, this.temp)
-            this.dialogFormVisible = false
-            this.$notify({
-              title: 'Success',
-              message: this.$t('confirm.modifySuccess'),
-              type: 'success',
-              duration: 2000
-            })
-          })
-        }
-      })
-    },
     handleCopyURL(row) {
       nodeURL(row).then((response) => {
         this.$copyText(response.data).then(
-          (e) => {
+          () => {
             Message({
               showClose: true,
-              message: this.$t('confirm.urlCopySuccess'),
+              message: this.$t('confirm.urlCopySuccess').toString(),
               type: 'success'
             })
           },
-          (e) => {
+          () => {
             Message({
               showClose: true,
-              message: this.$t('confirm.urlCopyFail'),
+              message: this.$t('confirm.urlCopyFail').toString(),
               type: 'error'
             })
           }
@@ -1592,17 +731,17 @@ export default {
         this.$copyText(
           window.location.protocol + '//' + window.location.host + response.data
         ).then(
-          (e) => {
+          () => {
             Message({
               showClose: true,
-              message: this.$t('confirm.urlCopySuccess'),
+              message: this.$t('confirm.urlCopySuccess').toString(),
               type: 'success'
             })
           },
-          (e) => {
+          () => {
             Message({
               showClose: true,
-              message: this.$t('confirm.urlCopyFail'),
+              message: this.$t('confirm.urlCopyFail').toString(),
               type: 'error'
             })
           }
