@@ -1,12 +1,12 @@
 <template>
   <div>
     <el-dialog
-      :title="textMap[dialogStatus]"
+      :title="textMap[dialogStatusProps]"
       :visible.sync="dialogFormVisibleProps"
     >
       <el-form
         ref="dataForm"
-        :rules="dialogStatus === 'create' ? createRules : updateRules"
+        :rules="dialogStatusProps === 'create' ? createRules : updateRules"
         :model="nodeProps"
         label-position="left"
       >
@@ -440,7 +440,6 @@ export default {
   },
   data() {
     return {
-      dialogStatus: this.dialogStatusProps,
       temp: this.nodeProps,
       fallback: {
         name: '',
