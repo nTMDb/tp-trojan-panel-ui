@@ -59,7 +59,7 @@
         <el-form-item
           :label="$t('table.xrayProtocol').toString()"
           prop="xrayProtocol"
-          v-show="isXrayProps(temp)"
+          v-show="isXrayProps"
         >
           <el-select v-model="nodeProps.xrayProtocol" controls-position="right">
             <el-option
@@ -73,7 +73,7 @@
         <el-form-item
           :label="$t('table.xrayStreamSettingsNetwork').toString()"
           prop="xrayStreamSettingsEntity.network"
-          v-show="isXrayProps(temp) && !isXrayShadowsocksProps(temp)"
+          v-show="isXrayProps && !isXrayShadowsocksProps"
         >
           <el-select
             v-model="nodeProps.xrayStreamSettingsEntity.network"
@@ -91,7 +91,7 @@
         <el-form-item
           :label="$t('table.xrayStreamSettingsWsSettingsPath').toString()"
           prop="xrayStreamSettingsEntity.wsSettings.path"
-          v-show="isXrayWsProps(temp) && !isXrayShadowsocksProps(temp)"
+          v-show="isXrayWsProps && !isXrayShadowsocksProps"
         >
           <el-input
             v-model="nodeProps.xrayStreamSettingsEntity.wsSettings.path"
@@ -100,7 +100,7 @@
         <el-form-item
           :label="$t('table.xrayStreamSettingsSecurity').toString()"
           prop="xrayStreamSettingsEntity.security"
-          v-show="isXrayProps(temp) && !isXrayShadowsocksProps(temp)"
+          v-show="isXrayProps && !isXrayShadowsocksProps"
         >
           <el-select
             v-model="nodeProps.xrayStreamSettingsEntity.security"
@@ -118,7 +118,7 @@
         <el-form-item
           :label="$t('table.xrayFlow').toString()"
           prop="xrayFlow"
-          v-show="showXrayFlowProps(temp)"
+          v-show="showXrayFlowProps"
         >
           <el-select v-model="nodeProps.xrayFlow" controls-position="right">
             <el-option
@@ -132,7 +132,7 @@
         <el-form-item
           :label="$t('table.xraySSMethod').toString()"
           prop="xraySSMethod"
-          v-show="isXrayShadowsocksProps(temp)"
+          v-show="isXrayShadowsocksProps"
         >
           <el-select v-model="nodeProps.xraySSMethod" controls-position="right">
             <el-option
@@ -146,7 +146,7 @@
         <el-form-item
           :label="$t('table.xraySSNetwork').toString()"
           prop="xraySettingsEntity.network"
-          v-show="isXrayShadowsocksProps(temp)"
+          v-show="isXrayShadowsocksProps"
         >
           <el-select
             v-model="nodeProps.xraySettingsEntity.network"
@@ -163,7 +163,7 @@
         <el-form-item
           :label="$t('table.xrayFallbacks').toString()"
           prop="xraySettingsEntity.fallbacks"
-          v-show="showFallbackProps(temp)"
+          v-show="showFallbackProps"
         >
           <el-tag
             v-for="(item, index) in nodeProps.xraySettingsEntity.fallbacks"
@@ -187,14 +187,14 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSni').toString()"
-          v-show="isTrojanGoProps(temp)"
+          v-show="isTrojanGoProps"
           prop="trojanGoSni"
         >
           <el-input v-model="nodeProps.trojanGoSni" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoMuxEnable').toString()"
-          v-show="isTrojanGoProps(temp)"
+          v-show="isTrojanGoProps"
           prop="trojanGoMuxEnable"
         >
           <el-switch
@@ -210,7 +210,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketEnable').toString()"
-          v-show="isTrojanGoProps(temp)"
+          v-show="isTrojanGoProps"
           prop="trojanGoWebsocketEnable"
         >
           <el-switch
@@ -227,21 +227,21 @@
         <el-form-item
           :label="$t('table.trojanGoWebsocketPath').toString()"
           prop="trojanGoWebsocketPath"
-          v-show="isTrojanGoEnableWebsocketProps(temp)"
+          v-show="isTrojanGoEnableWebsocketProps"
         >
           <el-input v-model="nodeProps.trojanGoWebsocketPath" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketHost').toString()"
           prop="trojanGoWebsocketHost"
-          v-show="isTrojanGoEnableWebsocketProps(temp)"
+          v-show="isTrojanGoEnableWebsocketProps"
         >
           <el-input v-model="nodeProps.trojanGoWebsocketHost" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSsEnable').toString()"
           prop="trojanGoSsEnable"
-          v-show="isTrojanGoEnableWebsocketProps(temp)"
+          v-show="isTrojanGoEnableWebsocketProps"
         >
           <el-switch
             v-model="nodeProps.trojanGoSsEnable"
@@ -257,10 +257,7 @@
         <el-form-item
           :label="$t('table.trojanGoSsMethod').toString()"
           prop="trojanGoSsMethod"
-          v-show="
-            isTrojanGoEnableWebsocketProps(temp) &&
-            isTrojanGoEnableSsProps(temp)
-          "
+          v-show="isTrojanGoEnableWebsocketProps && isTrojanGoEnableSsProps"
         >
           <el-select
             v-model="nodeProps.trojanGoSsMethod"
@@ -278,17 +275,14 @@
         <el-form-item
           :label="$t('table.trojanGoSsPassword').toString()"
           prop="trojanGoSsPassword"
-          v-show="
-            isTrojanGoEnableWebsocketProps(temp) &&
-            isTrojanGoEnableSsProps(temp)
-          "
+          v-show="isTrojanGoEnableWebsocketProps && isTrojanGoEnableSsProps"
         >
           <el-input v-model="nodeProps.trojanGoSsPassword" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaProtocol').toString()"
           prop="hysteriaProtocol"
-          v-show="isHysteriaProps(temp)"
+          v-show="isHysteriaProps"
         >
           <el-select
             v-model="nodeProps.hysteriaProtocol"
@@ -305,7 +299,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaUpMbps').toString()"
-          v-show="isHysteriaProps(temp)"
+          v-show="isHysteriaProps"
           prop="hysteriaUpMbps"
         >
           <el-input-number
@@ -316,7 +310,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaDownMbps').toString()"
-          v-show="isHysteriaProps(temp)"
+          v-show="isHysteriaProps"
           prop="hysteriaDownMbps"
         >
           <el-input-number
@@ -325,12 +319,12 @@
             type="number"
           />
         </el-form-item>
-        <el-form-item v-show="isHysteriaProps(temp)">
+        <el-form-item v-show="isHysteriaProps">
           <aside>
             {{ $t('table.hysteriaTip') }}
           </aside>
         </el-form-item>
-        <el-form-item v-show="isNaiveProxyProps(temp)">
+        <el-form-item v-show="isNaiveProxyProps">
           <aside>
             {{ $t('table.naiveproxyTip') }}
           </aside>
@@ -384,43 +378,43 @@ export default {
       required: true
     },
     isXrayProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isXrayShadowsocksProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     showXrayFlowProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     showFallbackProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isTrojanGoProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isHysteriaProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isNaiveProxyProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isXrayWsProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isTrojanGoEnableSsProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isTrojanGoEnableWebsocketProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     nodeServersProps: {

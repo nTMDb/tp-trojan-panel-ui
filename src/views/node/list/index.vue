@@ -258,80 +258,53 @@ export default {
   },
   computed: {
     isXray() {
-      return function (temp) {
-        return getNodeTypeName(temp.nodeTypeId) === 'xray'
-      }
+      return getNodeTypeName(this.temp.nodeTypeId) === 'xray'
     },
     isTrojanGo() {
-      return function (temp) {
-        return getNodeTypeName(temp.nodeTypeId) === 'trojan-go'
-      }
+      return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
     },
     isHysteria() {
-      return function (temp) {
-        return getNodeTypeName(temp.nodeTypeId) === 'hysteria'
-      }
+      return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
     },
     isNaiveProxy() {
-      return function (temp) {
-        return getNodeTypeName(temp.nodeTypeId) === 'naiveproxy'
-      }
+      return getNodeTypeName(this.temp.nodeTypeId) === 'naiveproxy'
     },
     isXrayVless() {
-      return function (temp) {
-        return this.isXray(temp) && temp.xrayProtocol === 'vless'
-      }
+      return this.isXray && this.temp.xrayProtocol === 'vless'
     },
     isXrayVmess() {
-      return function (temp) {
-        return this.isXray(temp) && temp.xrayProtocol === 'vmess'
-      }
+      return this.isXray && this.temp.xrayProtocol === 'vmess'
     },
     isXrayTrojan() {
-      return function (temp) {
-        return this.isXray(temp) && temp.xrayProtocol === 'trojan'
-      }
+      return this.isXray && this.temp.xrayProtocol === 'trojan'
     },
     isXrayShadowsocks() {
-      return function (temp) {
-        return this.isXray(temp) && temp.xrayProtocol === 'shadowsocks'
-      }
+      return this.isXray && this.temp.xrayProtocol === 'shadowsocks'
     },
     isXrayWs() {
-      return function (temp) {
-        return (
-          this.isXray(temp) && temp.xrayStreamSettingsEntity.network === 'ws'
-        )
-      }
+      return this.isXray && this.temp.xrayStreamSettingsEntity.network === 'ws'
     },
     showXrayFlow() {
-      return function (temp) {
-        return (
-          this.isXrayVless(temp) &&
-          (temp.xrayStreamSettingsEntity.security === 'tls' ||
-            temp.xrayStreamSettingsEntity.security === 'reality')
-        )
-      }
+      return (
+        this.isXrayVless &&
+        (this.temp.xrayStreamSettingsEntity.security === 'tls' ||
+          this.temp.xrayStreamSettingsEntity.security === 'reality')
+      )
     },
     showFallback() {
-      return function (temp) {
-        return (
-          this.isXray(temp) &&
-          (temp.xrayProtocol === 'vless' || temp.xrayProtocol === 'trojan') &&
-          temp.xrayStreamSettingsEntity.network === 'tcp' &&
-          temp.xrayStreamSettingsEntity.security === 'tls'
-        )
-      }
+      return (
+        this.isXray &&
+        (this.temp.xrayProtocol === 'vless' ||
+          this.temp.xrayProtocol === 'trojan') &&
+        this.temp.xrayStreamSettingsEntity.network === 'tcp' &&
+        this.temp.xrayStreamSettingsEntity.security === 'tls'
+      )
     },
     isTrojanGoEnableWebsocket() {
-      return function (temp) {
-        return this.isTrojanGo(temp) && temp.trojanGoWebsocketEnable === 1
-      }
+      return this.isTrojanGo && this.temp.trojanGoWebsocketEnable === 1
     },
     isTrojanGoEnableSs() {
-      return function (temp) {
-        return this.isTrojanGo(temp) && temp.trojanGoSsEnable === 1
-      }
+      return this.isTrojanGo && this.temp.trojanGoSsEnable === 1
     },
     statusComputed() {
       return function (status) {

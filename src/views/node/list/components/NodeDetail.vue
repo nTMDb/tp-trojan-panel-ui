@@ -37,15 +37,13 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayProtocol').toString()"
-          v-show="isXrayProps(nodeInfoProps)"
+          v-show="isXrayProps"
         >
           <el-tag>{{ nodeInfoProps.xrayProtocol }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayStreamSettingsNetwork').toString()"
-          v-show="
-            isXrayProps(nodeInfoProps) && !isXrayShadowsocksProps(nodeInfoProps)
-          "
+          v-show="isXrayProps && !isXrayShadowsocksProps"
         >
           <el-tag>
             {{ nodeInfoProps.xrayStreamSettingsEntity.network }}
@@ -53,10 +51,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayStreamSettingsWsSettingsPath').toString()"
-          v-show="
-            isXrayWsProps(nodeInfoProps) &&
-            !isXrayShadowsocksProps(nodeInfoProps)
-          "
+          v-show="isXrayWsProps && !isXrayShadowsocksProps"
         >
           <el-tag
             >{{ nodeInfoProps.xrayStreamSettingsEntity.wsSettings.path }}
@@ -64,33 +59,31 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayStreamSettingsSecurity').toString()"
-          v-show="
-            isXrayProps(nodeInfoProps) && !isXrayShadowsocksProps(nodeInfoProps)
-          "
+          v-show="isXrayProps && !isXrayShadowsocksProps"
         >
           <el-tag>{{ nodeInfoProps.xrayStreamSettingsEntity.security }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayFlow').toString()"
-          v-show="showXrayFlowProps(nodeInfoProps)"
+          v-show="showXrayFlowProps"
         >
           <el-tag>{{ nodeInfoProps.xrayFlow }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.xraySSMethod').toString()"
-          v-show="isXrayShadowsocksProps(nodeInfoProps)"
+          v-show="isXrayShadowsocksProps"
         >
           <el-tag>{{ nodeInfoProps.xraySSMethod }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.xraySSNetwork').toString()"
-          v-show="isXrayShadowsocksProps(nodeInfoProps)"
+          v-show="isXrayShadowsocksProps"
         >
           <el-tag>{{ nodeInfoProps.xraySettingsEntity.network }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayFallbacks').toString()"
-          v-show="showFallbackProps(nodeInfoProps)"
+          v-show="showFallbackProps"
         >
           <el-tag
             v-for="(item, index) in nodeInfoProps.xraySettingsEntity.fallbacks"
@@ -106,13 +99,13 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSni').toString()"
-          v-show="isTrojanGoProps(nodeInfoProps)"
+          v-show="isTrojanGoProps"
         >
           <el-tag>{{ nodeInfoProps.trojanGoSni }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoMuxEnable').toString()"
-          v-show="isTrojanGoProps(nodeInfoProps)"
+          v-show="isTrojanGoProps"
         >
           <el-tag>
             {{ trojanGoMuxEnableComputed(nodeInfoProps.trojanGoMuxEnable) }}
@@ -120,7 +113,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketEnable').toString()"
-          v-show="isTrojanGoProps(nodeInfoProps)"
+          v-show="isTrojanGoProps"
         >
           <el-tag>
             {{
@@ -132,19 +125,19 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketPath').toString()"
-          v-show="isTrojanGoEnableWebsocketProps(nodeInfoProps)"
+          v-show="isTrojanGoEnableWebsocketProps"
         >
           <el-tag>{{ nodeInfoProps.trojanGoWebsocketPath }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketHost').toString()"
-          v-show="isTrojanGoEnableWebsocketProps(nodeInfoProps)"
+          v-show="isTrojanGoEnableWebsocketProps"
         >
           <el-tag>{{ nodeInfoProps.trojanGoWebsocketHost }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSsEnable').toString()"
-          v-show="isTrojanGoEnableWebsocketProps(nodeInfoProps)"
+          v-show="isTrojanGoEnableWebsocketProps"
         >
           <el-tag
             >{{ trojanGoSsEnableComputed(nodeInfoProps.trojanGoSsEnable) }}
@@ -152,53 +145,47 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSsMethod').toString()"
-          v-show="
-            isTrojanGoEnableWebsocketProps(nodeInfoProps) &&
-            isTrojanGoEnableSsProps(nodeInfoProps)
-          "
+          v-show="isTrojanGoEnableWebsocketProps && isTrojanGoEnableSsProps"
         >
           <el-tag>{{ nodeInfoProps.trojanGoSsMethod }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSsPassword').toString()"
-          v-show="
-            isTrojanGoEnableWebsocketProps(nodeInfoProps) &&
-            isTrojanGoEnableSsProps(nodeInfoProps)
-          "
+          v-show="isTrojanGoEnableWebsocketProps && isTrojanGoEnableSsProps"
         >
           <el-tag>{{ nodeInfoProps.trojanGoSsPassword }}</el-tag>
         </el-form-item>
 
         <el-form-item
           :label="$t('table.hysteriaProtocol').toString()"
-          v-show="isHysteriaProps(nodeInfoProps)"
+          v-show="isHysteriaProps"
         >
           <el-tag>{{ nodeInfoProps.hysteriaProtocol }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaUpMbps').toString()"
-          v-show="isHysteriaProps(nodeInfoProps)"
+          v-show="isHysteriaProps"
         >
           <el-tag>{{ nodeInfoProps.hysteriaUpMbps }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaDownMbps').toString()"
-          v-show="isHysteriaProps(nodeInfoProps)"
+          v-show="isHysteriaProps"
         >
           <el-tag>{{ nodeInfoProps.hysteriaDownMbps }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.naiveProxyUsername').toString()"
-          v-show="isNaiveProxyProps(nodeInfoProps)"
+          v-show="isNaiveProxyProps"
         >
           <el-tag>{{ nodeInfoProps.naiveProxyUsername }}</el-tag>
         </el-form-item>
-        <el-form-item v-show="isHysteriaProps(nodeInfoProps)">
+        <el-form-item v-show="isHysteriaProps">
           <aside>
             {{ $t('table.hysteriaTip') }}
           </aside>
         </el-form-item>
-        <el-form-item v-show="isNaiveProxyProps(nodeInfoProps)">
+        <el-form-item v-show="isNaiveProxyProps">
           <aside>
             {{ $t('table.naiveproxyTip') }}
           </aside>
@@ -237,43 +224,43 @@ export default {
       required: true
     },
     isXrayProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isXrayShadowsocksProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     showXrayFlowProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     showFallbackProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isTrojanGoProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isHysteriaProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isNaiveProxyProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isXrayWsProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isTrojanGoEnableSsProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     isTrojanGoEnableWebsocketProps: {
-      type: Function,
+      type: Boolean,
       required: true
     },
     nodeServersProps: {
@@ -323,7 +310,9 @@ export default {
     },
     nodeTypeComputed() {
       return function (nodeTypeId) {
-        let nodeType = this.nodeTypes.find((item) => item.id === nodeTypeId)
+        let nodeType = this.nodeTypesProps.find(
+          (item) => item.id === nodeTypeId
+        )
         if (nodeType && nodeType.name) {
           return nodeType.name
         } else {
@@ -333,7 +322,7 @@ export default {
     },
     nodeServerComputed() {
       return function (nodeServerId) {
-        let nodeServer = this.nodeServers.find(
+        let nodeServer = this.nodeServersProps.find(
           (item) => item.id === nodeServerId
         )
         if (nodeServer && nodeServer.name) {
