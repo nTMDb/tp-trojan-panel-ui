@@ -133,7 +133,7 @@
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.actions')"
+        :label="$t('table.actions').toString()"
         align="center"
         class-name="small-padding fixed-width"
       >
