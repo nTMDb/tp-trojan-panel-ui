@@ -7,17 +7,17 @@
       <el-form
         ref="dataForm"
         :rules="dialogStatusProps === 'create' ? createRules : updateRules"
-        :model="nodeProps"
+        :model="temp"
         label-position="left"
       >
         <el-form-item :label="$t('table.nodeName').toString()" prop="name">
-          <el-input v-model="nodeProps.name" clearable />
+          <el-input v-model="temp.name" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.nodeServer').toString()"
           prop="nodeServerId"
         >
-          <el-select v-model="nodeProps.nodeServerId" controls-position="right">
+          <el-select v-model="temp.nodeServerId" controls-position="right">
             <el-option
               :label="item.name"
               :value="item.id"
@@ -33,11 +33,11 @@
           ></el-button>
         </el-form-item>
         <el-form-item :label="$t('table.nodeDomain').toString()" prop="domain">
-          <el-input v-model="nodeProps.domain" clearable />
+          <el-input v-model="temp.domain" clearable />
         </el-form-item>
         <el-form-item :label="$t('table.nodePort').toString()" prop="port">
           <el-input-number
-            v-model.number="nodeProps.port"
+            v-model.number="temp.port"
             controls-position="right"
             type="number"
           />
@@ -47,7 +47,7 @@
           :label="$t('table.nodeType').toString()"
           prop="nodeTypeId"
         >
-          <el-select v-model="nodeProps.nodeTypeId" controls-position="right">
+          <el-select v-model="temp.nodeTypeId" controls-position="right">
             <el-option
               :label="item.name"
               :value="item.id"
@@ -61,7 +61,7 @@
           prop="xrayProtocol"
           v-show="isXrayProps"
         >
-          <el-select v-model="nodeProps.xrayProtocol" controls-position="right">
+          <el-select v-model="temp.xrayProtocol" controls-position="right">
             <el-option
               :label="item"
               :value="item"
@@ -76,7 +76,7 @@
           v-show="isXrayProps && !isXrayShadowsocksProps"
         >
           <el-select
-            v-model="nodeProps.xrayStreamSettingsEntity.network"
+            v-model="temp.xrayStreamSettingsEntity.network"
             controls-position="right"
             @change="xrayStreamSettingsNetworkChange"
           >
@@ -93,9 +93,7 @@
           prop="xrayStreamSettingsEntity.wsSettings.path"
           v-show="isXrayWsProps && !isXrayShadowsocksProps"
         >
-          <el-input
-            v-model="nodeProps.xrayStreamSettingsEntity.wsSettings.path"
-          />
+          <el-input v-model="temp.xrayStreamSettingsEntity.wsSettings.path" />
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayStreamSettingsSecurity').toString()"
@@ -103,7 +101,7 @@
           v-show="isXrayProps && !isXrayShadowsocksProps"
         >
           <el-select
-            v-model="nodeProps.xrayStreamSettingsEntity.security"
+            v-model="temp.xrayStreamSettingsEntity.security"
             controls-position="right"
             @change="xrayStreamSettingsSecurityChange"
           >
@@ -120,7 +118,7 @@
           prop="xrayFlow"
           v-show="showXrayFlowProps"
         >
-          <el-select v-model="nodeProps.xrayFlow" controls-position="right">
+          <el-select v-model="temp.xrayFlow" controls-position="right">
             <el-option
               :label="item"
               :value="item"
@@ -134,7 +132,7 @@
           prop="xraySSMethod"
           v-show="isXrayShadowsocksProps"
         >
-          <el-select v-model="nodeProps.xraySSMethod" controls-position="right">
+          <el-select v-model="temp.xraySSMethod" controls-position="right">
             <el-option
               :label="item"
               :value="item"
@@ -149,7 +147,7 @@
           v-show="isXrayShadowsocksProps"
         >
           <el-select
-            v-model="nodeProps.xraySettingsEntity.network"
+            v-model="temp.xraySettingsEntity.network"
             controls-position="right"
           >
             <el-option
@@ -166,7 +164,7 @@
           v-show="showFallbackProps"
         >
           <el-tag
-            v-for="(item, index) in nodeProps.xraySettingsEntity.fallbacks"
+            v-for="(item, index) in temp.xraySettingsEntity.fallbacks"
             :key="index"
             :disable-transitions="true"
             type="success"
@@ -190,7 +188,7 @@
           v-show="isTrojanGoProps"
           prop="trojanGoSni"
         >
-          <el-input v-model="nodeProps.trojanGoSni" clearable />
+          <el-input v-model="temp.trojanGoSni" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoMuxEnable').toString()"
@@ -198,7 +196,7 @@
           prop="trojanGoMuxEnable"
         >
           <el-switch
-            v-model="nodeProps.trojanGoMuxEnable"
+            v-model="temp.trojanGoMuxEnable"
             active-color="#13ce66"
             inactive-color="#ff4949"
             :active-text="$t('table.enable').toString()"
@@ -214,7 +212,7 @@
           prop="trojanGoWebsocketEnable"
         >
           <el-switch
-            v-model="nodeProps.trojanGoWebsocketEnable"
+            v-model="temp.trojanGoWebsocketEnable"
             active-color="#13ce66"
             inactive-color="#ff4949"
             :active-text="$t('table.enable').toString()"
@@ -229,14 +227,14 @@
           prop="trojanGoWebsocketPath"
           v-show="isTrojanGoEnableWebsocketProps"
         >
-          <el-input v-model="nodeProps.trojanGoWebsocketPath" clearable />
+          <el-input v-model="temp.trojanGoWebsocketPath" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketHost').toString()"
           prop="trojanGoWebsocketHost"
           v-show="isTrojanGoEnableWebsocketProps"
         >
-          <el-input v-model="nodeProps.trojanGoWebsocketHost" clearable />
+          <el-input v-model="temp.trojanGoWebsocketHost" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSsEnable').toString()"
@@ -244,7 +242,7 @@
           v-show="isTrojanGoEnableWebsocketProps"
         >
           <el-switch
-            v-model="nodeProps.trojanGoSsEnable"
+            v-model="temp.trojanGoSsEnable"
             active-color="#13ce66"
             inactive-color="#ff4949"
             :active-text="$t('table.enable').toString()"
@@ -260,7 +258,7 @@
           v-show="isTrojanGoEnableWebsocketProps && isTrojanGoEnableSsProps"
         >
           <el-select
-            v-model="nodeProps.trojanGoSsMethod"
+            v-model="temp.trojanGoSsMethod"
             :placeholder="$t('table.trojanGoSsMethod').toString()"
             controls-position="right"
           >
@@ -277,7 +275,7 @@
           prop="trojanGoSsPassword"
           v-show="isTrojanGoEnableWebsocketProps && isTrojanGoEnableSsProps"
         >
-          <el-input v-model="nodeProps.trojanGoSsPassword" clearable />
+          <el-input v-model="temp.trojanGoSsPassword" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaProtocol').toString()"
@@ -285,7 +283,7 @@
           v-show="isHysteriaProps"
         >
           <el-select
-            v-model="nodeProps.hysteriaProtocol"
+            v-model="temp.hysteriaProtocol"
             :placeholder="$t('table.hysteriaProtocol').toString()"
             controls-position="right"
           >
@@ -303,7 +301,7 @@
           prop="hysteriaUpMbps"
         >
           <el-input-number
-            v-model.number="nodeProps.hysteriaUpMbps"
+            v-model.number="temp.hysteriaUpMbps"
             controls-position="right"
             type="number"
           />
@@ -314,7 +312,7 @@
           prop="hysteriaDownMbps"
         >
           <el-input-number
-            v-model.number="nodeProps.hysteriaDownMbps"
+            v-model.number="temp.hysteriaDownMbps"
             controls-position="right"
             type="number"
           />
@@ -336,7 +334,7 @@
         </el-button>
         <el-button
           type="primary"
-          @click="dialogStatus === 'create' ? createData() : updateData()"
+          @click="dialogStatusProps === 'create' ? createData() : updateData()"
         >
           {{ $t('table.confirm') }}
         </el-button>
