@@ -598,69 +598,6 @@ export default {
           }
         )
       })
-    },
-    isXray(temp) {
-      return getNodeTypeName(temp.nodeTypeId) === 'xray'
-    },
-    isTrojanGo(temp) {
-      return getNodeTypeName(temp.nodeTypeId) === 'trojan-go'
-    },
-    isHysteria(temp) {
-      return getNodeTypeName(temp.nodeTypeId) === 'hysteria'
-    },
-    isNaiveProxy(temp) {
-      return getNodeTypeName(temp.nodeTypeId) === 'naiveproxy'
-    },
-    isXrayVless(temp) {
-      return this.isXray(temp) && temp.xrayProtocol === 'vless'
-    },
-    isXrayVmess(temp) {
-      return this.isXray(temp) && temp.xrayProtocol === 'vmess'
-    },
-    isXrayTrojan(temp) {
-      return this.isXray(temp) && temp.xrayProtocol === 'trojan'
-    },
-    isXrayShadowsocks(temp) {
-      return this.isXray(temp) && temp.xrayProtocol === 'shadowsocks'
-    },
-    isXrayWs(temp) {
-      return this.isXray(temp) && temp.xrayStreamSettingsEntity.network === 'ws'
-    },
-    showXrayFlow(temp) {
-      return (
-        this.isXrayVless(temp) &&
-        (temp.xrayStreamSettingsEntity.security === 'tls' ||
-          temp.xrayStreamSettingsEntity.security === 'reality')
-      )
-    },
-    showFallback(temp) {
-      return (
-        this.isXray(temp) &&
-        (temp.xrayProtocol === 'vless' || temp.xrayProtocol === 'trojan') &&
-        temp.xrayStreamSettingsEntity.network === 'tcp' &&
-        temp.xrayStreamSettingsEntity.security === 'tls'
-      )
-    },
-    isTrojanGoEnableWebsocket(temp) {
-      return this.isTrojanGo(temp) && temp.trojanGoWebsocketEnable === 1
-    },
-    isTrojanGoEnableSs(temp) {
-      return this.isTrojanGo(temp) && temp.trojanGoSsEnable === 1
-    },
-    nodeTypeComputed(nodeTypeId) {
-      let nodeType = this.nodeTypes.find((item) => item.id === nodeTypeId)
-      if (nodeType && nodeType.name) {
-        return nodeType.name
-      }
-      return ''
-    },
-    nodeServerComputed(nodeServerId) {
-      let nodeServer = this.nodeServers.find((item) => item.id === nodeServerId)
-      if (nodeServer && nodeServer.name) {
-        return nodeServer.name
-      } else {
-        return ''
-      }
     }
   }
 }
