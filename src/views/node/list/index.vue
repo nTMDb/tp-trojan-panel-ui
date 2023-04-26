@@ -185,6 +185,7 @@
       :is-hysteria-props="isHysteria"
       :is-naive-proxy-props="isNaiveProxy"
       :is-xray-shadowsocks-props="isXrayShadowsocks"
+      :is-xray-vless-props="isXrayVless"
       :is-xray-ws-props="isXrayWs"
       :show-fallback-props="showFallback"
       :show-xray-flow-props="showXrayFlow"
@@ -192,6 +193,7 @@
       :is-trojan-go-enable-ss-props="isTrojanGoEnableSs"
       :node-servers-props="nodeServers"
       :node-types-props="nodeTypes"
+      :get-list-props="getList"
     />
 
     <NodeDetail
@@ -209,10 +211,12 @@
       :is-trojan-go-enable-ss-props="isTrojanGoEnableSs"
       :node-servers-props="nodeServers"
       :node-types-props="nodeTypes"
+      :node-server-computed-props="nodeServerComputed"
+      :node-type-computed-props="nodeTypeComputed"
     />
 
     <NodeQrcode
-      :dialog-visible-props="dialogQRCodeVisible"
+      :dialog-visible-props.sync="dialogQRCodeVisible"
       :qr-code-src-props="qrCodeSrc"
     />
   </div>
@@ -257,81 +261,11 @@ export default {
     }
   },
   computed: {
-    isXray() {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'xray'
-    },
-    isTrojanGo() {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'trojan-go'
-    },
-    isHysteria() {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'hysteria'
-    },
-    isNaiveProxy() {
-      return getNodeTypeName(this.temp.nodeTypeId) === 'naiveproxy'
-    },
-    isXrayVless() {
-      return this.isXray && this.temp.xrayProtocol === 'vless'
-    },
-    isXrayVmess() {
-      return this.isXray && this.temp.xrayProtocol === 'vmess'
-    },
-    isXrayTrojan() {
-      return this.isXray && this.temp.xrayProtocol === 'trojan'
-    },
-    isXrayShadowsocks() {
-      return this.isXray && this.temp.xrayProtocol === 'shadowsocks'
-    },
-    isXrayWs() {
-      return this.isXray && this.temp.xrayStreamSettingsEntity.network === 'ws'
-    },
-    showXrayFlow() {
-      return (
-        this.isXrayVless &&
-        (this.temp.xrayStreamSettingsEntity.security === 'tls' ||
-          this.temp.xrayStreamSettingsEntity.security === 'reality')
-      )
-    },
-    showFallback() {
-      return (
-        this.isXray &&
-        (this.temp.xrayProtocol === 'vless' ||
-          this.temp.xrayProtocol === 'trojan') &&
-        this.temp.xrayStreamSettingsEntity.network === 'tcp' &&
-        this.temp.xrayStreamSettingsEntity.security === 'tls'
-      )
-    },
-    isTrojanGoEnableWebsocket() {
-      return this.isTrojanGo && this.temp.trojanGoWebsocketEnable === 1
-    },
-    isTrojanGoEnableSs() {
-      return this.isTrojanGo && this.temp.trojanGoSsEnable === 1
-    },
     statusComputed() {
       return function (status) {
         return status === 1
           ? this.$t('table.nodeStatusSuccess')
           : this.$t('table.nodeStatusError')
-      }
-    },
-    nodeTypeComputed() {
-      return function (nodeTypeId) {
-        let nodeType = this.nodeTypes.find((item) => item.id === nodeTypeId)
-        if (nodeType && nodeType.name) {
-          return nodeType.name
-        }
-        return ''
-      }
-    },
-    nodeServerComputed() {
-      return function (nodeServerId) {
-        let nodeServer = this.nodeServers.find(
-          (item) => item.id === nodeServerId
-        )
-        if (nodeServer && nodeServer.name) {
-          return nodeServer.name
-        } else {
-          return ''
-        }
       }
     }
   },
@@ -511,68 +445,12 @@ export default {
         }, 1.5 * 1000)
       })
     },
-    resetTemp() {
-      this.temp = {
-        id: undefined,
-        nodeServerId: undefined,
-        nodeSubId: undefined,
-        nodeTypeId: 1,
-        name: '',
-        domain: '',
-        port: 443,
-
-        xrayProtocol: 'vless',
-        xrayFlow: '',
-        xraySSMethod: 'aes-256-gcm',
-        xraySettings: '',
-        xraySettingsEntity: {
-          clients: [],
-          fallbacks: [
-            {
-              name: '',
-              alpn: '',
-              path: undefined,
-              dest: '80',
-              xver: 0
-            }
-          ],
-          network: 'tcp'
-        },
-        xrayStreamSettings: '',
-        xrayStreamSettingsEntity: {
-          network: 'tcp',
-          security: 'none',
-          tlsSettings: {},
-          realitySettings: {},
-          wsSettings: {
-            path: '/trojan-panel-websocket-path'
-          }
-        },
-        xrayTag: 'user',
-        xraySniffing: '',
-        xrayAllocate: '',
-
-        trojanGoSni: '',
-        trojanGoMuxEnable: 1,
-        trojanGoWebsocketEnable: 0,
-        trojanGoWebsocketPath: '/trojan-panel-websocket-path',
-        trojanGoWebsocketHost: '',
-        trojanGoSsEnable: 0,
-        trojanGoSsMethod: 'AES-128-GCM',
-        trojanGoSsPassword: '',
-
-        hysteriaProtocol: 'udp',
-        hysteriaUpMbps: 100,
-        hysteriaDownMbps: 100,
-        createTime: new Date()
-      }
-    },
     handleFilter() {
       this.listQuery.pageNum = 1
       this.getList()
     },
     handleCreate() {
-      this.resetTemp()
+      this.$refs.nodeForm.resetTemp()
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
       this.$nextTick(() => {
@@ -720,6 +598,69 @@ export default {
           }
         )
       })
+    },
+    isXray(temp) {
+      return getNodeTypeName(temp.nodeTypeId) === 'xray'
+    },
+    isTrojanGo(temp) {
+      return getNodeTypeName(temp.nodeTypeId) === 'trojan-go'
+    },
+    isHysteria(temp) {
+      return getNodeTypeName(temp.nodeTypeId) === 'hysteria'
+    },
+    isNaiveProxy(temp) {
+      return getNodeTypeName(temp.nodeTypeId) === 'naiveproxy'
+    },
+    isXrayVless(temp) {
+      return this.isXray(temp) && temp.xrayProtocol === 'vless'
+    },
+    isXrayVmess(temp) {
+      return this.isXray(temp) && temp.xrayProtocol === 'vmess'
+    },
+    isXrayTrojan(temp) {
+      return this.isXray(temp) && temp.xrayProtocol === 'trojan'
+    },
+    isXrayShadowsocks(temp) {
+      return this.isXray(temp) && temp.xrayProtocol === 'shadowsocks'
+    },
+    isXrayWs(temp) {
+      return this.isXray(temp) && temp.xrayStreamSettingsEntity.network === 'ws'
+    },
+    showXrayFlow(temp) {
+      return (
+        this.isXrayVless(temp) &&
+        (temp.xrayStreamSettingsEntity.security === 'tls' ||
+          temp.xrayStreamSettingsEntity.security === 'reality')
+      )
+    },
+    showFallback(temp) {
+      return (
+        this.isXray(temp) &&
+        (temp.xrayProtocol === 'vless' || temp.xrayProtocol === 'trojan') &&
+        temp.xrayStreamSettingsEntity.network === 'tcp' &&
+        temp.xrayStreamSettingsEntity.security === 'tls'
+      )
+    },
+    isTrojanGoEnableWebsocket(temp) {
+      return this.isTrojanGo(temp) && temp.trojanGoWebsocketEnable === 1
+    },
+    isTrojanGoEnableSs(temp) {
+      return this.isTrojanGo(temp) && temp.trojanGoSsEnable === 1
+    },
+    nodeTypeComputed(nodeTypeId) {
+      let nodeType = this.nodeTypes.find((item) => item.id === nodeTypeId)
+      if (nodeType && nodeType.name) {
+        return nodeType.name
+      }
+      return ''
+    },
+    nodeServerComputed(nodeServerId) {
+      let nodeServer = this.nodeServers.find((item) => item.id === nodeServerId)
+      if (nodeServer && nodeServer.name) {
+        return nodeServer.name
+      } else {
+        return ''
+      }
     }
   }
 }

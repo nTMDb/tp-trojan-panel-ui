@@ -2,7 +2,8 @@
   <div>
     <el-dialog
       :title="textMap[dialogStatusProps]"
-      :visible.sync="dialogFormVisibleProps"
+      :visible="dialogFormVisibleProps"
+      @close="$emit('update:dialogFormVisibleProps', false)"
     >
       <el-form
         ref="dataForm"
@@ -59,7 +60,7 @@
         <el-form-item
           :label="$t('table.xrayProtocol').toString()"
           prop="xrayProtocol"
-          v-show="isXrayProps"
+          v-show="isXrayProps(temp)"
         >
           <el-select v-model="temp.xrayProtocol" controls-position="right">
             <el-option
@@ -73,7 +74,7 @@
         <el-form-item
           :label="$t('table.xrayStreamSettingsNetwork').toString()"
           prop="xrayStreamSettingsEntity.network"
-          v-show="isXrayProps && !isXrayShadowsocksProps"
+          v-show="isXrayProps(temp) && !isXrayShadowsocksProps(temp)"
         >
           <el-select
             v-model="temp.xrayStreamSettingsEntity.network"
@@ -91,14 +92,14 @@
         <el-form-item
           :label="$t('table.xrayStreamSettingsWsSettingsPath').toString()"
           prop="xrayStreamSettingsEntity.wsSettings.path"
-          v-show="isXrayWsProps && !isXrayShadowsocksProps"
+          v-show="isXrayWsProps(temp) && !isXrayShadowsocksProps(temp)"
         >
           <el-input v-model="temp.xrayStreamSettingsEntity.wsSettings.path" />
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayStreamSettingsSecurity').toString()"
           prop="xrayStreamSettingsEntity.security"
-          v-show="isXrayProps && !isXrayShadowsocksProps"
+          v-show="isXrayProps(temp) && !isXrayShadowsocksProps(temp)"
         >
           <el-select
             v-model="temp.xrayStreamSettingsEntity.security"
@@ -116,7 +117,7 @@
         <el-form-item
           :label="$t('table.xrayFlow').toString()"
           prop="xrayFlow"
-          v-show="showXrayFlowProps"
+          v-show="showXrayFlowProps(temp)"
         >
           <el-select v-model="temp.xrayFlow" controls-position="right">
             <el-option
@@ -130,7 +131,7 @@
         <el-form-item
           :label="$t('table.xraySSMethod').toString()"
           prop="xraySSMethod"
-          v-show="isXrayShadowsocksProps"
+          v-show="isXrayShadowsocksProps(temp)"
         >
           <el-select v-model="temp.xraySSMethod" controls-position="right">
             <el-option
@@ -144,7 +145,7 @@
         <el-form-item
           :label="$t('table.xraySSNetwork').toString()"
           prop="xraySettingsEntity.network"
-          v-show="isXrayShadowsocksProps"
+          v-show="isXrayShadowsocksProps(temp)"
         >
           <el-select
             v-model="temp.xraySettingsEntity.network"
@@ -161,7 +162,7 @@
         <el-form-item
           :label="$t('table.xrayFallbacks').toString()"
           prop="xraySettingsEntity.fallbacks"
-          v-show="showFallbackProps"
+          v-show="showFallbackProps(temp)"
         >
           <el-tag
             v-for="(item, index) in temp.xraySettingsEntity.fallbacks"
@@ -185,14 +186,14 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSni').toString()"
-          v-show="isTrojanGoProps"
+          v-show="isTrojanGoProps(temp)"
           prop="trojanGoSni"
         >
           <el-input v-model="temp.trojanGoSni" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoMuxEnable').toString()"
-          v-show="isTrojanGoProps"
+          v-show="isTrojanGoProps(temp)"
           prop="trojanGoMuxEnable"
         >
           <el-switch
@@ -208,7 +209,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketEnable').toString()"
-          v-show="isTrojanGoProps"
+          v-show="isTrojanGoProps(temp)"
           prop="trojanGoWebsocketEnable"
         >
           <el-switch
@@ -225,21 +226,21 @@
         <el-form-item
           :label="$t('table.trojanGoWebsocketPath').toString()"
           prop="trojanGoWebsocketPath"
-          v-show="isTrojanGoEnableWebsocketProps"
+          v-show="isTrojanGoEnableWebsocketProps(temp)"
         >
           <el-input v-model="temp.trojanGoWebsocketPath" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoWebsocketHost').toString()"
           prop="trojanGoWebsocketHost"
-          v-show="isTrojanGoEnableWebsocketProps"
+          v-show="isTrojanGoEnableWebsocketProps(temp)"
         >
           <el-input v-model="temp.trojanGoWebsocketHost" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSsEnable').toString()"
           prop="trojanGoSsEnable"
-          v-show="isTrojanGoEnableWebsocketProps"
+          v-show="isTrojanGoEnableWebsocketProps(temp)"
         >
           <el-switch
             v-model="temp.trojanGoSsEnable"
@@ -255,7 +256,10 @@
         <el-form-item
           :label="$t('table.trojanGoSsMethod').toString()"
           prop="trojanGoSsMethod"
-          v-show="isTrojanGoEnableWebsocketProps && isTrojanGoEnableSsProps"
+          v-show="
+            isTrojanGoEnableWebsocketProps(temp) &&
+            isTrojanGoEnableSsProps(temp)
+          "
         >
           <el-select
             v-model="temp.trojanGoSsMethod"
@@ -273,14 +277,17 @@
         <el-form-item
           :label="$t('table.trojanGoSsPassword').toString()"
           prop="trojanGoSsPassword"
-          v-show="isTrojanGoEnableWebsocketProps && isTrojanGoEnableSsProps"
+          v-show="
+            isTrojanGoEnableWebsocketProps(temp) &&
+            isTrojanGoEnableSsProps(temp)
+          "
         >
           <el-input v-model="temp.trojanGoSsPassword" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaProtocol').toString()"
           prop="hysteriaProtocol"
-          v-show="isHysteriaProps"
+          v-show="isHysteriaProps(temp)"
         >
           <el-select
             v-model="temp.hysteriaProtocol"
@@ -297,7 +304,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaUpMbps').toString()"
-          v-show="isHysteriaProps"
+          v-show="isHysteriaProps(temp)"
           prop="hysteriaUpMbps"
         >
           <el-input-number
@@ -308,7 +315,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.hysteriaDownMbps').toString()"
-          v-show="isHysteriaProps"
+          v-show="isHysteriaProps(temp)"
           prop="hysteriaDownMbps"
         >
           <el-input-number
@@ -317,12 +324,12 @@
             type="number"
           />
         </el-form-item>
-        <el-form-item v-show="isHysteriaProps">
+        <el-form-item v-show="isHysteriaProps(temp)">
           <aside>
             {{ $t('table.hysteriaTip') }}
           </aside>
         </el-form-item>
-        <el-form-item v-show="isNaiveProxyProps">
+        <el-form-item v-show="isNaiveProxyProps(temp)">
           <aside>
             {{ $t('table.naiveproxyTip') }}
           </aside>
@@ -342,14 +349,14 @@
     </el-dialog>
 
     <FallbackInfo
-      :dialog-visible.sync="dialogFallbackDetailVisible"
-      :fallback="fallback"
+      :dialog-visible-props.sync="dialogFallbackDetailVisible"
+      :fallback-prpops="fallback"
     />
 
     <FallbackForm
       ref="fallbackForm"
-      :create-fallback="createFallback"
-      :dialog-visible.sync="dialogFallbackFormVisible"
+      :create-fallback-props="createFallback"
+      :dialog-visible-props.sync="dialogFallbackFormVisible"
     />
   </div>
 </template>
@@ -376,43 +383,47 @@ export default {
       required: true
     },
     isXrayProps: {
-      type: Boolean,
+      type: Function,
       required: true
     },
     isXrayShadowsocksProps: {
-      type: Boolean,
+      type: Function,
       required: true
     },
     showXrayFlowProps: {
-      type: Boolean,
+      type: Function,
       required: true
     },
     showFallbackProps: {
-      type: Boolean,
+      type: Function,
       required: true
     },
     isTrojanGoProps: {
-      type: Boolean,
+      type: Function,
       required: true
     },
     isHysteriaProps: {
-      type: Boolean,
+      type: Function,
       required: true
     },
     isNaiveProxyProps: {
-      type: Boolean,
+      type: Function,
+      required: true
+    },
+    isXrayVlessProps: {
+      type: Function,
       required: true
     },
     isXrayWsProps: {
-      type: Boolean,
+      type: Function,
       required: true
     },
     isTrojanGoEnableSsProps: {
-      type: Boolean,
+      type: Function,
       required: true
     },
     isTrojanGoEnableWebsocketProps: {
-      type: Boolean,
+      type: Function,
       required: true
     },
     nodeServersProps: {
@@ -422,12 +433,16 @@ export default {
     nodeTypesProps: {
       type: Array,
       required: true
+    },
+    getListProps: {
+      type: Function,
+      required: true
     }
   },
   computed: {
     xrayStreamSettingsSecuritys() {
       let securitys = ['none', 'tls']
-      if (this.isXrayVless) {
+      if (this.isXrayVlessProps(this.temp)) {
         securitys.push('reality')
       }
       return securitys
@@ -968,7 +983,7 @@ export default {
           )
           this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
           createNode(this.temp).then(() => {
-            this.getList()
+            this.getListProps()
             this.$emit('update:dialogFormVisibleProps', false)
             this.$notify({
               title: 'Success',
@@ -996,8 +1011,7 @@ export default {
           this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
           const tempData = Object.assign({}, this.temp)
           updateNodeById(tempData).then(() => {
-            const index = this.list.findIndex((v) => v.id === this.temp.id)
-            this.list.splice(index, 1, this.temp)
+            this.getListProps()
             this.$emit('update:dialogFormVisibleProps', false)
             this.$notify({
               title: 'Success',
@@ -1041,7 +1055,7 @@ export default {
     },
     xrayStreamSettingsSecurityChange() {
       if (
-        this.isXrayVless &&
+        this.isXrayVlessProps(this.temp) &&
         (this.temp.xrayStreamSettingsEntity.security === 'tls' ||
           this.temp.xrayStreamSettingsEntity.security === 'reality')
       ) {
