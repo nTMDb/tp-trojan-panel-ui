@@ -212,8 +212,8 @@
     />
 
     <NodeQrcode
-      :qr-code-src="qrCodeSrc"
-      :dialog-visible.sync="dialogQRCodeVisible"
+      :dialog-visible-props="dialogQRCodeVisible"
+      :qr-code-src-props="qrCodeSrc"
     />
   </div>
 </template>
