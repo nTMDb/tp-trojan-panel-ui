@@ -422,6 +422,62 @@ export default {
         this.nodeServers = data
       })
     },
+    resetTemp() {
+      this.temp = {
+        id: undefined,
+        nodeServerId: undefined,
+        nodeSubId: undefined,
+        nodeTypeId: 1,
+        name: '',
+        domain: '',
+        port: 443,
+
+        xrayProtocol: 'vless',
+        xrayFlow: '',
+        xraySSMethod: 'aes-256-gcm',
+        xraySettings: '',
+        xraySettingsEntity: {
+          clients: [],
+          fallbacks: [
+            {
+              name: '',
+              alpn: '',
+              path: undefined,
+              dest: '80',
+              xver: 0
+            }
+          ],
+          network: 'tcp'
+        },
+        xrayStreamSettings: '',
+        xrayStreamSettingsEntity: {
+          network: 'tcp',
+          security: 'none',
+          tlsSettings: {},
+          realitySettings: {},
+          wsSettings: {
+            path: '/trojan-panel-websocket-path'
+          }
+        },
+        xrayTag: 'user',
+        xraySniffing: '',
+        xrayAllocate: '',
+
+        trojanGoSni: '',
+        trojanGoMuxEnable: 1,
+        trojanGoWebsocketEnable: 0,
+        trojanGoWebsocketPath: '/trojan-panel-websocket-path',
+        trojanGoWebsocketHost: '',
+        trojanGoSsEnable: 0,
+        trojanGoSsMethod: 'AES-128-GCM',
+        trojanGoSsPassword: '',
+
+        hysteriaProtocol: 'udp',
+        hysteriaUpMbps: 100,
+        hysteriaDownMbps: 100,
+        createTime: new Date()
+      }
+    },
     getList() {
       this.listLoading = true
       selectNodePage(this.listQuery).then((response) => {
@@ -438,7 +494,7 @@ export default {
       this.getList()
     },
     handleCreate() {
-      this.$refs.nodeForm.resetTemp()
+      this.resetTemp()
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
       this.$nextTick(() => {

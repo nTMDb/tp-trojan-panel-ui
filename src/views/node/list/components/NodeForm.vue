@@ -8,17 +8,17 @@
       <el-form
         ref="dataForm"
         :rules="dialogStatusProps === 'create' ? createRules : updateRules"
-        :model="temp"
+        :model="nodeProps"
         label-position="left"
       >
         <el-form-item :label="$t('table.nodeName').toString()" prop="name">
-          <el-input v-model="temp.name" clearable />
+          <el-input v-model="nodeProps.name" clearable />
         </el-form-item>
         <el-form-item
           :label="$t('table.nodeServer').toString()"
           prop="nodeServerId"
         >
-          <el-select v-model="temp.nodeServerId" controls-position="right">
+          <el-select v-model="nodeProps.nodeServerId" controls-position="right">
             <el-option
               :label="item.name"
               :value="item.id"
@@ -34,11 +34,11 @@
           ></el-button>
         </el-form-item>
         <el-form-item :label="$t('table.nodeDomain').toString()" prop="domain">
-          <el-input v-model="temp.domain" clearable />
+          <el-input v-model="nodeProps.domain" clearable />
         </el-form-item>
         <el-form-item :label="$t('table.nodePort').toString()" prop="port">
           <el-input-number
-            v-model.number="temp.port"
+            v-model.number="nodeProps.port"
             controls-position="right"
             type="number"
           />
@@ -48,7 +48,7 @@
           :label="$t('table.nodeType').toString()"
           prop="nodeTypeId"
         >
-          <el-select v-model="temp.nodeTypeId" controls-position="right">
+          <el-select v-model="nodeProps.nodeTypeId" controls-position="right">
             <el-option
               :label="item.name"
               :value="item.id"
@@ -59,24 +59,24 @@
         </el-form-item>
 
         <XrayForm
-          :node-props="temp"
-          :form-visible-props="isXray(temp)"
+          :node-props="nodeProps"
+          :form-visible-props="isXray(nodeProps)"
           :handle-create-fallback-props="handleCreateFallback"
           :handle-fallback-detail-props="handleFallbackDetail"
           :delete-fallback-props="deleteFallback"
         />
 
         <TrojanGoForm
-          :node-props="temp"
-          :form-visible-props="isTrojanGo(temp)"
+          :node-props="nodeProps"
+          :form-visible-props="isTrojanGo(nodeProps)"
         />
 
         <HysteriaForm
-          :node-props="temp"
-          :form-visible-props="isHysteria(temp)"
+          :node-props="nodeProps"
+          :form-visible-props="isHysteria(nodeProps)"
         />
 
-        <NaiveProxyForm :form-visible-props="isNaiveProxy(temp)" />
+        <NaiveProxyForm :form-visible-props="isNaiveProxy(nodeProps)" />
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="$emit('update:dialogFormVisibleProps', false)"
@@ -161,9 +161,9 @@ export default {
   data() {
     const validateXraySettingsEntityNetwork = (rule, value, callback) => {
       if (
-        (isXrayShadowsocksAEAD(this.temp) ||
-          isXrayShadowsocks2022(this.temp)) &&
-        this.temp.xraySettingsEntity.network.trim().length === 0
+        (isXrayShadowsocksAEAD(this.nodeProps) ||
+          isXrayShadowsocks2022(this.nodeProps)) &&
+        this.nodeProps.xraySettingsEntity.network.trim().length === 0
       ) {
         callback(new Error(this.$t('valid.xraySSNetwork').toString()))
       } else {
@@ -172,9 +172,9 @@ export default {
     }
     const validateXrayStreamSettingsEntityNetwork = (rule, value, callback) => {
       if (
-        !isXrayShadowsocksAEAD(this.temp) &&
-        !isXrayShadowsocks2022(this.temp) &&
-        this.temp.xrayStreamSettingsEntity.network.trim().length === 0
+        !isXrayShadowsocksAEAD(this.nodeProps) &&
+        !isXrayShadowsocks2022(this.nodeProps) &&
+        this.nodeProps.xrayStreamSettingsEntity.network.trim().length === 0
       ) {
         callback(new Error(this.$t('valid.xrayNetwork').toString()))
       } else {
@@ -187,8 +187,8 @@ export default {
       callback
     ) => {
       if (
-        isXrayStreamSettingsSecurityReality(this.temp) &&
-        !this.temp.xrayStreamSettingsEntity.realitySettings.dest
+        isXrayStreamSettingsSecurityReality(this.nodeProps) &&
+        !this.nodeProps.xrayStreamSettingsEntity.realitySettings.dest
       ) {
         callback(
           new Error(
@@ -207,9 +207,9 @@ export default {
       callback
     ) => {
       if (
-        isXrayStreamSettingsSecurityReality(this.temp) &&
-        (!this.temp.xrayStreamSettingsEntity.realitySettings.serverNames ||
-          this.temp.xrayStreamSettingsEntity.realitySettings.serverNames
+        isXrayStreamSettingsSecurityReality(this.nodeProps) &&
+        (!this.nodeProps.xrayStreamSettingsEntity.realitySettings.serverNames ||
+          this.nodeProps.xrayStreamSettingsEntity.realitySettings.serverNames
             .length === 0)
       ) {
         callback(
@@ -229,8 +229,8 @@ export default {
       callback
     ) => {
       if (
-        isXrayStreamSettingsSecurityReality(this.temp) &&
-        !this.temp.xrayStreamSettingsEntity.realitySettings.privateKey
+        isXrayStreamSettingsSecurityReality(this.nodeProps) &&
+        !this.nodeProps.xrayStreamSettingsEntity.realitySettings.privateKey
       ) {
         callback(
           new Error(
@@ -249,10 +249,10 @@ export default {
       callback
     ) => {
       if (
-        isXrayStreamSettingsSecurityReality(this.temp) &&
-        (!this.temp.xrayStreamSettingsEntity.realitySettings.shortIds ||
-          this.temp.xrayStreamSettingsEntity.realitySettings.shortIds.length ===
-            0)
+        isXrayStreamSettingsSecurityReality(this.nodeProps) &&
+        (!this.nodeProps.xrayStreamSettingsEntity.realitySettings.shortIds ||
+          this.nodeProps.xrayStreamSettingsEntity.realitySettings.shortIds
+            .length === 0)
       ) {
         callback(
           new Error(
@@ -266,7 +266,6 @@ export default {
       }
     }
     return {
-      temp: this.nodeProps,
       fallback: {
         name: '',
         alpn: '',
@@ -711,77 +710,23 @@ export default {
     isTrojanGo,
     isHysteria,
     isNaiveProxy,
-    resetTemp() {
-      this.temp = {
-        id: undefined,
-        nodeServerId: undefined,
-        nodeSubId: undefined,
-        nodeTypeId: 1,
-        name: '',
-        domain: '',
-        port: 443,
-
-        xrayProtocol: 'vless',
-        xrayFlow: '',
-        xraySSMethod: 'aes-256-gcm',
-        xraySettings: '',
-        xraySettingsEntity: {
-          clients: [],
-          fallbacks: [
-            {
-              name: '',
-              alpn: '',
-              path: undefined,
-              dest: '80',
-              xver: 0
-            }
-          ],
-          network: 'tcp'
-        },
-        xrayStreamSettings: '',
-        xrayStreamSettingsEntity: {
-          network: 'tcp',
-          security: 'none',
-          tlsSettings: {},
-          realitySettings: {},
-          wsSettings: {
-            path: '/trojan-panel-websocket-path'
-          }
-        },
-        xrayTag: 'user',
-        xraySniffing: '',
-        xrayAllocate: '',
-
-        trojanGoSni: '',
-        trojanGoMuxEnable: 1,
-        trojanGoWebsocketEnable: 0,
-        trojanGoWebsocketPath: '/trojan-panel-websocket-path',
-        trojanGoWebsocketHost: '',
-        trojanGoSsEnable: 0,
-        trojanGoSsMethod: 'AES-128-GCM',
-        trojanGoSsPassword: '',
-
-        hysteriaProtocol: 'udp',
-        hysteriaUpMbps: 100,
-        hysteriaDownMbps: 100,
-        createTime: new Date()
-      }
-    },
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           if (
-            this.temp.xrayProtocol === 'vless' &&
-            this.temp.xrayStreamSettings.network !== 'none'
+            this.nodeProps.xrayProtocol === 'vless' &&
+            this.nodeProps.xrayStreamSettings.network !== 'none'
           ) {
-            this.temp.xraySettingsEntity.decryption = 'none'
+            this.nodeProps.xraySettingsEntity.decryption = 'none'
           }
 
-          this.temp.xrayStreamSettings = JSON.stringify(
-            this.temp.xrayStreamSettingsEntity
+          this.nodeProps.xrayStreamSettings = JSON.stringify(
+            this.nodeProps.xrayStreamSettingsEntity
           )
-          this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
-          createNode(this.temp).then(() => {
+          this.nodeProps.xraySettings = JSON.stringify(
+            this.nodeProps.xraySettingsEntity
+          )
+          createNode(this.nodeProps).then(() => {
             this.getListProps()
             this.$emit('update:dialogFormVisibleProps', false)
             this.$notify({
@@ -798,18 +743,20 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           if (
-            this.temp.xrayProtocol === 'vless' &&
-            this.temp.xrayStreamSettings.network !== 'none'
+            this.nodeProps.xrayProtocol === 'vless' &&
+            this.nodeProps.xrayStreamSettings.network !== 'none'
           ) {
-            this.temp.xraySettingsEntity.decryption = 'none'
+            this.nodeProps.xraySettingsEntity.decryption = 'none'
           }
 
-          this.temp.xrayStreamSettings = JSON.stringify(
-            this.temp.xrayStreamSettingsEntity
+          this.nodeProps.xrayStreamSettings = JSON.stringify(
+            this.nodeProps.xrayStreamSettingsEntity
           )
-          this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
-          const tempData = Object.assign({}, this.temp)
-          updateNodeById(tempData).then(() => {
+          this.nodeProps.xraySettings = JSON.stringify(
+            this.nodeProps.xraySettingsEntity
+          )
+          const nodePropsData = Object.assign({}, this.nodeProps)
+          updateNodeById(nodePropsData).then(() => {
             this.getListProps()
             this.$emit('update:dialogFormVisibleProps', false)
             this.$notify({
@@ -831,21 +778,25 @@ export default {
       this.fallback = fallback
     },
     deleteFallback(fallback) {
-      for (let i = 0; i < this.temp.xraySettingsEntity.fallbacks.length; i++) {
-        let temp = this.temp.xraySettingsEntity.fallbacks[i]
+      for (
+        let i = 0;
+        i < this.nodeProps.xraySettingsEntity.fallbacks.length;
+        i++
+      ) {
+        let nodeProps = this.nodeProps.xraySettingsEntity.fallbacks[i]
         if (
-          fallback.alpn === temp.alpn &&
-          fallback.name === temp.name &&
-          fallback.path === temp.path &&
-          fallback.dest === temp.dest &&
-          fallback.xver === temp.xver
+          fallback.alpn === nodeProps.alpn &&
+          fallback.name === nodeProps.name &&
+          fallback.path === nodeProps.path &&
+          fallback.dest === nodeProps.dest &&
+          fallback.xver === nodeProps.xver
         ) {
-          this.temp.xraySettingsEntity.fallbacks.splice(i, 1)
+          this.nodeProps.xraySettingsEntity.fallbacks.splice(i, 1)
         }
       }
     },
     createFallback(fallback) {
-      this.temp.xraySettingsEntity.fallbacks.push(fallback)
+      this.nodeProps.xraySettingsEntity.fallbacks.push(fallback)
     },
     toAddNodeServer() {
       this.$router.push({ path: '/server-manage/server-list' })
