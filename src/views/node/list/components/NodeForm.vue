@@ -188,6 +188,7 @@ export default {
     ) => {
       if (
         isXrayStreamSettingsSecurityReality(this.temp) &&
+        this.temp.xrayStreamSettingsEntity.realitySettings.dest &&
         this.temp.xrayStreamSettingsEntity.realitySettings.dest.length === 0
       ) {
         callback(new Error(this.$t('valid.xrayNetwork').toString()))
@@ -202,6 +203,7 @@ export default {
     ) => {
       if (
         isXrayStreamSettingsSecurityReality(this.temp) &&
+        this.temp.xrayStreamSettingsEntity.realitySettings.serverNames &&
         this.temp.xrayStreamSettingsEntity.realitySettings.serverNames
           .length === 0
       ) {
