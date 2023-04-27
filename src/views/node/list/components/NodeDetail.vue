@@ -66,6 +66,65 @@
           <el-tag>{{ nodeInfoProps.xrayStreamSettingsEntity.security }}</el-tag>
         </el-form-item>
         <el-form-item
+          label="dest"
+          v-show="isXrayStreamSettingsSecurityReality(nodeInfoProps)"
+        >
+          <el-tag
+            >{{ nodeInfoProps.xrayStreamSettingsEntity.realitySettings.dest }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          label="xver"
+          v-show="isXrayStreamSettingsSecurityReality(nodeInfoProps)"
+        >
+          <el-tag
+            >{{ nodeInfoProps.xrayStreamSettingsEntity.realitySettings.xver }}
+          </el-tag>
+        </el-form-item>
+
+        <el-form-item
+          label="serverNames"
+          v-show="isXrayStreamSettingsSecurityReality(nodeInfoProps)"
+        >
+          <el-tag
+            v-for="(item, index) in nodeInfoProps.xrayStreamSettingsEntity
+              .realitySettings.serverNames"
+            :key="index"
+            :disable-transitions="true"
+            type="success"
+            effect="dark"
+            size="medium"
+          >
+            {{ item }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          label="privateKey"
+          v-show="isXrayStreamSettingsSecurityReality(nodeInfoProps)"
+        >
+          <el-tag
+            >{{
+              nodeInfoProps.xrayStreamSettingsEntity.realitySettings.privateKey
+            }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          label="serverNames"
+          v-show="isXrayStreamSettingsSecurityReality(nodeInfoProps)"
+        >
+          <el-tag
+            v-for="(item, index) in nodeInfoProps.xrayStreamSettingsEntity
+              .realitySettings.shortIds"
+            :key="index"
+            :disable-transitions="true"
+            type="success"
+            effect="dark"
+            size="medium"
+          >
+            {{ item }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
           :label="$t('table.xrayFlow').toString()"
           v-show="showXrayFlow(nodeInfoProps)"
         >
@@ -226,6 +285,7 @@ import {
   isTrojanGoEnableWebsocket,
   isXray,
   isXrayShadowsocks,
+  isXrayStreamSettingsSecurityReality,
   isXrayWs,
   nodeServerFind,
   nodeTypeFind,
@@ -306,6 +366,7 @@ export default {
     isNaiveProxy,
     nodeServerFind,
     nodeTypeFind,
+    isXrayStreamSettingsSecurityReality,
     handleFallbackDetail(fallback) {
       this.dialogDetailFallbackDetailVisible = true
       this.fallback = fallback

@@ -100,7 +100,7 @@ export default {
 }
 
 .input-new-tag {
-  width: 90px;
+  width: 120px;
   margin-left: 10px;
   vertical-align: bottom;
 }
