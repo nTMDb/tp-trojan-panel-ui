@@ -46,7 +46,9 @@ export default {
     dynamicTagsProps: {
       type: Array,
       require: true,
-      default: []
+      default: function () {
+        return []
+      }
     }
   },
   methods: {
