@@ -56,6 +56,12 @@
         ></el-option>
       </el-select>
     </el-form-item>
+
+    <XrayFormReality
+      :form-visible-props="isXrayStreamSettingsSecurityReality(nodeProps)"
+      :node-props="nodeProps"
+    />
+
     <el-form-item
       :label="$t('table.xrayFlow').toString()"
       prop="xrayFlow"
@@ -135,15 +141,17 @@ import FallbackForm from '@/views/node/list/components/FallbackForm'
 
 import {
   isXrayShadowsocks,
+  isXrayStreamSettingsSecurityReality,
   isXrayVless,
   isXrayWs,
   showFallback,
   showXrayFlow
 } from '@/utils/node.js'
+import XrayFormReality from '@/views/node/list/components/XrayFormReality'
 
 export default {
   name: 'XrayForm',
-  components: { FallbackInfo, FallbackForm },
+  components: { XrayFormReality, FallbackInfo, FallbackForm },
   props: {
     nodeProps: {
       type: Object,
@@ -213,6 +221,7 @@ export default {
     showFallback,
     showXrayFlow,
     isXrayWs,
+    isXrayStreamSettingsSecurityReality,
     xrayStreamSettingsNetworkChange() {
       if (this.nodeProps.xrayStreamSettingsEntity.network === 'ws') {
         this.nodeProps.xrayStreamSettingsEntity.security = 'tls'
@@ -235,6 +244,10 @@ export default {
 
 <style scoped>
 .el-tag + .el-tag {
+  margin-left: 10px;
+}
+
+.el-button {
   margin-left: 10px;
 }
 </style>

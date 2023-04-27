@@ -318,4 +318,8 @@ export default {
 .el-tag + .el-tag {
   margin-left: 10px;
 }
+
+.el-button {
+  margin-left: 10px;
+}
 </style>

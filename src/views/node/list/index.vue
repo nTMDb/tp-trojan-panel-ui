@@ -289,7 +289,13 @@ export default {
           network: 'tcp',
           security: 'none',
           tlsSettings: {},
-          realitySettings: {},
+          realitySettings: {
+            dest: '',
+            xver: 0,
+            serverNames: [],
+            privateKey: '',
+            shortIds: []
+          },
           wsSettings: {
             path: '/trojan-panel-websocket-path'
           }
@@ -346,7 +352,13 @@ export default {
           network: 'tcp',
           security: 'none',
           tlsSettings: {},
-          realitySettings: {},
+          realitySettings: {
+            dest: '',
+            xver: 0,
+            serverNames: [],
+            privateKey: '',
+            shortIds: []
+          },
           wsSettings: {
             path: '/trojan-panel-websocket-path'
           }
@@ -594,10 +606,6 @@ export default {
 
 <style scoped>
 .el-button {
-  margin-left: 10px;
-}
-
-.el-tag + .el-tag {
   margin-left: 10px;
 }
 </style>

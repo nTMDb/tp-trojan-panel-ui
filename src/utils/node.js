@@ -99,3 +99,7 @@ export function showAlterId(temp) {
     (temp.xrayProtocol === 'vless' || temp.xrayProtocol === 'vmess')
   )
 }
+
+export function isXrayStreamSettingsSecurityReality(temp) {
+  return isXray(temp) && temp.xrayStreamSettingsEntity.security === 'reality'
+}
