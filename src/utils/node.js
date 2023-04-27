@@ -103,3 +103,79 @@ export function showAlterId(temp) {
 export function isXrayStreamSettingsSecurityReality(temp) {
   return isXray(temp) && temp.xrayStreamSettingsEntity.security === 'reality'
 }
+
+export function handleNodeDetail(nodeDetail, responseData) {
+  nodeDetail.password = responseData.password
+  if (nodeDetail.nodeTypeId === 1) {
+    nodeDetail.xrayProtocol = responseData.xrayProtocol
+    nodeDetail.xraySettings = responseData.xraySettings
+    nodeDetail.xraySettingsEntity = Object.assign(
+      nodeDetail.xraySettingsEntity,
+      responseData.xraySettingsEntity
+    )
+    nodeDetail.xrayStreamSettingsEntity = Object.assign(
+      nodeDetail.xrayStreamSettingsEntity,
+      responseData.xrayStreamSettingsEntity
+    )
+    nodeDetail.xrayTag = responseData.xrayTag
+    nodeDetail.xraySniffing = responseData.xraySniffing
+    nodeDetail.xrayAllocate = responseData.xrayAllocate
+    nodeDetail.uuid = responseData.uuid
+    nodeDetail.alterId = responseData.alterId
+    nodeDetail.xrayFlow = responseData.xrayFlow
+    nodeDetail.xraySSMethod = responseData.xraySSMethod
+  }
+  if (nodeDetail.nodeTypeId === 2) {
+    nodeDetail.trojanGoSni = responseData.trojanGoSni
+    nodeDetail.trojanGoMuxEnable = responseData.trojanGoMuxEnable
+    nodeDetail.trojanGoWebsocketEnable = responseData.trojanGoWebsocketEnable
+    nodeDetail.trojanGoWebsocketPath = responseData.trojanGoWebsocketPath
+    nodeDetail.trojanGoWebsocketHost = responseData.trojanGoWebsocketHost
+    nodeDetail.trojanGoSsEnable = responseData.trojanGoSsEnable
+    nodeDetail.trojanGoSsMethod = responseData.trojanGoSsMethod
+    nodeDetail.trojanGoSsPassword = responseData.trojanGoSsPassword
+  }
+  if (nodeDetail.nodeTypeId === 3) {
+    nodeDetail.hysteriaProtocol = responseData.hysteriaProtocol
+    nodeDetail.hysteriaUpMbps = responseData.hysteriaUpMbps
+    nodeDetail.hysteriaDownMbps = responseData.hysteriaDownMbps
+  }
+  if (nodeDetail.nodeTypeId === 4) {
+    nodeDetail.naiveProxyUsername = responseData.naiveProxyUsername
+  }
+  return nodeDetail
+}
+
+export function handleNodeUpdate(temp, responseData) {
+  if (temp.nodeTypeId === 1) {
+    temp.xrayProtocol = responseData.xrayProtocol
+    temp.xraySettings = responseData.xraySettings
+    temp.xraySettingsEntity = Object.assign(
+      temp.xraySettingsEntity,
+      responseData.xraySettingsEntity
+    )
+    temp.xrayStreamSettingsEntity = Object.assign(
+      temp.xrayStreamSettingsEntity,
+      responseData.xrayStreamSettingsEntity
+    )
+    temp.xrayTag = responseData.xrayTag
+    temp.xraySniffing = responseData.xraySniffing
+    temp.xrayAllocate = responseData.xrayAllocate
+  }
+  if (temp.nodeTypeId === 2) {
+    temp.trojanGoSni = responseData.trojanGoSni
+    temp.trojanGoMuxEnable = responseData.trojanGoMuxEnable
+    temp.trojanGoWebsocketEnable = responseData.trojanGoWebsocketEnable
+    temp.trojanGoWebsocketPath = responseData.trojanGoWebsocketPath
+    temp.trojanGoWebsocketHost = responseData.trojanGoWebsocketHost
+    temp.trojanGoSsEnable = responseData.trojanGoSsEnable
+    temp.trojanGoSsMethod = responseData.trojanGoSsMethod
+    temp.trojanGoSsPassword = responseData.trojanGoSsPassword
+  }
+  if (temp.nodeTypeId === 3) {
+    temp.hysteriaProtocol = responseData.hysteriaProtocol
+    temp.hysteriaUpMbps = responseData.hysteriaUpMbps
+    temp.hysteriaDownMbps = responseData.hysteriaDownMbps
+  }
+  return temp
+}

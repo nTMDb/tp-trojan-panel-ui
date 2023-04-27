@@ -213,7 +213,12 @@ import {
   selectNodePage
 } from '@/api/node'
 import { selectNodeTypeList } from '@/api/node-type'
-import { nodeServerFind, nodeTypeFind } from '@/utils/node'
+import {
+  handleNodeDetail,
+  handleNodeUpdate,
+  nodeServerFind,
+  nodeTypeFind
+} from '@/utils/node'
 import checkPermission from '@/utils/permission'
 import { timeStampToDate } from '@/utils'
 import { clashSubscribe } from '@/api/account'
@@ -405,14 +410,6 @@ export default {
     checkPermission,
     nodeServerFind,
     nodeTypeFind,
-    handleQRCode(row) {
-      this.qrCodeSrc = ''
-      const tempData = Object.assign({}, row)
-      nodeQRCode(tempData).then((response) => {
-        this.qrCodeSrc = 'data:image/png;base64,' + response.data
-        this.dialogQRCodeVisible = true
-      })
-    },
     setNodeTypes() {
       selectNodeTypeList().then((response) => {
         const { data } = response
@@ -451,37 +448,7 @@ export default {
     handleUpdate(row) {
       this.temp = Object.assign(this.temp, row)
       selectNodeById({ id: row.id }).then((response) => {
-        if (this.temp.nodeTypeId === 1) {
-          this.temp.xrayProtocol = response.data.xrayProtocol
-          this.temp.xraySettings = response.data.xraySettings
-          this.temp.xraySettingsEntity = Object.assign(
-            this.temp.xraySettingsEntity,
-            response.data.xraySettingsEntity
-          )
-          this.temp.xrayStreamSettingsEntity = Object.assign(
-            this.temp.xrayStreamSettingsEntity,
-            response.data.xrayStreamSettingsEntity
-          )
-          this.temp.xrayTag = response.data.xrayTag
-          this.temp.xraySniffing = response.data.xraySniffing
-          this.temp.xrayAllocate = response.data.xrayAllocate
-        }
-        if (this.temp.nodeTypeId === 2) {
-          this.temp.trojanGoSni = response.data.trojanGoSni
-          this.temp.trojanGoMuxEnable = response.data.trojanGoMuxEnable
-          this.temp.trojanGoWebsocketEnable =
-            response.data.trojanGoWebsocketEnable
-          this.temp.trojanGoWebsocketPath = response.data.trojanGoWebsocketPath
-          this.temp.trojanGoWebsocketHost = response.data.trojanGoWebsocketHost
-          this.temp.trojanGoSsEnable = response.data.trojanGoSsEnable
-          this.temp.trojanGoSsMethod = response.data.trojanGoSsMethod
-          this.temp.trojanGoSsPassword = response.data.trojanGoSsPassword
-        }
-        if (this.temp.nodeTypeId === 3) {
-          this.temp.hysteriaProtocol = response.data.hysteriaProtocol
-          this.temp.hysteriaUpMbps = response.data.hysteriaUpMbps
-          this.temp.hysteriaDownMbps = response.data.hysteriaDownMbps
-        }
+        this.temp = handleNodeUpdate(this.temp, response.data)
         this.dialogStatus = 'update'
         this.dialogFormVisible = true
         this.$nextTick(() => {
@@ -492,47 +459,7 @@ export default {
     handleDetail(row) {
       this.nodeDetail = Object.assign(this.temp, row)
       selectNodeInfo({ id: row.id }).then((response) => {
-        this.nodeDetail.password = response.data.password
-        if (this.nodeDetail.nodeTypeId === 1) {
-          this.nodeDetail.xrayProtocol = response.data.xrayProtocol
-          this.nodeDetail.xraySettings = response.data.xraySettings
-          this.nodeDetail.xraySettingsEntity = Object.assign(
-            this.nodeDetail.xraySettingsEntity,
-            response.data.xraySettingsEntity
-          )
-          this.nodeDetail.xrayStreamSettingsEntity = Object.assign(
-            this.nodeDetail.xrayStreamSettingsEntity,
-            response.data.xrayStreamSettingsEntity
-          )
-          this.nodeDetail.xrayTag = response.data.xrayTag
-          this.nodeDetail.xraySniffing = response.data.xraySniffing
-          this.nodeDetail.xrayAllocate = response.data.xrayAllocate
-          this.nodeDetail.uuid = response.data.uuid
-          this.nodeDetail.alterId = response.data.alterId
-          this.nodeDetail.xrayFlow = response.data.xrayFlow
-          this.nodeDetail.xraySSMethod = response.data.xraySSMethod
-        }
-        if (this.nodeDetail.nodeTypeId === 2) {
-          this.nodeDetail.trojanGoSni = response.data.trojanGoSni
-          this.nodeDetail.trojanGoMuxEnable = response.data.trojanGoMuxEnable
-          this.nodeDetail.trojanGoWebsocketEnable =
-            response.data.trojanGoWebsocketEnable
-          this.nodeDetail.trojanGoWebsocketPath =
-            response.data.trojanGoWebsocketPath
-          this.nodeDetail.trojanGoWebsocketHost =
-            response.data.trojanGoWebsocketHost
-          this.nodeDetail.trojanGoSsEnable = response.data.trojanGoSsEnable
-          this.nodeDetail.trojanGoSsMethod = response.data.trojanGoSsMethod
-          this.nodeDetail.trojanGoSsPassword = response.data.trojanGoSsPassword
-        }
-        if (this.nodeDetail.nodeTypeId === 3) {
-          this.nodeDetail.hysteriaProtocol = response.data.hysteriaProtocol
-          this.nodeDetail.hysteriaUpMbps = response.data.hysteriaUpMbps
-          this.nodeDetail.hysteriaDownMbps = response.data.hysteriaDownMbps
-        }
-        if (this.nodeDetail.nodeTypeId === 4) {
-          this.nodeDetail.naiveProxyUsername = response.data.naiveProxyUsername
-        }
+        this.nodeDetail = handleNodeDetail(this.nodeDetail, response.data)
         this.dialogInfoVisible = true
       })
     },
@@ -556,6 +483,14 @@ export default {
             duration: 2000
           })
         })
+      })
+    },
+    handleQRCode(row) {
+      this.qrCodeSrc = ''
+      const tempData = Object.assign({}, row)
+      nodeQRCode(tempData).then((response) => {
+        this.qrCodeSrc = 'data:image/png;base64,' + response.data
+        this.dialogQRCodeVisible = true
       })
     },
     handleCopyURL(row) {
