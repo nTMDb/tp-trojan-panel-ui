@@ -1,7 +1,7 @@
 <template>
   <div v-show="formVisibleProps">
     <el-form-item
-      label="xver"
+      label="dest"
       prop="xrayStreamSettingsEntity.realitySettings.dest"
     >
       <el-input
@@ -9,7 +9,7 @@
       />
     </el-form-item>
     <el-form-item
-      label="serverNames"
+      label="xver"
       prop="xrayStreamSettingsEntity.realitySettings.xver"
     >
       <el-input
