@@ -286,8 +286,7 @@ export default {
               dest: '80',
               xver: 0
             }
-          ],
-          network: 'tcp'
+          ]
         },
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {

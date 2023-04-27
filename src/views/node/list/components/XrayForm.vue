@@ -16,7 +16,9 @@
     <el-form-item
       :label="$t('table.xrayStreamSettingsNetwork').toString()"
       prop="xrayStreamSettingsEntity.network"
-      v-show="!isXrayShadowsocks(nodeProps)"
+      v-show="
+        !(isXrayShadowsocksAEAD(nodeProps) || isXrayShadowsocks2022(nodeProps))
+      "
     >
       <el-select
         v-model="nodeProps.xrayStreamSettingsEntity.network"
@@ -79,7 +81,11 @@
     <el-form-item
       :label="$t('table.xraySSMethod').toString()"
       prop="xraySSMethod"
-      v-show="isXrayShadowsocks(nodeProps)"
+      v-show="
+        isXrayShadowsocks(nodeProps) ||
+        isXrayShadowsocksAEAD(nodeProps) ||
+        isXrayShadowsocksAEAD(nodeProps)
+      "
     >
       <el-select v-model="nodeProps.xraySSMethod" controls-position="right">
         <el-option
@@ -93,7 +99,9 @@
     <el-form-item
       :label="$t('table.xraySSNetwork').toString()"
       prop="xraySettingsEntity.network"
-      v-show="isXrayShadowsocks(nodeProps)"
+      v-show="
+        isXrayShadowsocksAEAD(nodeProps) || isXrayShadowsocks2022(nodeProps)
+      "
     >
       <el-select
         v-model="nodeProps.xraySettingsEntity.network"
@@ -141,6 +149,8 @@ import FallbackForm from '@/views/node/list/components/FallbackForm'
 
 import {
   isXrayShadowsocks,
+  isXrayShadowsocks2022,
+  isXrayShadowsocksAEAD,
   isXrayStreamSettingsSecurityReality,
   isXrayVless,
   isXrayWs,
@@ -184,11 +194,9 @@ export default {
     },
     xrayFlows() {
       return ['none', 'xtls-rprx-vision']
-    }
-  },
-  data() {
-    return {
-      xrayStreamSettingsNetworks: [
+    },
+    xrayStreamSettingsNetworks() {
+      let xrayStreamSettingsNetworks = [
         'tcp',
         // 'kcp',
         'ws'
@@ -196,7 +204,17 @@ export default {
         // 'domainsocket',
         // 'quic',
         // 'grpc'
-      ],
+      ]
+      if (this.isXrayShadowsocks(this.nodeProps)) {
+        this.nodeProps.xrayStreamSettingsEntity.network = 'tcp'
+        return ['tcp']
+      } else {
+        return xrayStreamSettingsNetworks
+      }
+    }
+  },
+  data() {
+    return {
       xraySettingsNetworks: ['tcp', 'udp', 'tcp,udp'],
       xraySSMethods: [
         'none',
@@ -218,6 +236,8 @@ export default {
   },
   methods: {
     isXrayShadowsocks,
+    isXrayShadowsocksAEAD,
+    isXrayShadowsocks2022,
     showFallback,
     showXrayFlow,
     isXrayWs,

@@ -608,7 +608,6 @@ export default {
               xver: 0
             }
           ],
-          network: 'tcp'
         },
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
