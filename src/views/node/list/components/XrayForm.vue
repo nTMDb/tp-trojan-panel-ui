@@ -135,6 +135,7 @@ import FallbackForm from '@/views/node/list/components/FallbackForm'
 
 import {
   isXrayShadowsocks,
+  isXrayVless,
   isXrayWs,
   showFallback,
   showXrayFlow
@@ -152,10 +153,6 @@ export default {
       type: Boolean,
       require: true
     },
-    getListProps: {
-      type: Function,
-      required: true
-    },
     handleCreateFallbackProps: {
       type: Function,
       required: true
@@ -172,7 +169,7 @@ export default {
   computed: {
     xrayStreamSettingsSecuritys() {
       let securitys = ['none', 'tls']
-      if (this.isXrayVlessProps(this.nodeProps)) {
+      if (isXrayVless(this.nodeProps)) {
         securitys.push('reality')
       }
       return securitys
@@ -223,7 +220,7 @@ export default {
     },
     xrayStreamSettingsSecurityChange() {
       if (
-        this.isXrayVlessProps(this.nodeProps) &&
+        isXrayVless(this.nodeProps) &&
         (this.nodeProps.xrayStreamSettingsEntity.security === 'tls' ||
           this.nodeProps.xrayStreamSettingsEntity.security === 'reality')
       ) {

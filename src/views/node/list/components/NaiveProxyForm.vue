@@ -1,13 +1,23 @@
 <template>
-
+  <div v-show="formVisibleProps">
+    <el-form-item>
+      <aside>
+        {{ $t('table.naiveproxyTip') }}
+      </aside>
+    </el-form-item>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "NaiveProxyForm"
+  name: 'NaiveProxyForm',
+  props: {
+    formVisibleProps: {
+      type: Boolean,
+      require: true
+    }
+  }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

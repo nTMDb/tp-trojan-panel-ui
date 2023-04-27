@@ -25,28 +25,28 @@ export function isNaiveProxy(temp) {
 }
 
 export function isXrayVless(temp) {
-  return this.isXray(temp) && temp.xrayProtocol === 'vless'
+  return isXray(temp) && temp.xrayProtocol === 'vless'
 }
 
 export function isXrayVmess(temp) {
-  return this.isXray(temp) && temp.xrayProtocol === 'vmess'
+  return isXray(temp) && temp.xrayProtocol === 'vmess'
 }
 
 export function isXrayTrojan(temp) {
-  return this.isXray(temp) && temp.xrayProtocol === 'trojan'
+  return isXray(temp) && temp.xrayProtocol === 'trojan'
 }
 
 export function isXrayShadowsocks(temp) {
-  return this.isXray(temp) && temp.xrayProtocol === 'shadowsocks'
+  return isXray(temp) && temp.xrayProtocol === 'shadowsocks'
 }
 
 export function isXrayWs(temp) {
-  return this.isXray(temp) && temp.xrayStreamSettingsEntity.network === 'ws'
+  return isXray(temp) && temp.xrayStreamSettingsEntity.network === 'ws'
 }
 
 export function showXrayFlow(temp) {
   return (
-    this.isXrayVless(temp) &&
+    isXrayVless(temp) &&
     (temp.xrayStreamSettingsEntity.security === 'tls' ||
       temp.xrayStreamSettingsEntity.security === 'reality')
   )
@@ -54,7 +54,7 @@ export function showXrayFlow(temp) {
 
 export function showFallback(temp) {
   return (
-    this.isXray(temp) &&
+    isXray(temp) &&
     (temp.xrayProtocol === 'vless' || temp.xrayProtocol === 'trojan') &&
     temp.xrayStreamSettingsEntity.network === 'tcp' &&
     temp.xrayStreamSettingsEntity.security === 'tls'
@@ -62,26 +62,40 @@ export function showFallback(temp) {
 }
 
 export function isTrojanGoEnableWebsocket(temp) {
-  return this.isTrojanGo(temp) && temp.trojanGoWebsocketEnable === 1
+  return isTrojanGo(temp) && temp.trojanGoWebsocketEnable === 1
 }
 
 export function isTrojanGoEnableSs(temp) {
-  return this.isTrojanGo(temp) && temp.trojanGoSsEnable === 1
+  return isTrojanGo(temp) && temp.trojanGoSsEnable === 1
 }
 
-export function nodeTypeComputed(nodeTypeId) {
-  let nodeType = this.nodeTypes.find((item) => item.id === nodeTypeId)
+export function nodeTypeFind(nodeTypes, nodeTypeId) {
+  let nodeType = nodeTypes.find((item) => item.id === nodeTypeId)
   if (nodeType && nodeType.name) {
     return nodeType.name
   }
   return ''
 }
 
-export function nodeServerComputed(nodeServerId) {
-  let nodeServer = this.nodeServers.find((item) => item.id === nodeServerId)
+export function nodeServerFind(nodeServers, nodeServerId) {
+  let nodeServer = nodeServers.find((item) => item.id === nodeServerId)
   if (nodeServer && nodeServer.name) {
     return nodeServer.name
   } else {
     return ''
   }
+}
+
+export function showUUID(temp) {
+  return (
+    isXray(temp) &&
+    (temp.xrayProtocol === 'vless' || temp.xrayProtocol === 'vmess')
+  )
+}
+
+export function showAlterId(temp) {
+  return (
+    isXray(temp) &&
+    (temp.xrayProtocol === 'vless' || temp.xrayProtocol === 'vmess')
+  )
 }

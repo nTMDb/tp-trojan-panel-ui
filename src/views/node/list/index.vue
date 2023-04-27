@@ -81,7 +81,7 @@
         align="center"
       >
         <template slot-scope="{ row }">
-          <span>{{ nodeServerComputed(row.nodeServerId) }}</span>
+          <span>{{ nodeServerFind(nodeServers, row.nodeServerId) }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -108,7 +108,7 @@
         align="center"
       >
         <template slot-scope="{ row }">
-          <span>{{ nodeTypeComputed(row.nodeTypeId) }}</span>
+          <span>{{ nodeTypeFind(nodeTypes, row.nodeTypeId) }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -180,17 +180,6 @@
       :dialog-form-visible-props.sync="dialogFormVisible"
       :node-props="temp"
       :dialog-status-props="dialogStatus"
-      :is-xray-props="isXray"
-      :is-trojan-go-props="isTrojanGo"
-      :is-hysteria-props="isHysteria"
-      :is-naive-proxy-props="isNaiveProxy"
-      :is-xray-shadowsocks-props="isXrayShadowsocks"
-      :is-xray-vless-props="isXrayVless"
-      :is-xray-ws-props="isXrayWs"
-      :show-fallback-props="showFallback"
-      :show-xray-flow-props="showXrayFlow"
-      :is-trojan-go-enable-websocket-props="isTrojanGoEnableWebsocket"
-      :is-trojan-go-enable-ss-props="isTrojanGoEnableSs"
       :node-servers-props="nodeServers"
       :node-types-props="nodeTypes"
       :get-list-props="getList"
@@ -199,20 +188,8 @@
     <NodeDetail
       :dialog-visible-props.sync="dialogInfoVisible"
       :node-info-props="nodeDetail"
-      :is-xray-props="isXray"
-      :is-trojan-go-props="isTrojanGo"
-      :is-hysteria-props="isHysteria"
-      :is-naive-proxy-props="isNaiveProxy"
-      :is-xray-shadowsocks-props="isXrayShadowsocks"
-      :is-xray-ws-props="isXrayWs"
-      :show-fallback-props="showFallback"
-      :show-xray-flow-props="showXrayFlow"
-      :is-trojan-go-enable-websocket-props="isTrojanGoEnableWebsocket"
-      :is-trojan-go-enable-ss-props="isTrojanGoEnableSs"
       :node-servers-props="nodeServers"
       :node-types-props="nodeTypes"
-      :node-server-computed-props="nodeServerComputed"
-      :node-type-computed-props="nodeTypeComputed"
     />
 
     <NodeQrcode
@@ -236,7 +213,7 @@ import {
   selectNodePage
 } from '@/api/node'
 import { selectNodeTypeList } from '@/api/node-type'
-import { getNodeTypeName } from '@/utils/node'
+import { nodeServerFind, nodeTypeFind } from '@/utils/node'
 import checkPermission from '@/utils/permission'
 import { timeStampToDate } from '@/utils'
 import { clashSubscribe } from '@/api/account'
@@ -414,6 +391,8 @@ export default {
   methods: {
     timeStampToDate,
     checkPermission,
+    nodeServerFind,
+    nodeTypeFind,
     handleQRCode(row) {
       this.qrCodeSrc = ''
       const tempData = Object.assign({}, row)
@@ -463,9 +442,14 @@ export default {
         if (this.temp.nodeTypeId === 1) {
           this.temp.xrayProtocol = response.data.xrayProtocol
           this.temp.xraySettings = response.data.xraySettings
-          this.nodeDetail.xraySettingsEntity = response.data.xraySettingsEntity
-          this.temp.xrayStreamSettingsEntity =
+          this.temp.xraySettingsEntity = Object.assign(
+            this.temp.xraySettingsEntity,
+            response.data.xraySettingsEntity
+          )
+          this.temp.xrayStreamSettingsEntity = Object.assign(
+            this.temp.xrayStreamSettingsEntity,
             response.data.xrayStreamSettingsEntity
+          )
           this.temp.xrayTag = response.data.xrayTag
           this.temp.xraySniffing = response.data.xraySniffing
           this.temp.xrayAllocate = response.data.xrayAllocate
@@ -500,9 +484,14 @@ export default {
         if (this.nodeDetail.nodeTypeId === 1) {
           this.nodeDetail.xrayProtocol = response.data.xrayProtocol
           this.nodeDetail.xraySettings = response.data.xraySettings
-          this.nodeDetail.xraySettingsEntity = response.data.xraySettingsEntity
-          this.nodeDetail.xrayStreamSettingsEntity =
+          this.nodeDetail.xraySettingsEntity = Object.assign(
+            this.nodeDetail.xraySettingsEntity,
+            response.data.xraySettingsEntity
+          )
+          this.nodeDetail.xrayStreamSettingsEntity = Object.assign(
+            this.nodeDetail.xrayStreamSettingsEntity,
             response.data.xrayStreamSettingsEntity
+          )
           this.nodeDetail.xrayTag = response.data.xrayTag
           this.nodeDetail.xraySniffing = response.data.xraySniffing
           this.nodeDetail.xrayAllocate = response.data.xrayAllocate

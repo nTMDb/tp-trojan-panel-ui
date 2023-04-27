@@ -60,168 +60,23 @@
 
         <XrayForm
           :node-props="temp"
-          :form-visible-props="isXrayProps(temp)"
-          :is-xray-shadowsocks-props="isXrayShadowsocksProps"
-          :show-xray-flow-props="showXrayFlowProps"
-          :show-fallback-props="showFallbackProps"
-          :is-xray-vless-props="isXrayVlessProps"
-          :is-xray-ws-props="isXrayWsProps"
-          :get-list-props="getListProps"
+          :form-visible-props="isXray(temp)"
           :handle-create-fallback-props="handleCreateFallback"
           :handle-fallback-detail-props="handleFallbackDetail"
           :delete-fallback-props="deleteFallback"
         />
 
-        <el-form-item
-          :label="$t('table.trojanGoSni').toString()"
-          v-show="isTrojanGoProps(temp)"
-          prop="trojanGoSni"
-        >
-          <el-input v-model="temp.trojanGoSni" clearable />
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoMuxEnable').toString()"
-          v-show="isTrojanGoProps(temp)"
-          prop="trojanGoMuxEnable"
-        >
-          <el-switch
-            v-model="temp.trojanGoMuxEnable"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            :active-text="$t('table.enable').toString()"
-            :inactive-text="$t('table.disable').toString()"
-            :active-value="1"
-            :inactive-value="0"
-          >
-          </el-switch>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoWebsocketEnable').toString()"
-          v-show="isTrojanGoProps(temp)"
-          prop="trojanGoWebsocketEnable"
-        >
-          <el-switch
-            v-model="temp.trojanGoWebsocketEnable"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            :active-text="$t('table.enable').toString()"
-            :inactive-text="$t('table.disable').toString()"
-            :active-value="1"
-            :inactive-value="0"
-          >
-          </el-switch>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoWebsocketPath').toString()"
-          prop="trojanGoWebsocketPath"
-          v-show="isTrojanGoEnableWebsocketProps(temp)"
-        >
-          <el-input v-model="temp.trojanGoWebsocketPath" clearable />
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoWebsocketHost').toString()"
-          prop="trojanGoWebsocketHost"
-          v-show="isTrojanGoEnableWebsocketProps(temp)"
-        >
-          <el-input v-model="temp.trojanGoWebsocketHost" clearable />
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoSsEnable').toString()"
-          prop="trojanGoSsEnable"
-          v-show="isTrojanGoEnableWebsocketProps(temp)"
-        >
-          <el-switch
-            v-model="temp.trojanGoSsEnable"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            :active-text="$t('table.enable').toString()"
-            :inactive-text="$t('table.disable').toString()"
-            :active-value="1"
-            :inactive-value="0"
-          >
-          </el-switch>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoSsMethod').toString()"
-          prop="trojanGoSsMethod"
-          v-show="
-            isTrojanGoEnableWebsocketProps(temp) &&
-            isTrojanGoEnableSsProps(temp)
-          "
-        >
-          <el-select
-            v-model="temp.trojanGoSsMethod"
-            :placeholder="$t('table.trojanGoSsMethod').toString()"
-            controls-position="right"
-          >
-            <el-option
-              :label="item"
-              :value="item"
-              :key="item"
-              v-for="item in trojanGoSsMethods"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.trojanGoSsPassword').toString()"
-          prop="trojanGoSsPassword"
-          v-show="
-            isTrojanGoEnableWebsocketProps(temp) &&
-            isTrojanGoEnableSsProps(temp)
-          "
-        >
-          <el-input v-model="temp.trojanGoSsPassword" clearable />
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.hysteriaProtocol').toString()"
-          prop="hysteriaProtocol"
-          v-show="isHysteriaProps(temp)"
-        >
-          <el-select
-            v-model="temp.hysteriaProtocol"
-            :placeholder="$t('table.hysteriaProtocol').toString()"
-            controls-position="right"
-          >
-            <el-option
-              :label="item"
-              :value="item"
-              :key="item"
-              v-for="item in hysteriaProtocols"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.hysteriaUpMbps').toString()"
-          v-show="isHysteriaProps(temp)"
-          prop="hysteriaUpMbps"
-        >
-          <el-input-number
-            v-model.number="temp.hysteriaUpMbps"
-            controls-position="right"
-            type="number"
-          />
-        </el-form-item>
-        <el-form-item
-          :label="$t('table.hysteriaDownMbps').toString()"
-          v-show="isHysteriaProps(temp)"
-          prop="hysteriaDownMbps"
-        >
-          <el-input-number
-            v-model.number="temp.hysteriaDownMbps"
-            controls-position="right"
-            type="number"
-          />
-        </el-form-item>
-        <el-form-item v-show="isHysteriaProps(temp)">
-          <aside>
-            {{ $t('table.hysteriaTip') }}
-          </aside>
-        </el-form-item>
-        <el-form-item v-show="isNaiveProxyProps(temp)">
-          <aside>
-            {{ $t('table.naiveproxyTip') }}
-          </aside>
-        </el-form-item>
+        <TrojanGoForm
+          :node-props="temp"
+          :form-visible-props="isTrojanGo(temp)"
+        />
+
+        <HysteriaForm
+          :node-props="temp"
+          :form-visible-props="isHysteria(temp)"
+        />
+
+        <NaiveProxyForm :form-visible-props="isNaiveProxy(temp)" />
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="$emit('update:dialogFormVisibleProps', false)"
@@ -254,10 +109,21 @@ import FallbackInfo from '@/views/node/list/components/FallbackInfo'
 import FallbackForm from '@/views/node/list/components/FallbackForm'
 import { createNode, updateNodeById } from '@/api/node'
 import XrayForm from '@/views/node/list/components/XrayForm'
+import TrojanGoForm from '@/views/node/list/components/TrojanGoForm'
+import { isHysteria, isNaiveProxy, isTrojanGo, isXray } from '@/utils/node'
+import HysteriaForm from '@/views/node/list/components/HysteriaForm'
+import NaiveProxyForm from '@/views/node/list/components/NaiveProxyForm'
 
 export default {
   name: 'NodeForm',
-  components: { XrayForm, FallbackInfo, FallbackForm },
+  components: {
+    NaiveProxyForm,
+    HysteriaForm,
+    TrojanGoForm,
+    XrayForm,
+    FallbackInfo,
+    FallbackForm
+  },
   props: {
     dialogFormVisibleProps: {
       type: Boolean,
@@ -269,50 +135,6 @@ export default {
     },
     dialogStatusProps: {
       type: String,
-      required: true
-    },
-    isXrayProps: {
-      type: Function,
-      required: true
-    },
-    isXrayShadowsocksProps: {
-      type: Function,
-      required: true
-    },
-    showXrayFlowProps: {
-      type: Function,
-      required: true
-    },
-    showFallbackProps: {
-      type: Function,
-      required: true
-    },
-    isTrojanGoProps: {
-      type: Function,
-      required: true
-    },
-    isHysteriaProps: {
-      type: Function,
-      required: true
-    },
-    isNaiveProxyProps: {
-      type: Function,
-      required: true
-    },
-    isXrayVlessProps: {
-      type: Function,
-      required: true
-    },
-    isXrayWsProps: {
-      type: Function,
-      required: true
-    },
-    isTrojanGoEnableSsProps: {
-      type: Function,
-      required: true
-    },
-    isTrojanGoEnableWebsocketProps: {
-      type: Function,
       required: true
     },
     nodeServersProps: {
@@ -340,12 +162,6 @@ export default {
       },
       dialogFallbackFormVisible: false,
       dialogFallbackDetailVisible: false,
-      trojanGoSsMethods: [
-        'AES-128-GCM',
-        'AES-256-GCM',
-        'CHACHA20-IETF-POLY1305'
-      ],
-      hysteriaProtocols: ['udp', 'faketcp'],
       textMap: {
         update: this.$t('table.edit'),
         create: this.$t('table.add')
@@ -763,6 +579,10 @@ export default {
     }
   },
   methods: {
+    isXray,
+    isTrojanGo,
+    isHysteria,
+    isNaiveProxy,
     resetTemp() {
       this.temp = {
         id: undefined,
