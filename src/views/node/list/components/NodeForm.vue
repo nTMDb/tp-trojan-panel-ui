@@ -107,7 +107,7 @@
 <script>
 import FallbackInfo from '@/views/node/list/components/FallbackInfo'
 import FallbackForm from '@/views/node/list/components/FallbackForm'
-import { updateNodeById } from '@/api/node'
+import { createNode, updateNodeById } from '@/api/node'
 import XrayForm from '@/views/node/list/components/XrayForm'
 import TrojanGoForm from '@/views/node/list/components/TrojanGoForm'
 import {
@@ -190,7 +190,13 @@ export default {
         isXrayStreamSettingsSecurityReality(this.temp) &&
         !this.temp.xrayStreamSettingsEntity.realitySettings.dest
       ) {
-        callback(new Error(this.$t('valid.xrayNetwork').toString()))
+        callback(
+          new Error(
+            this.$t(
+              'valid.xrayStreamSettingsEntityRealitySettingsDest'
+            ).toString()
+          )
+        )
       } else {
         callback()
       }
@@ -206,7 +212,13 @@ export default {
           this.temp.xrayStreamSettingsEntity.realitySettings.serverNames
             .length === 0)
       ) {
-        callback(new Error(this.$t('valid.xrayNetwork').toString()))
+        callback(
+          new Error(
+            this.$t(
+              'valid.xrayStreamSettingsEntityRealitySettingsServerNames'
+            ).toString()
+          )
+        )
       } else {
         callback()
       }
@@ -220,7 +232,13 @@ export default {
         isXrayStreamSettingsSecurityReality(this.temp) &&
         !this.temp.xrayStreamSettingsEntity.realitySettings.privateKey
       ) {
-        callback(new Error(this.$t('valid.xrayNetwork').toString()))
+        callback(
+          new Error(
+            this.$t(
+              'valid.xrayStreamSettingsEntityRealitySettingsPrivateKey'
+            ).toString()
+          )
+        )
       } else {
         callback()
       }
@@ -236,7 +254,13 @@ export default {
           this.temp.xrayStreamSettingsEntity.realitySettings.shortIds.length ===
             0)
       ) {
-        callback(new Error(this.$t('valid.xrayNetwork').toString()))
+        callback(
+          new Error(
+            this.$t(
+              'valid.xrayStreamSettingsEntityRealitySettingsShortIds'
+            ).toString()
+          )
+        )
       } else {
         callback()
       }
@@ -757,17 +781,16 @@ export default {
             this.temp.xrayStreamSettingsEntity
           )
           this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
-          console.log(this.temp)
-          // createNode(this.temp).then(() => {
-          //   this.getListProps()
-          //   this.$emit('update:dialogFormVisibleProps', false)
-          //   this.$notify({
-          //     title: 'Success',
-          //     message: this.$t('confirm.createSuccess').toString(),
-          //     type: 'success',
-          //     duration: 2000
-          //   })
-          // })
+          createNode(this.temp).then(() => {
+            this.getListProps()
+            this.$emit('update:dialogFormVisibleProps', false)
+            this.$notify({
+              title: 'Success',
+              message: this.$t('confirm.createSuccess').toString(),
+              type: 'success',
+              duration: 2000
+            })
+          })
         }
       })
     },

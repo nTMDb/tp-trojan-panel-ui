@@ -273,7 +273,11 @@ export default {
     xrayTemplateRange: 'The range of Xray templates is between 0-5000 characters',
     cover: 'Please enter whether to overwrite',
     code: 'please enter verification code',
-    emailAOrUsernameExist: 'E-mail and username must fill in one'
+    emailAOrUsernameExist: 'E-mail and username must fill in one',
+    xrayStreamSettingsEntityRealitySettingsDest: 'please enter dest',
+    xrayStreamSettingsEntityRealitySettingsServerNames: 'please enter serverNames',
+    xrayStreamSettingsEntityRealitySettingsPrivateKey: 'please enter privateKey',
+    xrayStreamSettingsEntityRealitySettingsShortIds: 'please enter shortIds'
   },
   confirm: {
     warn: 'Warn',

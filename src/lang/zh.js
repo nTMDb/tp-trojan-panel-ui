@@ -273,7 +273,11 @@ export default {
     xrayTemplateRange: 'Xray模板的范围在0-5000字符之间',
     cover: '请输入是否覆盖',
     code: '请输入验证码',
-    emailAOrUsernameExist: '邮箱和用户名必须填写一个'
+    emailAOrUsernameExist: '邮箱和用户名必须填写一个',
+    xrayStreamSettingsEntityRealitySettingsDest: '请输入dest',
+    xrayStreamSettingsEntityRealitySettingsServerNames: '请输入serverNames',
+    xrayStreamSettingsEntityRealitySettingsPrivateKey: '请输入privateKey',
+    xrayStreamSettingsEntityRealitySettingsShortIds: '请输入shortIds'
   },
   confirm: {
     warn: '警告',

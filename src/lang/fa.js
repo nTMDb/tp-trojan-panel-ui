@@ -273,7 +273,11 @@ export default {
     xrayTemplateRange: 'نمای اشعه ایکس از 0 تا 5000 کاراکتر.',
     cover: 'لطفاً بازنویسی را وارد کنید',
     code: 'لطفا کد تایید را وارد کنید',
-    emailAOrUsernameExist: 'ایمیل و نام کاربری باید یکی را پر کنند'
+    emailAOrUsernameExist: 'ایمیل و نام کاربری باید یکی را پر کنند',
+    xrayStreamSettingsEntityRealitySettingsDest: 'لطفا dest را وارد کنید',
+    xrayStreamSettingsEntityRealitySettingsServerNames: 'لطفا serverNames را وارد کنید',
+    xrayStreamSettingsEntityRealitySettingsPrivateKey: 'لطفا privateKey را وارد کنید',
+    xrayStreamSettingsEntityRealitySettingsShortIds: 'لطفا shortIds را وارد کنید'
   },
   confirm: {
     warn: 'هشدار دهد',

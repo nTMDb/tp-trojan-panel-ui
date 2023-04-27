@@ -273,7 +273,11 @@ export default {
     xrayTemplateRange: 'Xray 템플릿의 범위는 0-5000자 사이입니다',
     cover: '덮어쓰기 여부를 입력해주세요',
     code: '인증 코드를 입력하세요',
-    emailAOrUsernameExist: '이메일과 사용자 이름은 하나만 입력해야 합니다'
+    emailAOrUsernameExist: '이메일과 사용자 이름은 하나만 입력해야 합니다',
+    xrayStreamSettingsEntityRealitySettingsDest: 'dest들어 오세요',
+    xrayStreamSettingsEntityRealitySettingsServerNames: 'serverNames들어 오세요',
+    xrayStreamSettingsEntityRealitySettingsPrivateKey: 'privateKey들어 오세요',
+    xrayStreamSettingsEntityRealitySettingsShortIds: 'shortIds들어 오세요'
   },
   confirm: {
     warn: '경고하다',
