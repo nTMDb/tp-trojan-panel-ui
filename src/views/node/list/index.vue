@@ -454,7 +454,13 @@ export default {
           network: 'tcp',
           security: 'none',
           tlsSettings: {},
-          realitySettings: {},
+          realitySettings: {
+            dest: '',
+            xver: 0,
+            serverNames: [],
+            privateKey: '',
+            shortIds: []
+          },
           wsSettings: {
             path: '/trojan-panel-websocket-path'
           }

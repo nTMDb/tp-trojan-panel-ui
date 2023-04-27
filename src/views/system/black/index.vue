@@ -207,8 +207,8 @@ export default {
     },
     handleDelete(row, index) {
       MessageBox.confirm(
-        this.$t('confirm.deleteBlack'),
-        this.$t('confirm.warn'),
+        this.$t('confirm.deleteBlack').toString(),
+        this.$t('confirm.warn').toString(),
         {
           confirmButtonText: this.$t('confirm.yes'),
           cancelButtonText: this.$t('confirm.cancel'),

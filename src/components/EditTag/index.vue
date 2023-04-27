@@ -19,7 +19,6 @@
       ref="saveTagInput"
       size="small"
       @keyup.enter.native="handleInputConfirm"
-      @blur="handleInputConfirm"
     >
     </el-input>
     <el-button
@@ -35,6 +34,8 @@
 </template>
 
 <script>
+import { Message } from 'element-ui'
+
 export default {
   data() {
     return {
@@ -45,10 +46,12 @@ export default {
   props: {
     dynamicTagsProps: {
       type: Array,
-      require: true,
-      default: function () {
-        return []
-      }
+      require: true
+    },
+    valueCanEmpty: {
+      type: Boolean,
+      require: false,
+      default: false
     }
   },
   methods: {
@@ -65,8 +68,16 @@ export default {
 
     handleInputConfirm() {
       let inputValue = this.inputValue
-      if (inputValue) {
-        this.dynamicTagsProps.push(inputValue)
+      if ((this.valueCanEmpty && inputValue === '') || inputValue) {
+        if (this.dynamicTagsProps.indexOf(inputValue) === -1) {
+          this.dynamicTagsProps.push(inputValue)
+        } else {
+          Message({
+            message: this.$t('confirm.alreadyExists').toString(),
+            type: 'error',
+            duration: 5 * 1000
+          })
+        }
       }
       this.inputVisible = false
       this.inputValue = ''

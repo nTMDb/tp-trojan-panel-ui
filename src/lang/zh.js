@@ -301,7 +301,8 @@ export default {
     deleteNodeServer: '确认删除该服务器？',
     deleteBlack: '确认删除该IP？',
     taskSubmitSuccess: '任务提交成功，请稍后到任务管理中查看',
-    taskDownloadSuccess: '下载成功'
+    taskDownloadSuccess: '下载成功',
+    alreadyExists: '已经存在'
   },
   remark: {
     emailEnable: '设置你的邮箱，可以接收到期提醒邮件。'

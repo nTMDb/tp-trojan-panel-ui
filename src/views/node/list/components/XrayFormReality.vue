@@ -42,6 +42,7 @@
         :dynamic-tags-props="
           nodeProps.xrayStreamSettingsEntity.realitySettings.shortIds
         "
+        :value-can-empty="true"
       />
     </el-form-item>
   </div>

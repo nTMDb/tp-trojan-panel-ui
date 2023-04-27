@@ -114,7 +114,7 @@ export default {
       }
       if (file.size / 1024 / 1024 > 10) {
         Message({
-          message: this.$t('confirm.uploadWebFileSize'),
+          message: this.$t('confirm.uploadWebFileSize').toString(),
           type: 'error',
           duration: 5 * 1000
         })

@@ -301,7 +301,8 @@ export default {
     deleteNodeServer: '이 서버를 삭제하시겠습니까?',
     deleteBlack: '이 IP를 삭제하시겠습니까?',
     taskSubmitSuccess: '작업이 성공적으로 제출되었습니다. 나중에 작업 관리에서 확인하십시오',
-    taskDownloadSuccess: '다운로드 성공'
+    taskDownloadSuccess: '다운로드 성공',
+    alreadyExists: '이미 존재 함'
   },
   remark: {
     emailEnable: '만료 알림 이메일을 수신하도록 사서함을 설정하십시오'

@@ -301,7 +301,8 @@ export default {
     deleteNodeServer: 'آیا مطمئن هستید که می خواهید این سرور را حذف کنید؟',
     deleteBlack: 'آیا مطمئن هستید که این IP را حذف می کنید؟',
     taskSubmitSuccess: 'کار با موفقیت ارسال شد، لطفاً بعداً آن را در مدیریت کار بررسی کنید',
-    taskDownloadSuccess: 'دانلود با موفقیت'
+    taskDownloadSuccess: 'دانلود با موفقیت',
+    alreadyExists: 'درحال حاضر وجود دارد'
   },
   remark: {
     emailEnable: 'صندوق پستی خود را برای دریافت ایمیل های یادآوری انقضا تنظیم کنید.'

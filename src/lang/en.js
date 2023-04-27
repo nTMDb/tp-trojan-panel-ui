@@ -301,7 +301,8 @@ export default {
     deleteNodeServer: 'Are you sure you want to delete this server?',
     deleteBlack: 'Are you sure to delete this IP?',
     taskSubmitSuccess: 'The task has been submitted successfully, please check it later in the task management',
-    taskDownloadSuccess: 'Download successful'
+    taskDownloadSuccess: 'Download successful',
+    alreadyExists: 'Already Exists'
   },
   remark: {
     emailEnable: 'Set up your mailbox to receive expiration reminder emails.'
