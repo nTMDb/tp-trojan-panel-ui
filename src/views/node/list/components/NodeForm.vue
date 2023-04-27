@@ -330,13 +330,13 @@ export default {
         ],
         'xraySettingsEntity.network': [
           {
-            validate: validateXraySettingsEntityNetwork,
+            validator: validateXraySettingsEntityNetwork,
             trigger: 'change'
           }
         ],
         'xrayStreamSettingsEntity.network': [
           {
-            validate: validateXrayStreamSettingsEntityNetwork,
+            validator: validateXrayStreamSettingsEntityNetwork,
             trigger: 'change'
           }
         ],
