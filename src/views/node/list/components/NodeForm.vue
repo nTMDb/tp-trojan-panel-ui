@@ -107,10 +107,18 @@
 <script>
 import FallbackInfo from '@/views/node/list/components/FallbackInfo'
 import FallbackForm from '@/views/node/list/components/FallbackForm'
-import { createNode, updateNodeById } from '@/api/node'
+import { updateNodeById } from '@/api/node'
 import XrayForm from '@/views/node/list/components/XrayForm'
 import TrojanGoForm from '@/views/node/list/components/TrojanGoForm'
-import { isHysteria, isNaiveProxy, isTrojanGo, isXray } from '@/utils/node'
+import {
+  isHysteria,
+  isNaiveProxy,
+  isTrojanGo,
+  isXray,
+  isXrayShadowsocks2022,
+  isXrayShadowsocksAEAD,
+  isXrayStreamSettingsSecurityReality
+} from '@/utils/node'
 import HysteriaForm from '@/views/node/list/components/HysteriaForm'
 import NaiveProxyForm from '@/views/node/list/components/NaiveProxyForm'
 
@@ -151,6 +159,86 @@ export default {
     }
   },
   data() {
+    const validateXraySettingsEntityNetwork = (rule, value, callback) => {
+      if (
+        (isXrayShadowsocksAEAD(this.temp) ||
+          isXrayShadowsocks2022(this.temp)) &&
+        this.temp.xraySettingsEntity.network.trim().length === 0
+      ) {
+        callback(new Error(this.$t('valid.xraySSNetwork').toString()))
+      } else {
+        callback()
+      }
+    }
+    const validateXrayStreamSettingsEntityNetwork = (rule, value, callback) => {
+      if (
+        !isXrayShadowsocksAEAD(this.temp) &&
+        !isXrayShadowsocks2022(this.temp) &&
+        this.temp.xrayStreamSettingsEntity.network.trim().length === 0
+      ) {
+        callback(new Error(this.$t('valid.xrayNetwork').toString()))
+      } else {
+        callback()
+      }
+    }
+    const validateXrayStreamSettingsEntityRealitySettingsDest = (
+      rule,
+      value,
+      callback
+    ) => {
+      if (
+        isXrayStreamSettingsSecurityReality(this.temp) &&
+        this.temp.xrayStreamSettingsEntity.realitySettings.dest.length === 0
+      ) {
+        callback(new Error(this.$t('valid.xrayNetwork').toString()))
+      } else {
+        callback()
+      }
+    }
+    const validateXrayStreamSettingsEntityRealitySettingsServerNames = (
+      rule,
+      value,
+      callback
+    ) => {
+      if (
+        isXrayStreamSettingsSecurityReality(this.temp) &&
+        this.temp.xrayStreamSettingsEntity.realitySettings.serverNames
+          .length === 0
+      ) {
+        callback(new Error(this.$t('valid.xrayNetwork').toString()))
+      } else {
+        callback()
+      }
+    }
+    const validateXrayStreamSettingsEntityRealitySettingsPrivateKey = (
+      rule,
+      value,
+      callback
+    ) => {
+      if (
+        isXrayStreamSettingsSecurityReality(this.temp) &&
+        this.temp.xrayStreamSettingsEntity.realitySettings.privateKey.length ===
+          0
+      ) {
+        callback(new Error(this.$t('valid.xrayNetwork').toString()))
+      } else {
+        callback()
+      }
+    }
+    const validateXrayStreamSettingsEntityRealitySettingsShortIds = (
+      rule,
+      value,
+      callback
+    ) => {
+      if (
+        isXrayStreamSettingsSecurityReality(this.temp) &&
+        this.temp.xrayStreamSettingsEntity.realitySettings.shortIds.length === 0
+      ) {
+        callback(new Error(this.$t('valid.xrayNetwork').toString()))
+      } else {
+        callback()
+      }
+    }
     return {
       temp: this.nodeProps,
       fallback: {
@@ -242,15 +330,13 @@ export default {
         ],
         'xraySettingsEntity.network': [
           {
-            required: true,
-            message: this.$t('valid.xraySSNetwork'),
+            validate: validateXraySettingsEntityNetwork,
             trigger: 'change'
           }
         ],
         'xrayStreamSettingsEntity.network': [
           {
-            required: true,
-            message: this.$t('valid.xrayNetwork'),
+            validate: validateXrayStreamSettingsEntityNetwork,
             trigger: 'change'
           }
         ],
@@ -269,6 +355,22 @@ export default {
             trigger: 'change'
           }
         ],
+        'xrayStreamSettingsEntity.realitySettings.dest': {
+          validator: validateXrayStreamSettingsEntityRealitySettingsDest,
+          trigger: 'change'
+        },
+        'xrayStreamSettingsEntity.realitySettings.serverNames': {
+          validator: validateXrayStreamSettingsEntityRealitySettingsServerNames,
+          trigger: 'change'
+        },
+        'xrayStreamSettingsEntity.realitySettings.privateKey': {
+          validator: validateXrayStreamSettingsEntityRealitySettingsPrivateKey,
+          trigger: 'change'
+        },
+        'xrayStreamSettingsEntity.realitySettings.shortIds': {
+          validator: validateXrayStreamSettingsEntityRealitySettingsShortIds,
+          trigger: 'change'
+        },
         trojanGoSni: [
           {
             min: 4,
@@ -653,16 +755,17 @@ export default {
             this.temp.xrayStreamSettingsEntity
           )
           this.temp.xraySettings = JSON.stringify(this.temp.xraySettingsEntity)
-          createNode(this.temp).then(() => {
-            this.getListProps()
-            this.$emit('update:dialogFormVisibleProps', false)
-            this.$notify({
-              title: 'Success',
-              message: this.$t('confirm.createSuccess').toString(),
-              type: 'success',
-              duration: 2000
-            })
-          })
+          console.log(this.temp)
+          // createNode(this.temp).then(() => {
+          //   this.getListProps()
+          //   this.$emit('update:dialogFormVisibleProps', false)
+          //   this.$notify({
+          //     title: 'Success',
+          //     message: this.$t('confirm.createSuccess').toString(),
+          //     type: 'success',
+          //     duration: 2000
+          //   })
+          // })
         }
       })
     },
@@ -726,4 +829,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-button {
+  margin-left: 10px;
+}
+</style>

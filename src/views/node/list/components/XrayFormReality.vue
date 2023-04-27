@@ -20,8 +20,10 @@
       label="serverNames"
       prop="xrayStreamSettingsEntity.realitySettings.serverNames"
     >
-      <el-input
-        v-model="nodeProps.xrayStreamSettingsEntity.realitySettings.serverNames"
+      <EditTag
+        :dynamic-tags-props="
+          nodeProps.xrayStreamSettingsEntity.realitySettings.serverNames
+        "
       />
     </el-form-item>
     <el-form-item
@@ -36,16 +38,23 @@
       label="shortIds"
       prop="xrayStreamSettingsEntity.realitySettings.shortIds"
     >
-      <el-input
-        v-model="nodeProps.xrayStreamSettingsEntity.realitySettings.shortIds"
+      <EditTag
+        :dynamic-tags-props="
+          nodeProps.xrayStreamSettingsEntity.realitySettings.shortIds
+        "
       />
     </el-form-item>
   </div>
 </template>
 
 <script>
+import EditTag from '@/components/EditTag'
+
 export default {
   name: 'XrayFormReality',
+  components: {
+    EditTag
+  },
   props: {
     nodeProps: {
       type: Object,
