@@ -28,12 +28,12 @@
         <el-form-item :label="$t('table.password').toString()">
           <el-tag>{{ nodeInfoProps.password }}</el-tag>
         </el-form-item>
-        <el-form-item :label="$t('table.uuid').toString()" v-show="showUUID">
+        <el-form-item :label="$t('table.uuid').toString()" v-show="showUUID(nodeInfoProps)">
           <el-tag>{{ nodeInfoProps.uuid }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.alterId').toString()"
-          v-show="showAlterId"
+          v-show="showAlterId(nodeInfoProps)"
         >
           <el-tag>{{ nodeInfoProps.alterId }}</el-tag>
         </el-form-item>

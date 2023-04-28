@@ -102,10 +102,7 @@ export function showUUID(temp) {
 }
 
 export function showAlterId(temp) {
-  return (
-    isXray(temp) &&
-    (temp.xrayProtocol === 'vless' || temp.xrayProtocol === 'vmess')
-  )
+  return isXray(temp) && temp.xrayProtocol === 'vmess'
 }
 
 export function isXrayStreamSettingsSecurityReality(temp) {
