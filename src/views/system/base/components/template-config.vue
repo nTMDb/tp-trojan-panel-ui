@@ -57,13 +57,13 @@ export default {
           {
             required: true,
             message: this.$t('valid.systemName'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 2,
             max: 32,
             message: this.$t('valid.systemNameRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         clashRule: [
@@ -71,7 +71,7 @@ export default {
             min: 0,
             max: 10240,
             message: this.$t('valid.clashRuleRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         xrayTemplate: [
@@ -79,7 +79,7 @@ export default {
             min: 0,
             max: 10240,
             message: this.$t('valid.xrayTemplateRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ]
       }

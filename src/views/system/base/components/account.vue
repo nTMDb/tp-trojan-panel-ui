@@ -96,49 +96,49 @@ export default {
           {
             required: true,
             message: this.$t('valid.registerEnable'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         registerQuota: [
           {
             required: true,
             message: this.$t('valid.registerQuota'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             type: 'number',
             min: 0,
             max: 1024000,
             message: this.$t('valid.registerQuotaRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         registerExpireDays: [
           {
             required: true,
             message: this.$t('valid.registerExpireDays'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             type: 'number',
             min: 0,
             max: 365,
             message: this.$t('valid.registerExpireDaysRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         resetDownloadAndUploadMonth: [
           {
             required: true,
             message: this.$t('valid.resetDownloadAndUploadMonth'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trafficRankEnable: [
           {
             required: true,
             message: this.$t('valid.trafficRankEnable'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ]
       }

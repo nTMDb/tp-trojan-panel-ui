@@ -73,39 +73,39 @@ export default {
           {
             required: true,
             message: this.$t('valid.ip'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 4,
             max: 64,
             message: this.$t('valid.ipRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         name: [
           {
             required: true,
             message: this.$t('valid.nodeServerName'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 2,
             max: 20,
             message: this.$t('valid.nodeServerNameRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         grpcPort: [
           {
             required: true,
             message: this.$t('valid.nodePort'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern:
               /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
             message: this.$t('valid.nodePortRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ]
       },
@@ -114,39 +114,39 @@ export default {
           {
             required: true,
             message: this.$t('valid.ip'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 4,
             max: 64,
             message: this.$t('valid.ipRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         name: [
           {
             required: true,
             message: this.$t('valid.nodeServerName'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 2,
             max: 20,
             message: this.$t('valid.nodeServerNameRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         grpcPort: [
           {
             required: true,
             message: this.$t('valid.nodePort'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern:
               /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
             message: this.$t('valid.nodePortRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ]
       }

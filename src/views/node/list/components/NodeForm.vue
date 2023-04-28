@@ -284,92 +284,92 @@ export default {
           {
             required: true,
             message: this.$t('valid.nodeName'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 2,
             max: 20,
             message: this.$t('valid.nodeNameRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         nodeServerId: [
           {
             required: true,
             message: this.$t('valid.nodeServerId'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         domain: [
           {
             required: true,
             message: this.$t('valid.nodeDomain'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 4,
             max: 64,
             message: this.$t('valid.nodeDomainRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern:
               /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
             message: this.$t('valid.nodeDomainFormat'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         port: [
           {
             required: true,
             message: this.$t('valid.nodePort'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern:
               /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
             message: this.$t('valid.nodePortRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         nodeTypeId: [
           {
             required: true,
             message: this.$t('valid.nodeType'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         xrayProtocol: [
           {
             required: true,
             message: this.$t('valid.xrayProtocol'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         xraySSMethod: [
           {
             required: true,
             message: this.$t('valid.xraySSMethod'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         'xraySettingsEntity.network': [
           {
             validator: validateXraySettingsEntityNetwork,
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         'xrayStreamSettingsEntity.network': [
           {
             validator: validateXrayStreamSettingsEntityNetwork,
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         'xrayStreamSettingsEntity.security': [
           {
             required: true,
             message: this.$t('valid.xraySecurity'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         'xrayStreamSettingsEntity.wsSettings.path': [
@@ -377,45 +377,45 @@ export default {
             min: 2,
             max: 64,
             message: this.$t('valid.xrayWsRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         'xrayStreamSettingsEntity.realitySettings.dest': {
           validator: validateXrayStreamSettingsEntityRealitySettingsDest,
-          trigger: 'change'
+          trigger: ['change', 'blur']
         },
         'xrayStreamSettingsEntity.realitySettings.serverNames': {
           validator: validateXrayStreamSettingsEntityRealitySettingsServerNames,
-          trigger: 'change'
+          trigger: ['change', 'blur']
         },
         'xrayStreamSettingsEntity.realitySettings.privateKey': {
           validator: validateXrayStreamSettingsEntityRealitySettingsPrivateKey,
-          trigger: 'change'
+          trigger: ['change', 'blur']
         },
         'xrayStreamSettingsEntity.realitySettings.shortIds': {
           validator: validateXrayStreamSettingsEntityRealitySettingsShortIds,
-          trigger: 'change'
+          trigger: ['change', 'blur']
         },
         trojanGoSni: [
           {
             min: 4,
             max: 64,
             message: this.$t('valid.trojanGoSni'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoMuxEnable: [
           {
             required: true,
             message: this.$t('valid.trojanGoMux'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoWebsocketEnable: [
           {
             required: true,
             message: this.$t('valid.trojanGoWs'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoWebsocketPath: [
@@ -423,7 +423,7 @@ export default {
             min: 2,
             max: 64,
             message: this.$t('valid.trojanGoWsRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoWebsocketHost: [
@@ -431,21 +431,21 @@ export default {
             min: 2,
             max: 64,
             message: this.$t('valid.trojanGoWsHostRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoSsEnable: [
           {
             required: true,
             message: this.$t('valid.trojanGoSs'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoSsMethod: [
           {
             required: true,
             message: this.$t('valid.trojanGoSsMethod'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoSsPassword: [
@@ -453,48 +453,48 @@ export default {
             min: 2,
             max: 32,
             message: this.$t('valid.trojanGoSsPasswordRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         hysteriaProtocol: [
           {
             required: true,
             message: this.$t('valid.hysteriaProtocol'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 2,
             max: 16,
             message: this.$t('valid.hysteriaProtocolRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         hysteriaUpMbps: [
           {
             required: true,
             message: this.$t('valid.hysteriaUpMbps'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             type: 'number',
             min: 1,
             max: 9999999999,
             message: this.$t('valid.hysteriaUpMbpsRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         hysteriaDownMbps: [
           {
             required: true,
             message: this.$t('valid.hysteriaDownMbps'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             type: 'number',
             min: 1,
             max: 9999999999,
             message: this.$t('valid.hysteriaDownMbpsRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ]
       },
@@ -503,94 +503,94 @@ export default {
           {
             required: true,
             message: this.$t('valid.nodeName'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 2,
             max: 20,
             message: this.$t('valid.nodeNameRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         nodeServerId: [
           {
             required: true,
             message: this.$t('valid.nodeServerId'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         domain: [
           {
             required: true,
             message: this.$t('valid.ip'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 4,
             max: 64,
             message: this.$t('valid.ipRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern:
               /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
             message: this.$t('valid.nodeDomainFormat'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         port: [
           {
             required: true,
             message: this.$t('valid.nodePort'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern:
               /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
             message: this.$t('valid.nodePortRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         nodeTypeId: [
           {
             required: true,
             message: this.$t('valid.nodeType'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         xrayProtocol: [
           {
             required: true,
             message: this.$t('valid.xrayProtocol'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         xraySSMethod: [
           {
             required: true,
             message: this.$t('valid.xraySSMethod'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         'xraySettingsEntity.network': [
           {
             required: true,
             message: this.$t('valid.xraySSNetwork'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         'xrayStreamSettingsEntity.network': [
           {
             required: true,
             message: this.$t('valid.xrayNetwork'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         'xrayStreamSettingsEntity.security': [
           {
             required: true,
             message: this.$t('valid.xraySecurity'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         'xrayStreamSettingsEntity.wsSettings.path': [
@@ -598,7 +598,7 @@ export default {
             min: 2,
             max: 64,
             message: this.$t('valid.xrayWsRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoSni: [
@@ -606,21 +606,21 @@ export default {
             min: 4,
             max: 64,
             message: this.$t('valid.trojanGoSni'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoMuxEnable: [
           {
             required: true,
             message: this.$t('valid.trojanGoMux'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoWebsocketEnable: [
           {
             required: true,
             message: this.$t('valid.trojanGoWs'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoWebsocketPath: [
@@ -628,7 +628,7 @@ export default {
             min: 2,
             max: 64,
             message: this.$t('valid.trojanGoWsRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoWebsocketHost: [
@@ -636,21 +636,21 @@ export default {
             min: 2,
             max: 64,
             message: this.$t('valid.trojanGoWsHostRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoSsEnable: [
           {
             required: true,
             message: this.$t('valid.trojanGoSs'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoSsMethod: [
           {
             required: true,
             message: this.$t('valid.trojanGoSsMethod'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         trojanGoSsPassword: [
@@ -658,48 +658,48 @@ export default {
             min: 2,
             max: 32,
             message: this.$t('valid.trojanGoSsPasswordRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         hysteriaProtocol: [
           {
             required: true,
             message: this.$t('valid.hysteriaProtocol'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 2,
             max: 16,
             message: this.$t('valid.hysteriaProtocolRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         hysteriaUpMbps: [
           {
             required: true,
             message: this.$t('valid.hysteriaUpMbps'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             type: 'number',
             min: 1,
             max: 9999999999,
             message: this.$t('valid.hysteriaUpMbpsRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         hysteriaDownMbps: [
           {
             required: true,
             message: this.$t('valid.hysteriaDownMbps'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             type: 'number',
             min: 1,
             max: 9999999999,
             message: this.$t('valid.hysteriaDownMbpsRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ]
       }

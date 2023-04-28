@@ -116,7 +116,7 @@ export default {
           {
             required: true,
             message: this.$t('valid.emailEnable'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         emailHost: [
@@ -124,20 +124,20 @@ export default {
             min: 4,
             max: 64,
             message: this.$t('valid.emailHostRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         emailPort: [
           {
             required: true,
             message: this.$t('valid.emailPort'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern:
               /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
             message: this.$t('valid.emailPortRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         emailUsername: [
@@ -145,7 +145,7 @@ export default {
             min: 3,
             max: 32,
             message: this.$t('valid.emailUsernameRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         emailPassword: [
@@ -153,28 +153,28 @@ export default {
             min: 3,
             max: 32,
             message: this.$t('valid.emailPasswordRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         expireWarnEnable: [
           {
             required: true,
             message: this.$t('valid.expireWarnEnable'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         expireWarnDay: [
           {
             required: true,
             message: this.$t('valid.expireWarnDay'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             type: 'number',
             min: 0,
             max: 365,
             message: this.$t('valid.expireWarnDayRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ]
       }

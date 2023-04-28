@@ -154,17 +154,17 @@ export default {
           {
             required: true,
             message: this.$t('valid.ip'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 4,
             max: 64,
             message: this.$t('valid.ipRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             validator: validateIp,
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ]
       }

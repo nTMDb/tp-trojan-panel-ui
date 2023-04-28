@@ -115,36 +115,36 @@ export default {
           {
             required: true,
             message: this.$t('valid.username'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 6,
             max: 20,
             message: this.$t('valid.usernameRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
             message: this.$t('valid.usernameElement'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         pass: [
-          { required: true, message: this.$t('valid.pass'), trigger: 'change' },
+          { required: true, message: this.$t('valid.pass'), trigger: ['change', 'blur'] },
           {
             min: 6,
             max: 20,
             message: this.$t('valid.passRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
             message: this.$t('valid.passElement'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         captchaCode: [
-          { required: true, message: this.$t('valid.code'), trigger: 'change' }
+          { required: true, message: this.$t('valid.code'), trigger: ['change', 'blur'] }
         ]
       },
       loading: false,

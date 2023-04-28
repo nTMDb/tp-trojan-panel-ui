@@ -86,20 +86,20 @@ export default {
         path: [
           {
             validator: pathPrefixValidate,
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         dest: [
           {
             required: true,
             message: this.$t('valid.xrayFallbackDest'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         xver: [
           {
             validator: xverValidate,
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ]
       }

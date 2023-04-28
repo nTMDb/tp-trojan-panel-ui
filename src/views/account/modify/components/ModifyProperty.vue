@@ -67,56 +67,56 @@ export default {
             min: 4,
             max: 64,
             message: this.$t('valid.emailRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern:
               /^([A-Za-z0-9_\-\.])+\@(163.com|126.com|qq.com|gmail.com)$/,
             message: this.$t('valid.emailElement'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         username: [
           {
             message: this.$t('valid.username'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 6,
             max: 20,
             message: this.$t('valid.usernameRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
             message: this.$t('valid.usernameElement'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             validator: validateEmailAndUsername,
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ],
         pass: [
           {
             required: true,
             message: this.$t('valid.pass'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             min: 6,
             max: 20,
             message: this.$t('valid.passRange'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             pattern: /^[A-Za-z0-9]+$/,
             message: this.$t('valid.passElement'),
-            trigger: 'change'
+            trigger: ['change', 'blur']
           },
           {
             validator: validateEmailAndUsername,
-            trigger: 'change'
+            trigger: ['change', 'blur']
           }
         ]
       }
