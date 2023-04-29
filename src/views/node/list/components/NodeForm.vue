@@ -311,12 +311,6 @@ export default {
             max: 64,
             message: this.$t('valid.nodeDomainRange'),
             trigger: ['change', 'blur']
-          },
-          {
-            pattern:
-              /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
-            message: this.$t('valid.nodeDomainFormat'),
-            trigger: ['change', 'blur']
           }
         ],
         port: [
@@ -522,19 +516,13 @@ export default {
         domain: [
           {
             required: true,
-            message: this.$t('valid.ip'),
+            message: this.$t('valid.nodeDomain'),
             trigger: ['change', 'blur']
           },
           {
             min: 4,
             max: 64,
-            message: this.$t('valid.ipRange'),
-            trigger: ['change', 'blur']
-          },
-          {
-            pattern:
-              /^([a-zA-Z0-9]([a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,11}$/,
-            message: this.$t('valid.nodeDomainFormat'),
+            message: this.$t('valid.nodeDomainRange'),
             trigger: ['change', 'blur']
           }
         ],
