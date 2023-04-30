@@ -317,8 +317,6 @@ export default {
     }
   },
   computed: {
-    showUUID,
-    showAlterId,
     trojanGoMuxEnableComputed() {
       return function (trojanGoMuxEnable) {
         return trojanGoMuxEnable === 1
@@ -367,6 +365,8 @@ export default {
     nodeServerFind,
     nodeTypeFind,
     isXrayStreamSettingsSecurityReality,
+    showUUID,
+    showAlterId,
     handleFallbackDetail(fallback) {
       this.dialogDetailFallbackDetailVisible = true
       this.fallback = fallback

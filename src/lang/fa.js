@@ -137,7 +137,8 @@ export default {
     taskSuccess: 'موفقیت',
     fileTaskAccountUsername: 'موسس',
     fileTaskDownload: 'دانلود',
-    downloadTemplate: 'دانلود قالب'
+    downloadTemplate: 'دانلود قالب',
+    deleted: 'غیرفعال کردن'
   },
   tagsView: {
     refresh: 'تازه کردن',

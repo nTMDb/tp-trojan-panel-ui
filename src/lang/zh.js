@@ -137,7 +137,8 @@ export default {
     taskSuccess: '成功',
     fileTaskAccountUsername: '创建人',
     fileTaskDownload: '下载',
-    downloadTemplate: '下载模板'
+    downloadTemplate: '下载模板',
+    deleted: '是否禁用'
   },
   tagsView: {
     refresh: '刷新',

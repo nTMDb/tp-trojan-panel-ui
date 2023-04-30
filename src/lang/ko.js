@@ -137,7 +137,8 @@ export default {
     taskSuccess: '성공',
     fileTaskAccountUsername: '설립자',
     fileTaskDownload: '다운로드',
-    downloadTemplate: '템플릿 다운로드'
+    downloadTemplate: '템플릿 다운로드',
+    deleted: '비활성화 여부'
   },
   tagsView: {
     refresh: '새로 고침',

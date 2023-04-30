@@ -137,7 +137,8 @@ export default {
     taskSuccess: 'Success',
     fileTaskAccountUsername: 'Creator',
     fileTaskDownload: 'Download',
-    downloadTemplate: 'Download Template'
+    downloadTemplate: 'Download Template',
+    deleted: 'Whether to disable'
   },
   tagsView: {
     refresh: 'Refresh',

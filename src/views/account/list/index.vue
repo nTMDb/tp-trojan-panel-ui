@@ -10,6 +10,21 @@
         @keyup.enter.native="handleFilter"
         @clear="handleFilter"
       />
+      <el-select
+        v-model="listQuery.deleted"
+        :placeholder="$t('table.deleted').toString()"
+        style="width: 200px"
+        class="filter-item"
+        clearable
+        @clear="handleFilter"
+      >
+        <el-option
+          :label="item.label"
+          :value="item.value"
+          :key="item.value"
+          v-for="item in deletedList"
+        ></el-option>
+      </el-select>
       <el-button
         class="filter-item"
         type="primary"
@@ -56,40 +71,64 @@
       style="width: 100%"
     >
       <el-table-column
-        :label="$t('table.id')"
+        :label="$t('table.id').toString()"
         sortable="custom"
         align="center"
         width="80"
         type="index"
       />
-      <el-table-column :label="$t('table.username')" width="120" align="center">
+      <el-table-column
+        :label="$t('table.username').toString()"
+        width="120"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span>{{ row.username }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.role')" width="100" align="center">
+      <el-table-column
+        :label="$t('table.role').toString()"
+        width="100"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span>{{ roleFilter(row.roleId) }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.quota')" width="110" align="center">
+      <el-table-column
+        :label="$t('table.quota').toString()"
+        width="110"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span>{{
             row.quota < 0 ? $t('dashboard.unlimited') : getFlow(row.quota)
           }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.download')" width="110" align="center">
+      <el-table-column
+        :label="$t('table.download').toString()"
+        width="110"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span>{{ getFlow(row.download) }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.upload')" width="110" align="center">
+      <el-table-column
+        :label="$t('table.upload').toString()"
+        width="110"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span>{{ getFlow(row.upload) }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.flow')" width="110" align="center">
+      <el-table-column
+        :label="$t('table.flow').toString()"
+        width="110"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span
             :style="
@@ -105,7 +144,11 @@
           </span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.status')" width="80" align="center">
+      <el-table-column
+        :label="$t('table.status').toString()"
+        width="80"
+        align="center"
+      >
         <template slot-scope="{ row }">
           <el-tag :type="row.deleted | deletedFilter">
             {{ row.deleted === 1 ? $t('table.disable') : $t('table.enable') }}
@@ -113,7 +156,7 @@
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.expireDate')"
+        :label="$t('table.expireDate').toString()"
         width="150"
         align="center"
       >
@@ -127,7 +170,7 @@
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.createTime')"
+        :label="$t('table.createTime').toString()"
         width="150"
         align="center"
       >
@@ -136,7 +179,7 @@
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.actions')"
+        :label="$t('table.actions').toString()"
         align="center"
         class-name="small-padding fixed-width"
       >
@@ -330,6 +373,10 @@ export default {
         create: this.$t('table.add')
       },
       importVisible: false,
+      deletedList: [
+        { value: 0, label: this.$t('table.enable') },
+        { value: 1, label: this.$t('table.disable') }
+      ],
       createRules: {
         username: [
           {
