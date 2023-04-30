@@ -589,6 +589,22 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
+        'xrayStreamSettingsEntity.realitySettings.dest': {
+          validator: validateXrayStreamSettingsEntityRealitySettingsDest,
+          trigger: ['change', 'blur']
+        },
+        'xrayStreamSettingsEntity.realitySettings.serverNames': {
+          validator: validateXrayStreamSettingsEntityRealitySettingsServerNames,
+          trigger: ['change', 'blur']
+        },
+        'xrayStreamSettingsEntity.realitySettings.privateKey': {
+          validator: validateXrayStreamSettingsEntityRealitySettingsPrivateKey,
+          trigger: ['change', 'blur']
+        },
+        'xrayStreamSettingsEntity.realitySettings.shortIds': {
+          validator: validateXrayStreamSettingsEntityRealitySettingsShortIds,
+          trigger: ['change', 'blur']
+        },
         trojanGoSni: [
           {
             min: 4,
