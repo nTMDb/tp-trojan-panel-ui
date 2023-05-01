@@ -278,7 +278,9 @@ export default {
     xrayStreamSettingsEntityRealitySettingsDest: '请输入dest',
     xrayStreamSettingsEntityRealitySettingsServerNames: '请输入serverNames',
     xrayStreamSettingsEntityRealitySettingsPrivateKey: '请输入privateKey',
-    xrayStreamSettingsEntityRealitySettingsShortIds: '请输入shortIds'
+    xrayStreamSettingsEntityRealitySettingsShortIds: '请输入shortIds',
+    realityPbk: '请输入publicKey',
+    xrayStreamSettingsEntityRealitySettingsXver: 'xver只可以是0、1、2'
   },
   confirm: {
     warn: '警告',

@@ -278,7 +278,9 @@ export default {
     xrayStreamSettingsEntityRealitySettingsDest: 'لطفا dest را وارد کنید',
     xrayStreamSettingsEntityRealitySettingsServerNames: 'لطفا serverNames را وارد کنید',
     xrayStreamSettingsEntityRealitySettingsPrivateKey: 'لطفا privateKey را وارد کنید',
-    xrayStreamSettingsEntityRealitySettingsShortIds: 'لطفا shortIds را وارد کنید'
+    xrayStreamSettingsEntityRealitySettingsShortIds: 'لطفا shortIds را وارد کنید',
+    realityPbk: 'لطفا publicKey را وارد کنید',
+    xrayStreamSettingsEntityRealitySettingsXver: 'xver فقط می تواند 0، 1، 2 باشد'
   },
   confirm: {
     warn: 'هشدار دهد',

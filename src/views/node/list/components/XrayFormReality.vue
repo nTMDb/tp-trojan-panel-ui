@@ -12,8 +12,10 @@
       label="xver"
       prop="xrayStreamSettingsEntity.realitySettings.xver"
     >
-      <el-input
+      <el-input-number
         v-model="nodeProps.xrayStreamSettingsEntity.realitySettings.xver"
+        controls-position="right"
+        type="number"
       />
     </el-form-item>
     <el-form-item
@@ -25,6 +27,9 @@
           nodeProps.xrayStreamSettingsEntity.realitySettings.serverNames
         "
       />
+    </el-form-item>
+    <el-form-item label="publicKey" prop="realityPbk">
+      <el-input v-model="nodeProps.realityPbk" />
     </el-form-item>
     <el-form-item
       label="privateKey"

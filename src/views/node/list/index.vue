@@ -275,6 +275,7 @@ export default {
         xrayProtocol: 'vless',
         xrayFlow: '',
         xraySSMethod: 'aes-256-gcm',
+        realityPbk: '',
         xraySettings: '',
         xraySettingsEntity: {
           clients: [],
@@ -338,6 +339,7 @@ export default {
         xrayProtocol: 'vless',
         xrayFlow: '',
         xraySSMethod: 'aes-256-gcm',
+        realityPbk: '',
         xraySettings: '',
         xraySettingsEntity: {
           clients: [],
@@ -435,6 +437,7 @@ export default {
         xrayProtocol: 'vless',
         xrayFlow: '',
         xraySSMethod: 'aes-256-gcm',
+        realityPbk: '',
         xraySettings: '',
         xraySettingsEntity: {
           clients: [],

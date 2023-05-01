@@ -201,6 +201,29 @@ export default {
         callback()
       }
     }
+    const validateXrayStreamSettingsEntityRealitySettingsXver = (
+      rule,
+      value,
+      callback
+    ) => {
+      console.log(this.nodeProps)
+      if (
+        isXrayStreamSettingsSecurityReality(this.nodeProps) &&
+        this.nodeProps.xrayStreamSettingsEntity.realitySettings.xver !== 0 &&
+        this.nodeProps.xrayStreamSettingsEntity.realitySettings.xver !== 1 &&
+        this.nodeProps.xrayStreamSettingsEntity.realitySettings.xver !== 2
+      ) {
+        callback(
+          new Error(
+            this.$t(
+              'valid.xrayStreamSettingsEntityRealitySettingsXver'
+            ).toString()
+          )
+        )
+      } else {
+        callback()
+      }
+    }
     const validateXrayStreamSettingsEntityRealitySettingsServerNames = (
       rule,
       value,
@@ -347,6 +370,13 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
+        realityPbk: [
+          {
+            required: true,
+            message: this.$t('valid.realityPbk'),
+            trigger: ['change', 'blur']
+          }
+        ],
         'xraySettingsEntity.network': [
           {
             validator: validateXraySettingsEntityNetwork,
@@ -374,22 +404,66 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
-        'xrayStreamSettingsEntity.realitySettings.dest': {
-          validator: validateXrayStreamSettingsEntityRealitySettingsDest,
-          trigger: ['change', 'blur']
-        },
-        'xrayStreamSettingsEntity.realitySettings.serverNames': {
-          validator: validateXrayStreamSettingsEntityRealitySettingsServerNames,
-          trigger: ['change', 'blur']
-        },
-        'xrayStreamSettingsEntity.realitySettings.privateKey': {
-          validator: validateXrayStreamSettingsEntityRealitySettingsPrivateKey,
-          trigger: ['change', 'blur']
-        },
-        'xrayStreamSettingsEntity.realitySettings.shortIds': {
-          validator: validateXrayStreamSettingsEntityRealitySettingsShortIds,
-          trigger: ['change', 'blur']
-        },
+        'xrayStreamSettingsEntity.realitySettings.dest': [
+          {
+            required: true,
+            message: this.$t(
+              'valid.xrayStreamSettingsEntityRealitySettingsDest'
+            ),
+            trigger: ['change', 'blur']
+          },
+          {
+            validator: validateXrayStreamSettingsEntityRealitySettingsDest,
+            trigger: ['change', 'blur']
+          }
+        ],
+        'xrayStreamSettingsEntity.realitySettings.xver': [
+          {
+            validator: validateXrayStreamSettingsEntityRealitySettingsXver,
+            trigger: ['change', 'blur']
+          }
+        ],
+        'xrayStreamSettingsEntity.realitySettings.serverNames': [
+          {
+            required: true,
+            message: this.$t(
+              'valid.xrayStreamSettingsEntityRealitySettingsServerNames'
+            ),
+            trigger: ['change', 'blur']
+          },
+          {
+            validator:
+              validateXrayStreamSettingsEntityRealitySettingsServerNames,
+            trigger: ['change', 'blur']
+          }
+        ],
+        'xrayStreamSettingsEntity.realitySettings.privateKey': [
+          {
+            required: true,
+            message: this.$t(
+              'valid.xrayStreamSettingsEntityRealitySettingsPrivateKey'
+            ),
+            trigger: ['change', 'blur']
+          },
+          {
+            validator:
+              validateXrayStreamSettingsEntityRealitySettingsPrivateKey,
+            trigger: ['change', 'blur']
+          }
+        ],
+        'xrayStreamSettingsEntity.realitySettings.shortIds': [
+          {
+            required: true,
+            message: this.$t(
+              'valid.xrayStreamSettingsEntityRealitySettingsShortIds'
+            ),
+            trigger: ['change', 'blur']
+          },
+          {
+            validator: validateXrayStreamSettingsEntityRealitySettingsShortIds,
+            trigger: ['change', 'blur']
+          }
+        ],
         trojanGoSni: [
           {
             min: 4,
@@ -557,6 +631,13 @@ export default {
           {
             required: true,
             message: this.$t('valid.xraySSMethod'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        realityPbk: [
+          {
+            required: true,
+            message: this.$t('valid.realityPbk'),
             trigger: ['change', 'blur']
           }
         ],

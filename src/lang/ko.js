@@ -278,7 +278,9 @@ export default {
     xrayStreamSettingsEntityRealitySettingsDest: 'dest들어 오세요',
     xrayStreamSettingsEntityRealitySettingsServerNames: 'serverNames들어 오세요',
     xrayStreamSettingsEntityRealitySettingsPrivateKey: 'privateKey들어 오세요',
-    xrayStreamSettingsEntityRealitySettingsShortIds: 'shortIds들어 오세요'
+    xrayStreamSettingsEntityRealitySettingsShortIds: 'shortIds들어 오세요',
+    realityPbk: 'publicKey들어 오세요',
+    xrayStreamSettingsEntityRealitySettingsXver: 'xver는 0, 1, 2만 될 수 있습니다.'
   },
   confirm: {
     warn: '경고하다',

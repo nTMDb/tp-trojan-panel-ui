@@ -278,7 +278,9 @@ export default {
     xrayStreamSettingsEntityRealitySettingsDest: 'please enter dest',
     xrayStreamSettingsEntityRealitySettingsServerNames: 'please enter serverNames',
     xrayStreamSettingsEntityRealitySettingsPrivateKey: 'please enter privateKey',
-    xrayStreamSettingsEntityRealitySettingsShortIds: 'please enter shortIds'
+    xrayStreamSettingsEntityRealitySettingsShortIds: 'please enter shortIds',
+    realityPbk: 'please enter publicKey',
+    xrayStreamSettingsEntityRealitySettingsXver: 'xver can only be 0, 1, 2'
   },
   confirm: {
     warn: 'Warn',

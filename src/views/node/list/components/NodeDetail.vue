@@ -28,7 +28,10 @@
         <el-form-item :label="$t('table.password').toString()">
           <el-tag>{{ nodeInfoProps.password }}</el-tag>
         </el-form-item>
-        <el-form-item :label="$t('table.uuid').toString()" v-show="showUUID(nodeInfoProps)">
+        <el-form-item
+          :label="$t('table.uuid').toString()"
+          v-show="showUUID(nodeInfoProps)"
+        >
           <el-tag>{{ nodeInfoProps.uuid }}</el-tag>
         </el-form-item>
         <el-form-item
@@ -97,6 +100,12 @@
           >
             {{ item }}
           </el-tag>
+        </el-form-item>
+        <el-form-item
+          label="publicKey"
+          v-show="isXrayStreamSettingsSecurityReality(nodeInfoProps)"
+        >
+          <el-tag>{{ nodeInfoProps.realityPbk }} </el-tag>
         </el-form-item>
         <el-form-item
           label="privateKey"
