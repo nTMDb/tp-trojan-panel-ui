@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <aside v-show="emailEnable === 1">
+    <aside v-if="emailEnable === 1">
       {{ this.$t('remark.emailEnable') }}
     </aside>
     <el-form

@@ -213,7 +213,7 @@
     </el-table>
 
     <pagination
-      v-show="total > 0"
+      v-if="total > 0"
       :total="total"
       :page.sync="listQuery.pageNum"
       :limit.sync="listQuery.pageSize"
