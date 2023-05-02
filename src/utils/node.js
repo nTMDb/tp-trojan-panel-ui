@@ -105,6 +105,10 @@ export function showAlterId(temp) {
   return isXray(temp) && temp.xrayProtocol === 'vmess'
 }
 
+export function isXrayStreamSettingsSecurityTls(temp) {
+  return isXray(temp) && temp.xrayStreamSettingsEntity.security === 'tls'
+}
+
 export function isXrayStreamSettingsSecurityReality(temp) {
   return isXray(temp) && temp.xrayStreamSettingsEntity.security === 'reality'
 }
@@ -184,3 +188,16 @@ export function handleNodeUpdate(temp, responseData) {
   }
   return temp
 }
+
+export const fingerprints = [
+  'chrome',
+  'firefox',
+  'safari',
+  'ios',
+  'android',
+  'edge',
+  '360',
+  'qq',
+  'random',
+  'randomized'
+]

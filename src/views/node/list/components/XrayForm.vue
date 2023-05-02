@@ -59,6 +59,11 @@
       </el-select>
     </el-form-item>
 
+    <XrayFormTls
+      :form-visible-props="isXrayStreamSettingsSecurityTls(nodeProps)"
+      :node-props="nodeProps"
+    />
+
     <XrayFormReality
       :form-visible-props="isXrayStreamSettingsSecurityReality(nodeProps)"
       :node-props="nodeProps"
@@ -152,16 +157,18 @@ import {
   isXrayShadowsocks2022,
   isXrayShadowsocksAEAD,
   isXrayStreamSettingsSecurityReality,
+  isXrayStreamSettingsSecurityTls,
   isXrayVless,
   isXrayWs,
   showFallback,
   showXrayFlow
 } from '@/utils/node.js'
 import XrayFormReality from '@/views/node/list/components/XrayFormReality'
+import XrayFormTls from '@/views/node/list/components/XrayFormTls'
 
 export default {
   name: 'XrayForm',
-  components: { XrayFormReality, FallbackInfo, FallbackForm },
+  components: { XrayFormTls, XrayFormReality, FallbackInfo, FallbackForm },
   props: {
     nodeProps: {
       type: Object,
@@ -241,6 +248,7 @@ export default {
     showFallback,
     showXrayFlow,
     isXrayWs,
+    isXrayStreamSettingsSecurityTls,
     isXrayStreamSettingsSecurityReality,
     xrayStreamSettingsNetworkChange() {
       if (this.nodeProps.xrayStreamSettingsEntity.network === 'ws') {

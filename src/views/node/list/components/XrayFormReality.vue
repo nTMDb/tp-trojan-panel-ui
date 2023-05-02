@@ -81,6 +81,7 @@
 
 <script>
 import EditTag from '@/components/EditTag'
+import { fingerprints } from '@/utils/node'
 
 export default {
   name: 'XrayFormReality',
@@ -99,18 +100,7 @@ export default {
   },
   data() {
     return {
-      fingerprints: [
-        'chrome',
-        'firefox',
-        'safari',
-        'ios',
-        'android',
-        'edge',
-        '360',
-        'qq',
-        'random',
-        'randomized'
-      ]
+      fingerprints
     }
   }
 }

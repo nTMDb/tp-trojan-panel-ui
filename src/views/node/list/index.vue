@@ -294,7 +294,12 @@ export default {
         xrayStreamSettingsEntity: {
           network: 'tcp',
           security: 'none',
-          tlsSettings: {},
+          tlsSettings: {
+            serverName: '',
+            alpn: ['h2', 'http/1.1'],
+            allowInsecure: false,
+            fingerprint: 'chrome'
+          },
           realitySettings: {
             dest: '',
             xver: 0,
@@ -360,7 +365,12 @@ export default {
         xrayStreamSettingsEntity: {
           network: 'tcp',
           security: 'none',
-          tlsSettings: {},
+          tlsSettings: {
+            serverName: '',
+            alpn: ['h2', 'http/1.1'],
+            allowInsecure: false,
+            fingerprint: 'chrome'
+          },
           realitySettings: {
             dest: '',
             xver: 0,
@@ -460,7 +470,12 @@ export default {
         xrayStreamSettingsEntity: {
           network: 'tcp',
           security: 'none',
-          tlsSettings: {},
+          tlsSettings: {
+            serverName: '',
+            alpn: ['h2', 'http/1.1'],
+            allowInsecure: false,
+            fingerprint: 'chrome'
+          },
           realitySettings: {
             dest: '',
             xver: 0,

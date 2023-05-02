@@ -69,6 +69,50 @@
           <el-tag>{{ nodeInfoProps.xrayStreamSettingsEntity.security }}</el-tag>
         </el-form-item>
         <el-form-item
+          label="serverName"
+          v-show="isXrayStreamSettingsSecurityTls(nodeInfoProps)"
+        >
+          <el-tag
+            >{{ nodeInfoProps.xrayStreamSettingsEntity.tlsSettings.serverName }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          label="alpn"
+          v-show="isXrayStreamSettingsSecurityTls(nodeInfoProps)"
+        >
+          <el-tag
+            v-for="(item, index) in nodeInfoProps.xrayStreamSettingsEntity
+              .tlsSettings.alpn"
+            :key="index"
+            :disable-transitions="true"
+            type="success"
+            effect="dark"
+            size="medium"
+          >
+            {{ item }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          label="allowInsecure"
+          v-show="isXrayStreamSettingsSecurityTls(nodeInfoProps)"
+        >
+          <el-tag
+            >{{
+              nodeInfoProps.xrayStreamSettingsEntity.tlsSettings.allowInsecure
+            }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.fingerprint').toString()"
+          v-show="isXrayStreamSettingsSecurityTls(nodeInfoProps)"
+        >
+          <el-tag
+            >{{
+              nodeInfoProps.xrayStreamSettingsEntity.tlsSettings.fingerprint
+            }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
           label="dest"
           v-show="isXrayStreamSettingsSecurityReality(nodeInfoProps)"
         >
@@ -315,6 +359,7 @@ import {
   isXray,
   isXrayShadowsocks,
   isXrayStreamSettingsSecurityReality,
+  isXrayStreamSettingsSecurityTls,
   isXrayWs,
   nodeServerFind,
   nodeTypeFind,
@@ -393,6 +438,7 @@ export default {
     isNaiveProxy,
     nodeServerFind,
     nodeTypeFind,
+    isXrayStreamSettingsSecurityTls,
     isXrayStreamSettingsSecurityReality,
     showUUID,
     showAlterId,
