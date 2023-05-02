@@ -1,5 +1,5 @@
 <template>
-  <div v-show="formVisibleProps">
+  <div v-if="formVisibleProps">
     <el-form-item>
       <aside>
         {{ $t('table.naiveproxyTip') }}

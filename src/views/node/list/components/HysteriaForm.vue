@@ -1,5 +1,5 @@
 <template>
-  <div v-show="formVisibleProps">
+  <div v-if="formVisibleProps">
     <el-form-item
       :label="$t('table.hysteriaProtocol').toString()"
       prop="hysteriaProtocol"
@@ -19,7 +19,7 @@
     </el-form-item>
     <el-form-item
       :label="$t('table.hysteriaUpMbps').toString()"
-      v-show="isHysteria(nodeProps)"
+      v-if="isHysteria(nodeProps)"
       prop="hysteriaUpMbps"
     >
       <el-input-number
@@ -30,7 +30,7 @@
     </el-form-item>
     <el-form-item
       :label="$t('table.hysteriaDownMbps').toString()"
-      v-show="isHysteria(nodeProps)"
+      v-if="isHysteria(nodeProps)"
       prop="hysteriaDownMbps"
     >
       <el-input-number
@@ -39,7 +39,7 @@
         type="number"
       />
     </el-form-item>
-    <el-form-item v-show="isHysteria(nodeProps)">
+    <el-form-item v-if="isHysteria(nodeProps)">
       <aside>
         {{ $t('table.hysteriaTip') }}
       </aside>

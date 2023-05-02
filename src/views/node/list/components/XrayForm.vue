@@ -1,5 +1,5 @@
 <template>
-  <div v-show="formVisibleProps">
+  <div v-if="formVisibleProps">
     <el-form-item
       :label="$t('table.xrayProtocol').toString()"
       prop="xrayProtocol"
@@ -16,7 +16,7 @@
     <el-form-item
       :label="$t('table.xrayStreamSettingsNetwork').toString()"
       prop="xrayStreamSettingsEntity.network"
-      v-show="
+      v-if="
         !(isXrayShadowsocksAEAD(nodeProps) || isXrayShadowsocks2022(nodeProps))
       "
     >
@@ -36,14 +36,14 @@
     <el-form-item
       :label="$t('table.xrayStreamSettingsWsSettingsPath').toString()"
       prop="xrayStreamSettingsEntity.wsSettings.path"
-      v-show="isXrayWs(nodeProps) && !isXrayShadowsocks(nodeProps)"
+      v-if="isXrayWs(nodeProps) && !isXrayShadowsocks(nodeProps)"
     >
       <el-input v-model="nodeProps.xrayStreamSettingsEntity.wsSettings.path" />
     </el-form-item>
     <el-form-item
       :label="$t('table.xrayStreamSettingsSecurity').toString()"
       prop="xrayStreamSettingsEntity.security"
-      v-show="!isXrayShadowsocks(nodeProps)"
+      v-if="!isXrayShadowsocks(nodeProps)"
     >
       <el-select
         v-model="nodeProps.xrayStreamSettingsEntity.security"
@@ -72,7 +72,7 @@
     <el-form-item
       :label="$t('table.xrayFlow').toString()"
       prop="xrayFlow"
-      v-show="showXrayFlow(nodeProps)"
+      v-if="showXrayFlow(nodeProps)"
     >
       <el-select v-model="nodeProps.xrayFlow" controls-position="right">
         <el-option
@@ -86,7 +86,7 @@
     <el-form-item
       :label="$t('table.xraySSMethod').toString()"
       prop="xraySSMethod"
-      v-show="
+      v-if="
         isXrayShadowsocks(nodeProps) ||
         isXrayShadowsocksAEAD(nodeProps) ||
         isXrayShadowsocksAEAD(nodeProps)
@@ -104,7 +104,7 @@
     <el-form-item
       :label="$t('table.xraySSNetwork').toString()"
       prop="xraySettingsEntity.network"
-      v-show="
+      v-if="
         isXrayShadowsocksAEAD(nodeProps) || isXrayShadowsocks2022(nodeProps)
       "
     >
@@ -123,7 +123,7 @@
     <el-form-item
       :label="$t('table.xrayFallbacks').toString()"
       prop="xraySettingsEntity.fallbacks"
-      v-show="showFallback(nodeProps)"
+      v-if="showFallback(nodeProps)"
     >
       <el-tag
         v-for="(item, index) in nodeProps.xraySettingsEntity.fallbacks"

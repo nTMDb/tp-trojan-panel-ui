@@ -1,5 +1,5 @@
 <template>
-  <div v-show="formVisibleProps">
+  <div v-if="formVisibleProps">
     <el-form-item
       label="serverName"
       prop="xrayStreamSettingsEntity.tlsSettings.serverName"
@@ -30,9 +30,9 @@
       >
         <el-option
           v-for="item in alpns"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
+          :key="item"
+          :label="item"
+          :value="item"
         >
         </el-option>
       </el-select>

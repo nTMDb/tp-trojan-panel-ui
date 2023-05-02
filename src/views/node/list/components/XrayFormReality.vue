@@ -1,5 +1,5 @@
 <template>
-  <div v-show="formVisibleProps">
+  <div v-if="formVisibleProps">
     <el-form-item
       label="dest"
       prop="xrayStreamSettingsEntity.realitySettings.dest"

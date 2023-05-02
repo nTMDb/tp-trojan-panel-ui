@@ -1,5 +1,5 @@
 <template>
-  <div v-show="formVisibleProps">
+  <div v-if="formVisibleProps">
     <el-form-item
       :label="$t('table.trojanGoSni').toString()"
       prop="trojanGoSni"
@@ -39,21 +39,21 @@
     <el-form-item
       :label="$t('table.trojanGoWebsocketPath').toString()"
       prop="trojanGoWebsocketPath"
-      v-show="isTrojanGoEnableWebsocket(nodeProps)"
+      v-if="isTrojanGoEnableWebsocket(nodeProps)"
     >
       <el-input v-model="nodeProps.trojanGoWebsocketPath" clearable />
     </el-form-item>
     <el-form-item
       :label="$t('table.trojanGoWebsocketHost').toString()"
       prop="trojanGoWebsocketHost"
-      v-show="isTrojanGoEnableWebsocket(nodeProps)"
+      v-if="isTrojanGoEnableWebsocket(nodeProps)"
     >
       <el-input v-model="nodeProps.trojanGoWebsocketHost" clearable />
     </el-form-item>
     <el-form-item
       :label="$t('table.trojanGoSsEnable').toString()"
       prop="trojanGoSsEnable"
-      v-show="isTrojanGoEnableWebsocket(nodeProps)"
+      v-if="isTrojanGoEnableWebsocket(nodeProps)"
     >
       <el-switch
         v-model="nodeProps.trojanGoSsEnable"
@@ -69,7 +69,7 @@
     <el-form-item
       :label="$t('table.trojanGoSsMethod').toString()"
       prop="trojanGoSsMethod"
-      v-show="
+      v-if="
         isTrojanGoEnableWebsocket(nodeProps) && isTrojanGoEnableSs(nodeProps)
       "
     >
@@ -89,7 +89,7 @@
     <el-form-item
       :label="$t('table.trojanGoSsPassword').toString()"
       prop="trojanGoSsPassword"
-      v-show="
+      v-if="
         isTrojanGoEnableWebsocket(nodeProps) && isTrojanGoEnableSs(nodeProps)
       "
     >
