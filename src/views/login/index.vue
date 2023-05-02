@@ -68,7 +68,7 @@
         />
 
         <div class="captcha">
-          <img :src="captchaImg" @click="handleCaptchaGenerate" height="38px" />
+          <img alt="captcha" :src="captchaImg" @click="handleCaptchaGenerate" height="38px" />
         </div>
       </el-form-item>
 
@@ -180,7 +180,7 @@ export default {
         this.passwordType = 'password'
       }
       this.$nextTick(() => {
-        this.$refs.password.focus()
+        this.$refs.pass.focus()
       })
     },
     handleLogin() {
