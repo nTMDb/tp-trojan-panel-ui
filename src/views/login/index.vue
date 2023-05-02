@@ -64,7 +64,7 @@
           auto-complete="off"
           :placeholder="$t('login.code')"
           style="width: 65%"
-          @keyup.enter="handleLogin"
+          @keyup.enter.native="handleLogin"
         />
 
         <div class="captcha">
