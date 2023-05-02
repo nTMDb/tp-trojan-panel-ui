@@ -102,10 +102,20 @@
           </el-tag>
         </el-form-item>
         <el-form-item
+          :label="$t('table.fingerprint').toString()"
+          v-show="isXrayStreamSettingsSecurityReality(nodeInfoProps)"
+        >
+          <el-tag
+            >{{
+              nodeInfoProps.xrayStreamSettingsEntity.realitySettings.fingerprint
+            }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
           label="publicKey"
           v-show="isXrayStreamSettingsSecurityReality(nodeInfoProps)"
         >
-          <el-tag>{{ nodeInfoProps.realityPbk }} </el-tag>
+          <el-tag>{{ nodeInfoProps.realityPbk }}</el-tag>
         </el-form-item>
         <el-form-item
           label="privateKey"
@@ -131,6 +141,16 @@
             size="medium"
           >
             {{ item }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
+          label="spiderX"
+          v-show="isXrayStreamSettingsSecurityReality(nodeInfoProps)"
+        >
+          <el-tag
+            >{{
+              nodeInfoProps.xrayStreamSettingsEntity.realitySettings.spiderX
+            }}
           </el-tag>
         </el-form-item>
         <el-form-item

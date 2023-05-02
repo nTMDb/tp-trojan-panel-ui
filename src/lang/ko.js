@@ -138,7 +138,8 @@ export default {
     fileTaskAccountUsername: '설립자',
     fileTaskDownload: '다운로드',
     downloadTemplate: '템플릿 다운로드',
-    deleted: '비활성화 여부'
+    deleted: '비활성화 여부',
+    fingerprint: '지문'
   },
   tagsView: {
     refresh: '새로 고침',

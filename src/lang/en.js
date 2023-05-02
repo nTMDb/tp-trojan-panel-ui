@@ -138,7 +138,8 @@ export default {
     fileTaskAccountUsername: 'Creator',
     fileTaskDownload: 'Download',
     downloadTemplate: 'Download Template',
-    deleted: 'Whether to disable'
+    deleted: 'Whether to disable',
+    fingerprint: 'Fingerprint'
   },
   tagsView: {
     refresh: 'Refresh',

@@ -138,7 +138,8 @@ export default {
     fileTaskAccountUsername: 'موسس',
     fileTaskDownload: 'دانلود',
     downloadTemplate: 'دانلود قالب',
-    deleted: 'غیرفعال کردن'
+    deleted: 'غیرفعال کردن',
+    fingerprint: 'اثر انگشت'
   },
   tagsView: {
     refresh: 'تازه کردن',

@@ -28,6 +28,24 @@
         "
       />
     </el-form-item>
+
+    <el-form-item
+      :label="$t('table.fingerprint').toString()"
+      prop="fingerprint"
+    >
+      <el-select
+        v-model="nodeProps.xrayStreamSettingsEntity.realitySettings.fingerprint"
+        controls-position="right"
+      >
+        <el-option
+          :label="item"
+          :value="item"
+          :key="index"
+          v-for="(item, index) in fingerprints"
+        ></el-option>
+      </el-select>
+    </el-form-item>
+
     <el-form-item label="publicKey" prop="realityPbk">
       <el-input v-model="nodeProps.realityPbk" />
     </el-form-item>
@@ -50,6 +68,14 @@
         :value-can-empty="true"
       />
     </el-form-item>
+    <el-form-item
+      label="spiderX"
+      prop="xrayStreamSettingsEntity.realitySettings.spiderX"
+    >
+      <el-input
+        v-model="nodeProps.xrayStreamSettingsEntity.realitySettings.spiderX"
+      />
+    </el-form-item>
   </div>
 </template>
 
@@ -69,6 +95,22 @@ export default {
     formVisibleProps: {
       type: Boolean,
       require: true
+    }
+  },
+  data() {
+    return {
+      fingerprints: [
+        'chrome',
+        'firefox',
+        'safari',
+        'ios',
+        'android',
+        'edge',
+        '360',
+        'qq',
+        'random',
+        'randomized'
+      ]
     }
   }
 }

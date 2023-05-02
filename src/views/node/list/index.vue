@@ -299,8 +299,10 @@ export default {
             dest: '',
             xver: 0,
             serverNames: [],
+            fingerprint: 'chrome',
             privateKey: '',
-            shortIds: []
+            shortIds: [],
+            spiderX: ''
           },
           wsSettings: {
             path: '/trojan-panel-websocket-path'
@@ -363,8 +365,10 @@ export default {
             dest: '',
             xver: 0,
             serverNames: [],
+            fingerprint: 'chrome',
             privateKey: '',
-            shortIds: []
+            shortIds: [],
+            spiderX: ''
           },
           wsSettings: {
             path: '/trojan-panel-websocket-path'
@@ -461,8 +465,10 @@ export default {
             dest: '',
             xver: 0,
             serverNames: [],
+            fingerprint: 'chrome',
             privateKey: '',
-            shortIds: []
+            shortIds: [],
+            spiderX: ''
           },
           wsSettings: {
             path: '/trojan-panel-websocket-path'

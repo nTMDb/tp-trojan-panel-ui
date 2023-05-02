@@ -138,7 +138,8 @@ export default {
     fileTaskAccountUsername: '创建人',
     fileTaskDownload: '下载',
     downloadTemplate: '下载模板',
-    deleted: '是否禁用'
+    deleted: '是否禁用',
+    fingerprint: '指纹'
   },
   tagsView: {
     refresh: '刷新',
