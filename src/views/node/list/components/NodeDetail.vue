@@ -313,6 +313,12 @@
           <el-tag>{{ nodeInfoProps.hysteriaProtocol }}</el-tag>
         </el-form-item>
         <el-form-item
+            :label="$t('table.hysteriaObfs').toString()"
+            v-if="isHysteria(nodeInfoProps)"
+        >
+          <el-tag>{{ nodeInfoProps.hysteriaObfs }}</el-tag>
+        </el-form-item>
+        <el-form-item
           :label="$t('table.hysteriaUpMbps').toString()"
           v-if="isHysteria(nodeInfoProps)"
         >
