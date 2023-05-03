@@ -106,11 +106,19 @@ export function showAlterId(temp) {
 }
 
 export function isXrayStreamSettingsSecurityTls(temp) {
-  return isXray(temp) && temp.xrayStreamSettingsEntity.security === 'tls'
+  return (
+    isXray(temp) &&
+    temp.xrayStreamSettingsEntity.security === 'tls' &&
+    !isXrayShadowsocks(temp)
+  )
 }
 
 export function isXrayStreamSettingsSecurityReality(temp) {
-  return isXray(temp) && temp.xrayStreamSettingsEntity.security === 'reality'
+  return (
+    isXray(temp) &&
+    temp.xrayStreamSettingsEntity.security === 'reality' &&
+    !isXrayShadowsocks(temp)
+  )
 }
 
 export function handleNodeDetail(nodeDetail, responseData) {
@@ -146,6 +154,7 @@ export function handleNodeDetail(nodeDetail, responseData) {
   }
   if (nodeDetail.nodeTypeId === 3) {
     nodeDetail.hysteriaProtocol = responseData.hysteriaProtocol
+    nodeDetail.hysteriaObfs = responseData.hysteriaObfs
     nodeDetail.hysteriaUpMbps = responseData.hysteriaUpMbps
     nodeDetail.hysteriaDownMbps = responseData.hysteriaDownMbps
   }
@@ -183,6 +192,7 @@ export function handleNodeUpdate(temp, responseData) {
   }
   if (temp.nodeTypeId === 3) {
     temp.hysteriaProtocol = responseData.hysteriaProtocol
+    temp.hysteriaObfs = responseData.hysteriaObfs
     temp.hysteriaUpMbps = responseData.hysteriaUpMbps
     temp.hysteriaDownMbps = responseData.hysteriaDownMbps
   }
