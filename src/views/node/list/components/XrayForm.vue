@@ -260,17 +260,21 @@ export default {
     isXrayWs,
     isXrayStreamSettingsSecurityTls,
     isXrayStreamSettingsSecurityReality,
+    xrayProtocolChange() {
+      if (isXrayVless(this.nodeProps)) {
+        this.nodeProps.xrayStreamSettingsEntity.security = 'reality'
+      } else if (isXrayShadowsocks(this.nodeProps)) {
+        this.nodeProps.xrayStreamSettingsEntity.security = 'none'
+      } else {
+        this.nodeProps.xrayStreamSettingsEntity.security = 'tls'
+      }
+    },
     xrayStreamSettingsNetworkChange() {
       if (this.nodeProps.xrayStreamSettingsEntity.network === 'ws') {
         this.nodeProps.xrayStreamSettingsEntity.security = 'tls'
         if (isXrayVless(this.nodeProps)) {
           this.nodeProps.xrayFlow = 'xtls-rprx-vision'
         }
-      }
-    },
-    xrayProtocolChange() {
-      if (!isXrayVless(this.nodeProps)) {
-        this.nodeProps.xrayStreamSettingsEntity.security = 'tls'
       }
     },
     xrayStreamSettingsSecurityChange() {
