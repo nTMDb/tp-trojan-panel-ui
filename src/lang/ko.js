@@ -230,6 +230,7 @@ export default {
     xrayNetwork: '운송 유형을 입력하십시오',
     xraySecurity: '전송 계층 암호화를 입력하십시오',
     xrayWsRange: 'Websocket 경로 범위는 2-64자입니다',
+    xrayHostRange: 'Websocket Host의 범위는 2-64자 사이입니다',
     xrayFallbackPathPrefix: '경로는 /로 시작해야 합니다',
     xrayFallbackDest: '설명을 입력하십시오',
     xrayFallbackXver: 'xver는 1, 2, 3만 만들 수 있습니다',

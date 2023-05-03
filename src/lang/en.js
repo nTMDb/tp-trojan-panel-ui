@@ -230,6 +230,7 @@ export default {
     xrayNetwork: 'Please enter the transport type',
     xraySecurity: 'Please enter Transport Layer Encryption',
     xrayWsRange: 'Websocket paths range from 2-64 characters',
+    xrayHostRange: 'The range of Websocket Host is between 2-64 characters',
     xrayFallbackPathPrefix: 'path must start with /',
     xrayFallbackDest: 'Please enter desc',
     xrayFallbackXver: 'xver can only make 1, 2, 3',

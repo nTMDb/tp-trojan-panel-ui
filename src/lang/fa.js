@@ -230,6 +230,7 @@ export default {
     xrayNetwork: 'لطفا نوع حمل و نقل را وارد کنید',
     xraySecurity: 'لطفاً رمزگذاری لایه انتقال را وارد کنید',
     xrayWsRange: 'مسیرهای Websocket از 2 تا 64 کاراکتر متغیر است',
+    xrayHostRange: 'محدوده Websocket Host بین 2-64 کاراکتر است',
     xrayFallbackPathPrefix: 'مسیر باید با / شروع شود',
     xrayFallbackDest: 'لطفا توصیف را وارد کنید',
     xrayFallbackXver: 'xver فقط می تواند 1، 2، 3 را بسازد',

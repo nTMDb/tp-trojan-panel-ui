@@ -33,13 +33,12 @@
         ></el-option>
       </el-select>
     </el-form-item>
-    <el-form-item
-      :label="$t('table.xrayStreamSettingsWsSettingsPath').toString()"
-      prop="xrayStreamSettingsEntity.wsSettings.path"
-      v-if="isXrayWs(nodeProps) && !isXrayShadowsocks(nodeProps)"
-    >
-      <el-input v-model="nodeProps.xrayStreamSettingsEntity.wsSettings.path" />
-    </el-form-item>
+
+    <XrayFormWebSocket
+      :form-visible-props="isXrayWs(nodeProps) && !isXrayShadowsocks(nodeProps)"
+      :node-props="nodeProps"
+    />
+
     <el-form-item
       :label="$t('table.xrayStreamSettingsSecurity').toString()"
       prop="xrayStreamSettingsEntity.security"
@@ -165,10 +164,17 @@ import {
 } from '@/utils/node.js'
 import XrayFormReality from '@/views/node/list/components/XrayFormReality'
 import XrayFormTls from '@/views/node/list/components/XrayFormTls'
+import XrayFormWebSocket from '@/views/node/list/components/XrayFormWebSocket'
 
 export default {
   name: 'XrayForm',
-  components: { XrayFormTls, XrayFormReality, FallbackInfo, FallbackForm },
+  components: {
+    XrayFormWebSocket,
+    XrayFormTls,
+    XrayFormReality,
+    FallbackInfo,
+    FallbackForm
+  },
   props: {
     nodeProps: {
       type: Object,

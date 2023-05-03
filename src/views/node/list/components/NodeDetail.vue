@@ -63,6 +63,16 @@
           </el-tag>
         </el-form-item>
         <el-form-item
+          label="WebSocket Host"
+          v-if="isXrayWs(nodeInfoProps) && !isXrayShadowsocks(nodeInfoProps)"
+        >
+          <el-tag
+            >{{
+              nodeInfoProps.xrayStreamSettingsEntity.wsSettings.headers.Host
+            }}
+          </el-tag>
+        </el-form-item>
+        <el-form-item
           :label="$t('table.xrayStreamSettingsSecurity').toString()"
           v-if="isXray(nodeInfoProps) && !isXrayShadowsocks(nodeInfoProps)"
         >

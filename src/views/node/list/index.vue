@@ -310,7 +310,10 @@ export default {
             spiderX: ''
           },
           wsSettings: {
-            path: '/trojan-panel-websocket-path'
+            path: '/trojan-panel-websocket-path',
+            headers: {
+              Host: ''
+            }
           }
         },
         xrayTag: 'user',
@@ -381,7 +384,10 @@ export default {
             spiderX: ''
           },
           wsSettings: {
-            path: '/trojan-panel-websocket-path'
+            path: '/trojan-panel-websocket-path',
+            headers: {
+              Host: ''
+            }
           }
         },
         xrayTag: 'user',
@@ -486,7 +492,10 @@ export default {
             spiderX: ''
           },
           wsSettings: {
-            path: '/trojan-panel-websocket-path'
+            path: '/trojan-panel-websocket-path',
+            headers: {
+              Host: ''
+            }
           }
         },
         xrayTag: 'user',

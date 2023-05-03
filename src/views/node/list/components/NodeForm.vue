@@ -404,6 +404,14 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
+        'xrayStreamSettingsEntity.wsSettings.headers.Host': [
+          {
+            min: 2,
+            max: 64,
+            message: this.$t('valid.xrayWsRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
         'xrayStreamSettingsEntity.realitySettings.dest': [
           {
             required: true,
@@ -663,6 +671,14 @@ export default {
           }
         ],
         'xrayStreamSettingsEntity.wsSettings.path': [
+          {
+            min: 2,
+            max: 64,
+            message: this.$t('valid.xrayWsRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        'xrayStreamSettingsEntity.wsSettings.headers.Host': [
           {
             min: 2,
             max: 64,
