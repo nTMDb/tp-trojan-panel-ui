@@ -4,7 +4,11 @@
       :label="$t('table.xrayProtocol').toString()"
       prop="xrayProtocol"
     >
-      <el-select v-model="nodeProps.xrayProtocol" controls-position="right">
+      <el-select
+        v-model="nodeProps.xrayProtocol"
+        controls-position="right"
+        @change="xrayProtocolChange"
+      >
         <el-option
           :label="item"
           :value="item"
@@ -262,6 +266,11 @@ export default {
         if (isXrayVless(this.nodeProps)) {
           this.nodeProps.xrayFlow = 'xtls-rprx-vision'
         }
+      }
+    },
+    xrayProtocolChange() {
+      if (!isXrayVless(this.nodeProps)) {
+        this.nodeProps.xrayStreamSettingsEntity.security = 'tls'
       }
     },
     xrayStreamSettingsSecurityChange() {
