@@ -330,6 +330,7 @@ export default {
         trojanGoSsPassword: '',
 
         hysteriaProtocol: 'udp',
+        hysteriaObfs: '',
         hysteriaUpMbps: 100,
         hysteriaDownMbps: 100,
         createTime: new Date()
@@ -404,6 +405,7 @@ export default {
         trojanGoSsPassword: '',
 
         hysteriaProtocol: 'udp',
+        hysteriaObfs: '',
         hysteriaUpMbps: 100,
         hysteriaDownMbps: 100,
         naiveProxyUsername: '',
@@ -512,6 +514,7 @@ export default {
         trojanGoSsPassword: '',
 
         hysteriaProtocol: 'udp',
+        hysteriaObfs: '',
         hysteriaUpMbps: 100,
         hysteriaDownMbps: 100,
         createTime: new Date()

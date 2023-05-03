@@ -545,6 +545,14 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
+        hysteriaObfs: [
+          {
+            min: 0,
+            max: 64,
+            message: this.$t('valid.hysteriaObfsRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
         hysteriaUpMbps: [
           {
             required: true,
@@ -772,6 +780,14 @@ export default {
             min: 2,
             max: 16,
             message: this.$t('valid.hysteriaProtocolRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteriaObfs: [
+          {
+            min: 0,
+            max: 64,
+            message: this.$t('valid.hysteriaObfsRange'),
             trigger: ['change', 'blur']
           }
         ],

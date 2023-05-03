@@ -18,8 +18,13 @@
       </el-select>
     </el-form-item>
     <el-form-item
+      :label="$t('table.hysteriaObfs').toString()"
+      prop="hysteriaObfs"
+    >
+      <el-input v-model="nodeProps.hysteriaObfs" />
+    </el-form-item>
+    <el-form-item
       :label="$t('table.hysteriaUpMbps').toString()"
-      v-if="isHysteria(nodeProps)"
       prop="hysteriaUpMbps"
     >
       <el-input-number
@@ -30,7 +35,6 @@
     </el-form-item>
     <el-form-item
       :label="$t('table.hysteriaDownMbps').toString()"
-      v-if="isHysteria(nodeProps)"
       prop="hysteriaDownMbps"
     >
       <el-input-number
@@ -39,7 +43,7 @@
         type="number"
       />
     </el-form-item>
-    <el-form-item v-if="isHysteria(nodeProps)">
+    <el-form-item>
       <aside>
         {{ $t('table.hysteriaTip') }}
       </aside>
