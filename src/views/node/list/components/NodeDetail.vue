@@ -182,7 +182,7 @@
           </el-tag>
         </el-form-item>
         <el-form-item
-          label="serverNames"
+          label="shortIds"
           v-if="isXrayStreamSettingsSecurityReality(nodeInfoProps)"
         >
           <el-tag
