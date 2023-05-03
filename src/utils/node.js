@@ -141,6 +141,7 @@ export function handleNodeDetail(nodeDetail, responseData) {
     nodeDetail.alterId = responseData.alterId
     nodeDetail.xrayFlow = responseData.xrayFlow
     nodeDetail.xraySSMethod = responseData.xraySSMethod
+    nodeDetail.realityPbk = responseData.realityPbk
   }
   if (nodeDetail.nodeTypeId === 2) {
     nodeDetail.trojanGoSni = responseData.trojanGoSni
@@ -179,6 +180,11 @@ export function handleNodeUpdate(temp, responseData) {
     temp.xrayTag = responseData.xrayTag
     temp.xraySniffing = responseData.xraySniffing
     temp.xrayAllocate = responseData.xrayAllocate
+    temp.uuid = responseData.uuid
+    temp.alterId = responseData.alterId
+    temp.xrayFlow = responseData.xrayFlow
+    temp.xraySSMethod = responseData.xraySSMethod
+    temp.realityPbk = responseData.realityPbk
   }
   if (temp.nodeTypeId === 2) {
     temp.trojanGoSni = responseData.trojanGoSni
