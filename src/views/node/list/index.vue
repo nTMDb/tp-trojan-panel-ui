@@ -206,6 +206,7 @@ import NodeQrcode from '@/views/node/list/components/NodeQrcode'
 import { Message, MessageBox } from 'element-ui'
 import {
   deleteNodeById,
+  nodeDefault,
   nodeQRCode,
   nodeURL,
   selectNodeById,
@@ -537,6 +538,17 @@ export default {
     },
     handleCreate() {
       this.resetTemp()
+      // 设置节点部分属性的默认值
+      nodeDefault().then((response) => {
+        this.temp.realityPbk = response.data.publicKey
+        this.temp.xrayStreamSettingsEntity.realitySettings.privateKey =
+          response.data.privateKey
+        this.temp.xrayStreamSettingsEntity.realitySettings.shortIds = [
+          response.data.shortId
+        ]
+        this.temp.xrayStreamSettingsEntity.realitySettings.spiderX =
+          response.data.spiderX
+      })
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
       this.$nextTick(() => {
