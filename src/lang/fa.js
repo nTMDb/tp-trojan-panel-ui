@@ -180,6 +180,7 @@ export default {
     registerExpireDays: 'روزهای انقضای پیش‌فرض برای کاربران جدید',
     resetDownloadAndUploadMonth: 'اینکه آیا ترافیک دانلود و آپلود هر ماه بازنشانی شود',
     trafficRankEnable: 'آیا برای فعال کردن رتبه بندی ترافیک',
+    captchaEnable: 'فعال کردن ورود کد تأیید صحت',
     webFileBtn: 'روی سرور آپلود کنید',
     webFileSelect: 'فایل را انتخاب کنید',
     webFileTip: 'فرمت فایل فقط از .zip پشتیبانی می کند و اندازه آن نمی تواند از 10 مگابایت تجاوز کند',

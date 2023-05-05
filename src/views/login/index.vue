@@ -55,7 +55,7 @@
       </el-form-item>
 
       <!-- 验证码 -->
-      <el-form-item prop="captchaCode">
+      <el-form-item prop="captchaCode" v-if="captchaEnable">
         <span class="svg-container">
           <svg-icon icon-class="valid-code" />
         </span>
@@ -151,7 +151,8 @@ export default {
       passwordType: 'password',
       redirect: undefined,
       registerEnable: 0,
-      systemName: ''
+      systemName: '',
+      captchaEnable: 0
     }
   },
   watch: {
@@ -210,6 +211,7 @@ export default {
         const { data } = response
         this.registerEnable = data.registerEnable
         this.systemName = data.systemName
+        this.captchaEnable = data.captchaEnable
       })
     }
   }
