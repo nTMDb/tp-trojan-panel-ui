@@ -180,6 +180,7 @@ export default {
     registerExpireDays: '새 사용자의 기본 만료일',
     resetDownloadAndUploadMonth: '매월 다운로드 및 업로드 트래픽 재설정 여부',
     trafficRankEnable: '트래픽 순위 활성화 여부',
+    captchaEnable: '인증코드 로그인 활성화 여부',
     webFileBtn: '서버에 업로드',
     webFileSelect: '파일 선택',
     webFileTip: '파일 형식은 .zip만 지원하며 크기는 10MB를 초과할 수 없습니다',

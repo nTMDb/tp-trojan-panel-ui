@@ -72,7 +72,7 @@
       </el-form-item>
 
       <!-- 验证码 -->
-      <el-form-item prop="captchaCode">
+      <el-form-item prop="captchaCode" v-if="captchaEnable">
         <span class="svg-container">
           <svg-icon icon-class="valid-code" />
         </span>
@@ -107,6 +107,7 @@
 
 <script>
 import { generateCaptcha } from '@/api/account'
+import { setting } from '@/api/system'
 
 export default {
   name: 'index',
@@ -134,6 +135,7 @@ export default {
         captchaCode: ''
       },
       captchaImg: '',
+      captchaEnable: 0,
       registerRules: {
         username: [
           {
@@ -158,7 +160,11 @@ export default {
           }
         ],
         pass: [
-          { required: true, message: this.$t('valid.pass'), trigger: ['change', 'blur'] },
+          {
+            required: true,
+            message: this.$t('valid.pass'),
+            trigger: ['change', 'blur']
+          },
           {
             min: 6,
             max: 20,
@@ -176,7 +182,11 @@ export default {
           }
         ],
         captchaCode: [
-          { required: true, message: this.$t('valid.code'), trigger: ['change', 'blur'] }
+          {
+            required: true,
+            message: this.$t('valid.code'),
+            trigger: ['change', 'blur']
+          }
         ]
       },
       loading: false,
@@ -185,6 +195,7 @@ export default {
   },
   created() {
     this.handleCaptchaGenerate()
+    this.setting()
   },
   methods: {
     handleCaptchaGenerate() {
@@ -221,6 +232,12 @@ export default {
           // console.log('error submit!!')
           return false
         }
+      })
+    },
+    setting() {
+      setting().then((response) => {
+        const { data } = response
+        this.captchaEnable = data.captchaEnable
       })
     }
   }

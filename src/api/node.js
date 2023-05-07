@@ -103,3 +103,16 @@ export function nodeURL(data) {
     data
   })
 }
+
+/**
+ * 节点部分属性的默认值
+ * @param data
+ * @returns
+ */
+export function nodeDefault(data) {
+  return request({
+    url: '/node/nodeDefault',
+    method: 'get',
+    params: data
+  })
+}

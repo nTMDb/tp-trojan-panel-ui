@@ -47,6 +47,7 @@ export default {
         registerQuota: 0,
         resetDownloadAndUploadMonth: 0,
         trafficRankEnable: 1,
+        captchaEnable: 0,
         systemName: '',
         clashRule: '',
         xrayTemplate: '',

@@ -64,6 +64,19 @@
           inactive-color="#ff4949"
         />
       </el-form-item>
+      <el-form-item
+          :label="$t('config.captchaEnable')"
+          prop="captchaEnable"
+      >
+        <el-switch
+            v-model="systemConfig.captchaEnable"
+            :active-value="1"
+            :inactive-value="0"
+            class="ml-2"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+        />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="updateData()"
           >{{ $t('table.confirm') }}

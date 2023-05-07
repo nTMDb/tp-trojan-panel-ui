@@ -180,6 +180,7 @@ export default {
     registerExpireDays: '新用户默认到期天数',
     resetDownloadAndUploadMonth: '是否每月重设下载和上传流量',
     trafficRankEnable: '是否开启流量排行',
+    captchaEnable: '是否开启验证码登录',
     webFileBtn: '上传到服务器',
     webFileSelect: '选取文件',
     webFileTip: '文件格式只支持.zip，且大小不能超过10MB',

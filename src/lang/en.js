@@ -180,6 +180,7 @@ export default {
     registerExpireDays: 'Default expiry days for new account',
     resetDownloadAndUploadMonth: 'Whether to reset download and upload traffic every month',
     trafficRankEnable: 'Whether to enable traffic ranking',
+    captchaEnable: 'Whether to enable verification code login',
     webFileBtn: 'upload to server',
     webFileSelect: 'select file',
     webFileTip: 'The file format only supports .zip, and the size cannot exceed 10MB',
