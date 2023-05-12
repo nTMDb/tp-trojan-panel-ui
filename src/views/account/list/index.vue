@@ -60,6 +60,24 @@
       >
         {{ $t('table.export') }}
       </el-button>
+      <el-button
+        class="filter-item"
+        type="success"
+        icon="el-icon-batch"
+        @click="handleCreateBatch"
+        v-if="checkPermission(['sysadmin'])"
+      >
+        {{ $t('table.createBatch') }}
+      </el-button>
+      <el-button
+        class="filter-item"
+        type="success"
+        icon="el-icon-batch"
+        @click="exportAccountUnused"
+        v-if="checkPermission(['sysadmin'])"
+      >
+        {{ $t('table.exportAccountUnused') }}
+      </el-button>
     </div>
     <el-table
       :key="tableKey"
@@ -156,6 +174,30 @@
         </template>
       </el-table-column>
       <el-table-column
+        :label="$t('table.validityPeriod').toString()"
+        width="110"
+        align="center"
+      >
+        <template slot-scope="{ row }">
+          <span>{{ row.validityPeriod === 0 ? '-' : row.validityPeriod }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        :label="$t('table.lastLoginTime').toString()"
+        width="150"
+        align="center"
+      >
+        <template slot-scope="{ row }">
+          <span
+            >{{
+              row.lastLoginTime === 0
+                ? '-'
+                : timeStampToDate(row.lastLoginTime, false)
+            }}
+          </span>
+        </template>
+      </el-table-column>
+      <el-table-column
         :label="$t('table.expireDate').toString()"
         width="150"
         align="center"
@@ -163,9 +205,15 @@
         <template slot-scope="{ row }">
           <span
             :style="
-              row.expireTime <= new Date().getTime() ? 'color: #FF0000;' : ''
+              row.expireTime !== 0 && row.expireTime <= new Date().getTime()
+                ? 'color: #FF0000;'
+                : ''
             "
-            >{{ timeStampToDate(row.expireTime, false) }}
+            >{{
+              row.expireTime === 0
+                ? '-'
+                : timeStampToDate(row.expireTime, false)
+            }}
           </span>
         </template>
       </el-table-column>
@@ -300,6 +348,11 @@
       :import-data="importData"
       :download-template="downloadTemplate"
     />
+    <BatchOperation
+      ref="batchOperationForm"
+      :dialog-form-visible-props.sync="batchOperationDialogFormVisible"
+      :get-list-props="getList"
+    />
   </div>
 </template>
 
@@ -308,6 +361,7 @@ import {
   createAccount,
   deleteAccountById,
   exportAccount,
+  exportAccountUnused,
   importAccount,
   resetAccountDownloadAndUpload,
   selectAccountPage,
@@ -323,6 +377,7 @@ import { selectRoleList } from '@/api/role'
 import checkPermission from '@/utils/permission'
 import { setting } from '@/api/system'
 import { downloadTemplate } from '@/api/file-task'
+import BatchOperation from '@/views/account/list/compoments/BatchOperation'
 
 export default {
   name: 'List',
@@ -335,7 +390,7 @@ export default {
       return deletedMap[deleted]
     }
   },
-  components: { Pagination, ImportTip },
+  components: { BatchOperation, Pagination, ImportTip },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (this.temp.username.trim().indexOf('admin') >= 0) {
@@ -364,10 +419,12 @@ export default {
         email: undefined,
         roleId: 3,
         deleted: 0,
+        lastLoginTime: 0,
         expireTime: new Date().getTime(),
         createTime: new Date()
       },
       dialogFormVisible: false,
+      batchOperationDialogFormVisible: false,
       textMap: {
         update: this.$t('table.edit'),
         create: this.$t('table.add')
@@ -726,7 +783,23 @@ export default {
         this.importVisible = false
         this.$notify({
           title: 'Success',
-          message: this.$t('confirm.taskSubmitSuccess'),
+          message: this.$t('confirm.taskSubmitSuccess').toString(),
+          type: 'success',
+          duration: 2000
+        })
+      })
+    },
+    handleCreateBatch() {
+      this.batchOperationDialogFormVisible = true
+      this.$nextTick(() => {
+        this.$refs['batchOperationForm'].$refs['dataForm'].clearValidate()
+      })
+    },
+    exportAccountUnused() {
+      exportAccountUnused().then(() => {
+        this.$notify({
+          title: 'Success',
+          message: this.$t('confirm.taskSubmitSuccess').toString(),
           type: 'success',
           duration: 2000
         })

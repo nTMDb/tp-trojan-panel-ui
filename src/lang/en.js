@@ -140,7 +140,11 @@ export default {
     fileTaskDownload: 'Download',
     downloadTemplate: 'Download Template',
     deleted: 'Whether to disable',
-    fingerprint: 'Fingerprint'
+    fingerprint: 'Fingerprint',
+    createBatch: 'Batch creation',
+    num: 'Quantity',
+    validityPeriod: 'Validity Period',
+    exportAccountUnused: 'Export unused accounts'
   },
   tagsView: {
     refresh: 'Refresh',
@@ -285,7 +289,13 @@ export default {
     xrayStreamSettingsEntityRealitySettingsPrivateKey: 'please enter privateKey',
     xrayStreamSettingsEntityRealitySettingsShortIds: 'please enter shortIds',
     realityPbk: 'please enter publicKey',
-    xrayStreamSettingsEntityRealitySettingsXver: 'xver can only be 0, 1, 2'
+    xrayStreamSettingsEntityRealitySettingsXver: 'xver can only be 0, 1, 2',
+    createBatchNum: 'Please enter the quantity',
+    createBatchNumRange: 'The number is an integer in the range 5-200',
+    createBatchQuota: 'Please enter the total traffic',
+    createBatchQuotaRange: 'The range of the total flow is an integer between -1-1024000',
+    createBatchValidityPeriod: 'Please enter an expiration date',
+    createBatchValidityPeriodRange: 'The validity period is an integer in the range 1-365'
   },
   confirm: {
     warn: 'Warn',

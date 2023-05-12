@@ -198,8 +198,37 @@ export function importAccount(data) {
  * @returns
  */
 export function generateCaptcha() {
-    return request({
-        url: '/auth/generateCaptcha/',
-        method: 'get'
-    })
+  return request({
+    url: '/auth/generateCaptcha/',
+    method: 'get'
+  })
+}
+
+/**
+ * 批量生成账户
+ * @param data
+ * @returns {*}
+ */
+
+export function createAccountBatch(data) {
+  return request({
+    url: '/account/createAccountBatch',
+    method: 'post',
+    data
+  })
+}
+
+
+/**
+ * 导出未使用的账户
+ * @param data
+ * @returns {*}
+ */
+
+export function exportAccountUnused(data) {
+  return request({
+    url: '/account/exportAccountUnused',
+    method: 'post',
+    data
+  })
 }

@@ -140,7 +140,11 @@ export default {
     fileTaskDownload: '下载',
     downloadTemplate: '下载模板',
     deleted: '是否禁用',
-    fingerprint: '指纹'
+    fingerprint: '指纹',
+    createBatch: '批量创建',
+    num: '数量',
+    validityPeriod: '有效期',
+    exportAccountUnused: '导出未使用的账户'
   },
   tagsView: {
     refresh: '刷新',
@@ -285,7 +289,13 @@ export default {
     xrayStreamSettingsEntityRealitySettingsPrivateKey: '请输入privateKey',
     xrayStreamSettingsEntityRealitySettingsShortIds: '请输入shortIds',
     realityPbk: '请输入publicKey',
-    xrayStreamSettingsEntityRealitySettingsXver: 'xver只可以是0、1、2'
+    xrayStreamSettingsEntityRealitySettingsXver: 'xver只可以是0、1、2',
+    createBatchNum: '请输入数量',
+    createBatchNumRange: '数量的范围在5-200之间的整数',
+    createBatchQuota: '请输入总流量',
+    createBatchQuotaRange: '总流量的范围在-1-1024000之间的整数',
+    createBatchValidityPeriod: '请输入有效期',
+    createBatchValidityPeriodRange: '有效期的范围在1-365之间的整数'
   },
   confirm: {
     warn: '警告',

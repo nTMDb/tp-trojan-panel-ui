@@ -140,7 +140,11 @@ export default {
     fileTaskDownload: '다운로드',
     downloadTemplate: '템플릿 다운로드',
     deleted: '비활성화 여부',
-    fingerprint: '지문'
+    fingerprint: '지문',
+    createBatch: '일괄 생성',
+    num: '수량',
+    validityPeriod: '유효기간',
+    exportAccountUnused: '미사용 계정 내보내기'
   },
   tagsView: {
     refresh: '새로 고침',
@@ -285,7 +289,13 @@ export default {
     xrayStreamSettingsEntityRealitySettingsPrivateKey: 'privateKey들어 오세요',
     xrayStreamSettingsEntityRealitySettingsShortIds: 'shortIds들어 오세요',
     realityPbk: 'publicKey들어 오세요',
-    xrayStreamSettingsEntityRealitySettingsXver: 'xver는 0, 1, 2만 될 수 있습니다.'
+    xrayStreamSettingsEntityRealitySettingsXver: 'xver는 0, 1, 2만 될 수 있습니다',
+    createBatchNum: '수량을 입력해주세요',
+    createBatchNumRange: '숫자는 5-200 범위의 정수입니다',
+    createBatchQuota: '총 트래픽을 입력하세요',
+    createBatchQuotaRange: '전체 흐름의 범위는 -1-1024000 사이의 정수입니다',
+    createBatchValidityPeriod: '만료일을 입력하세요',
+    createBatchValidityPeriodRange: '유효 기간은 1-365 범위의 정수입니다'
   },
   confirm: {
     warn: '경고하다',

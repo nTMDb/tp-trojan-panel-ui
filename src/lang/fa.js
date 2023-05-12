@@ -140,7 +140,11 @@ export default {
     fileTaskDownload: 'دانلود',
     downloadTemplate: 'دانلود قالب',
     deleted: 'غیرفعال کردن',
-    fingerprint: 'اثر انگشت'
+    fingerprint: 'اثر انگشت',
+    createBatch: 'ایجاد دسته',
+    num: 'تعداد',
+    validityPeriod: 'مدت اعتبار',
+    exportAccountUnused: 'صادرات حساب های استفاده نشده'
   },
   tagsView: {
     refresh: 'تازه کردن',
@@ -285,7 +289,13 @@ export default {
     xrayStreamSettingsEntityRealitySettingsPrivateKey: 'لطفا privateKey را وارد کنید',
     xrayStreamSettingsEntityRealitySettingsShortIds: 'لطفا shortIds را وارد کنید',
     realityPbk: 'لطفا publicKey را وارد کنید',
-    xrayStreamSettingsEntityRealitySettingsXver: 'xver فقط می تواند 0، 1، 2 باشد'
+    xrayStreamSettingsEntityRealitySettingsXver: 'xver فقط می تواند 0، 1، 2 باشد',
+    createBatchNum: 'لطفا مقدار را وارد کنید',
+    createBatchNumRange: 'عدد یک عدد صحیح در محدوده 5-200 است',
+    createBatchQuota: 'لطفا کل ترافیک را وارد کنید',
+    createBatchQuotaRange: 'محدوده جریان کل یک عدد صحیح بین -1-1024000 است',
+    createBatchValidityPeriod: 'لطفا تاریخ انقضا را وارد کنید',
+    createBatchValidityPeriodRange: 'مدت اعتبار یک عدد صحیح در محدوده 1-365 است'
   },
   confirm: {
     warn: 'هشدار دهد',
