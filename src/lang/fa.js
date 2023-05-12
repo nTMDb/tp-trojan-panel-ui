@@ -48,7 +48,7 @@ export default {
     disable: 'معلول',
     search: 'جستجو کردن',
     add: 'اضافه کردن به',
-    clashSubscribe: 'آدرس اشتراک Clash',
+    clashSubscribe: 'آدرس اشتراک Clash.Meta',
     actions: 'عمل کنند',
     edit: 'ویرایش کنید',
     delete: 'حذف',

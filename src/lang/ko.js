@@ -48,7 +48,7 @@ export default {
     disable: '장애가 있는',
     search: '검색',
     add: '에 추가',
-    clashSubscribe: '충돌 구독 주소',
+    clashSubscribe: 'Clash.Meta 구독 주소',
     actions: '작동하다',
     edit: '편집하다',
     delete: '삭제',

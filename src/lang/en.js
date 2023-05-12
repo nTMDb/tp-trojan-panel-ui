@@ -48,7 +48,7 @@ export default {
     disable: 'Disable',
     search: 'Search',
     add: 'Add',
-    clashSubscribe: 'Clash Subscribe URL',
+    clashSubscribe: 'Clash.Meta Subscribe URL',
     actions: 'Actions',
     edit: 'Edit',
     delete: 'Delete',
