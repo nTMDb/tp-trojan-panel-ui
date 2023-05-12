@@ -17,7 +17,9 @@
         style="width: 200px"
         class="filter-item"
         clearable
-        @clear="handleFilter"
+        @clear="()=>{
+          listQuery.deleted = undefined
+        }"
       >
         <el-option
           :label="item.label"
@@ -35,7 +37,6 @@
         @clear="
           () => {
             listQuery.lastLoginTime = undefined
-            handleFilter
           }
         "
       >
