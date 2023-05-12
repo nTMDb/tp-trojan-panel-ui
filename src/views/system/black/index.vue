@@ -9,6 +9,7 @@
         clearable
         @keyup.enter.native="handleFilter"
         @clear="handleFilter"
+        maxlength="64"
       />
       <el-button
         class="filter-item"
