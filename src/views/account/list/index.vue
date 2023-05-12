@@ -26,6 +26,26 @@
           v-for="item in deletedList"
         ></el-option>
       </el-select>
+      <el-select
+        v-model="listQuery.lastLoginTime"
+        :placeholder="$t('table.lastLoginTimeUnused').toString()"
+        style="width: 200px"
+        class="filter-item"
+        clearable
+        @clear="
+          () => {
+            listQuery.lastLoginTime = undefined
+            handleFilter
+          }
+        "
+      >
+        <el-option
+          :label="item.label"
+          :value="item.value"
+          :key="item.value"
+          v-for="item in lastLoginTimeList"
+        ></el-option>
+      </el-select>
       <el-button
         class="filter-item"
         type="primary"
@@ -408,7 +428,9 @@ export default {
       listQuery: {
         pageNum: 1,
         pageSize: 20,
-        username: undefined
+        username: undefined,
+        deleted: undefined,
+        lastLoginTime: undefined
       },
       temp: {
         id: undefined,
@@ -434,6 +456,10 @@ export default {
       deletedList: [
         { value: 0, label: this.$t('table.enable') },
         { value: 1, label: this.$t('table.disable') }
+      ],
+      lastLoginTimeList: [
+        { value: 0, label: this.$t('table.no') },
+        { value: 1, label: this.$t('table.yes') }
       ],
       createRules: {
         username: [

@@ -145,7 +145,8 @@ export default {
     num: '수량',
     validityPeriod: '유효기간',
     exportAccountUnused: '미사용 계정 내보내기',
-    lastLoginTime: '마지막 로그인 시간'
+    lastLoginTime: '마지막 로그인 시간',
+    lastLoginTimeUnused: '당신은 사용 했습니까'
   },
   tagsView: {
     refresh: '새로 고침',

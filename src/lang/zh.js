@@ -146,6 +146,7 @@ export default {
     validityPeriod: '有效期',
     exportAccountUnused: '导出未使用的账户',
     lastLoginTime: '最后一次登录时间',
+    lastLoginTimeUnused: '是否使用过'
   },
   tagsView: {
     refresh: '刷新',

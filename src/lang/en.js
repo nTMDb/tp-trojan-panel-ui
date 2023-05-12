@@ -146,6 +146,7 @@ export default {
     validityPeriod: 'Validity Period',
     exportAccountUnused: 'Export unused accounts',
     lastLoginTime: 'Last login time',
+    lastLoginTimeUnused: 'Have you used'
   },
   tagsView: {
     refresh: 'Refresh',

@@ -146,6 +146,7 @@ export default {
     validityPeriod: 'مدت اعتبار',
     exportAccountUnused: 'صادرات حساب های استفاده نشده',
     lastLoginTime: 'آخرین زمان ورود',
+    lastLoginTimeUnused: 'استفاده کرده اید'
   },
   tagsView: {
     refresh: 'تازه کردن',
