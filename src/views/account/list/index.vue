@@ -63,7 +63,7 @@
       <el-button
         class="filter-item"
         type="success"
-        icon="el-icon-batch"
+        icon="el-icon-document-copy"
         @click="handleCreateBatch"
         v-if="checkPermission(['sysadmin'])"
       >
@@ -72,7 +72,7 @@
       <el-button
         class="filter-item"
         type="success"
-        icon="el-icon-batch"
+        icon="el-icon-download"
         @click="exportAccountUnused"
         v-if="checkPermission(['sysadmin'])"
       >
