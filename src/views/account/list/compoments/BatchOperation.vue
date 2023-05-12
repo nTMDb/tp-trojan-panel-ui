@@ -76,6 +76,7 @@ export default {
             trigger: ['change', 'blur']
           },
           {
+            type: 'number',
             min: 5,
             max: 500,
             message: this.$t('valid.createBatchNumRange'),
@@ -89,6 +90,7 @@ export default {
             trigger: ['change', 'blur']
           },
           {
+            type: 'number',
             min: -1,
             max: 1024000,
             message: this.$t('valid.createBatchQuotaRange'),
@@ -102,6 +104,7 @@ export default {
             trigger: ['change', 'blur']
           },
           {
+            type: 'number',
             min: 1,
             max: 365,
             message: this.$t('valid.createBatchValidityPeriodRange'),
@@ -122,7 +125,7 @@ export default {
         if (valid) {
           createAccountBatch(this.temp).then(() => {
             this.getListProps()
-            this.dialogFormVisibleProps = false
+            this.$emit('update:dialogFormVisibleProps', false)
             this.$notify({
               title: 'Success',
               message: this.$t('confirm.createSuccess').toString(),
