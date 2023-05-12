@@ -144,7 +144,8 @@ export default {
     createBatch: 'Batch creation',
     num: 'Quantity',
     validityPeriod: 'Validity Period',
-    exportAccountUnused: 'Export unused accounts'
+    exportAccountUnused: 'Export unused accounts',
+    lastLoginTime: 'Last login time',
   },
   tagsView: {
     refresh: 'Refresh',

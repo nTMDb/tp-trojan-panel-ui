@@ -144,7 +144,8 @@ export default {
     createBatch: '批量创建',
     num: '数量',
     validityPeriod: '有效期',
-    exportAccountUnused: '导出未使用的账户'
+    exportAccountUnused: '导出未使用的账户',
+    lastLoginTime: '最后一次登录时间',
   },
   tagsView: {
     refresh: '刷新',

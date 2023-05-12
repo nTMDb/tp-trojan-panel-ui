@@ -144,7 +144,8 @@ export default {
     createBatch: 'ایجاد دسته',
     num: 'تعداد',
     validityPeriod: 'مدت اعتبار',
-    exportAccountUnused: 'صادرات حساب های استفاده نشده'
+    exportAccountUnused: 'صادرات حساب های استفاده نشده',
+    lastLoginTime: 'آخرین زمان ورود',
   },
   tagsView: {
     refresh: 'تازه کردن',
