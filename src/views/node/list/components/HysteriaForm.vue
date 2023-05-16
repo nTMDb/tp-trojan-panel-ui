@@ -68,7 +68,7 @@ export default {
   },
   data() {
     return {
-      hysteriaProtocols: ['udp', 'faketcp']
+      hysteriaProtocols: ['udp', 'wechat-video', 'faketcp']
     }
   },
   methods: {
