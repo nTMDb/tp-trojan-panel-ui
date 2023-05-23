@@ -237,8 +237,8 @@ export default {
         'none',
         'aes-128-gcm',
         'aes-256-gcm',
-        'chacha20-poly1305',
-        'xchacha20-poly1305'
+        'chacha20-ietf-poly1305',
+        'xchacha20-ietf-poly1305'
       ],
       xrayProtocols: [
         // 'dokodemo-door',
