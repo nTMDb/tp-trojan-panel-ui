@@ -51,7 +51,7 @@ export default {
         systemName: '',
         clashRule: '',
         xrayTemplate: '',
-        xrayTemplateEntity: {},
+        xrayTemplateEntity: {}
       }
     }
   },

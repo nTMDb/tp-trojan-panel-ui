@@ -6,10 +6,7 @@
       :model="systemConfig"
       label-position="left"
     >
-      <el-form-item
-        :label="$t('config.registerEnable')"
-        prop="registerEnable"
-      >
+      <el-form-item :label="$t('config.registerEnable')" prop="registerEnable">
         <el-switch
           v-model="systemConfig.registerEnable"
           :active-value="1"
@@ -64,17 +61,14 @@
           inactive-color="#ff4949"
         />
       </el-form-item>
-      <el-form-item
-          :label="$t('config.captchaEnable')"
-          prop="captchaEnable"
-      >
+      <el-form-item :label="$t('config.captchaEnable')" prop="captchaEnable">
         <el-switch
-            v-model="systemConfig.captchaEnable"
-            :active-value="1"
-            :inactive-value="0"
-            class="ml-2"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
+          v-model="systemConfig.captchaEnable"
+          :active-value="1"
+          :inactive-value="0"
+          class="ml-2"
+          active-color="#13ce66"
+          inactive-color="#ff4949"
         />
       </el-form-item>
       <el-form-item>

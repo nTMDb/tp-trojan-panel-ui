@@ -24,10 +24,7 @@
       </template>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img
-            src="/api/image/logo"
-            class="user-avatar"
-          />
+          <img src="/api/image/logo" class="user-avatar" />
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">

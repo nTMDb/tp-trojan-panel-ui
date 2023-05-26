@@ -68,7 +68,12 @@
         />
 
         <div class="captcha">
-          <img alt="captcha" :src="captchaImg" @click="handleCaptchaGenerate" height="38px" />
+          <img
+            alt="captcha"
+            :src="captchaImg"
+            @click="handleCaptchaGenerate"
+            height="38px"
+          />
         </div>
       </el-form-item>
 
@@ -130,7 +135,11 @@ export default {
           }
         ],
         pass: [
-          { required: true, message: this.$t('valid.pass'), trigger: ['change', 'blur'] },
+          {
+            required: true,
+            message: this.$t('valid.pass'),
+            trigger: ['change', 'blur']
+          },
           {
             min: 6,
             max: 20,
@@ -144,7 +153,11 @@ export default {
           }
         ],
         captchaCode: [
-          { required: true, message: this.$t('valid.code'), trigger: ['change', 'blur'] }
+          {
+            required: true,
+            message: this.$t('valid.code'),
+            trigger: ['change', 'blur']
+          }
         ]
       },
       loading: false,

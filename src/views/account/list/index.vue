@@ -17,9 +17,11 @@
         style="width: 200px"
         class="filter-item"
         clearable
-        @clear="()=>{
-          listQuery.deleted = undefined
-        }"
+        @clear="
+          () => {
+            listQuery.deleted = undefined
+          }
+        "
       >
         <el-option
           :label="item.label"

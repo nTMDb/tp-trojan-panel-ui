@@ -93,7 +93,11 @@ export default {
       fileList: [],
       rules: {
         cover: [
-          { required: true, message: this.$t('valid.cover'), trigger: ['change', 'blur'] }
+          {
+            required: true,
+            message: this.$t('valid.cover'),
+            trigger: ['change', 'blur']
+          }
         ]
       }
     }

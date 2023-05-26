@@ -21,8 +21,12 @@
         />
       </el-form-item>
 
-      <el-form-item :label="$t('config.emailHost')" prop="emailHost" >
-        <el-input :disabled="emailDisable" v-model="systemConfig.emailHost" clearable />
+      <el-form-item :label="$t('config.emailHost')" prop="emailHost">
+        <el-input
+          :disabled="emailDisable"
+          v-model="systemConfig.emailHost"
+          clearable
+        />
       </el-form-item>
 
       <el-form-item :label="$t('config.emailPort')" prop="emailPort">

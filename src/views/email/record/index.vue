@@ -17,9 +17,11 @@
         style="width: 200px"
         class="filter-item"
         clearable
-        @clear="()=>{
-          listQuery.state = undefined
-        }"
+        @clear="
+          () => {
+            listQuery.state = undefined
+          }
+        "
       >
         <el-option
           :label="item.label"
