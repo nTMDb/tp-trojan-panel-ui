@@ -160,7 +160,7 @@ import {
   isXrayShadowsocks2022,
   isXrayShadowsocksAEAD,
   isXrayStreamSettingsSecurityReality,
-  isXrayStreamSettingsSecurityTls,
+  isXrayStreamSettingsSecurityTls, isXrayTrojan,
   isXrayVless,
   isXrayWs,
   showFallback,
@@ -206,6 +206,9 @@ export default {
       let securitys = ['none', 'tls']
       if (isXrayVless(this.nodeProps)) {
         securitys.push('reality')
+      }
+      if (isXrayTrojan(this.nodeProps)){
+        this.nodeProps.remove('none')
       }
       return securitys
     },
