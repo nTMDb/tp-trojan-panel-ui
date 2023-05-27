@@ -208,7 +208,7 @@ export default {
         securitys.push('reality')
       }
       if (isXrayTrojan(this.nodeProps)){
-        this.nodeProps.remove('none')
+        securitys.remove('none')
       }
       return securitys
     },
