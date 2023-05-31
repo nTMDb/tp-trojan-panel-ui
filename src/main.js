@@ -11,7 +11,6 @@ import Cookies from 'js-cookie'
 import '@/icons'
 import '@/permission'
 import i18n from '@/lang'
-import VueClipboard from 'vue-clipboard2'
 
 import VCA from '@vue/composition-api'
 import JsonEditorVue from 'json-editor-vue'
@@ -19,7 +18,6 @@ import JsonEditorVue from 'json-editor-vue'
 Vue.use(VCA)
 Vue.use(JsonEditorVue)
 
-Vue.use(VueClipboard)
 Vue.use(ElementUI, {
   size: Cookies.get('size') || 'small', // set element-ui default size
   i18n: (key, value) => i18n.t(key, value)
