@@ -14,6 +14,7 @@
   "dependencies": {
     "@vue/composition-api": "^1.7.1",
     "axios": "0.25.0",
+    "copy-to-clipboard": "^3.3.3",
     "core-js": "3.20.3",
     "echarts": "5.2.2",
     "element-ui": "2.15.6",

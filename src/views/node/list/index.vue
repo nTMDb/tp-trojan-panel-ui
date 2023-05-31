@@ -204,6 +204,7 @@ import Pagination from '@/components/Pagination'
 import NodeDetail from '@/views/node/list/components/NodeDetail'
 import NodeQrcode from '@/views/node/list/components/NodeQrcode'
 import { Message, MessageBox } from 'element-ui'
+import copy from 'copy-to-clipboard'
 import {
   deleteNodeById,
   nodeDefault,
@@ -605,44 +606,43 @@ export default {
     },
     handleCopyURL(row) {
       nodeURL(row).then((response) => {
-        this.$copyText(response.data).then(
-          () => {
-            Message({
-              showClose: true,
-              message: this.$t('confirm.urlCopySuccess').toString(),
-              type: 'success'
-            })
-          },
-          () => {
-            Message({
-              showClose: true,
-              message: this.$t('confirm.urlCopyFail').toString(),
-              type: 'error'
-            })
-          }
-        )
+        if (copy(response.data)) {
+          Message({
+            showClose: true,
+            message: this.$t('confirm.urlCopySuccess').toString(),
+            type: 'success'
+          })
+        } else {
+          Message({
+            showClose: true,
+            message: this.$t('confirm.urlCopyFail').toString(),
+            type: 'error'
+          })
+        }
       })
     },
     handleClashSubscribe() {
       clashSubscribe().then((response) => {
-        this.$copyText(
-          window.location.protocol + '//' + window.location.host + response.data
-        ).then(
-          () => {
-            Message({
-              showClose: true,
-              message: this.$t('confirm.urlCopySuccess').toString(),
-              type: 'success'
-            })
-          },
-          () => {
-            Message({
-              showClose: true,
-              message: this.$t('confirm.urlCopyFail').toString(),
-              type: 'error'
-            })
-          }
-        )
+        if (
+          copy(
+            window.location.protocol +
+              '//' +
+              window.location.host +
+              response.data
+          )
+        ) {
+          Message({
+            showClose: true,
+            message: this.$t('confirm.urlCopySuccess').toString(),
+            type: 'success'
+          })
+        } else {
+          Message({
+            showClose: true,
+            message: this.$t('confirm.urlCopyFail').toString(),
+            type: 'error'
+          })
+        }
       })
     }
   }
