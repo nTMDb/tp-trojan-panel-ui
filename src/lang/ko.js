@@ -281,7 +281,7 @@ export default {
     ipRange: 'IP 범위는 4-64자 사이입니다',
     systemName: '시스템 이름을 입력하세요',
     systemNameRange: '시스템 이름 범위는 2-32자입니다',
-    clashRuleRange: 'Clash 규칙 범위는 0-10000자입니다',
+    clashRuleRange: 'Clash 규칙 범위는 0-100000자입니다',
     xrayTemplateRange: 'Xray 템플릿의 범위는 0-10000자 사이입니다',
     cover: '덮어쓰기 여부를 입력해주세요',
     code: '인증 코드를 입력하세요',

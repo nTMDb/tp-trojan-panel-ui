@@ -69,7 +69,7 @@ export default {
         clashRule: [
           {
             min: 0,
-            max: 10240,
+            max: 102400,
             message: this.$t('valid.clashRuleRange'),
             trigger: ['change', 'blur']
           }

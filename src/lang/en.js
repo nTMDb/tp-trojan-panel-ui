@@ -281,7 +281,7 @@ export default {
     ipRange: 'The range of IP is between 4-64 characters',
     systemName: 'Please enter a system name',
     systemNameRange: 'System names range from 2-32 characters',
-    clashRuleRange: 'Clash rules range from 0-10000 characters',
+    clashRuleRange: 'Clash rules range from 0-100000 characters',
     xrayTemplateRange: 'The range of Xray templates is between 0-10000 characters',
     cover: 'Please enter whether to overwrite',
     code: 'please enter verification code',
