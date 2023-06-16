@@ -367,7 +367,7 @@ export default {
             trigger: ['change', 'blur']
           },
           {
-            pattern: /^-?[1-9]\d*$/,
+            pattern: /^-?\d+$/,
             message: this.$t('valid.nodePriorityRange'),
             trigger: ['change', 'blur']
           }
@@ -659,7 +659,7 @@ export default {
             trigger: ['change', 'blur']
           },
           {
-            pattern: /^-?[1-9]\d*$/,
+            pattern: /^-?\d+$/,
             message: this.$t('valid.nodePriorityRange'),
             trigger: ['change', 'blur']
           }
