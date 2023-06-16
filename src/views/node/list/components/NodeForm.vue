@@ -45,6 +45,17 @@
         </el-form-item>
 
         <el-form-item
+          :label="$t('table.nodePriority').toString()"
+          prop="priority"
+        >
+          <el-input-number
+            v-model.number="nodeProps.priority"
+            controls-position="right"
+            type="number"
+          />
+        </el-form-item>
+
+        <el-form-item
           :label="$t('table.nodeType').toString()"
           prop="nodeTypeId"
         >
@@ -349,6 +360,18 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
+        priority: [
+          {
+            required: true,
+            message: this.$t('valid.nodePriority'),
+            trigger: ['change', 'blur']
+          },
+          {
+            pattern: /^-?[1-9]\d*$/,
+            message: this.$t('valid.nodePriorityRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
         nodeTypeId: [
           {
             required: true,
@@ -626,6 +649,18 @@ export default {
             pattern:
               /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/,
             message: this.$t('valid.nodePortRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        priority: [
+          {
+            required: true,
+            message: this.$t('valid.nodePriority'),
+            trigger: ['change', 'blur']
+          },
+          {
+            pattern: /^-?[1-9]\d*$/,
+            message: this.$t('valid.nodePriorityRange'),
             trigger: ['change', 'blur']
           }
         ],

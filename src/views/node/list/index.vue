@@ -103,6 +103,15 @@
         </template>
       </el-table-column>
       <el-table-column
+          :label="$t('table.nodePriority').toString()"
+          width="80"
+          align="center"
+      >
+        <template slot-scope="{ row }">
+          <span>{{ row.priority }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
         :label="$t('table.nodeType').toString()"
         width="120"
         align="center"
@@ -273,6 +282,7 @@ export default {
         name: '',
         domain: '',
         port: 443,
+        priority: 100,
 
         xrayProtocol: 'vless',
         xrayFlow: '',
@@ -457,6 +467,7 @@ export default {
         name: '',
         domain: '',
         port: 443,
+        priority: 100,
 
         xrayProtocol: 'vless',
         xrayFlow: '',
