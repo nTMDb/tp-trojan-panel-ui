@@ -79,6 +79,7 @@
         :label="$t('table.nodeServerName').toString()"
         width="150"
         align="center"
+        v-if="checkPermission(['sysadmin', 'admin'])"
       >
         <template slot-scope="{ row }">
           <span>{{ nodeServerFind(nodeServers, row.nodeServerId) }}</span>
@@ -106,6 +107,7 @@
           :label="$t('table.nodePriority').toString()"
           width="80"
           align="center"
+          v-if="checkPermission(['sysadmin', 'admin'])"
       >
         <template slot-scope="{ row }">
           <span>{{ row.priority }}</span>
