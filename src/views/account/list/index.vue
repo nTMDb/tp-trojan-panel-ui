@@ -268,7 +268,9 @@
             type="primary"
             size="mini"
             @click="handleClashSubscribeForSb(row)"
-            v-if="row.lastLoginTime !== 0"
+            v-if="
+              checkPermission(['sysadmin', 'admin']) && row.lastLoginTime !== 0
+            "
           >
             {{ $t('table.clashSubscribeForSb') }}
           </el-button>
