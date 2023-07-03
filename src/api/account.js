@@ -154,6 +154,19 @@ export function clashSubscribe() {
 }
 
 /**
+ * 获取指定人的Clash订阅地址
+ * @param data
+ * @returns
+ */
+export function clashSubscribeForSb(data) {
+  return request({
+    url: '/account/clashSubscribeForSb',
+    method: 'get',
+    params: data
+  })
+}
+
+/**
  * 重设下载和上传流量
  * @param data
  * @returns

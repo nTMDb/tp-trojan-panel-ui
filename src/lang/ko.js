@@ -49,6 +49,7 @@ export default {
     search: '검색',
     add: '에 추가',
     clashSubscribe: 'Clash.Meta 구독 주소',
+    clashSubscribeForSb: '구독 주소 복사',
     actions: '작동하다',
     edit: '편집하다',
     delete: '삭제',

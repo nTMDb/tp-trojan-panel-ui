@@ -49,6 +49,7 @@ export default {
     search: '搜索',
     add: '添加',
     clashSubscribe: 'Clash.Meta订阅地址',
+    clashSubscribeForSb: '复制订阅地址',
     actions: '操作',
     edit: '编辑',
     delete: '删除',

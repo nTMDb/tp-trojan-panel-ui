@@ -49,6 +49,7 @@ export default {
     search: 'Search',
     add: 'Add',
     clashSubscribe: 'Clash.Meta Subscribe URL',
+    clashSubscribeForSb: 'Copy Subscribe URL',
     actions: 'Actions',
     edit: 'Edit',
     delete: 'Delete',

@@ -49,6 +49,7 @@ export default {
     search: 'جستجو کردن',
     add: 'اضافه کردن به',
     clashSubscribe: 'آدرس اشتراک Clash.Meta',
+    clashSubscribeForSb: 'آدرس اشتراک را کپی کنید',
     actions: 'عمل کنند',
     edit: 'ویرایش کنید',
     delete: 'حذف',

@@ -267,6 +267,14 @@
           <el-button
             type="primary"
             size="mini"
+            @click="handleClashSubscribeForSb(row)"
+            v-if="row.lastLoginTime !== 0"
+          >
+            {{ $t('table.clashSubscribeForSb') }}
+          </el-button>
+          <el-button
+            type="primary"
+            size="mini"
             @click="handleUpdate(row)"
             v-if="checkPermission(['sysadmin'])"
           >
@@ -382,6 +390,7 @@
 
 <script>
 import {
+  clashSubscribeForSb,
   createAccount,
   deleteAccountById,
   exportAccount,
@@ -394,7 +403,7 @@ import {
 import Pagination from '@/components/Pagination'
 import ImportTip from '@/components/ImportTip'
 
-import { MessageBox } from 'element-ui'
+import { Message, MessageBox } from 'element-ui'
 import { timeStampToDate } from '@/utils'
 import { byteToMb, getFlow, mbToByte } from '@/utils/account'
 import { selectRoleList } from '@/api/role'
@@ -402,6 +411,7 @@ import checkPermission from '@/utils/permission'
 import { setting } from '@/api/system'
 import { downloadTemplate } from '@/api/file-task'
 import BatchOperation from '@/views/account/list/compoments/BatchOperation'
+import copy from 'copy-to-clipboard'
 
 export default {
   name: 'List',
@@ -856,6 +866,30 @@ export default {
           type: 'success',
           duration: 2000
         })
+      })
+    },
+    handleClashSubscribeForSb(row) {
+      clashSubscribeForSb(row).then((response) => {
+        if (
+          copy(
+            window.location.protocol +
+              '//' +
+              window.location.host +
+              response.data
+          )
+        ) {
+          Message({
+            showClose: true,
+            message: this.$t('confirm.urlCopySuccess').toString(),
+            type: 'success'
+          })
+        } else {
+          Message({
+            showClose: true,
+            message: this.$t('confirm.urlCopyFail').toString(),
+            type: 'error'
+          })
+        }
       })
     }
   }
