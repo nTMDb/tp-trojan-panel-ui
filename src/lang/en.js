@@ -145,7 +145,7 @@ export default {
     fingerprint: 'Fingerprint',
     createBatch: 'Batch creation',
     num: 'Quantity',
-    presetExpire: 'Default validity period',
+    presetExpire: 'Default validity period/day',
     presetQuota: 'Default quota/MB',
     exportAccountUnused: 'Export unused accounts',
     lastLoginTime: 'Last login time',

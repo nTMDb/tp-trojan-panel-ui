@@ -145,7 +145,7 @@ export default {
     fingerprint: '지문',
     createBatch: '일괄 생성',
     num: '수량',
-    presetExpire: '기본 유효 기간',
+    presetExpire: '기본 유효 기간/일',
     presetQuota: '기본 총 흐름/MB',
     exportAccountUnused: '미사용 계정 내보내기',
     lastLoginTime: '마지막 로그인 시간',

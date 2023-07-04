@@ -145,7 +145,7 @@ export default {
     fingerprint: '指纹',
     createBatch: '批量创建',
     num: '数量',
-    presetExpire: '预设有效期',
+    presetExpire: '预设有效期/天',
     presetQuota: '预设总流量/MB',
     exportAccountUnused: '导出未使用的账户',
     lastLoginTime: '最后一次登录时间',

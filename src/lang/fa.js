@@ -145,7 +145,7 @@ export default {
     fingerprint: 'اثر انگشت',
     createBatch: 'ایجاد دسته',
     num: 'تعداد',
-    presetExpire: 'دوره اعتبار پیش فرض',
+    presetExpire: 'دوره اعتبار پیش فرض/روز',
     presetQuota: 'کل ترافیک پیش فرض/MB',
     exportAccountUnused: 'صادرات حساب های استفاده نشده',
     lastLoginTime: 'آخرین زمان ورود',
