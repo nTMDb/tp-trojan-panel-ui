@@ -199,7 +199,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.presetExpire').toString()"
-        width="110"
+        width="80"
         align="center"
       >
         <template slot-scope="{ row }">
@@ -208,7 +208,7 @@
       </el-table-column>
       <el-table-column
           :label="$t('table.presetQuota').toString()"
-          width="110"
+          width="80"
           align="center"
       >
         <template slot-scope="{ row }">
