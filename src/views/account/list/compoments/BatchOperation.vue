@@ -25,11 +25,11 @@
         />
       </el-form-item>
       <el-form-item
-        :label="$t('table.validityPeriod').toString()"
-        prop="validityPeriod"
+        :label="$t('table.presetExpire').toString()"
+        prop="presetExpire"
       >
         <el-input-number
-          v-model.number="temp.validityPeriod"
+          v-model.number="temp.presetExpire"
           controls-position="right"
           type="number"
         />
@@ -66,7 +66,7 @@ export default {
       temp: {
         num: 5,
         quota: 1024,
-        validityPeriod: 7
+        presetExpire: 7
       },
       createRules: {
         num: [
@@ -97,17 +97,17 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
-        validityPeriod: [
+        presetExpire: [
           {
             required: true,
-            message: this.$t('valid.createBatchValidityPeriod'),
+            message: this.$t('valid.createBatchPresetExpire'),
             trigger: ['change', 'blur']
           },
           {
             type: 'number',
             min: 1,
             max: 365,
-            message: this.$t('valid.createBatchValidityPeriodRange'),
+            message: this.$t('valid.createBatchPresetExpireRange'),
             trigger: ['change', 'blur']
           }
         ]

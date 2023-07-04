@@ -145,7 +145,7 @@ export default {
     fingerprint: '指纹',
     createBatch: '批量创建',
     num: '数量',
-    validityPeriod: '有效期',
+    presetExpire: '有效期',
     exportAccountUnused: '导出未使用的账户',
     lastLoginTime: '最后一次登录时间',
     lastLoginTimeUnused: '是否使用过'
@@ -300,8 +300,8 @@ export default {
     createBatchNumRange: '数量的范围在5-200之间的整数',
     createBatchQuota: '请输入总流量',
     createBatchQuotaRange: '总流量的范围在-1-1024000之间的整数',
-    createBatchValidityPeriod: '请输入有效期',
-    createBatchValidityPeriodRange: '有效期的范围在1-365之间的整数'
+    createBatchPresetExpire: '请输入有效期',
+    createBatchPresetExpireRange: '有效期的范围在1-365之间的整数'
   },
   confirm: {
     warn: '警告',

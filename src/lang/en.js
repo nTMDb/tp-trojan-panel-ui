@@ -145,7 +145,7 @@ export default {
     fingerprint: 'Fingerprint',
     createBatch: 'Batch creation',
     num: 'Quantity',
-    validityPeriod: 'Validity Period',
+    presetExpire: 'Validity Period',
     exportAccountUnused: 'Export unused accounts',
     lastLoginTime: 'Last login time',
     lastLoginTimeUnused: 'Have you used'
@@ -300,8 +300,8 @@ export default {
     createBatchNumRange: 'The number is an integer in the range 5-200',
     createBatchQuota: 'Please enter the total traffic',
     createBatchQuotaRange: 'The range of the total flow is an integer between -1-1024000',
-    createBatchValidityPeriod: 'Please enter an expiration date',
-    createBatchValidityPeriodRange: 'The validity period is an integer in the range 1-365'
+    createBatchPresetExpire: 'Please enter an expiration date',
+    createBatchPresetExpireRange: 'The validity period is an integer in the range 1-365'
   },
   confirm: {
     warn: 'Warn',

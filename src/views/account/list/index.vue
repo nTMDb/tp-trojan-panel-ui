@@ -198,12 +198,12 @@
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.validityPeriod').toString()"
+        :label="$t('table.presetExpire').toString()"
         width="110"
         align="center"
       >
         <template slot-scope="{ row }">
-          <span>{{ row.validityPeriod === 0 ? '-' : row.validityPeriod }}</span>
+          <span>{{ row.presetExpire === 0 ? '-' : row.presetExpire }}</span>
         </template>
       </el-table-column>
       <el-table-column
