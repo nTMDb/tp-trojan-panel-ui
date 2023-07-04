@@ -17,9 +17,9 @@
           type="number"
         />
       </el-form-item>
-      <el-form-item :label="$t('table.editQuota').toString()" prop="quota">
+      <el-form-item :label="$t('table.presetQuota').toString()" prop="presetQuota">
         <el-input-number
-          v-model.number="temp.quota"
+          v-model.number="temp.presetQuota"
           controls-position="right"
           type="number"
         />
@@ -65,7 +65,7 @@ export default {
     return {
       temp: {
         num: 5,
-        quota: 1024,
+        presetQuota: 1024,
         presetExpire: 7
       },
       createRules: {
@@ -83,17 +83,17 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
-        quota: [
+        presetQuota: [
           {
             required: true,
-            message: this.$t('valid.createBatchQuota'),
+            message: this.$t('valid.createBatchPresetQuota'),
             trigger: ['change', 'blur']
           },
           {
             type: 'number',
             min: -1,
             max: 1024000,
-            message: this.$t('valid.createBatchQuotaRange'),
+            message: this.$t('valid.createBatchPresetQuotaRange'),
             trigger: ['change', 'blur']
           }
         ],

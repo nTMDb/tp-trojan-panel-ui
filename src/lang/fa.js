@@ -145,7 +145,8 @@ export default {
     fingerprint: 'اثر انگشت',
     createBatch: 'ایجاد دسته',
     num: 'تعداد',
-    presetExpire: 'مدت اعتبار',
+    presetExpire: 'دوره اعتبار پیش فرض',
+    presetQuota: 'کل ترافیک پیش فرض/MB',
     exportAccountUnused: 'صادرات حساب های استفاده نشده',
     lastLoginTime: 'آخرین زمان ورود',
     lastLoginTimeUnused: 'استفاده کرده اید'
@@ -300,8 +301,10 @@ export default {
     createBatchNumRange: 'عدد یک عدد صحیح در محدوده 5-200 است',
     createBatchQuota: 'لطفا کل ترافیک را وارد کنید',
     createBatchQuotaRange: 'محدوده جریان کل یک عدد صحیح بین -1-1024000 است',
-    createBatchPresetExpire: 'لطفا تاریخ انقضا را وارد کنید',
-    createBatchPresetExpireRange: 'مدت اعتبار یک عدد صحیح در محدوده 1-365 است'
+    createBatchPresetExpire: 'لطفا تاریخ انقضای پیش فرض را وارد کنید',
+    createBatchPresetExpireRange: 'یک عدد صحیح بین 1-365 برای دوره اعتبار از پیش تعیین شده',
+    createBatchPresetQuota: 'لطفاً جریان کل پیش فرض را وارد کنید',
+    createBatchPresetQuotaRange: 'محدوده جریان کل از پیش تعیین شده یک عدد صحیح بین -1-1024000 است'
   },
   confirm: {
     warn: 'هشدار دهد',

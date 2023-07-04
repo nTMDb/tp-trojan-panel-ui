@@ -145,7 +145,8 @@ export default {
     fingerprint: '지문',
     createBatch: '일괄 생성',
     num: '수량',
-    presetExpire: '유효기간',
+    presetExpire: '기본 유효 기간',
+    presetQuota: '기본 총 흐름/MB',
     exportAccountUnused: '미사용 계정 내보내기',
     lastLoginTime: '마지막 로그인 시간',
     lastLoginTimeUnused: '당신은 사용 했습니까'
@@ -300,8 +301,10 @@ export default {
     createBatchNumRange: '숫자는 5-200 범위의 정수입니다',
     createBatchQuota: '총 트래픽을 입력하세요',
     createBatchQuotaRange: '전체 흐름의 범위는 -1-1024000 사이의 정수입니다',
-    createBatchPresetExpire: '만료일을 입력하세요',
-    createBatchPresetExpireRange: '유효 기간은 1-365 범위의 정수입니다'
+    createBatchPresetExpire: '기본 만료일을 입력하세요.',
+    createBatchPresetExpireRange: '미리 설정된 유효 기간 동안 1-365 사이의 정수',
+    createBatchPresetQuota: '기본 총 흐름을 입력하십시오',
+    createBatchPresetQuotaRange: '미리 설정된 총 유량 범위는 -1-1024000 사이의 정수입니다.'
   },
   confirm: {
     warn: '경고하다',

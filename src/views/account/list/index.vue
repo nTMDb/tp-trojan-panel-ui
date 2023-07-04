@@ -207,6 +207,15 @@
         </template>
       </el-table-column>
       <el-table-column
+          :label="$t('table.presetQuota').toString()"
+          width="110"
+          align="center"
+      >
+        <template slot-scope="{ row }">
+          <span>{{ row.presetQuota < 0 ? $t('dashboard.unlimited') : getFlow(row.presetQuota) }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
         :label="$t('table.lastLoginTime').toString()"
         width="150"
         align="center"
