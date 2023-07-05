@@ -121,7 +121,7 @@
       />
       <el-table-column
         :label="$t('table.username').toString()"
-        width="120"
+        width="100"
         align="center"
       >
         <template slot-scope="{ row }">
@@ -130,7 +130,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.role').toString()"
-        width="100"
+        width="80"
         align="center"
       >
         <template slot-scope="{ row }">
@@ -139,7 +139,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.download').toString()"
-        width="110"
+        width="100"
         align="center"
       >
         <template slot-scope="{ row }">
@@ -148,7 +148,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.upload').toString()"
-        width="110"
+        width="100"
         align="center"
       >
         <template slot-scope="{ row }">
@@ -157,7 +157,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.flow').toString()"
-        width="110"
+        width="100"
         align="center"
       >
         <template slot-scope="{ row }">
@@ -177,7 +177,7 @@
       </el-table-column>
       <el-table-column
           :label="$t('table.quota').toString()"
-          width="110"
+          width="100"
           align="center"
       >
         <template slot-scope="{ row }">
@@ -208,7 +208,7 @@
       </el-table-column>
       <el-table-column
           :label="$t('table.presetQuota').toString()"
-          width="80"
+          width="100"
           align="center"
       >
         <template slot-scope="{ row }">
