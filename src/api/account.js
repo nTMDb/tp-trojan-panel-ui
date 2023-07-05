@@ -142,7 +142,7 @@ export function updateAccountById(data) {
 }
 
 /**
- * 获取Clash订阅地址
+ * 获取订阅
  * @param data
  * @returns
  */
@@ -154,7 +154,7 @@ export function clashSubscribe() {
 }
 
 /**
- * 获取指定人的Clash订阅地址
+ * 获取指定人的订阅
  * @param data
  * @returns
  */
