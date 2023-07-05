@@ -138,17 +138,6 @@
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.quota').toString()"
-        width="110"
-        align="center"
-      >
-        <template slot-scope="{ row }">
-          <span>{{
-            row.quota < 0 ? $t('dashboard.unlimited') : getFlow(row.quota)
-          }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
         :label="$t('table.download').toString()"
         width="110"
         align="center"
@@ -187,14 +176,43 @@
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.status').toString()"
-        width="80"
-        align="center"
+          :label="$t('table.quota').toString()"
+          width="110"
+          align="center"
       >
         <template slot-scope="{ row }">
-          <el-tag :type="row.deleted | deletedFilter">
-            {{ row.deleted === 1 ? $t('table.disable') : $t('table.enable') }}
-          </el-tag>
+          <span>{{
+              row.quota < 0 ? $t('dashboard.unlimited') : getFlow(row.quota)
+            }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+          :label="$t('table.expireDate').toString()"
+          width="150"
+          align="center"
+      >
+        <template slot-scope="{ row }">
+          <span
+              :style="
+              row.expireTime !== 0 && row.expireTime <= new Date().getTime()
+                ? 'color: #FF0000;'
+                : ''
+            "
+          >{{
+              row.expireTime === 0
+                  ? '-'
+                  : timeStampToDate(row.expireTime, false)
+            }}
+          </span>
+        </template>
+      </el-table-column>
+      <el-table-column
+          :label="$t('table.presetQuota').toString()"
+          width="80"
+          align="center"
+      >
+        <template slot-scope="{ row }">
+          <span>{{ row.presetExpire === 0 ? '-' : (row.presetQuota < 0 ? $t('dashboard.unlimited') : getFlow(row.presetQuota)) }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -207,45 +225,27 @@
         </template>
       </el-table-column>
       <el-table-column
-          :label="$t('table.presetQuota').toString()"
+          :label="$t('table.status').toString()"
           width="80"
           align="center"
       >
         <template slot-scope="{ row }">
-          <span>{{ row.presetQuota < 0 ? $t('dashboard.unlimited') : getFlow(row.presetQuota) }}</span>
+          <el-tag :type="row.deleted | deletedFilter">
+            {{ row.deleted === 1 ? $t('table.disable') : $t('table.enable') }}
+          </el-tag>
         </template>
       </el-table-column>
       <el-table-column
-        :label="$t('table.lastLoginTime').toString()"
-        width="150"
-        align="center"
+          :label="$t('table.lastLoginTime').toString()"
+          width="150"
+          align="center"
       >
         <template slot-scope="{ row }">
           <span
-            >{{
+          >{{
               row.lastLoginTime === 0
-                ? '-'
-                : timeStampToDate(row.lastLoginTime, false)
-            }}
-          </span>
-        </template>
-      </el-table-column>
-      <el-table-column
-        :label="$t('table.expireDate').toString()"
-        width="150"
-        align="center"
-      >
-        <template slot-scope="{ row }">
-          <span
-            :style="
-              row.expireTime !== 0 && row.expireTime <= new Date().getTime()
-                ? 'color: #FF0000;'
-                : ''
-            "
-            >{{
-              row.expireTime === 0
-                ? '-'
-                : timeStampToDate(row.expireTime, false)
+                  ? '-'
+                  : timeStampToDate(row.lastLoginTime, false)
             }}
           </span>
         </template>
