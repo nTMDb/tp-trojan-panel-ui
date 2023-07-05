@@ -72,9 +72,9 @@ export default {
         : getFlow(this.groupData.quota)
     },
     residualFlowStyle: function () {
-      return this.groupData.quota < 0
-        ? this.$t('dashboard.unlimited')
-        : getFlow(this.groupData.residualFlow)
+      return this.groupData.quota >= 0 && this.groupData.residualFlow <= 0
+        ? 'color: #FF0000;'
+        : ''
     },
     residualFlow: function () {
       return this.groupData.quota < 0
