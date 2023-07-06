@@ -158,6 +158,9 @@ export function handleNodeDetail(nodeDetail, responseData) {
     nodeDetail.hysteriaObfs = responseData.hysteriaObfs
     nodeDetail.hysteriaUpMbps = responseData.hysteriaUpMbps
     nodeDetail.hysteriaDownMbps = responseData.hysteriaDownMbps
+    nodeDetail.hysteriaServerName = responseData.hysteriaServerName
+    nodeDetail.hysteriaInsecure = responseData.hysteriaInsecure
+    nodeDetail.hysteriaFastOpen = responseData.hysteriaFastOpen
   }
   if (nodeDetail.nodeTypeId === 4) {
     nodeDetail.naiveProxyUsername = responseData.naiveProxyUsername
@@ -201,6 +204,9 @@ export function handleNodeUpdate(temp, responseData) {
     temp.hysteriaObfs = responseData.hysteriaObfs
     temp.hysteriaUpMbps = responseData.hysteriaUpMbps
     temp.hysteriaDownMbps = responseData.hysteriaDownMbps
+    temp.hysteriaServerName = responseData.hysteriaServerName
+    temp.hysteriaInsecure = responseData.hysteriaInsecure
+    temp.hysteriaFastOpen = responseData.hysteriaFastOpen
   }
   return temp
 }

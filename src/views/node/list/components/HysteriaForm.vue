@@ -43,6 +43,42 @@
         type="number"
       />
     </el-form-item>
+    <el-form-item
+      :label="$t('table.hysteriaServerName').toString()"
+      prop="hysteriaServerName"
+    >
+      <el-input v-model="nodeProps.hysteriaServerName" />
+    </el-form-item>
+    <el-form-item
+      :label="$t('table.hysteriaInsecure').toString()"
+      prop="hysteriaInsecure"
+    >
+      <el-switch
+        v-model="nodeProps.hysteriaInsecure"
+        active-color="#13ce66"
+        inactive-color="#ff4949"
+        :active-text="$t('table.enable').toString()"
+        :inactive-text="$t('table.disable').toString()"
+        :active-value="1"
+        :inactive-value="0"
+      >
+      </el-switch>
+    </el-form-item>
+    <el-form-item
+      :label="$t('table.hysteriaFastOpen').toString()"
+      prop="hysteriaFastOpen"
+    >
+      <el-switch
+        v-model="nodeProps.hysteriaFastOpen"
+        active-color="#13ce66"
+        inactive-color="#ff4949"
+        :active-text="$t('table.enable').toString()"
+        :inactive-text="$t('table.disable').toString()"
+        :active-value="1"
+        :inactive-value="0"
+      >
+      </el-switch>
+    </el-form-item>
     <el-form-item>
       <aside>
         {{ $t('table.hysteriaTip') }}
@@ -52,8 +88,6 @@
 </template>
 
 <script>
-import { isHysteria } from '@/utils/node'
-
 export default {
   name: 'HysteriaForm',
   props: {
@@ -70,9 +104,6 @@ export default {
     return {
       hysteriaProtocols: ['udp', 'wechat-video', 'faketcp']
     }
-  },
-  methods: {
-    isHysteria
   }
 }
 </script>

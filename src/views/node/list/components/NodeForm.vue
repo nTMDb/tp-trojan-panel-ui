@@ -603,6 +603,28 @@ export default {
             message: this.$t('valid.hysteriaDownMbpsRange'),
             trigger: ['change', 'blur']
           }
+        ],
+        hysteriaServerName: [
+          {
+            min: 0,
+            max: 64,
+            message: this.$t('valid.hysteriaServerNameRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteriaInsecure: [
+          {
+            required: true,
+            message: this.$t('valid.hysteriaInsecure'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteriaFastOpen: [
+          {
+            required: true,
+            message: this.$t('valid.hysteriaFastOpen'),
+            trigger: ['change', 'blur']
+          }
         ]
       },
       updateRules: {
@@ -851,6 +873,28 @@ export default {
             min: 1,
             max: 9999999999,
             message: this.$t('valid.hysteriaDownMbpsRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteriaServerName: [
+          {
+            min: 0,
+            max: 64,
+            message: this.$t('valid.hysteriaServerNameRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteriaInsecure: [
+          {
+            required: true,
+            message: this.$t('valid.hysteriaInsecure'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteriaFastOpen: [
+          {
+            required: true,
+            message: this.$t('valid.hysteriaFastOpen'),
             trigger: ['change', 'blur']
           }
         ]
