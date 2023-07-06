@@ -182,7 +182,7 @@
       >
         <template slot-scope="{ row }">
           <span>{{
-              row.quota < 0 ? $t('dashboard.unlimited') : getFlow(row.quota)
+              row.lastLoginTime === 0 ? '-' : (row.quota < 0 ? $t('dashboard.unlimited') : getFlow(row.quota))
             }}</span>
         </template>
       </el-table-column>
@@ -194,12 +194,12 @@
         <template slot-scope="{ row }">
           <span
               :style="
-              row.expireTime !== 0 && row.expireTime <= new Date().getTime()
+              row.lastLoginTime !== 0 && row.expireTime <= new Date().getTime()
                 ? 'color: #FF0000;'
                 : ''
             "
           >{{
-              row.expireTime === 0
+              row.lastLoginTime === 0
                   ? '-'
                   : timeStampToDate(row.expireTime, false)
             }}
