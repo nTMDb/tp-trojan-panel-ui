@@ -55,6 +55,7 @@
         style="width: 200px"
         class="filter-item"
         clearable
+        multiple
         @clear="
           () => {
             listQuery.orderFields = undefined
