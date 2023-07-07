@@ -252,7 +252,7 @@
           v-if="isTrojanGo(nodeInfoProps)"
         >
           <el-tag>
-            {{ trojanGoMuxEnableComputed(nodeInfoProps.trojanGoMuxEnable) }}
+            {{ enableComputed(nodeInfoProps.trojanGoMuxEnable) }}
           </el-tag>
         </el-form-item>
         <el-form-item
@@ -260,11 +260,7 @@
           v-if="isTrojanGo(nodeInfoProps)"
         >
           <el-tag>
-            {{
-              trojanGoWebsocketEnableComputed(
-                nodeInfoProps.trojanGoWebsocketEnable
-              )
-            }}
+            {{ enableComputed(nodeInfoProps.trojanGoWebsocketEnable) }}
           </el-tag>
         </el-form-item>
         <el-form-item
@@ -283,9 +279,7 @@
           :label="$t('table.trojanGoSsEnable').toString()"
           v-if="isTrojanGoEnableWebsocket(nodeInfoProps)"
         >
-          <el-tag
-            >{{ trojanGoSsEnableComputed(nodeInfoProps.trojanGoSsEnable) }}
-          </el-tag>
+          <el-tag>{{ enableComputed(nodeInfoProps.trojanGoSsEnable) }} </el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.trojanGoSsMethod').toString()"
@@ -329,6 +323,24 @@
           v-if="isHysteria(nodeInfoProps)"
         >
           <el-tag>{{ nodeInfoProps.hysteriaDownMbps }}</el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.hysteriaServerName').toString()"
+          v-if="isHysteria(nodeInfoProps)"
+        >
+          <el-tag>{{ nodeInfoProps.hysteriaServerName }}</el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.hysteriaInsecure').toString()"
+          v-if="isHysteria(nodeInfoProps)"
+        >
+          <el-tag>{{ enableComputed(nodeInfoProps.hysteriaInsecure) }}</el-tag>
+        </el-form-item>
+        <el-form-item
+          :label="$t('table.hysteriaFastOpen').toString()"
+          v-if="isHysteria(nodeInfoProps)"
+        >
+          <el-tag>{{ enableComputed(nodeInfoProps.hysteriaFastOpen) }}</el-tag>
         </el-form-item>
         <el-form-item
           :label="$t('table.naiveProxyUsername').toString()"
@@ -407,25 +419,9 @@ export default {
     }
   },
   computed: {
-    trojanGoMuxEnableComputed() {
-      return function (trojanGoMuxEnable) {
-        return trojanGoMuxEnable === 1
-          ? this.$t('table.enable')
-          : this.$t('table.disable')
-      }
-    },
-    trojanGoWebsocketEnableComputed() {
-      return function (trojanGoWebsocketEnable) {
-        return trojanGoWebsocketEnable === 1
-          ? this.$t('table.enable')
-          : this.$t('table.disable')
-      }
-    },
-    trojanGoSsEnableComputed() {
-      return function (trojanGoSsEnable) {
-        return trojanGoSsEnable === 1
-          ? this.$t('table.enable')
-          : this.$t('table.disable')
+    enableComputed() {
+      return function (enable) {
+        return enable === 1 ? this.$t('table.enable') : this.$t('table.disable')
       }
     }
   },
