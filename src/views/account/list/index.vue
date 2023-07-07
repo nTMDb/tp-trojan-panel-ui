@@ -727,7 +727,7 @@ export default {
     },
     getList() {
       this.listLoading = true
-      this.listQuery.orderFields = this.listQuery.orderFieldArr.join(',')
+      this.listQuery.orderFields = this.orderFieldArr.join(',')
       selectAccountPage(this.listQuery).then((response) => {
         this.list = response.data.accounts
         this.total = response.data.total
