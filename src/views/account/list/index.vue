@@ -50,17 +50,12 @@
         ></el-option>
       </el-select>
       <el-select
-        v-model="listQuery.orderFields"
+        v-model="orderFieldArr"
         :placeholder="$t('table.orderFields').toString()"
         style="width: 200px"
         class="filter-item"
         clearable
         multiple
-        @clear="
-          () => {
-            listQuery.orderFields = undefined
-          }
-        "
       >
         <el-option
           :label="item.label"
@@ -498,12 +493,13 @@ export default {
       listLoading: true,
       list: null,
       total: 0,
+      orderFieldArr: ['role_id', 'create_time'],
       listQuery: {
         pageNum: 1,
         pageSize: 20,
         username: undefined,
         deleted: undefined,
-        orderFields: ['role_id', 'create_time'],
+        orderFields: 'role_id,create_time',
         orderBy: 'desc',
         lastLoginTime: undefined
       },
@@ -731,6 +727,7 @@ export default {
     },
     getList() {
       this.listLoading = true
+      this.listQuery.orderFields = this.listQuery.orderFieldArr.join(',')
       selectAccountPage(this.listQuery).then((response) => {
         this.list = response.data.accounts
         this.total = response.data.total
