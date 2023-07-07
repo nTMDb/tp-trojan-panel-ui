@@ -64,7 +64,7 @@ export default {
     upload: '上传流量',
     editQuota: '总流量/MB',
     flow: '剩余流量',
-    expireDate: '到期时间',
+    expireTime: '到期时间',
     createTime: '创建时间',
     reset: '重设流量',
     pass: '密码',
@@ -152,7 +152,11 @@ export default {
     presetQuota: '预设总流量/MB',
     exportAccountUnused: '导出未使用的账户',
     lastLoginTime: '最后一次登录时间',
-    lastLoginTimeUnused: '是否使用过'
+    lastLoginTimeUnused: '是否使用过',
+    orderFields: '排序字段',
+    orderBy: '排序方式',
+    desc: '倒序',
+    asc: '正序'
   },
   tagsView: {
     refresh: '刷新',
@@ -248,7 +252,7 @@ export default {
     xrayWsRange: 'Websocket路径的范围在2-64字符之间',
     xrayHostRange: 'Websocket Host的范围在2-64字符之间',
     xrayFallbackPathPrefix: 'path必须以/开头',
-    xrayFallbackDest: '请输入desc',
+    xrayFallbackDest: '请输入dest',
     xrayFallbackXver: 'xver只可以使1、2、3',
     trojanGoSni: 'sni在4-64字符之间',
     trojanGoMux: '请输入是否开启多路复用',

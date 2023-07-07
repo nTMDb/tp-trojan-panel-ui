@@ -49,6 +49,44 @@
           v-for="item in lastLoginTimeList"
         ></el-option>
       </el-select>
+      <el-select
+        v-model="listQuery.orderFields"
+        :placeholder="$t('table.orderFields').toString()"
+        style="width: 200px"
+        class="filter-item"
+        clearable
+        @clear="
+          () => {
+            listQuery.orderFields = undefined
+          }
+        "
+      >
+        <el-option
+          :label="item.label"
+          :value="item.value"
+          :key="item.value"
+          v-for="item in orderFieldList"
+        ></el-option>
+      </el-select>
+      <el-select
+        v-model="listQuery.orderBy"
+        :placeholder="$t('table.orderBy').toString()"
+        style="width: 200px"
+        class="filter-item"
+        clearable
+        @clear="
+          () => {
+            listQuery.orderBy = undefined
+          }
+        "
+      >
+        <el-option
+          :label="item.label"
+          :value="item.value"
+          :key="item.value"
+          v-for="item in orderByList"
+        ></el-option>
+      </el-select>
       <el-button
         class="filter-item"
         type="primary"
@@ -176,43 +214,53 @@
         </template>
       </el-table-column>
       <el-table-column
-          :label="$t('table.quota').toString()"
-          width="100"
-          align="center"
+        :label="$t('table.quota').toString()"
+        width="100"
+        align="center"
       >
         <template slot-scope="{ row }">
           <span>{{
-              row.lastLoginTime === 0 ? '-' : (row.quota < 0 ? $t('dashboard.unlimited') : getFlow(row.quota))
-            }}</span>
+            row.lastLoginTime === 0
+              ? '-'
+              : row.quota < 0
+              ? $t('dashboard.unlimited')
+              : getFlow(row.quota)
+          }}</span>
         </template>
       </el-table-column>
       <el-table-column
-          :label="$t('table.expireDate').toString()"
-          width="150"
-          align="center"
+        :label="$t('table.expireTime').toString()"
+        width="150"
+        align="center"
       >
         <template slot-scope="{ row }">
           <span
-              :style="
+            :style="
               row.lastLoginTime !== 0 && row.expireTime <= new Date().getTime()
                 ? 'color: #FF0000;'
                 : ''
             "
-          >{{
+            >{{
               row.lastLoginTime === 0
-                  ? '-'
-                  : timeStampToDate(row.expireTime, false)
+                ? '-'
+                : timeStampToDate(row.expireTime, false)
             }}
           </span>
         </template>
       </el-table-column>
       <el-table-column
-          :label="$t('table.presetQuota').toString()"
-          width="100"
-          align="center"
+        :label="$t('table.presetQuota').toString()"
+        width="100"
+        align="center"
       >
         <template slot-scope="{ row }">
-          <span>{{ row.presetExpire === 0 ? '-' : (row.presetQuota < 0 ? $t('dashboard.unlimited') : getFlow(row.presetQuota)) }}</span>
+          <span>{{
+            row.presetExpire === 0
+              ? '-'
+              : row.presetQuota < 0
+              ? $t('dashboard.unlimited')
+              : getFlow(row.presetQuota)
+          }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -225,9 +273,9 @@
         </template>
       </el-table-column>
       <el-table-column
-          :label="$t('table.status').toString()"
-          width="80"
-          align="center"
+        :label="$t('table.status').toString()"
+        width="80"
+        align="center"
       >
         <template slot-scope="{ row }">
           <el-tag :type="row.deleted | deletedFilter">
@@ -236,16 +284,16 @@
         </template>
       </el-table-column>
       <el-table-column
-          :label="$t('table.lastLoginTime').toString()"
-          width="150"
-          align="center"
+        :label="$t('table.lastLoginTime').toString()"
+        width="150"
+        align="center"
       >
         <template slot-scope="{ row }">
           <span
-          >{{
+            >{{
               row.lastLoginTime === 0
-                  ? '-'
-                  : timeStampToDate(row.lastLoginTime, false)
+                ? '-'
+                : timeStampToDate(row.lastLoginTime, false)
             }}
           </span>
         </template>
@@ -363,12 +411,12 @@
           >
           </el-switch>
         </el-form-item>
-        <el-form-item :label="$t('table.expireDate')" prop="expireTime">
+        <el-form-item :label="$t('table.expireTime')" prop="expireTime">
           <el-date-picker
             v-model="temp.expireTime"
             type="datetime"
             value-format="timestamp"
-            :placeholder="$t('table.expireDate')"
+            :placeholder="$t('table.expireTime')"
           />
         </el-form-item>
       </el-form>
@@ -454,6 +502,8 @@ export default {
         pageSize: 20,
         username: undefined,
         deleted: undefined,
+        orderFields: ['role_id', 'create_time'],
+        orderBy: 'desc',
         lastLoginTime: undefined
       },
       temp: {
@@ -484,6 +534,18 @@ export default {
       lastLoginTimeList: [
         { value: 0, label: this.$t('table.no') },
         { value: 1, label: this.$t('table.yes') }
+      ],
+      orderFieldList: [
+        { value: 'quota', label: this.$t('table.quota') },
+        { value: 'role_id', label: this.$t('table.role') },
+        { value: 'last_login_time', label: this.$t('table.lastLoginTime') },
+        { value: 'expire_time', label: this.$t('table.expireTime') },
+        { value: 'deleted', label: this.$t('table.deleted') },
+        { value: 'create_time', label: this.$t('table.createTime') }
+      ],
+      orderByList: [
+        { value: 'desc', label: this.$t('table.desc') },
+        { value: 'asc', label: this.$t('table.asc') }
       ],
       createRules: {
         username: [

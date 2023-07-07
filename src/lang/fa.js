@@ -64,7 +64,7 @@ export default {
     upload: 'بارگذاری ترافیک',
     editQuota: 'جریان کل/MB',
     flow: 'جریان باقیمانده',
-    expireDate: 'تاریخ انقضا',
+    expireTime: 'تاریخ انقضا',
     createTime: 'زمان ایجاد',
     reset: 'بازنشانی ترافیک',
     pass: 'کلمه عبور',
@@ -152,7 +152,11 @@ export default {
     presetQuota: 'کل ترافیک پیش فرض/MB',
     exportAccountUnused: 'صادرات حساب های استفاده نشده',
     lastLoginTime: 'آخرین زمان ورود',
-    lastLoginTimeUnused: 'استفاده کرده اید'
+    lastLoginTimeUnused: 'استفاده کرده اید',
+    orderFields: 'فیلد مرتب سازی',
+    orderBy: 'مرتب سازی بر اساس',
+    desc: 'به صورت برعکس',
+    asc: 'دنباله مثبت'
   },
   tagsView: {
     refresh: 'تازه کردن',
@@ -248,7 +252,7 @@ export default {
     xrayWsRange: 'مسیرهای Websocket از 2 تا 64 کاراکتر متغیر است',
     xrayHostRange: 'محدوده Websocket Host بین 2-64 کاراکتر است',
     xrayFallbackPathPrefix: 'مسیر باید با / شروع شود',
-    xrayFallbackDest: 'لطفا توصیف را وارد کنید',
+    xrayFallbackDest: 'لطفا dest را وارد کنید',
     xrayFallbackXver: 'xver فقط می تواند 1، 2، 3 را بسازد',
     trojanGoSni: 'sni بین 4-64 کاراکتر',
     trojanGoMux: 'لطفاً وارد کنید که آیا مالتی پلکسی فعال شود یا خیر',

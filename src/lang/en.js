@@ -64,7 +64,7 @@ export default {
     upload: 'Upload',
     editQuota: 'Quota/MB',
     flow: 'Residual Flow',
-    expireDate: 'Expire Date',
+    expireTime: 'Expire Date',
     createTime: 'Create Time',
     reset: 'Reset Traffic',
     pass: 'Password',
@@ -152,7 +152,11 @@ export default {
     presetQuota: 'Default quota/MB',
     exportAccountUnused: 'Export unused accounts',
     lastLoginTime: 'Last login time',
-    lastLoginTimeUnused: 'Have you used'
+    lastLoginTimeUnused: 'Have you used',
+    orderFields: 'Sort field',
+    orderBy: 'Sort by',
+    desc: 'Desc',
+    asc: 'Asc'
   },
   tagsView: {
     refresh: 'Refresh',
@@ -248,7 +252,7 @@ export default {
     xrayWsRange: 'Websocket paths range from 2-64 characters',
     xrayHostRange: 'The range of Websocket Host is between 2-64 characters',
     xrayFallbackPathPrefix: 'path must start with /',
-    xrayFallbackDest: 'Please enter desc',
+    xrayFallbackDest: 'Please enter dest',
     xrayFallbackXver: 'xver can only make 1, 2, 3',
     trojanGoSni: 'sni between 4-64 characters',
     trojanGoMux: 'Please enter whether to enable multiplexing',

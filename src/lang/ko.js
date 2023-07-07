@@ -64,7 +64,7 @@ export default {
     upload: '업로드 트래픽',
     editQuota: '총 흐름/MB',
     flow: '잔류 흐름',
-    expireDate: '만료 날짜',
+    expireTime: '만료 날짜',
     createTime: '생성 시간',
     reset: '트래픽 재설정',
     pass: '비밀번호',
@@ -152,7 +152,11 @@ export default {
     presetQuota: '기본 총 흐름/MB',
     exportAccountUnused: '미사용 계정 내보내기',
     lastLoginTime: '마지막 로그인 시간',
-    lastLoginTimeUnused: '당신은 사용 했습니까'
+    lastLoginTimeUnused: '당신은 사용 했습니까',
+    orderFields: '정렬 필드',
+    orderBy: '정렬 기준',
+    desc: '역순으로',
+    asc: '양성 서열'
   },
   tagsView: {
     refresh: '새로 고침',
@@ -248,7 +252,7 @@ export default {
     xrayWsRange: 'Websocket 경로 범위는 2-64자입니다',
     xrayHostRange: 'Websocket Host의 범위는 2-64자 사이입니다',
     xrayFallbackPathPrefix: '경로는 /로 시작해야 합니다',
-    xrayFallbackDest: '설명을 입력하십시오',
+    xrayFallbackDest: 'dest를 입력하세요.',
     xrayFallbackXver: 'xver는 1, 2, 3만 만들 수 있습니다',
     trojanGoSni: '4-64자 사이의 sni',
     trojanGoMux: '멀티플렉싱 활성화 여부를 입력하십시오',
