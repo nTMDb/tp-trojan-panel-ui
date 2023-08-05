@@ -1,6 +1,6 @@
 ## Trojan Panel UI
 
-Trojan Panel UI
+Trojan Panel Frontend
 
 ## Compile
 
