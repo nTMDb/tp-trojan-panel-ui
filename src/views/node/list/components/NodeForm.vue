@@ -88,6 +88,11 @@
         />
 
         <NaiveProxyForm :form-visible-props="isNaiveProxy(nodeProps)" />
+
+        <Hysteria2Form
+          :node-props="nodeProps"
+          :form-visible-props="isHysteria2(nodeProps)"
+        />
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="$emit('update:dialogFormVisibleProps', false)"
@@ -123,6 +128,7 @@ import XrayForm from '@/views/node/list/components/XrayForm'
 import TrojanGoForm from '@/views/node/list/components/TrojanGoForm'
 import {
   isHysteria,
+  isHysteria2,
   isNaiveProxy,
   isTrojanGo,
   isXray,
@@ -132,10 +138,12 @@ import {
 } from '@/utils/node'
 import HysteriaForm from '@/views/node/list/components/HysteriaForm'
 import NaiveProxyForm from '@/views/node/list/components/NaiveProxyForm'
+import Hysteria2Form from '@/views/node/list/components/Hysteria2Form'
 
 export default {
   name: 'NodeForm',
   components: {
+    Hysteria2Form,
     NaiveProxyForm,
     HysteriaForm,
     TrojanGoForm,
@@ -625,6 +633,57 @@ export default {
             message: this.$t('valid.hysteriaFastOpen'),
             trigger: ['change', 'blur']
           }
+        ],
+        hysteria2ObfsPassword: [
+          {
+            min: 0,
+            max: 64,
+            message: this.$t('valid.hysteria2ObfsPasswordRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteria2UpMbps: [
+          {
+            required: true,
+            message: this.$t('valid.hysteria2UpMbps'),
+            trigger: ['change', 'blur']
+          },
+          {
+            type: 'number',
+            min: 1,
+            max: 9999999999,
+            message: this.$t('valid.hysteria2UpMbpsRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteria2DownMbps: [
+          {
+            required: true,
+            message: this.$t('valid.hysteria2DownMbps'),
+            trigger: ['change', 'blur']
+          },
+          {
+            type: 'number',
+            min: 1,
+            max: 9999999999,
+            message: this.$t('valid.hysteria2DownMbpsRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteria2ServerName: [
+          {
+            min: 0,
+            max: 64,
+            message: this.$t('valid.hysteria2ServerNameRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteria2Insecure: [
+          {
+            required: true,
+            message: this.$t('valid.hysteria2Insecure'),
+            trigger: ['change', 'blur']
+          }
         ]
       },
       updateRules: {
@@ -897,6 +956,57 @@ export default {
             message: this.$t('valid.hysteriaFastOpen'),
             trigger: ['change', 'blur']
           }
+        ],
+        hysteria2ObfsPassword: [
+          {
+            min: 0,
+            max: 64,
+            message: this.$t('valid.hysteria2ObfsPasswordRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteria2UpMbps: [
+          {
+            required: true,
+            message: this.$t('valid.hysteria2UpMbps'),
+            trigger: ['change', 'blur']
+          },
+          {
+            type: 'number',
+            min: 1,
+            max: 9999999999,
+            message: this.$t('valid.hysteria2UpMbpsRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteria2DownMbps: [
+          {
+            required: true,
+            message: this.$t('valid.hysteria2DownMbps'),
+            trigger: ['change', 'blur']
+          },
+          {
+            type: 'number',
+            min: 1,
+            max: 9999999999,
+            message: this.$t('valid.hysteria2DownMbpsRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteria2ServerName: [
+          {
+            min: 0,
+            max: 64,
+            message: this.$t('valid.hysteria2ServerNameRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        hysteria2Insecure: [
+          {
+            required: true,
+            message: this.$t('valid.hysteria2Insecure'),
+            trigger: ['change', 'blur']
+          }
         ]
       }
     }
@@ -906,6 +1016,7 @@ export default {
     isTrojanGo,
     isHysteria,
     isNaiveProxy,
+    isHysteria2,
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {

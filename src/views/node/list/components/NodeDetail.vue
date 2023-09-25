@@ -343,6 +343,36 @@
           <el-tag>{{ enableComputed(nodeInfoProps.hysteriaFastOpen) }}</el-tag>
         </el-form-item>
         <el-form-item
+            :label="$t('table.hysteria2ObfsPassword').toString()"
+            v-if="isHysteria2(nodeInfoProps)"
+        >
+          <el-tag>{{ nodeInfoProps.hysteria2ObfsPassword }}</el-tag>
+        </el-form-item>
+        <el-form-item
+            :label="$t('table.hysteria2UpMbps').toString()"
+            v-if="isHysteria2(nodeInfoProps)"
+        >
+          <el-tag>{{ nodeInfoProps.hysteria2UpMbps }}</el-tag>
+        </el-form-item>
+        <el-form-item
+            :label="$t('table.hysteria2DownMbps').toString()"
+            v-if="isHysteria2(nodeInfoProps)"
+        >
+          <el-tag>{{ nodeInfoProps.hysteria2DownMbps }}</el-tag>
+        </el-form-item>
+        <el-form-item
+            :label="$t('table.hysteria2ServerName').toString()"
+            v-if="isHysteria2(nodeInfoProps)"
+        >
+          <el-tag>{{ nodeInfoProps.hysteria2ServerName }}</el-tag>
+        </el-form-item>
+        <el-form-item
+            :label="$t('table.hysteria2Insecure').toString()"
+            v-if="isHysteria2(nodeInfoProps)"
+        >
+          <el-tag>{{ enableComputed(nodeInfoProps.hysteria2Insecure) }}</el-tag>
+        </el-form-item>
+        <el-form-item
           :label="$t('table.naiveProxyUsername').toString()"
           v-if="isNaiveProxy(nodeInfoProps)"
         >
@@ -380,6 +410,7 @@
 import FallbackInfo from '@/views/node/list/components/FallbackInfo'
 import {
   isHysteria,
+  isHysteria2,
   isNaiveProxy,
   isTrojanGo,
   isTrojanGoEnableSs,
@@ -447,6 +478,7 @@ export default {
     isTrojanGoEnableWebsocket,
     isTrojanGoEnableSs,
     isHysteria,
+    isHysteria2,
     isNaiveProxy,
     nodeServerFind,
     nodeTypeFind,

@@ -3,7 +3,8 @@ export function getNodeTypeName(nodeType) {
     1: 'xray',
     2: 'trojan-go',
     3: 'hysteria',
-    4: 'naiveproxy'
+    4: 'naiveproxy',
+    5: 'hysteria2'
   }
   return nodeTypeMap[nodeType]
 }
@@ -18,6 +19,10 @@ export function isTrojanGo(temp) {
 
 export function isHysteria(temp) {
   return getNodeTypeName(temp.nodeTypeId) === 'hysteria'
+}
+
+export function isHysteria2(temp) {
+  return getNodeTypeName(temp.nodeTypeId) === 'hysteria2'
 }
 
 export function isNaiveProxy(temp) {
@@ -165,6 +170,13 @@ export function handleNodeDetail(nodeDetail, responseData) {
   if (nodeDetail.nodeTypeId === 4) {
     nodeDetail.naiveProxyUsername = responseData.naiveProxyUsername
   }
+  if (nodeDetail.nodeTypeId === 5) {
+    nodeDetail.hysteria2ObfsPassword = responseData.hysteria2ObfsPassword
+    nodeDetail.hysteria2UpMbps = responseData.hysteria2UpMbps
+    nodeDetail.hysteria2DownMbps = responseData.hysteria2DownMbps
+    nodeDetail.hysteria2ServerName = responseData.hysteria2ServerName
+    nodeDetail.hysteria2Insecure = responseData.hysteria2Insecure
+  }
   return nodeDetail
 }
 
@@ -207,6 +219,13 @@ export function handleNodeUpdate(temp, responseData) {
     temp.hysteriaServerName = responseData.hysteriaServerName
     temp.hysteriaInsecure = responseData.hysteriaInsecure
     temp.hysteriaFastOpen = responseData.hysteriaFastOpen
+  }
+  if (temp.nodeTypeId === 5) {
+    temp.hysteria2ObfsPassword = responseData.hysteria2ObfsPassword
+    temp.hysteria2UpMbps = responseData.hysteria2UpMbps
+    temp.hysteria2DownMbps = responseData.hysteria2DownMbps
+    temp.hysteria2ServerName = responseData.hysteria2ServerName
+    temp.hysteria2Insecure = responseData.hysteria2Insecure
   }
   return temp
 }
