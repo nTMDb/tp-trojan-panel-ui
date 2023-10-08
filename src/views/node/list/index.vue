@@ -350,6 +350,12 @@ export default {
         hysteriaServerName: '',
         hysteriaInsecure: 0,
         hysteriaFastOpen: 0,
+
+        hysteria2ObfsPassword: '',
+        hysteria2UpMbps: 100,
+        hysteria2DownMbps: 100,
+        hysteria2ServerName: '',
+        hysteria2Insecure: 0,
         createTime: new Date()
       },
       nodeDetail: {
@@ -428,6 +434,13 @@ export default {
         hysteriaServerName: '',
         hysteriaInsecure: 0,
         hysteriaFastOpen: 0,
+
+        hysteria2ObfsPassword: '',
+        hysteria2UpMbps: 100,
+        hysteria2DownMbps: 100,
+        hysteria2ServerName: '',
+        hysteria2Insecure: 0,
+
         naiveProxyUsername: '',
         createTime: new Date()
       },
@@ -541,6 +554,12 @@ export default {
         hysteriaServerName: '',
         hysteriaInsecure: 0,
         hysteriaFastOpen: 0,
+
+        hysteria2ObfsPassword: '',
+        hysteria2UpMbps: 100,
+        hysteria2DownMbps: 100,
+        hysteria2ServerName: '',
+        hysteria2Insecure: 0,
         createTime: new Date()
       }
     },
