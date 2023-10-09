@@ -277,7 +277,7 @@ export default {
     hysteriaServerNameRange: 'SNI 범위는 0~64자입니다.',
     hysteriaInsecure: '안전하지 않은 허용 여부를 입력하십시오',
     hysteriaFastOpen: '빨리 열지 여부를 입력하십시오',
-    hysteria2ObfsPasswordRange: '난독화된 암호의 범위는 2-64자 사이입니다',
+    hysteria2ObfsPasswordRange: '난독화된 암호의 범위는 4-64자 사이입니다',
     hysteria2UpMbps: '단일 클라이언트의 최대 업로드 속도/Mbps를 입력하십시오',
     hysteria2UpMbpsRange: '단일 클라이언트의 최대 업로드 속도는 1~9999999999 범위의 정수입니다',
     hysteria2DownMbps: '단일 클라이언트의 최대 다운로드 속도/Mbps를 입력하십시오',

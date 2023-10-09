@@ -277,7 +277,7 @@ export default {
     hysteriaServerNameRange: 'SNI ranges from 0-64 characters',
     hysteriaInsecure: 'Please enter whether to allow insecure',
     hysteriaFastOpen: 'Please enter whether to open quickly',
-    hysteria2ObfsPasswordRange: 'The range of the obfuscated password is between 2-64 characters',
+    hysteria2ObfsPasswordRange: 'The range of the obfuscated password is between 4-64 characters',
     hysteria2UpMbps: 'Please enter the maximum upload speed/Mbps of a single client',
     hysteria2UpMbpsRange: 'The maximum upload speed of a single client is an integer ranging from 1 to 9999999999',
     hysteria2DownMbps: 'Please enter the maximum download speed/Mbps of a single client',

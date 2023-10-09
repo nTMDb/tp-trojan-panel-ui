@@ -277,7 +277,7 @@ export default {
     hysteriaServerNameRange: 'SNI的范围在0-64字符之间',
     hysteriaInsecure: '请输入是否允许不安全',
     hysteriaFastOpen: '请输入是否快速打开',
-    hysteria2ObfsPasswordRange: '混淆密码的范围在2-64字符之间',
+    hysteria2ObfsPasswordRange: '混淆密码的范围在4-64字符之间',
     hysteria2UpMbps: '请输入单客户端最大上传速度/Mbps',
     hysteria2UpMbpsRange: '单客户端最大上传速度的范围在1-9999999999之间的整数',
     hysteria2DownMbps: '请输入单客户端最大下载速度/Mbps',

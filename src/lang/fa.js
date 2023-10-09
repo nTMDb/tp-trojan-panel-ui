@@ -277,7 +277,7 @@ export default {
     hysteriaServerNameRange: 'محدوده SNI از 0 تا 64 کاراکتر است',
     hysteriaInsecure: 'لطفاً وارد کنید که آیا غیرایمن است یا خیر',
     hysteriaFastOpen: 'لطفاً وارد کنید که آیا سریع باز شود یا خیر',
-    hysteria2ObfsPasswordRange: 'محدوده رمز عبور مبهم بین 2 تا 64 کاراکتر است',
+    hysteria2ObfsPasswordRange: 'محدوده رمز عبور مبهم بین 4 تا 64 کاراکتر است',
     hysteria2UpMbps: 'لطفا حداکثر سرعت آپلود/مگابیت در ثانیه یک کلاینت را وارد کنید',
     hysteria2UpMbpsRange: 'حداکثر سرعت آپلود یک کلاینت یک عدد صحیح از 1 تا 9999999999 است.',
     hysteria2DownMbps: 'لطفا حداکثر سرعت دانلود/مگابیت بر ثانیه یک کلاینت را وارد کنید',

@@ -636,7 +636,7 @@ export default {
         ],
         hysteria2ObfsPassword: [
           {
-            min: 0,
+            min: 4,
             max: 64,
             message: this.$t('valid.hysteria2ObfsPasswordRange'),
             trigger: ['change', 'blur']
@@ -959,7 +959,7 @@ export default {
         ],
         hysteria2ObfsPassword: [
           {
-            min: 0,
+            min: 4,
             max: 64,
             message: this.$t('valid.hysteria2ObfsPasswordRange'),
             trigger: ['change', 'blur']
