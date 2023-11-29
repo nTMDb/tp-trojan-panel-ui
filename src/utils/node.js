@@ -53,6 +53,10 @@ export function isXrayShadowsocks2022(temp) {
   return isXray(temp) && temp.xrayProtocol === 'shadowsocks-2022'
 }
 
+export function isXraySocks(temp) {
+  return isXray(temp) && temp.xrayProtocol === 'socks'
+}
+
 export function isXrayWs(temp) {
   return isXray(temp) && temp.xrayStreamSettingsEntity.network === 'ws'
 }
