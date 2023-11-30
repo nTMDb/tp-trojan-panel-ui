@@ -299,9 +299,6 @@ export default {
     xrayStreamSettingsNetworkChange() {
       if (this.nodeProps.xrayStreamSettingsEntity.network === 'ws') {
         this.nodeProps.xrayStreamSettingsEntity.security = 'tls'
-        if (isXrayVless(this.nodeProps)) {
-          this.nodeProps.xrayFlow = 'xtls-rprx-vision'
-        }
       }
     },
     xrayStreamSettingsSecurityChange() {
