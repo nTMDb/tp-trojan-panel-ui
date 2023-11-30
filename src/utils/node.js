@@ -279,15 +279,15 @@ export function handleXrayStreamSettings(nodeProps) {
     nodeProps.xraySettingsEntity.decryption = 'none'
   }
 
-  if (!nodeProps.xrayStreamSettingsEntity.security !== 'tls') {
+  if (nodeProps.xrayStreamSettingsEntity.security !== 'tls') {
     nodeProps.xrayStreamSettingsEntity.tlsSettings = undefined
   } else if (isXrayShadowsocks(nodeProps)) {
-    nodeProps.xrayStreamSettingsEntity.serverName = undefined
-    nodeProps.xrayStreamSettingsEntity.alpn = undefined
-    nodeProps.xrayStreamSettingsEntity.allowInsecure = undefined
-    nodeProps.xrayStreamSettingsEntity.fingerprint = undefined
+    nodeProps.xrayStreamSettingsEntity.tlsSettings.serverName = undefined
+    nodeProps.xrayStreamSettingsEntity.tlsSettings.alpn = undefined
+    nodeProps.xrayStreamSettingsEntity.tlsSettings.allowInsecure = undefined
+    nodeProps.xrayStreamSettingsEntity.tlsSettings.fingerprint = undefined
   }
-  if (!nodeProps.xrayStreamSettingsEntity.security !== 'reality') {
+  if (nodeProps.xrayStreamSettingsEntity.security !== 'reality') {
     nodeProps.xrayStreamSettingsEntity.realitySettings = undefined
   }
   if (nodeProps.xrayStreamSettingsEntity.network !== 'ws') {
