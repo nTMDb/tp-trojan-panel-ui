@@ -292,7 +292,6 @@ export default {
         realityPbk: '',
         xraySettings: '',
         xraySettingsEntity: {
-          clients: [],
           fallbacks: [
             {
               name: '',
@@ -377,7 +376,6 @@ export default {
         realityPbk: '',
         xraySettings: '',
         xraySettingsEntity: {
-          clients: [],
           fallbacks: [
             {
               name: '',
@@ -498,7 +496,6 @@ export default {
         realityPbk: '',
         xraySettings: '',
         xraySettingsEntity: {
-          clients: [],
           fallbacks: [
             {
               name: '',
