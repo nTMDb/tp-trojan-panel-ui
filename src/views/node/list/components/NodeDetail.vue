@@ -25,6 +25,9 @@
             {{ nodeTypeFind(nodeTypesProps, nodeInfoProps.nodeTypeId) }}
           </el-tag>
         </el-form-item>
+        <el-form-item :label="$t('table.nodePriority').toString()">
+          <el-tag>{{ nodeInfoProps.priority }}</el-tag>
+        </el-form-item>
         <el-form-item :label="$t('table.password').toString()">
           <el-tag>{{ nodeInfoProps.password }}</el-tag>
         </el-form-item>
