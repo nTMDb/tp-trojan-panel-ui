@@ -127,6 +127,8 @@ import { createNode, updateNodeById } from '@/api/node'
 import XrayForm from '@/views/node/list/components/XrayForm'
 import TrojanGoForm from '@/views/node/list/components/TrojanGoForm'
 import {
+  handleXraySettings,
+  handleXrayStreamSettings,
   isHysteria,
   isHysteria2,
   isNaiveProxy,
@@ -1034,23 +1036,8 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          if (
-            this.nodeProps.xrayProtocol === 'vless' &&
-            this.nodeProps.xrayStreamSettings.network !== 'none'
-          ) {
-            this.nodeProps.xraySettingsEntity.decryption = 'none'
-          }
-          if (this.nodeProps.xrayProtocol === 'socks'){
-            this.nodeProps.xraySettingsEntity.auth = 'password'
-            this.nodeProps.xraySettingsEntity.ip = '127.0.0.1'
-          }
-
-          this.nodeProps.xrayStreamSettings = JSON.stringify(
-            this.nodeProps.xrayStreamSettingsEntity
-          )
-          this.nodeProps.xraySettings = JSON.stringify(
-            this.nodeProps.xraySettingsEntity
-          )
+          this.nodeProps.xrayStreamSettings = handleXraySettings(this.nodeProps)
+          this.nodeProps.xraySettings = handleXrayStreamSettings(this.nodeProps)
           createNode(this.nodeProps).then(() => {
             this.getListProps()
             this.$emit('update:dialogFormVisibleProps', false)
@@ -1067,23 +1054,8 @@ export default {
     updateData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          if (
-            this.nodeProps.xrayProtocol === 'vless' &&
-            this.nodeProps.xrayStreamSettings.network !== 'none'
-          ) {
-            this.nodeProps.xraySettingsEntity.decryption = 'none'
-          }
-          if (this.nodeProps.xrayProtocol === 'socks'){
-            this.nodeProps.xraySettingsEntity.auth = 'password'
-            this.nodeProps.xraySettingsEntity.ip = '127.0.0.1'
-          }
-
-          this.nodeProps.xrayStreamSettings = JSON.stringify(
-            this.nodeProps.xrayStreamSettingsEntity
-          )
-          this.nodeProps.xraySettings = JSON.stringify(
-            this.nodeProps.xraySettingsEntity
-          )
+          this.nodeProps.xrayStreamSettings = handleXraySettings(this.nodeProps)
+          this.nodeProps.xraySettings = handleXrayStreamSettings(this.nodeProps)
           const nodePropsData = Object.assign({}, this.nodeProps)
           updateNodeById(nodePropsData).then(() => {
             this.getListProps()

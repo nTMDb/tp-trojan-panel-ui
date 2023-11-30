@@ -118,7 +118,8 @@ export function isXrayStreamSettingsSecurityTls(temp) {
   return (
     isXray(temp) &&
     temp.xrayStreamSettingsEntity.security === 'tls' &&
-    !isXrayShadowsocks(temp) && !isXraySocks(temp)
+    !isXrayShadowsocks(temp) &&
+    !isXraySocks(temp)
   )
 }
 
@@ -126,7 +127,8 @@ export function isXrayStreamSettingsSecurityReality(temp) {
   return (
     isXray(temp) &&
     temp.xrayStreamSettingsEntity.security === 'reality' &&
-    !isXrayShadowsocks(temp) && !isXraySocks(temp)
+    !isXrayShadowsocks(temp) &&
+    !isXraySocks(temp)
   )
 }
 
@@ -246,3 +248,45 @@ export const fingerprints = [
   'random',
   'randomized'
 ]
+
+// 处理Xray节点配置XraySettings字段 去除掉无效配置
+export function handleXraySettings(nodeProps) {
+  if (isXraySocks(nodeProps)) {
+    nodeProps.xraySettingsEntity.auth = 'password'
+    nodeProps.xraySettingsEntity.ip = '127.0.0.1'
+  }
+
+  if (!showFallback(nodeProps)) {
+    nodeProps.xraySettingsEntity.fallbacks = undefined
+  }
+  if (!isXrayShadowsocks(nodeProps)) {
+    nodeProps.xraySettingsEntity.network = undefined
+  }
+  if (!isXraySocks(nodeProps)) {
+    nodeProps.xraySettingsEntity.udp = undefined
+    nodeProps.xraySettingsEntity.ip = undefined
+    nodeProps.xraySettingsEntity.auth = undefined
+  }
+  return JSON.stringify(this.nodeProps.xraySettingsEntity)
+}
+
+// 处理Xray节点配置StreamSettings字段 去除掉无效配置
+export function handleXrayStreamSettings(nodeProps) {
+  if (
+    isXrayVless(nodeProps) &&
+    nodeProps.xrayStreamSettings.network !== 'none'
+  ) {
+    nodeProps.xraySettingsEntity.decryption = 'none'
+  }
+
+  if (!nodeProps.xrayStreamSettingsEntity.security !== 'tls') {
+    nodeProps.xrayStreamSettingsEntity.tlsSettings = undefined
+  }
+  if (!nodeProps.xrayStreamSettingsEntity.security !== 'reality') {
+    nodeProps.xrayStreamSettingsEntity.realitySettings = undefined
+  }
+  if (nodeProps.xrayStreamSettingsEntity.network !== 'ws') {
+    nodeProps.xrayStreamSettingsEntity.wsSettings = undefined
+  }
+  return JSON.stringify(this.nodeProps.xrayStreamSettingsEntity)
+}
