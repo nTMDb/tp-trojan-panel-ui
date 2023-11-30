@@ -246,7 +246,7 @@ export default {
         // 'quic',
         // 'grpc'
       ]
-      if (this.isXrayShadowsocks(this.nodeProps)) {
+      if (this.isXrayShadowsocks(this.nodeProps) || this.isXraySocks(this.nodeProps)) {
         this.nodeProps.xrayStreamSettingsEntity.network = 'tcp'
         return ['tcp']
       } else {
@@ -288,7 +288,7 @@ export default {
     xrayProtocolChange() {
       if (isXrayVless(this.nodeProps)) {
         this.nodeProps.xrayStreamSettingsEntity.security = 'reality'
-      } else if (isXrayShadowsocks(this.nodeProps)) {
+      } else if (isXrayShadowsocks(this.nodeProps) || isXraySocks(this.nodeProps)) {
         this.nodeProps.xrayStreamSettingsEntity.security = 'none'
       } else {
         this.nodeProps.xrayStreamSettingsEntity.security = 'tls'
