@@ -251,6 +251,9 @@ export const fingerprints = [
 
 // 处理Xray节点配置XraySettings字段 去除掉无效配置
 export function handleXraySettings(nodeProps) {
+  if (isXrayVless(nodeProps)) {
+    nodeProps.xraySettingsEntity.decryption = 'none'
+  }
   if (isXraySocks(nodeProps)) {
     nodeProps.xraySettingsEntity.auth = 'password'
     nodeProps.xraySettingsEntity.ip = '127.0.0.1'
@@ -272,10 +275,6 @@ export function handleXraySettings(nodeProps) {
 
 // 处理Xray节点配置StreamSettings字段 去除掉无效配置
 export function handleXrayStreamSettings(nodeProps) {
-  if (isXrayVless(nodeProps)) {
-    nodeProps.xraySettingsEntity.decryption = 'none'
-  }
-
   if (nodeProps.xrayStreamSettingsEntity.security !== 'tls') {
     nodeProps.xrayStreamSettingsEntity.tlsSettings = undefined
   } else if (isXrayShadowsocks(nodeProps)) {
