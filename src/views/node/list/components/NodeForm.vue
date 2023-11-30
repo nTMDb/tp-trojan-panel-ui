@@ -414,6 +414,13 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
+        'xraySettingsEntity.udp': [
+          {
+            required: true,
+            message: this.$t('valid.xraySSNetwork'),
+            trigger: ['change', 'blur']
+          }
+        ],
         'xrayStreamSettingsEntity.network': [
           {
             validator: validateXrayStreamSettingsEntityNetwork,
@@ -780,6 +787,13 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
+        'xraySettingsEntity.udp': [
+          {
+            required: true,
+            message: this.$t('valid.xraySSNetwork'),
+            trigger: ['change', 'blur']
+          }
+        ],
         'xrayStreamSettingsEntity.network': [
           {
             required: true,
@@ -1025,6 +1039,10 @@ export default {
             this.nodeProps.xrayStreamSettings.network !== 'none'
           ) {
             this.nodeProps.xraySettingsEntity.decryption = 'none'
+          }
+          if (this.nodeProps.xrayProtocol === 'socks'){
+            this.nodeProps.xraySettingsEntity.auth = 'password'
+            this.nodeProps.xraySettingsEntity.ip = '127.0.0.1'
           }
 
           this.nodeProps.xrayStreamSettings = JSON.stringify(

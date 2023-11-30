@@ -148,6 +148,22 @@
           @click="handleCreateFallbackProps"
       ></el-button>
     </el-form-item>
+    <el-form-item
+        :label="$t('table.xraySocksUdp').toString()"
+        prop="xraySettingsEntity.udp"
+        v-if="isXraySocks(nodeProps)"
+    >
+      <el-switch
+          v-model="nodeProps.xraySettingsEntity.udp"
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+          :active-text="$t('table.enable').toString()"
+          :inactive-text="$t('table.disable').toString()"
+          :active-value="true"
+          :inactive-value="false"
+      >
+      </el-switch>
+    </el-form-item>
   </div>
 </template>
 
@@ -159,6 +175,7 @@ import {
   isXrayShadowsocks,
   isXrayShadowsocks2022,
   isXrayShadowsocksAEAD,
+  isXraySocks,
   isXrayStreamSettingsSecurityReality,
   isXrayStreamSettingsSecurityTls, isXrayTrojan,
   isXrayVless,
@@ -259,6 +276,7 @@ export default {
     }
   },
   methods: {
+    isXraySocks,
     isXrayShadowsocks,
     isXrayShadowsocksAEAD,
     isXrayShadowsocks2022,
