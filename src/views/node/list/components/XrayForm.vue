@@ -271,7 +271,8 @@ export default {
         'vless',
         'vmess',
         'trojan',
-        'shadowsocks'
+        'shadowsocks',
+        'socks'
       ]
     }
   },
