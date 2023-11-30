@@ -366,6 +366,8 @@ export default {
         name: '',
         domain: '',
         port: 443,
+        priority: 100,
+
         password: '',
         uuid: '',
         alterId: 0,
@@ -386,7 +388,7 @@ export default {
             }
           ],
           network: 'tcp',
-          udp: false
+          udp: true
         },
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
