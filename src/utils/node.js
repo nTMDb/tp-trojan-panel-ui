@@ -267,7 +267,7 @@ export function handleXraySettings(nodeProps) {
     nodeProps.xraySettingsEntity.ip = undefined
     nodeProps.xraySettingsEntity.auth = undefined
   }
-  return JSON.stringify(this.nodeProps.xraySettingsEntity)
+  return JSON.stringify(nodeProps.xraySettingsEntity)
 }
 
 // 处理Xray节点配置StreamSettings字段 去除掉无效配置
@@ -288,5 +288,5 @@ export function handleXrayStreamSettings(nodeProps) {
   if (nodeProps.xrayStreamSettingsEntity.network !== 'ws') {
     nodeProps.xrayStreamSettingsEntity.wsSettings = undefined
   }
-  return JSON.stringify(this.nodeProps.xrayStreamSettingsEntity)
+  return JSON.stringify(nodeProps.xrayStreamSettingsEntity)
 }
