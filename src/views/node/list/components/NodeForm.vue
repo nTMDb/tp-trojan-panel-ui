@@ -419,7 +419,7 @@ export default {
         'xraySettingsEntity.udp': [
           {
             required: true,
-            message: this.$t('valid.xraySSNetwork'),
+            message: this.$t('valid.xraySocksUdp'),
             trigger: ['change', 'blur']
           }
         ],
@@ -792,7 +792,7 @@ export default {
         'xraySettingsEntity.udp': [
           {
             required: true,
-            message: this.$t('valid.xraySSNetwork'),
+            message: this.$t('valid.xraySocksUdp'),
             trigger: ['change', 'blur']
           }
         ],
