@@ -272,10 +272,7 @@ export function handleXraySettings(nodeProps) {
 
 // 处理Xray节点配置StreamSettings字段 去除掉无效配置
 export function handleXrayStreamSettings(nodeProps) {
-  if (
-    isXrayVless(nodeProps) &&
-    nodeProps.xrayStreamSettings.network !== 'none'
-  ) {
+  if (isXrayVless(nodeProps)) {
     nodeProps.xraySettingsEntity.decryption = 'none'
   }
 
