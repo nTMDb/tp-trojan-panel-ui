@@ -1036,8 +1036,8 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          this.nodeProps.xrayStreamSettings = handleXraySettings(this.nodeProps)
-          this.nodeProps.xraySettings = handleXrayStreamSettings(this.nodeProps)
+          this.nodeProps.xraySettings = handleXraySettings(this.nodeProps)
+          this.nodeProps.xrayStreamSettings = handleXrayStreamSettings(this.nodeProps)
           createNode(this.nodeProps).then(() => {
             this.getListProps()
             this.$emit('update:dialogFormVisibleProps', false)
@@ -1054,8 +1054,8 @@ export default {
     updateData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          this.nodeProps.xrayStreamSettings = handleXraySettings(this.nodeProps)
-          this.nodeProps.xraySettings = handleXrayStreamSettings(this.nodeProps)
+          this.nodeProps.xraySettings = handleXraySettings(this.nodeProps)
+          this.nodeProps.xrayStreamSettings = handleXrayStreamSettings(this.nodeProps)
           const nodePropsData = Object.assign({}, this.nodeProps)
           updateNodeById(nodePropsData).then(() => {
             this.getListProps()
