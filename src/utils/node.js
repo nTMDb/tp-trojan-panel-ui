@@ -118,7 +118,7 @@ export function isXrayStreamSettingsSecurityTls(temp) {
   return (
     isXray(temp) &&
     temp.xrayStreamSettingsEntity.security === 'tls' &&
-    !isXrayShadowsocks(temp)
+    !isXrayShadowsocks(temp) && !isXraySocks(temp)
   )
 }
 
@@ -126,7 +126,7 @@ export function isXrayStreamSettingsSecurityReality(temp) {
   return (
     isXray(temp) &&
     temp.xrayStreamSettingsEntity.security === 'reality' &&
-    !isXrayShadowsocks(temp)
+    !isXrayShadowsocks(temp) && !isXraySocks(temp)
   )
 }
 
