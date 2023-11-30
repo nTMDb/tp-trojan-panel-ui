@@ -1073,6 +1073,10 @@ export default {
           ) {
             this.nodeProps.xraySettingsEntity.decryption = 'none'
           }
+          if (this.nodeProps.xrayProtocol === 'socks'){
+            this.nodeProps.xraySettingsEntity.auth = 'password'
+            this.nodeProps.xraySettingsEntity.ip = '127.0.0.1'
+          }
 
           this.nodeProps.xrayStreamSettings = JSON.stringify(
             this.nodeProps.xrayStreamSettingsEntity
