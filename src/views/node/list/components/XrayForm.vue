@@ -149,6 +149,12 @@
           @click="handleCreateFallbackProps"
       ></el-button>
     </el-form-item>
+    <el-form-item :label="$t('table.xraySocksUser').toString()" prop="xraySettingsEntity.accounts[0].user" v-if="isXraySocks(nodeProps)">
+      <el-input v-model="nodeProps.xraySettingsEntity.accounts[0].user" />
+    </el-form-item>
+    <el-form-item :label="$t('table.xraySocksPass').toString()" prop="xraySettingsEntity.accounts[0].pass" v-if="isXraySocks(nodeProps)">
+      <el-input v-model="nodeProps.xraySettingsEntity.accounts[0].pass" />
+    </el-form-item>
     <el-form-item
         :label="$t('table.xraySocksUdp').toString()"
         prop="xraySettingsEntity.udp"

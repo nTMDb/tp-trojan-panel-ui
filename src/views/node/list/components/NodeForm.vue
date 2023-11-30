@@ -423,6 +423,32 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
+        'xraySettingsEntity.accounts[0].user': [
+          {
+            required: true,
+            message: this.$t('valid.xraySocksUser'),
+            trigger: ['change', 'blur']
+          },
+          {
+            min: 2,
+            max: 64,
+            message: this.$t('valid.xraySocksUserRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        'xraySettingsEntity.accounts[0].pass': [
+          {
+            required: true,
+            message: this.$t('valid.xraySocksPass'),
+            trigger: ['change', 'blur']
+          },
+          {
+            min: 2,
+            max: 64,
+            message: this.$t('valid.xraySocksPassRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
         'xrayStreamSettingsEntity.network': [
           {
             validator: validateXrayStreamSettingsEntityNetwork,
@@ -796,6 +822,32 @@ export default {
             trigger: ['change', 'blur']
           }
         ],
+        'xraySettingsEntity.accounts[0].user': [
+          {
+            required: true,
+            message: this.$t('valid.xraySocksUser'),
+            trigger: ['change', 'blur']
+          },
+          {
+            min: 2,
+            max: 64,
+            message: this.$t('valid.xraySocksUserRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
+        'xraySettingsEntity.accounts[0].pass': [
+          {
+            required: true,
+            message: this.$t('valid.xraySocksPass'),
+            trigger: ['change', 'blur']
+          },
+          {
+            min: 2,
+            max: 64,
+            message: this.$t('valid.xraySocksPassRange'),
+            trigger: ['change', 'blur']
+          }
+        ],
         'xrayStreamSettingsEntity.network': [
           {
             required: true,
@@ -1037,7 +1089,9 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           this.nodeProps.xraySettings = handleXraySettings(this.nodeProps)
-          this.nodeProps.xrayStreamSettings = handleXrayStreamSettings(this.nodeProps)
+          this.nodeProps.xrayStreamSettings = handleXrayStreamSettings(
+            this.nodeProps
+          )
           createNode(this.nodeProps).then(() => {
             this.getListProps()
             this.$emit('update:dialogFormVisibleProps', false)
@@ -1055,7 +1109,9 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           this.nodeProps.xraySettings = handleXraySettings(this.nodeProps)
-          this.nodeProps.xrayStreamSettings = handleXrayStreamSettings(this.nodeProps)
+          this.nodeProps.xrayStreamSettings = handleXrayStreamSettings(
+            this.nodeProps
+          )
           const nodePropsData = Object.assign({}, this.nodeProps)
           updateNodeById(nodePropsData).then(() => {
             this.getListProps()

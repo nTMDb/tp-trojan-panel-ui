@@ -243,18 +243,18 @@ export function handleXraySettings(nodeProps) {
   if (isXraySocks(nodeProps)) {
     nodeProps.xraySettingsEntity.auth = 'password'
     nodeProps.xraySettingsEntity.ip = '127.0.0.1'
-  }
-
-  if (!showFallback(nodeProps)) {
-    nodeProps.xraySettingsEntity.fallbacks = undefined
+  } else {
+    nodeProps.xraySettingsEntity.udp = undefined
+    nodeProps.xraySettingsEntity.ip = undefined
+    nodeProps.xraySettingsEntity.auth = undefined
+    nodeProps.xraySettingsEntity.accounts = undefined
   }
   if (!isXrayShadowsocks(nodeProps)) {
     nodeProps.xraySettingsEntity.network = undefined
   }
-  if (!isXraySocks(nodeProps)) {
-    nodeProps.xraySettingsEntity.udp = undefined
-    nodeProps.xraySettingsEntity.ip = undefined
-    nodeProps.xraySettingsEntity.auth = undefined
+
+  if (!showFallback(nodeProps)) {
+    nodeProps.xraySettingsEntity.fallbacks = undefined
   }
   return JSON.stringify(nodeProps.xraySettingsEntity)
 }

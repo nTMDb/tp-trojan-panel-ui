@@ -104,10 +104,10 @@
         </template>
       </el-table-column>
       <el-table-column
-          :label="$t('table.nodePriority').toString()"
-          width="80"
-          align="center"
-          v-if="checkPermission(['sysadmin', 'admin'])"
+        :label="$t('table.nodePriority').toString()"
+        width="80"
+        align="center"
+        v-if="checkPermission(['sysadmin', 'admin'])"
       >
         <template slot-scope="{ row }">
           <span>{{ row.priority }}</span>
@@ -302,6 +302,7 @@ export default {
             }
           ],
           network: 'tcp',
+          accounts: [{ user: '', pass: '' }],
           udp: true
         },
         xrayStreamSettings: '',
@@ -388,6 +389,7 @@ export default {
             }
           ],
           network: 'tcp',
+          accounts: [{ user: '', pass: '' }],
           udp: true
         },
         xrayStreamSettings: '',
@@ -508,6 +510,7 @@ export default {
             }
           ],
           network: 'tcp',
+          accounts: [{ user: '', pass: '' }],
           udp: true
         },
         xrayStreamSettings: '',
