@@ -226,6 +226,12 @@
           <el-tag>{{ nodeInfoProps.xraySettingsEntity.network }}</el-tag>
         </el-form-item>
         <el-form-item
+            :label="$t('table.xraySocksUdp').toString()"
+            v-if="isXraySocks(nodeInfoProps)"
+        >
+          <el-tag>{{ enableComputed(nodeInfoProps.xraySettingsEntity.udp) }}</el-tag>
+        </el-form-item>
+        <el-form-item
           :label="$t('table.xrayFallbacks').toString()"
           v-if="showFallback(nodeInfoProps)"
         >
@@ -417,6 +423,7 @@ import {
   isTrojanGoEnableWebsocket,
   isXray,
   isXrayShadowsocks,
+  isXraySocks,
   isXrayStreamSettingsSecurityReality,
   isXrayStreamSettingsSecurityTls,
   isXrayWs,
@@ -452,7 +459,7 @@ export default {
   computed: {
     enableComputed() {
       return function (enable) {
-        return enable === 1 ? this.$t('table.enable') : this.$t('table.disable')
+        return (enable && (enable === true || enable === 1)) ? this.$t('table.enable') : this.$t('table.disable')
       }
     }
   },
@@ -469,6 +476,7 @@ export default {
     }
   },
   methods: {
+    isXraySocks,
     isXray,
     isXrayShadowsocks,
     isXrayWs,
