@@ -281,6 +281,11 @@ export function handleXrayStreamSettings(nodeProps) {
 
   if (!nodeProps.xrayStreamSettingsEntity.security !== 'tls') {
     nodeProps.xrayStreamSettingsEntity.tlsSettings = undefined
+  } else if (isXrayShadowsocks(nodeProps)) {
+    nodeProps.xrayStreamSettingsEntity.serverName = undefined
+    nodeProps.xrayStreamSettingsEntity.alpn = undefined
+    nodeProps.xrayStreamSettingsEntity.allowInsecure = undefined
+    nodeProps.xrayStreamSettingsEntity.fingerprint = undefined
   }
   if (!nodeProps.xrayStreamSettingsEntity.security !== 'reality') {
     nodeProps.xrayStreamSettingsEntity.realitySettings = undefined
