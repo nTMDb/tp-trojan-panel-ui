@@ -71,8 +71,7 @@ export function showXrayFlow(temp) {
 
 export function showFallback(temp) {
   return (
-    isXray(temp) &&
-    (temp.xrayProtocol === 'vless' || temp.xrayProtocol === 'trojan') &&
+    (isXrayVless(temp) || isXrayTrojan(temp)) &&
     temp.xrayStreamSettingsEntity.network === 'tcp' &&
     temp.xrayStreamSettingsEntity.security === 'tls'
   )
@@ -104,32 +103,19 @@ export function nodeServerFind(nodeServers, nodeServerId) {
 }
 
 export function showUUID(temp) {
-  return (
-    isXray(temp) &&
-    (temp.xrayProtocol === 'vless' || temp.xrayProtocol === 'vmess')
-  )
+  return isXrayVless(temp) || isXrayVmess(temp)
 }
 
 export function showAlterId(temp) {
-  return isXray(temp) && temp.xrayProtocol === 'vmess'
+  return isXrayVmess(temp)
 }
 
 export function isXrayStreamSettingsSecurityTls(temp) {
-  return (
-    isXray(temp) &&
-    temp.xrayStreamSettingsEntity.security === 'tls' &&
-    !isXrayShadowsocks(temp) &&
-    !isXraySocks(temp)
-  )
+  return isXray(temp) && temp.xrayStreamSettingsEntity.security === 'tls'
 }
 
 export function isXrayStreamSettingsSecurityReality(temp) {
-  return (
-    isXray(temp) &&
-    temp.xrayStreamSettingsEntity.security === 'reality' &&
-    !isXrayShadowsocks(temp) &&
-    !isXraySocks(temp)
-  )
+  return isXray(temp) && temp.xrayStreamSettingsEntity.security === 'reality'
 }
 
 export function handleNodeDetail(nodeDetail, responseData) {
