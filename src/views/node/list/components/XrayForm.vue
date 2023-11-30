@@ -92,7 +92,7 @@
         v-if="
         isXrayShadowsocks(nodeProps) ||
         isXrayShadowsocksAEAD(nodeProps) ||
-        isXrayShadowsocksAEAD(nodeProps)
+        isXrayShadowsocks2022(nodeProps)
       "
     >
       <el-select v-model="nodeProps.xraySSMethod" controls-position="right">
@@ -108,7 +108,8 @@
         :label="$t('table.xraySSNetwork').toString()"
         prop="xraySettingsEntity.network"
         v-if="
-        isXrayShadowsocksAEAD(nodeProps) || isXrayShadowsocks2022(nodeProps)
+        isXrayShadowsocksAEAD(nodeProps) ||
+        isXrayShadowsocks2022(nodeProps)
       "
     >
       <el-select
@@ -246,7 +247,8 @@ export default {
         // 'quic',
         // 'grpc'
       ]
-      if (this.isXrayShadowsocks(this.nodeProps) || this.isXraySocks(this.nodeProps)) {
+      if (this.isXrayShadowsocks(this.nodeProps) ||
+          this.isXraySocks(this.nodeProps)) {
         this.nodeProps.xrayStreamSettingsEntity.network = 'tcp'
         return ['tcp']
       } else {
@@ -267,7 +269,6 @@ export default {
       xrayProtocols: [
         // 'dokodemo-door',
         // 'http',
-        // 'socks',
         'vless',
         'vmess',
         'trojan',
