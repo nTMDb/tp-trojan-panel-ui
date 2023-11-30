@@ -302,7 +302,8 @@ export default {
               xver: 0
             }
           ],
-          network: 'tcp'
+          network: 'tcp',
+          udp: true
         },
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
@@ -386,7 +387,8 @@ export default {
               xver: 0
             }
           ],
-          network: 'tcp'
+          network: 'tcp',
+          udp: false
         },
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
@@ -506,7 +508,8 @@ export default {
               xver: 0
             }
           ],
-          network: 'tcp'
+          network: 'tcp',
+          udp: true
         },
         xrayStreamSettings: '',
         xrayStreamSettingsEntity: {
