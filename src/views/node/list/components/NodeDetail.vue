@@ -229,6 +229,18 @@
           <el-tag>{{ nodeInfoProps.xraySettingsEntity.network }}</el-tag>
         </el-form-item>
         <el-form-item
+            :label="$t('table.xraySocksUser').toString()"
+            v-if="isXraySocks(nodeInfoProps)"
+        >
+          <el-tag>{{ nodeInfoProps.xraySettingsEntity.accounts[0].user }}</el-tag>
+        </el-form-item>
+        <el-form-item
+            :label="$t('table.xraySocksPass').toString()"
+            v-if="isXraySocks(nodeInfoProps)"
+        >
+          <el-tag>{{ nodeInfoProps.xraySettingsEntity.accounts[0].pass }}</el-tag>
+        </el-form-item>
+        <el-form-item
             :label="$t('table.xraySocksUdp').toString()"
             v-if="isXraySocks(nodeInfoProps)"
         >
