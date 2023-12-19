@@ -29,10 +29,11 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      clientTypes
+    }
   },
   methods: {
-    clientTypes,
     handleCopyURL(command) {
       nodeURL({ id: this.nodeId, clientType: command }).then((response) => {
         if (copy(response.data)) {

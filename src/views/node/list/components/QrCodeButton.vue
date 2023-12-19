@@ -15,8 +15,8 @@
     </el-dropdown>
 
     <NodeQrcode
-      :dialog-visible-props.sync="dialogQRCodeVisible"
       :qr-code-src-props="qrCodeSrc"
+      :dialog-visible-props.sync="dialogQRCodeVisible"
     />
   </div>
 </template>
@@ -37,12 +37,12 @@ export default {
   },
   data() {
     return {
+      clientTypes,
       qrCodeSrc: '',
       dialogQRCodeVisible: false
     }
   },
   methods: {
-    clientTypes,
     handleQRCode(command) {
       this.qrCodeSrc = ''
       nodeQRCode({ id: this.nodeId, clientType: command }).then((response) => {
