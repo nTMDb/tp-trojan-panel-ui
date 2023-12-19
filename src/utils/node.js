@@ -277,3 +277,8 @@ export function handleXrayStreamSettings(nodeProps) {
   }
   return JSON.stringify(nodeProps.xrayStreamSettingsEntity)
 }
+
+// 客户端类型
+export function clientTypes(){
+  return [['shadowrocket', 'v2rayn', 'nekoray']]
+}

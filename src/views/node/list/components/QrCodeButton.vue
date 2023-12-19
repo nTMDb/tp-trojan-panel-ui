@@ -23,6 +23,7 @@
 <script>
 import { nodeQRCode } from '@/api/node'
 import NodeQrcode from '@/views/node/list/components/NodeQrcode.vue'
+import { clientTypes } from '@/utils/node'
 
 export default {
   name: 'QrCodeButton',
@@ -35,12 +36,12 @@ export default {
   },
   data() {
     return {
-      clientTypes: ['shadowrocket', 'v2rayn', 'nekoray'],
       qrCodeSrc: '',
       dialogQRCodeVisible: false
     }
   },
   methods: {
+    clientTypes,
     handleQRCode(command) {
       this.qrCodeSrc = ''
       nodeQRCode({ id: this.nodeId, clientType: command }).then((response) => {

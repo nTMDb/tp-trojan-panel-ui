@@ -209,7 +209,6 @@ import copy from 'copy-to-clipboard'
 import {
   deleteNodeById,
   nodeDefault,
-  nodeURL,
   selectNodeById,
   selectNodeInfo,
   selectNodePage

@@ -15,6 +15,7 @@
 import { nodeURL } from '@/api/node'
 import copy from 'copy-to-clipboard'
 import { Message } from 'element-ui'
+import { clientTypes } from '@/utils/node'
 
 export default {
   name: 'CopyUrlButton',
@@ -25,11 +26,10 @@ export default {
     }
   },
   data() {
-    return {
-      clientTypes: ['shadowrocket', 'v2rayn', 'nekoray']
-    }
+    return {}
   },
   methods: {
+    clientTypes,
     handleCopyURL(command) {
       nodeURL({ id: this.nodeId, clientType: command }).then((response) => {
         if (copy(response.data)) {
