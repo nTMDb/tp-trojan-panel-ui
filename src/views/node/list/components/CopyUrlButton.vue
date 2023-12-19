@@ -4,7 +4,10 @@
       {{ $t('table.nodeURL') }}
     </el-button>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item v-for="clientType in clientTypes" :command="clientType"
+      <el-dropdown-item
+        :key="clientType"
+        v-for="clientType in clientTypes"
+        :command="clientType"
         >{{ clientType }}
       </el-dropdown-item>
     </el-dropdown-menu>

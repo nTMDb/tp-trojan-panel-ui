@@ -6,6 +6,7 @@
       </el-button>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item
+          :key="clientType"
           v-for="clientType in clientTypes"
           :command="clientType"
           >{{ clientType }}
