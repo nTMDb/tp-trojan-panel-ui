@@ -157,12 +157,8 @@
           >
             {{ $t('table.edit') }}
           </el-button>
-          <el-button type="primary" size="mini" @click="handleQRCode(row)">
-            {{ $t('table.nodeQRCode') }}
-          </el-button>
-          <el-button type="success" size="mini" @click="handleCopyURL(row)">
-            {{ $t('table.nodeURL') }}
-          </el-button>
+          <qr-code-button :node-id="row.id" />
+          <copy-url-button :node-id="row.id" />
           <el-button type="success" size="mini" @click="handleDetail(row)">
             {{ $t('table.detail') }}
           </el-button>
@@ -202,24 +198,17 @@
       :node-servers-props="nodeServers"
       :node-types-props="nodeTypes"
     />
-
-    <NodeQrcode
-      :dialog-visible-props.sync="dialogQRCodeVisible"
-      :qr-code-src-props="qrCodeSrc"
-    />
   </div>
 </template>
 
 <script>
 import Pagination from '@/components/Pagination'
 import NodeDetail from '@/views/node/list/components/NodeDetail'
-import NodeQrcode from '@/views/node/list/components/NodeQrcode'
 import { Message, MessageBox } from 'element-ui'
 import copy from 'copy-to-clipboard'
 import {
   deleteNodeById,
   nodeDefault,
-  nodeQRCode,
   nodeURL,
   selectNodeById,
   selectNodeInfo,
@@ -239,14 +228,17 @@ import { selectNodeServerList } from '@/api/node-server'
 import FallbackForm from '@/views/node/list/components/FallbackForm'
 import FallbackInfo from '@/views/node/list/components/FallbackInfo'
 import NodeForm from '@/views/node/list/components/NodeForm'
+import CopyUrlButton from '@/views/node/list/components/CopyUrlButton.vue'
+import QrCodeButton from '@/views/node/list/components/QrCodeButton.vue'
 
 export default {
   name: 'index',
   components: {
+    QrCodeButton,
+    CopyUrlButton,
     NodeForm,
     FallbackInfo,
     FallbackForm,
-    NodeQrcode,
     NodeDetail,
     Pagination
   },
@@ -451,8 +443,6 @@ export default {
       dialogStatus: '',
       dialogFormVisible: false,
       dialogInfoVisible: false,
-      dialogQRCodeVisible: false,
-      qrCodeSrc: '',
       nodeTypes: [],
       nodeServers: [],
       textMap: {
@@ -642,31 +632,7 @@ export default {
         })
       })
     },
-    handleQRCode(row) {
-      this.qrCodeSrc = ''
-      const tempData = Object.assign({}, row)
-      nodeQRCode(tempData).then((response) => {
-        this.qrCodeSrc = 'data:image/png;base64,' + response.data
-        this.dialogQRCodeVisible = true
-      })
-    },
-    handleCopyURL(row) {
-      nodeURL(row).then((response) => {
-        if (copy(response.data)) {
-          Message({
-            showClose: true,
-            message: this.$t('confirm.urlCopySuccess').toString(),
-            type: 'success'
-          })
-        } else {
-          Message({
-            showClose: true,
-            message: this.$t('confirm.urlCopyFail').toString(),
-            type: 'error'
-          })
-        }
-      })
-    },
+
     handleClashSubscribe() {
       clashSubscribe().then((response) => {
         if (
