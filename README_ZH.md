@@ -1,20 +1,20 @@
-[中文](README_ZH.md)
+[English](README.md)
 
-# Trojan Panel Frontend
+# 木马面板前端
 
-Trojan Panel Frontend
+木马面板前端
 
-## Compile
+## 编译
 
 ```
 yarn run build
 ```
 
-## Telegram
+## 电报
 
 Telegram Channel: https://t.me/TrojanPanel
 
-## Thanks
+## 致谢
 
 - [trojan](https://github.com/trojan-gfw/trojan)
 - [trojan-go](https://github.com/p4gefau1t/trojan-go)
