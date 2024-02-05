@@ -279,4 +279,4 @@ export function handleXrayStreamSettings(nodeProps) {
 }
 
 // 客户端类型
-export const clientTypes = ['shadowrocket', 'v2rayn', 'nekoray']
+export const clientTypes = ['Shadowrocket', 'v2rayN']
