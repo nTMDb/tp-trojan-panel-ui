@@ -157,8 +157,8 @@
           >
             {{ $t('table.edit') }}
           </el-button>
-          <qr-code-button :node-id="row.id" />
-          <copy-url-button :node-id="row.id" />
+          <qr-code-button :node-id="row.id" :node-props="row" />
+          <copy-url-button :node-id="row.id" :node-props="row" />
           <el-button type="success" size="mini" @click="handleDetail(row)">
             {{ $t('table.detail') }}
           </el-button>

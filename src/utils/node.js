@@ -279,4 +279,20 @@ export function handleXrayStreamSettings(nodeProps) {
 }
 
 // 客户端类型
-export const clientTypes = ['Shadowrocket', 'v2rayN']
+export function clientTypes(temp) {
+  let clientTypes = ['Shadowrocket']
+  if (showCopyUrlAndQrcode(temp)) {
+    clientTypes.push('v2rayN')
+  }
+  return clientTypes
+}
+
+export function showCopyUrlAndQrcode(temp) {
+  return (
+    isXrayVless(temp) ||
+    isXrayVmess(temp) ||
+    isXrayTrojan(temp) ||
+    isXrayShadowsocks(temp) ||
+    isXraySocks(temp)
+  )
+}

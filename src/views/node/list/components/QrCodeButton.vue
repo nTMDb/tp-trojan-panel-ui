@@ -7,7 +7,7 @@
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item
           :key="clientType"
-          v-for="clientType in clientTypes"
+          v-for="clientType in clientTypes(nodeProps)"
           :command="clientType"
           >{{ clientType }}
         </el-dropdown-item>
@@ -33,16 +33,20 @@ export default {
     nodeId: {
       type: Number,
       require: true
+    },
+    nodeProps: {
+      type: Object,
+      require: true
     }
   },
   data() {
     return {
-      clientTypes,
       qrCodeSrc: '',
       dialogQRCodeVisible: false
     }
   },
   methods: {
+    clientTypes,
     handleQRCode(command) {
       this.qrCodeSrc = ''
       nodeQRCode({ id: this.nodeId, clientType: command }).then((response) => {
