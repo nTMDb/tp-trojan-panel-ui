@@ -288,11 +288,5 @@ export function clientTypes(temp) {
 }
 
 export function showCopyUrlAndQrcode(temp) {
-  return (
-    isXrayVless(temp) ||
-    isXrayVmess(temp) ||
-    isXrayTrojan(temp) ||
-    isXrayShadowsocks(temp) ||
-    isXraySocks(temp)
-  )
+  return isXray(temp)
 }
