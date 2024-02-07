@@ -22,8 +22,27 @@
       label="path"
       prop="xrayStreamSettingsEntity.tcpSettings.request.path"
     >
+      <el-tag
+        v-for="item in nodeProps.xrayStreamSettingsEntity.tcpSettings.request
+          .path"
+        :key="item"
+        type="info"
+        closable
+      >
+        {{ item }}
+      </el-tag>
       <el-input
-        v-model="nodeProps.xrayStreamSettingsEntity.tcpSettings.request.path"
+        v-model="pathItem"
+        @keyup.enter="
+          nodeProps.xrayStreamSettingsEntity.tcpSettings.request.path.push(
+            pathItem
+          )
+        "
+        @blur="
+          nodeProps.xrayStreamSettingsEntity.tcpSettings.request.path.push(
+            pathItem
+          )
+        "
       />
     </el-form-item>
   </div>
@@ -40,6 +59,11 @@ export default {
     formVisibleProps: {
       type: Boolean,
       require: true
+    }
+  },
+  data() {
+    return {
+      pathItem: ''
     }
   }
 }
