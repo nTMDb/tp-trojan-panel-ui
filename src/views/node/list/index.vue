@@ -407,6 +407,15 @@ export default {
             headers: {
               Host: ''
             }
+          },
+          tcpSettings: {
+            type: 'none',
+            request: {
+              path: ["/"],
+              headers: {
+                Host: [],
+              }
+            }
           }
         },
         xrayTag: 'user',
@@ -525,6 +534,15 @@ export default {
             path: '/trojan-panel-websocket-path',
             headers: {
               Host: ''
+            }
+          },
+          tcpSettings: {
+            type: 'none',
+            request: {
+              path: ["/"],
+              headers: {
+                Host: [],
+              }
             }
           }
         },

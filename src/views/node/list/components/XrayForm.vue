@@ -17,29 +17,8 @@
         ></el-option>
       </el-select>
     </el-form-item>
-    <el-form-item
-        :label="$t('table.xrayStreamSettingsNetwork').toString()"
-        prop="xrayStreamSettingsEntity.network"
-        v-if="
-        !(isXrayShadowsocksAEAD(nodeProps) || isXrayShadowsocks2022(nodeProps))
-      "
-    >
-      <el-select
-          v-model="nodeProps.xrayStreamSettingsEntity.network"
-          controls-position="right"
-          @change="xrayStreamSettingsNetworkChange"
-      >
-        <el-option
-            :label="item"
-            :value="item"
-            :key="item"
-            v-for="item in xrayStreamSettingsNetworks"
-        ></el-option>
-      </el-select>
-    </el-form-item>
 
-    <XrayFormWebSocket
-        :form-visible-props="isXrayWs(nodeProps) && !isXrayShadowsocks(nodeProps)"
+    <XrayFormNetwork
         :node-props="nodeProps"
     />
 
@@ -184,15 +163,16 @@ import {
   isXrayShadowsocksAEAD,
   isXraySocks,
   isXrayStreamSettingsSecurityReality,
-  isXrayStreamSettingsSecurityTls, isXrayTrojan,
+  isXrayStreamSettingsSecurityTls,
+  isXrayTrojan,
   isXrayVless,
-  isXrayWs,
   showFallback,
   showXrayFlow
 } from '@/utils/node.js'
 import XrayFormReality from '@/views/node/list/components/XrayFormReality'
 import XrayFormTls from '@/views/node/list/components/XrayFormTls'
 import XrayFormWebSocket from '@/views/node/list/components/XrayFormWebSocket'
+import XrayFormNetwork from '@/views/node/list/components/XrayFormNetwork'
 
 export default {
   name: 'XrayForm',
@@ -201,7 +181,8 @@ export default {
     XrayFormTls,
     XrayFormReality,
     FallbackInfo,
-    FallbackForm
+    FallbackForm,
+    XrayFormNetwork
   },
   props: {
     nodeProps: {
@@ -242,24 +223,6 @@ export default {
     },
     xrayFlows() {
       return ['none', 'xtls-rprx-vision']
-    },
-    xrayStreamSettingsNetworks() {
-      let xrayStreamSettingsNetworks = [
-        'tcp',
-        // 'kcp',
-        'ws'
-        // 'http',
-        // 'domainsocket',
-        // 'quic',
-        // 'grpc'
-      ]
-      if (this.isXrayShadowsocks(this.nodeProps) ||
-          this.isXraySocks(this.nodeProps)) {
-        this.nodeProps.xrayStreamSettingsEntity.network = 'tcp'
-        return ['tcp']
-      } else {
-        return xrayStreamSettingsNetworks
-      }
     }
   },
   data() {
@@ -290,7 +253,6 @@ export default {
     isXrayShadowsocks2022,
     showFallback,
     showXrayFlow,
-    isXrayWs,
     isXrayStreamSettingsSecurityTls,
     isXrayStreamSettingsSecurityReality,
     xrayProtocolChange() {
@@ -299,11 +261,6 @@ export default {
       } else if (isXrayShadowsocks(this.nodeProps) || isXraySocks(this.nodeProps)) {
         this.nodeProps.xrayStreamSettingsEntity.security = 'none'
       } else {
-        this.nodeProps.xrayStreamSettingsEntity.security = 'tls'
-      }
-    },
-    xrayStreamSettingsNetworkChange() {
-      if (this.nodeProps.xrayStreamSettingsEntity.network === 'ws') {
         this.nodeProps.xrayStreamSettingsEntity.security = 'tls'
       }
     },
