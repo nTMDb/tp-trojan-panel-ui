@@ -18,17 +18,7 @@
       </el-select>
     </el-form-item>
 
-    <XrayFormNetwork :node-props="nodeProps" />
-
-    <XrayFormTls
-      :form-visible-props="isXrayStreamSettingsSecurityTls(nodeProps)"
-      :node-props="nodeProps"
-    />
-
-    <XrayFormReality
-      :form-visible-props="isXrayStreamSettingsSecurityReality(nodeProps)"
-      :node-props="nodeProps"
-    />
+    <XrayFormStreamSettings :node-props="nodeProps" />
 
     <el-form-item
       :label="$t('table.xrayFlow').toString()"
@@ -148,9 +138,6 @@ import {
   isXrayShadowsocks2022,
   isXrayShadowsocksAEAD,
   isXraySocks,
-  isXrayStreamSettingsSecurityReality,
-  isXrayStreamSettingsSecurityTls,
-  isXrayTrojan,
   isXrayVless,
   showFallback,
   showXrayFlow
@@ -158,17 +145,17 @@ import {
 import XrayFormReality from '@/views/node/list/components/XrayFormReality'
 import XrayFormTls from '@/views/node/list/components/XrayFormTls'
 import XrayFormWebSocket from '@/views/node/list/components/XrayFormWebSocket'
-import XrayFormNetwork from '@/views/node/list/components/XrayFormNetwork'
+import XrayFormStreamSettings from '@/views/node/list/components/XrayFormStreamSettings.vue'
 
 export default {
   name: 'XrayForm',
   components: {
+    XrayFormStreamSettings,
     XrayFormWebSocket,
     XrayFormTls,
     XrayFormReality,
     FallbackInfo,
-    FallbackForm,
-    XrayFormNetwork
+    FallbackForm
   },
   props: {
     nodeProps: {
@@ -225,8 +212,6 @@ export default {
     isXrayShadowsocks2022,
     showFallback,
     showXrayFlow,
-    isXrayStreamSettingsSecurityTls,
-    isXrayStreamSettingsSecurityReality,
     xrayProtocolChange() {
       if (isXrayVless(this.nodeProps)) {
         this.nodeProps.xrayStreamSettingsEntity.security = 'reality'

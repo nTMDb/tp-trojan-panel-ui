@@ -38,17 +38,22 @@
     </el-form-item>
 
     <XrayFormTcp
-      :form-visible-props="isXrayTcp(nodeProps)"
+      :form-visible-props="isXrayStreamSettingsNetworkTcp(nodeProps)"
       :node-props="nodeProps"
     />
 
     <XrayFormTls
-      :form-visible-props="isXrayTls(nodeProps)"
+      :form-visible-props="isXrayStreamSettingsSecurityTls(nodeProps)"
+      :node-props="nodeProps"
+    />
+
+    <XrayFormReality
+      :form-visible-props="isXrayStreamSettingsSecurityReality(nodeProps)"
       :node-props="nodeProps"
     />
 
     <XrayFormWebSocket
-      :form-visible-props="isXrayWs(nodeProps)"
+      :form-visible-props="isXrayStreamSettingsNetworkWs(nodeProps)"
       :node-props="nodeProps"
     />
   </div>
@@ -59,17 +64,19 @@ import XrayFormWebSocket from '@/views/node/list/components/XrayFormWebSocket.vu
 import XrayFormTcp from '@/views/node/list/components/XrayFormTcp.vue'
 import XrayFormTls from '@/views/node/list/components/XrayFormTls.vue'
 import {
+  isXrayStreamSettingsSecurityReality,
   isXrayShadowsocks,
-  isXrayTcp,
-  isXrayTls,
+  isXrayStreamSettingsNetworkTcp,
+  isXrayStreamSettingsSecurityTls,
   isXrayTrojan,
   isXrayVless,
-  isXrayWs
+  isXrayStreamSettingsNetworkWs
 } from '@/utils/node'
+import XrayFormReality from '@/views/node/list/components/XrayFormReality.vue'
 
 export default {
   name: 'XrayFormStreamSettings',
-  components: { XrayFormTls, XrayFormWebSocket, XrayFormTcp },
+  components: { XrayFormReality, XrayFormTls, XrayFormWebSocket, XrayFormTcp },
   props: {
     nodeProps: {
       type: Object,
@@ -108,9 +115,10 @@ export default {
     }
   },
   methods: {
-    isXrayTls,
-    isXrayTcp,
-    isXrayWs,
+    isXrayStreamSettingsSecurityReality,
+    isXrayStreamSettingsSecurityTls,
+    isXrayStreamSettingsNetworkTcp,
+    isXrayStreamSettingsNetworkWs,
     isXrayShadowsocks,
     xrayStreamSettingsNetworkChange() {
       if (this.nodeProps.xrayStreamSettingsEntity.network === 'ws') {

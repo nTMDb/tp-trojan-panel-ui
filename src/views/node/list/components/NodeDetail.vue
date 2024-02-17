@@ -59,7 +59,7 @@
         </el-form-item>
         <el-form-item
           :label="$t('table.xrayStreamSettingsWsSettingsPath').toString()"
-          v-if="isXrayWs(nodeInfoProps) && !isXrayShadowsocks(nodeInfoProps)"
+          v-if="isXrayStreamSettingsNetworkWs(nodeInfoProps) && !isXrayShadowsocks(nodeInfoProps)"
         >
           <el-tag
             >{{ nodeInfoProps.xrayStreamSettingsEntity.wsSettings.path }}
@@ -67,7 +67,7 @@
         </el-form-item>
         <el-form-item
           label="WebSocket Host"
-          v-if="isXrayWs(nodeInfoProps) && !isXrayShadowsocks(nodeInfoProps)"
+          v-if="isXrayStreamSettingsNetworkWs(nodeInfoProps) && !isXrayShadowsocks(nodeInfoProps)"
         >
           <el-tag
             >{{
@@ -441,7 +441,7 @@ import {
   isXraySocks,
   isXrayStreamSettingsSecurityReality,
   isXrayStreamSettingsSecurityTls,
-  isXrayWs,
+  isXrayStreamSettingsNetworkWs,
   nodeServerFind,
   nodeTypeFind,
   showAlterId,
@@ -494,7 +494,7 @@ export default {
     isXraySocks,
     isXray,
     isXrayShadowsocks,
-    isXrayWs,
+    isXrayStreamSettingsNetworkWs,
     showXrayFlow,
     showFallback,
     isTrojanGo,
