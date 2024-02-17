@@ -42,6 +42,11 @@
       :node-props="nodeProps"
     />
 
+    <XrayFormTls
+      :form-visible-props="isXrayTls(nodeProps)"
+      :node-props="nodeProps"
+    />
+
     <XrayFormWebSocket
       :form-visible-props="isXrayWs(nodeProps)"
       :node-props="nodeProps"
@@ -52,9 +57,11 @@
 <script>
 import XrayFormWebSocket from '@/views/node/list/components/XrayFormWebSocket.vue'
 import XrayFormTcp from '@/views/node/list/components/XrayFormTcp.vue'
+import XrayFormTls from '@/views/node/list/components/XrayFormTls.vue'
 import {
   isXrayShadowsocks,
   isXrayTcp,
+  isXrayTls,
   isXrayTrojan,
   isXrayVless,
   isXrayWs
@@ -62,7 +69,7 @@ import {
 
 export default {
   name: 'XrayFormStreamSettings',
-  components: { XrayFormWebSocket, XrayFormTcp },
+  components: { XrayFormTls, XrayFormWebSocket, XrayFormTcp },
   props: {
     nodeProps: {
       type: Object,
@@ -85,9 +92,11 @@ export default {
   computed: {
     xrayStreamSettingsSecuritys() {
       let securitys = ['none', 'tls']
+      // vless支持reality
       if (isXrayVless(this.nodeProps)) {
         securitys.push('reality')
       }
+      // trojan基于tls
       if (isXrayTrojan(this.nodeProps)) {
         for (let i = 0; i < securitys.length; i++) {
           if (securitys[i] === 'none') {
@@ -99,9 +108,10 @@ export default {
     }
   },
   methods: {
-    isXrayShadowsocks,
+    isXrayTls,
     isXrayTcp,
     isXrayWs,
+    isXrayShadowsocks,
     xrayStreamSettingsNetworkChange() {
       if (this.nodeProps.xrayStreamSettingsEntity.network === 'ws') {
         this.nodeProps.xrayStreamSettingsEntity.security = 'tls'

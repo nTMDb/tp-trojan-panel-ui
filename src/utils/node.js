@@ -57,6 +57,10 @@ export function isXraySocks(temp) {
   return isXray(temp) && temp.xrayProtocol === 'socks'
 }
 
+export function isXrayTls(temp) {
+  return isXray(temp) && temp.xrayStreamSettingsEntity.network === 'tls'
+}
+
 export function isXrayTcp(temp) {
   return isXray(temp) && temp.xrayStreamSettingsEntity.network === 'tcp'
 }
