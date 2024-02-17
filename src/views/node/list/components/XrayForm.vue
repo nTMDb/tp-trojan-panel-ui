@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { isXrayShadowsocks, isXraySocks, isXrayVless } from '@/utils/node.js'
+import { isXrayVless } from '@/utils/node.js'
 import XrayFormStreamSettings from '@/views/node/list/components/XrayFormStreamSettings.vue'
 import XrayFormSettings from '@/views/node/list/components/XrayFormSettings.vue'
 
@@ -77,16 +77,9 @@ export default {
   },
   methods: {
     xrayProtocolChange() {
-      // 设置默认值
+      // 设置推荐值
       if (isXrayVless(this.nodeProps)) {
         this.nodeProps.xrayStreamSettingsEntity.security = 'reality'
-      } else if (
-        isXrayShadowsocks(this.nodeProps) ||
-        isXraySocks(this.nodeProps)
-      ) {
-        this.nodeProps.xrayStreamSettingsEntity.security = 'none'
-      } else {
-        this.nodeProps.xrayStreamSettingsEntity.security = 'tls'
       }
     }
   }

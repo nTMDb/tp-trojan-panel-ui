@@ -6,6 +6,7 @@
     >
       <el-input v-model="nodeProps.xrayStreamSettingsEntity.wsSettings.path" />
     </el-form-item>
+
     <el-form-item
       label="WebSocket Host"
       prop="xrayStreamSettingsEntity.wsSettings.headers.Host"
