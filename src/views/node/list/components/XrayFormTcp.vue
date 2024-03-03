@@ -9,16 +9,6 @@
       />
     </el-form-item>
     <el-form-item
-      label="Host"
-      prop="xrayStreamSettingsEntity.tcpSettings.request.headers.Host"
-    >
-      <el-input
-        v-model="
-          nodeProps.xrayStreamSettingsEntity.tcpSettings.request.headers.Host
-        "
-      />
-    </el-form-item>
-    <el-form-item
       label="path"
       prop="xrayStreamSettingsEntity.tcpSettings.request.path"
     >
@@ -42,6 +32,16 @@
           nodeProps.xrayStreamSettingsEntity.tcpSettings.request.path.push(
             pathItem
           )
+        "
+      />
+    </el-form-item>
+    <el-form-item
+      label="Host"
+      prop="xrayStreamSettingsEntity.tcpSettings.request.headers.Host"
+    >
+      <el-input
+        v-model="
+          nodeProps.xrayStreamSettingsEntity.tcpSettings.request.headers.Host
         "
       />
     </el-form-item>

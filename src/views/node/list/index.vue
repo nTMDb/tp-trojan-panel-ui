@@ -302,8 +302,8 @@ export default {
           security: 'none',
           tlsSettings: {
             serverName: '',
-            alpn: ['h2', 'http/1.1'],
             allowInsecure: false,
+            alpn: ['h2', 'http/1.1'],
             fingerprint: 'chrome'
           },
           realitySettings: {
@@ -319,6 +319,17 @@ export default {
             path: '/trojan-panel-websocket-path',
             headers: {
               Host: ''
+            }
+          },
+          tcpSettings: {
+            header: {
+              type: 'none'
+            },
+            request: {
+              path: ['/'],
+              headers: {
+                Host: []
+              }
             }
           }
         },
@@ -389,8 +400,8 @@ export default {
           security: 'none',
           tlsSettings: {
             serverName: '',
-            alpn: ['h2', 'http/1.1'],
             allowInsecure: false,
+            alpn: ['h2', 'http/1.1'],
             fingerprint: 'chrome'
           },
           realitySettings: {
@@ -409,11 +420,13 @@ export default {
             }
           },
           tcpSettings: {
-            type: 'none',
+            header: {
+              type: 'none'
+            },
             request: {
-              path: ["/"],
+              path: ['/'],
               headers: {
-                Host: [],
+                Host: []
               }
             }
           }
@@ -517,8 +530,8 @@ export default {
           security: 'none',
           tlsSettings: {
             serverName: '',
-            alpn: ['h2', 'http/1.1'],
             allowInsecure: false,
+            alpn: ['h2', 'http/1.1'],
             fingerprint: 'chrome'
           },
           realitySettings: {
@@ -537,11 +550,13 @@ export default {
             }
           },
           tcpSettings: {
-            type: 'none',
+            header: {
+              type: 'none'
+            },
             request: {
-              path: ["/"],
+              path: ['/'],
               headers: {
-                Host: [],
+                Host: []
               }
             }
           }
