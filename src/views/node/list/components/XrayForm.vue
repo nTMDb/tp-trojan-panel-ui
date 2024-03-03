@@ -18,14 +18,14 @@
       </el-select>
     </el-form-item>
 
-    <XrayFormStreamSettings :node-props="nodeProps" />
-
     <XrayFormSettings
       :node-props="nodeProps"
       :delete-fallback-props="deleteFallbackProps"
       :handle-create-fallback-props="handleCreateFallbackProps"
       :handle-fallback-detail-props="handleFallbackDetailProps"
     />
+
+    <XrayFormStreamSettings :node-props="nodeProps" />
   </div>
 </template>
 

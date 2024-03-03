@@ -37,11 +37,6 @@
       </el-select>
     </el-form-item>
 
-    <XrayFormTcp
-      :form-visible-props="isXrayStreamSettingsNetworkTcp(nodeProps)"
-      :node-props="nodeProps"
-    />
-
     <XrayFormTls
       :form-visible-props="isXrayStreamSettingsSecurityTls(nodeProps)"
       :node-props="nodeProps"
@@ -49,6 +44,11 @@
 
     <XrayFormReality
       :form-visible-props="isXrayStreamSettingsSecurityReality(nodeProps)"
+      :node-props="nodeProps"
+    />
+
+    <XrayFormTcp
+      :form-visible-props="isXrayStreamSettingsNetworkTcp(nodeProps)"
       :node-props="nodeProps"
     />
 
