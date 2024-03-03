@@ -81,6 +81,12 @@ export function showFallback(temp) {
   )
 }
 
+export function showTcpSettingsHeaderTypeHttp(temp) {
+  return (
+    this.nodeProps.xrayStreamSettingsEntity.tcpSettings.header.type === 'http'
+  )
+}
+
 export function isTrojanGoEnableWebsocket(temp) {
   return isTrojanGo(temp) && temp.trojanGoWebsocketEnable === 1
 }

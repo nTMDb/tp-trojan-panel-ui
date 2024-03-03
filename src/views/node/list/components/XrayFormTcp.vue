@@ -4,53 +4,52 @@
       label="headerType"
       prop="xrayStreamSettingsEntity.tcpSettings.header.type"
     >
-      <el-input
+      <el-select
         v-model="nodeProps.xrayStreamSettingsEntity.tcpSettings.header.type"
-      />
-    </el-form-item>
-    <el-form-item
-      label="path"
-      prop="xrayStreamSettingsEntity.tcpSettings.request.path"
-    >
-      <el-tag
-        v-for="item in nodeProps.xrayStreamSettingsEntity.tcpSettings.request
-          .path"
-        :key="item"
-        type="info"
-        closable
+        controls-position="right"
       >
-        {{ item }}
-      </el-tag>
-      <el-input
-        v-model="pathItem"
-        @keyup.enter="
-          nodeProps.xrayStreamSettingsEntity.tcpSettings.request.path.push(
-            pathItem
-          )
-        "
-        @blur="
-          nodeProps.xrayStreamSettingsEntity.tcpSettings.request.path.push(
-            pathItem
-          )
-        "
-      />
+        <el-option
+          :label="item"
+          :value="item"
+          :key="index"
+          v-for="(item, index) in headerTypes"
+        ></el-option>
+      </el-select>
     </el-form-item>
-    <el-form-item
-      label="Host"
-      prop="xrayStreamSettingsEntity.tcpSettings.request.headers.Host"
-    >
-      <el-input
-        v-model="
-          nodeProps.xrayStreamSettingsEntity.tcpSettings.request.headers.Host
-        "
-      />
-    </el-form-item>
+    <div v-if="showTcpSettingsHeaderTypeHttp(nodeProps)">
+      <el-form-item
+        label="requestPath"
+        prop="xrayStreamSettingsEntity.tcpSettings.request.path"
+      >
+        <EditTag
+          :dynamic-tags-props="
+            nodeProps.xrayStreamSettingsEntity.tcpSettings.request.path
+          "
+        />
+      </el-form-item>
+      <el-form-item
+        label="requestHeadersHost"
+        prop="xrayStreamSettingsEntity.tcpSettings.request.headers.Host"
+      >
+        <EditTag
+          :dynamic-tags-props="
+            nodeProps.xrayStreamSettingsEntity.tcpSettings.request.headers.Host
+          "
+        />
+      </el-form-item>
+    </div>
   </div>
 </template>
 
 <script>
+import EditTag from '@/components/EditTag/index.vue'
+import { showTcpSettingsHeaderTypeHttp } from '@/utils/node'
+
 export default {
   name: 'XrayFormTcp',
+  components: {
+    EditTag
+  },
   props: {
     nodeProps: {
       type: Object,
@@ -63,9 +62,10 @@ export default {
   },
   data() {
     return {
-      pathItem: ''
+      headerTypes: ['none', 'http']
     }
-  }
+  },
+  methods: { showTcpSettingsHeaderTypeHttp }
 }
 </script>
 
