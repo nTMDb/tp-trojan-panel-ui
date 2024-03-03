@@ -1,5 +1,5 @@
 <template>
-  <div v-if="formVisibleProps">
+  <div>
     <el-form-item
       :label="$t('table.hysteriaProtocol').toString()"
       prop="hysteriaProtocol"
@@ -93,10 +93,6 @@ export default {
   props: {
     nodeProps: {
       type: Object,
-      require: true
-    },
-    formVisibleProps: {
-      type: Boolean,
       require: true
     }
   },

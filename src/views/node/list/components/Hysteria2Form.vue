@@ -1,5 +1,5 @@
 <template>
-  <div v-if="formVisibleProps">
+  <div>
     <el-form-item
       :label="$t('table.hysteria2ObfsPassword').toString()"
       prop="hysteria2ObfsPassword"
@@ -56,10 +56,6 @@ export default {
   props: {
     nodeProps: {
       type: Object,
-      require: true
-    },
-    formVisibleProps: {
-      type: Boolean,
       require: true
     }
   },

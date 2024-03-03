@@ -70,30 +70,22 @@
         </el-form-item>
 
         <XrayForm
+          v-if="isXray(nodeProps)"
           :node-props="nodeProps"
-          :form-visible-props="isXray(nodeProps)"
           :handle-create-fallback-props="handleCreateFallback"
           :handle-fallback-detail-props="handleFallbackDetail"
           :delete-fallback-props="deleteFallback"
         />
 
-        <TrojanGoForm
-          :node-props="nodeProps"
-          :form-visible-props="isTrojanGo(nodeProps)"
-        />
+        <TrojanGoForm v-if="isTrojanGo(nodeProps)" :node-props="nodeProps" />
 
-        <HysteriaForm
-          :node-props="nodeProps"
-          :form-visible-props="isHysteria(nodeProps)"
-        />
+        <HysteriaForm v-if="isHysteria(nodeProps)" :node-props="nodeProps" />
 
-        <NaiveProxyForm :form-visible-props="isNaiveProxy(nodeProps)" />
+        <NaiveProxyForm v-if="isNaiveProxy(nodeProps)" />
 
-        <Hysteria2Form
-          :node-props="nodeProps"
-          :form-visible-props="isHysteria2(nodeProps)"
-        />
+        <Hysteria2Form v-if="isHysteria2(nodeProps)" :node-props="nodeProps" />
       </el-form>
+
       <div slot="footer" class="dialog-footer">
         <el-button @click="$emit('update:dialogFormVisibleProps', false)"
           >{{ $t('table.cancel') }}
