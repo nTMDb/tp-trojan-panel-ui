@@ -1,14 +1,14 @@
 <template>
   <div v-if="formVisibleProps">
     <el-form-item
-      :label="$t('table.xrayStreamSettingsWsSettingsPath').toString()"
+      label="WebSocketPath"
       prop="xrayStreamSettingsEntity.wsSettings.path"
     >
       <el-input v-model="nodeProps.xrayStreamSettingsEntity.wsSettings.path" />
     </el-form-item>
 
     <el-form-item
-      label="WebSocket Host"
+      label="WebSocketHeadersHost"
       prop="xrayStreamSettingsEntity.wsSettings.headers.Host"
     >
       <el-input
